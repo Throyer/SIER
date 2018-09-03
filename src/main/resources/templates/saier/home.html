@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{fragments/fragments :: head (title='SAIER | Home')}"></head>
+    <body>
+        <!-- Navbar -->
+        <nav th:replace="~{fragments/fragments :: navbar (home='true')}"></nav>
+
+        <!-- Conteudo do Home -->
+        <div class="container marketing">
+
+            <hr class="featurette-divider">
+
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading">S.A.I.E.R. <span class="text-muted">Sistema de Arquitetura da Informação de Edificios Residensiais.</span></h2>
+                    <p class="lead">
+                        Este sistema, registra as nomenclaturas dos edificios residenciais de Londrina.
+                    </p>
+                </div>
+                <div class="col-md-5">
+                    <img class="featurette-image img-fluid mx-auto" th:src="@{img/londrina-lg.jpg}" alt="Generic placeholder image">
+                </div>
+            </div>
+
+            <hr class="featurette-divider">
+
+        </div><!-- /FIM DO CONTEUDO -->
+        <!-- Footer -->
+        <footer th:replace="~{fragments/fragments :: footer}"></footer>
+    </body>
+    
+    <!-- jQuery 3.3.1 -->
+    <script th:replace="~{fragments/javascript :: jquery}"></script>
+
+    <!-- Popper -->
+    <script th:replace="~{fragments/javascript :: popper}"></script>
+
+    <!-- bootstrap 4.0.1 -->
+    <script th:replace="~{fragments/javascript :: bootstrap}"></script>
+</html>

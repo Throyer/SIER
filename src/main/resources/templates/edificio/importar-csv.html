@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{fragments/fragments :: head (title='Importar | CSV')}"></head>
+    <body>
+        <!-- Navbar -->
+        <nav th:replace="~{fragments/fragments :: navbar (gerenciamento='true')}"></nav>
+
+        <!-- Estilo Gerenciamento -->
+        <link rel="stylesheet" type="text/css" th:href="@{../css/gerenciamento.css}"/>
+
+        <!-- Estilo Formulario -->
+        <link rel="stylesheet" type="text/css" th:href="@{../css/formulario.css}"/>
+
+        <div class="container-fluid">
+            <div class="row">
+
+                <!-- lado esquerdo do sidebar Edificio -->
+                <nav th:replace="~{fragments/fragments :: sidebar-edificio}">sidebar Edificio</nav>
+
+                <!-- Lado direito do sidebar -->
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                    <h4 class="mb-3">Importar de CSV</h4>
+                    
+                    <!-- Cadastro Sucesso -->
+                    <div class="alert alert-success" role="alert">
+                        <small>Edificio <strong>Testador</strong> cadastrado com sucesso!</small>
+                    </div>
+
+                    <!-- mensagens de erro -->
+                    <div class="alert alert-danger" role="alert">
+                        <small>
+                            <ul>
+                                <li>Exemplo de erro <strong>erro</strong></li>
+                            </ul>
+                        </small>
+                    </div>
+
+                    <!-- ler csv -->
+                    <h2>Funcionalidade em desenvolvimento.</h2>
+                    
+                </main>
+            </div>    
+        </div>
+
+        <!-- jQuery 3.3.1 -->
+        <script th:replace="~{fragments/fragments :: jquery}"></script>
+
+        <!-- Popper -->
+        <script th:replace="~{fragments/fragments :: popper}"></script>
+
+        <!-- bootstrap 4.0.1 -->
+        <script th:replace="~{fragments/fragments :: bootstrap}"></script>
+
+        <!-- Validate -->
+        <script th:replace="~{fragments/fragments :: validate}"></script>
+
+        <!-- popover -->
+        <script th:replace="~{fragments/fragments :: popover}"></script>
+    </body>
+</html>

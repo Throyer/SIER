@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{fragments/fragments :: head (title='Edificio | Formulario')}"></head>
+    <body>
+        <!-- Navbar -->
+        <nav th:replace="~{fragments/fragments :: navbar (gerenciamento='true')}"></nav>
+
+        <!-- Estilo Gerenciamento -->
+        <link rel="stylesheet" type="text/css" th:replace="~{fragments/css :: gerenciamento-css}"/>
+
+        <!-- Estilo Formulario -->
+        <link rel="stylesheet" type="text/css" th:replace="~{fragments/css :: formulario-css}"/>
+
+        <!-- Container principal -->
+        <div class="container-fluid">
+            <div class="row">
+
+                <!-- lado esquerdo do sidebar Edificio -->
+                <nav th:replace="~{fragments/fragments :: sidebar-edificio (formulario='true')}"></nav>
+
+                <!-- Lado direito do sidebar -->
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                    <h4 class="mb-3">Formulario de edificio</h4>
+
+                    <!-- Cadastro Sucesso -->
+                    <div th:if="${cadastro}" class="alert alert-success alert-dismissible fade show" role="alert">
+                        <small>Edificio <strong><span th:text="${cadastro.nome}"></span></strong> cadastrado com sucesso!</small>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">
+                                <i class="fas fa-times"></i>
+                            </span>
+                        </button>
+                    </div>
+
+                    <!-- Edição Sucesso -->
+                    <div th:if="${param.atualizado}" class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <small>Edificio <strong>atualiado</strong> com sucesso!</small>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">
+                                <i class="fas fa-times"></i>
+                            </span>
+                        </button>
+                    </div>
+
+                    <!-- Formulario de Edificios -->
+                    <form action="/edificio/formulario" method="post" th:object="${edificio}" class="needs-validation" novalidate>
+
+                        <!-- id -->
+                        <input hidden th:field="${edificio.id}" name="id">
+
+                        <hr class="mb-4">
+
+                        <!-- mensagens de erro -->
+                        <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+                            <small>Erros:</small>
+                            <ul>
+                                <strong><li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li></strong>   
+                            </ul>
+                        </div>
+
+                        <h6 class="mb-3">Informações sobre o edificio</h6>
+
+                        <!-- Campos do edificio -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="inputNome">Nome do edificio</label>
+                                <input th:field="${edificio.nome}" name="nome" type="text" class="form-control" id="inputNome" value="">
+                                <div class="invalid-feedback">
+                                    Digite o nome do edificio.
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="inputNomeConhecido">Nome conhecido <small class="text-muted">Nome fantasia</small></label>
+                                <input th:field="${edificio.nomeConhecido}" name="nomeConhecido" type="text" class="form-control" id="inputNomeConhecido" value="">
+
+                                <div class="invalid-feedback">
+                                    Digite o nome conhecido do edificio.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-5 mb-3">
+                                <label for="inputDataConstrucao">Data de construção <small class="text-muted"> * Não obrigatorio</small></label>
+                                <input th:field="${edificio.dataConstrucao}" type="date" class="form-control" id="inputDataConstrucao">
+                            </div>
+                            <div class="col-md-2 mb-2">
+                                <label for="inputNumeroAndares">Numero de andares</label>
+                                <input th:field="${edificio.numeroAndares}" name="numeroAndares" type="number" min="1" class="form-control" id="inputNumeroAndares" value="" required>
+                                <div class="invalid-feedback">
+                                    Digite o numero de andares.
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-2">
+                                <label for="inputCEP">CEP                                   
+                                </label>
+                                <input th:field="${edificio.cep.cep}" name="cep" type="text"
+                                       class="form-control" id="cep" required
+                                       maxlength="8" onblur="pesquisacep(this.value)">
+                                <div class="invalid-feedback">
+                                    Digite o CEP do edificio.
+                                </div>
+                                <div id="cep-feedback" class="campo-invalido">
+                                </div>
+                            </div>
+                            <div class="col-md-2 mb-2">
+                                <label for="inputNumero">Numero</label>
+                                <input th:field="${edificio.numero}" name="numero" type="number" min="1" class="form-control" id="inputNumero" required>
+                                <div class="invalid-feedback">
+                                    Digite o numero do edificio.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Fim dos campos do edificio -->
+
+                        <hr class="mb-4">
+
+                        <!-- Campos de endereço -->
+                        <h6 class="mb-3">Endereço
+                            <button type="button" class="btn btn-sm btn-outline-primary"
+                                    data-toggle="popover" title="Endereço"
+                                    data-content="Digite o CEP para preencher os campos de endereço automaticamente.">
+                                <i class="fas fa-question"></i>
+                            </button>
+                        </h6>
+
+                        <div class="row">
+                            <div class="col-md-4 mb-2">
+                                <label for="inputRua">Rua</label>
+                                <input th:field="${edificio.cep.rua}" name="rua" type="text" class="form-control" id="rua" value="" readonly required>
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label for="inputBairro">Bairro</label>
+                                <input th:field="${edificio.cep.bairro}" name="bairro" type="text" class="form-control" id="bairro" value="" readonly required>
+                            </div>
+                            <div class="col">
+                                <label for="inputCidade">Cidade</label>
+                                <input th:field="${edificio.cep.cidade}" name="cidade" type="text" class="form-control" id="cidade" placeholder="" readonly required>
+                            </div>
+                            <div class="col">
+                                <label for="inputEstado">Estado</label>
+                                <input th:field="${edificio.cep.estado}" name="estado" type="text" class="form-control" id="estado" placeholder="" readonly required>
+                            </div>
+                        </div>
+                        <!-- /Fim dos campos de endereço -->
+
+                        <hr class="mb-4">
+
+                        <h6 class="mb-3">Informaões sobre o aluno responsavel pelo registro</h6>
+
+                        <!-- Campos da coleta -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="inputNome">Nome <small> * nome do aluno responsavel por esse cadastro</small></label>
+                                <input th:placeholder="${usuario.nome}" type="text" class="form-control" readonly>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="inputNomeConhecido">Sobrenome</label>
+                                <input th:placeholder="${usuario.sobrenome}" type="text" class="form-control" readonly>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="inputEmail">E-mail</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-envelope"></i></span>
+                                </div>
+                                <input th:placeholder="${usuario.email}" type="text" class="form-control" readonly>
+                            </div>
+                        </div>
+
+                        <hr class="mb-4">
+
+                        <h6 class="mb-3">Informaões sobre a coleta dos dados</h6>
+
+                        <div class="row">
+                            <div class="col">
+                                <label for="country">Fonte da coleta</label>
+                                <select name="fonteColeta" class="custom-select d-block w-100" id="fonte" required>
+                                    <option value="">Selecione a fonte da coleta dos dados...</option>
+                                    <option th:selected="${edificio.fonteColeta} == 'PORTARIA'" value="PORTARIA">Portaria do prédio</option>
+                                    <option th:selected="${edificio.fonteColeta} == 'INTERNET'" value="INTERNET">Internet</option>
+                                    <option th:selected="${edificio.fonteColeta} == 'JORNAL'" value="JORNAL">Jornal</option>
+                                    <option th:selected="${edificio.fonteColeta} == 'PREFEITURA'" value="PREFEITURA">Prefeitura</option>
+                                    <option th:selected="${edificio.fonteColeta} == 'ACIL'" value="ACIL">ACIL</option>
+                                    <option th:selected="${edificio.fonteColeta} == 'SINDUSCON'" value="SINDUSCON">SINDUSCON</option>
+                                    <option th:selected="${edificio.fonteColeta} == 'LISTA TELEFONICA'" value="LISTA TELEFONICA">Lista Telefonica</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Por favor, selecione a fonte da coleta.
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for="inputDataColeta">Data <small> coleta dos dados, não deste cadastro</small></label>
+                                <input th:field="${edificio.dataColeta}" name="dataColeta" type="date" class="form-control" id="inputDataColeta" required>
+                                <div class="invalid-feedback">
+                                    Digite a data da coleta dos dados.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="textInformacoes">Informações <small> forneça alguma informação adicional sobre este edifiio.</small></label>
+                                <textarea th:field="${edificio.informacoes}" name="informacoes" placeholder="Informações adicionais"
+                                          maxlength="255" id="textInformacoes" class="form-control">
+                                </textarea>
+                            </div>
+                        </div>
+                        <!-- /Fim dos campos da coleta -->
+
+                        <hr class="mb-4">
+
+                        <button class="btn btn-primary btn-lg btn-block" type="submit">Salvar</button>
+                    </form>
+                </main><!-- /Fim do lado esquerdo do sidebar Edificio -->
+            </div>    
+        </div><!-- /Fim do container principal -->
+    </body>
+
+    <!-- jQuery 3.3.1 -->
+    <script th:replace="~{fragments/javascript :: jquery}"></script>
+
+    <!-- Popper -->
+    <script th:replace="~{fragments/javascript :: popper}"></script>
+
+    <!-- bootstrap 4.0.1 -->
+    <script th:replace="~{fragments/javascript :: bootstrap}"></script>
+
+    <!-- Validate -->
+    <script th:replace="~{fragments/javascript :: validate}"></script>
+
+    <!-- popover -->
+    <script th:replace="~{fragments/javascript :: popover}"></script>
+
+    <!-- cep validator -->
+    <script th:replace="~{fragments/javascript :: cep}"></script>
+</html>

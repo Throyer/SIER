@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{fragments/fragments :: head (title='SAIER | Contato')}"></head>
+    <body>
+        <!-- Navbar -->
+        <nav th:replace="~{fragments/fragments :: navbar (contato='true')}"></nav>
+
+        <!-- Conteudo -->
+        <div class="container marketing">
+
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading">Sistema de Arquitetura da Informação de Edificios Residensiais.</h2>
+                    <p class="lead">
+                        O SAIER é um sistema utilizado na disciplina <strong>2CIN056</strong>  Terminologia na construção de vocabularios
+                        controlados para o registro terminológico dos edifícios residenciais da cidade de Londrina.
+                    </p>
+                    <p class="lead">
+                        Este sistema foi desenvolvido pelo estudante de graduação do curso
+                        de Ciência da Computação da UniFil Renato Henrique Horácio dos Santos.
+                    </p>
+                    <!--<p><a class="btn btn-light" href="#" role="button"><i class="fab fa-github"></i> GitHub</a></p>-->
+                </div>
+                <div class="col-md-5">
+                    <img class="featurette-image img-fluid mx-auto" th:src="@{img/edificios-lg.jpg}" alt="Generic placeholder image">
+                </div>
+            </div>
+
+            <hr class="featurette-divider">
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <img class="rounded-circle" th:src="@{img/renato.jpg}" alt="Generic placeholder image" width="140" height="140">
+                    <h2>Renato Henrique</h2>
+                    <p>Ciencias da Computação na UniFil.</p>
+                    <h4>Cargo</h4>
+                    <p>Desenvolvedor.</p>
+                    <h4>Email</h4>
+                    <p>renato.henrique_98@hotmail.com</p>
+                    <h4>Contato</h4>
+                    <p><i class="fab fa-github"></i> <a href="#">GitHub</a> <i class="fab fa-twitter"></i> <a href="#">Twitter</a> <i class="fab fa-linkedin"></i> <a href="#">Linkedin</a></p>
+
+                </div><!-- /.col-lg-4 -->
+                <div class="col-lg-4">
+                    <img class="rounded-circle" th:src="@{img/foto-aqui.png}" alt="Generic placeholder image" width="140" height="140">
+                    <h2>Inserir um nome</h2>
+                    <p>Uma descrição.</p>
+                    <h4>Cargo</h4>
+                    <p>Uma descrição.</p>
+                    <h4>Email</h4>
+                    <p>fake@email.com</p>
+                    <h4>Contato</h4>
+                    <p><i class="fab fa-github"></i> <a href="#">GitHub</a> <i class="fab fa-twitter"></i> <a href="#">Twitter</a> <i class="fab fa-linkedin"></i> <a href="#">Linkedin</a></p>
+                </div><!-- /.col-lg-4 -->
+
+            </div><!-- /.row -->
+        </div><!-- /FIM do Navbar -->
+        <!-- Footer -->
+        <footer th:replace="~{fragments/fragments :: footer}"></footer>
+    </body>
+
+    <!-- jQuery 3.3.1 -->
+    <script th:replace="~{fragments/javascript :: jquery}"></script>
+
+    <!-- Popper -->
+    <script th:replace="~{fragments/javascript :: popper}"></script>
+
+    <!-- bootstrap 4.0.1 -->
+    <script th:replace="~{fragments/javascript :: bootstrap}"></script>
+</html>

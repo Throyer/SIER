@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{fragments/fragments :: head (title='Blog | Formulario')}"></head>
+    <body>
+        <!-- Navbar -->
+        <nav th:replace="~{fragments/fragments :: navbar (gerenciamento='true')}"></nav>
+
+        <!-- Estilo Gerenciamento -->
+        <link th:replace="~{fragments/css :: gerenciamento-css}" />
+
+        <!-- Estilo Formulario -->
+        <link th:replace="~{fragments/css :: formulario-css}" />
+
+        <!-- Estilo Simplemde -->
+        <link th:replace="~{fragments/css :: simplemde-css}" />
+
+        <!-- Container principal -->
+        <div class="container-fluid">
+            <div class="row">
+
+                <!-- lado esquerdo do sidebar Edificio -->
+                <nav th:replace="~{fragments/fragments :: sidebar-blog (formulario='true')}"></nav>
+
+                <!-- Lado direito do sidebar -->
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                    <h4 class="mb-3">Formulario de postagem</h4>
+
+                    <!-- Cadastro Sucesso
+                    <div class="alert alert-success" role="alert">
+                        <small>Edificio <strong>Testador</strong> cadastrado com sucesso!</small>
+                    </div>
+                    -->
+
+                    <!-- Edição Sucesso 
+                    <div class="alert alert-success" role="alert">
+                        <small>Edificio <strong>Testador</strong> atualizado com sucesso!</small>
+                    </div>
+                    -->
+
+                    <!-- mensagens de erro
+                    <div class="alert alert-danger" role="alert">
+                        <small>
+                            <ul>
+                                <li>ERRO NO CAMPO <strong>NOME</strong></li>
+                            </ul>
+                            <ul>
+                                <li>ERRO NO CAMPO <strong>CEP</strong></li>
+                            </ul>
+                            <ul>
+                                <li>ERRO NO CAMPO <strong>NOME CONHECIDO</strong></li>
+                            </ul>
+                            <ul>
+                                <li>ERRO NO CAMPO <strong>RUA</strong></li>
+                            </ul>
+                        </small>
+                    </div>
+                    -->
+
+                    <!-- Formulario de blog -->
+                    <form action="#" class="needs-validation" novalidate>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="inputNome">Titulo</label>
+                                <input name="nome" type="text" class="form-control" required>
+                                <div class="invalid-feedback">
+                                    Por favor, informe o titulo.
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="inputNomeConhecido">Data de publicação</label>
+                                <input name="nomeConhecido" type="text" value="14/07/2017 14:00:25" class="form-control" readonly>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="inputNomeConhecido">Por</label>
+                                <input name="nomeConhecido" type="text" value="Fulano de tal" class="form-control" readonly>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <label for="textDescricao">Descição</label>
+                                <textarea id="textDescricao" required maxlength="300"></textarea>
+                                <div class="invalid-feedback">
+                                    Por favor, informe o sobrenome.
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="mb-4">
+
+                        <button class="btn btn-primary btn-block btn-lg" type="submit">Publicar</button>
+                    </form>
+                </main><!-- /Fim do lado esquerdo do sidebar Edificio -->
+            </div>    
+        </div><!-- /Fim do container principal -->
+    </body>
+
+    <!-- jQuery 3.3.1 -->
+    <script th:replace="~{fragments/javascript :: jquery}"></script>
+
+    <!-- Popper -->
+    <script th:replace="~{fragments/javascript :: popper}"></script>
+
+    <!-- bootstrap 4.0.1 -->
+    <script th:replace="~{fragments/javascript :: bootstrap}"></script>
+
+    <!-- Validate -->
+    <script th:replace="~{fragments/javascript :: validate}"></script>
+
+    <!-- Simplemde 1.11.2 -->
+    <script th:replace="~{fragments/javascript :: simplemde}"></script>
+
+    <!-- Simplemde configs -->
+    <script th:replace="~{fragments/javascript :: simplemde-config}"></script>
+</html>

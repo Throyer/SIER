@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{fragments/fragments :: head (title='Gerenciamento | Blog')}"></head>
+
+    <!-- Estilo Gerenciamento -->
+    <link th:replace="~{fragments/css :: gerenciamento-css}"/>
+
+    <!-- Estilo dataTables bootstrap 4 -->
+    <link th:replace="~{fragments/css :: dataTables-bootstrap-css}"/>
+
+    <body>
+        <!-- Navbar -->
+        <nav th:replace="~{fragments/fragments :: navbar (gerenciamento='true')}"></nav>
+
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Lateral sidebar Edificio -->
+                <nav th:replace="~{fragments/fragments :: sidebar-blog (index='true')}"></nav>
+
+                <!-- Tabela de Edificios -->
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                    <div class="table-responsive">
+                        <h4>Postagems</h4>
+                        <table id="postagens" class="table table-striped table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Descrição</th>
+                                    <th scope="col">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Funcionalidade ainda em desenvolvimento.
+                                    </td>
+                                    <td><i class="far fa-eye"></i> <i class="far fa-edit"></i> <i class="fas fa-history"></i></td>
+                                </tr>                                
+                            </tbody>
+                        </table>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </body>
+
+    <!-- jQuery 3.3.1 -->
+    <script th:replace="~{fragments/javascript :: jquery}"></script>
+
+    <!-- Popper -->
+    <script th:replace="~{fragments/javascript :: popper}"></script>
+
+    <!-- bootstrap 4.0.1 -->
+    <script th:replace="~{fragments/javascript :: bootstrap}"></script>
+
+    <!-- DataTables javascript -->
+
+    <!-- DataTables jquery --> 
+    <script th:replace="~{fragments/javascript :: dataTables-jquery}"></script>
+
+    <!-- DataTables bootstrap -->
+    <script th:replace="~{fragments/javascript :: dataTables-bootstrap}"></script>
+
+    <!-- dataTable config -->
+    <script th:replace="~{fragments/javascript :: dataTables-config}"></script>
+
+    <!-- /Fim dataTables javascript -->
+</html>

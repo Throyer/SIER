@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{fragments/fragments :: head (title='Alunos')}"></head>
+
+    <!-- Estilo Gerenciamento -->
+    <link th:replace="~{fragments/css :: gerenciamento-css}"/>
+
+    <!-- Estilo dataTables bootstrap 4 -->
+    <link th:replace="~{fragments/css :: dataTables-bootstrap-css}"/>
+
+    <body>
+        <!-- Navbar -->
+        <nav th:replace="~{fragments/fragments :: navbar (gerenciamento='true')}"></nav>
+
+        <!-- Listagem dos alunos -->
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Lateral sidebar Edificio -->
+                <nav th:replace="~{fragments/fragments :: sidebar-aluno (index='true')}"></nav>
+
+                <!-- Tabela de Edificios -->
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+
+                    <!-- Edição Sucesso -->
+                    <div th:if="${atualizado}" class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <small>Aluno(a) <strong><span th:text="${atualizado.nome}"></span></strong> atualizado com sucesso!</small>
+                        <!--<a href="#"  class="badge badge-warning">Desfazer
+                            <span   href="#" class="badge badge-danger"><i class="fas fa-undo-alt"></i></span >
+                        </a>-->
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">
+                                <i class="fas fa-times"></i>
+                            </span>
+                        </button>
+                    </div>
+
+
+                    <!-- Remoção Sucesso -->
+                    <div th:if="${removeu}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <small>Aluno <strong><span th:text="${removeu.nome}"></span></strong> removido!</small>
+                        <!--<a href="#"  class="badge badge-warning">Desfazer ação
+                            <span   href="#" class="badge badge-danger"><i class="fas fa-undo-alt"></i></span >
+                        </a>-->
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">
+                                <i class="fas fa-times"></i>
+                            </span>
+                        </button>
+                    </div>
+
+
+                    <div class="table-responsive">
+                        <h4>Base de dados de Edificios Resisdenciais</h4>
+                        <table id="alunos" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Sobrenome</th>
+                                    <th scope="col">E-mail</th>
+                                    <th scope="col">Turma</th>
+                                    <th scope="col" class="text-center">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="aluno : ${alunos}"
+                                    th:class="${atualizado} ? (${aluno.id == atualizado.id} ? 'table-warning' : '')">
+                                    <td>
+                                        <span th:text="${aluno.nome}"></span>
+                                    </td>
+                                    <td>
+                                        <span th:text="${aluno.sobrenome}"></span>
+                                    </td>
+                                    <td>
+                                        <span th:text="${aluno.email}"></span>
+                                    </td>
+                                    <td>
+                                        <span th:text="${aluno.turma}"></span>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="btn-group" role="group" aria-label="First group">
+                                            <!--<button type="button" class="btn btn-dark"><i class="far fa-eye"></i></button>-->
+                                            <a th:href="@{/aluno/editar/{id}(id=${aluno.id})}" title='Editar'
+                                               class="btn btn-primary" role="button">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <!--<button type="button" class="btn btn-dark"><i class="fas fa-history"></i></button>-->
+                                            <!--<button type="button" class="btn btn-dark"><i class="fas fa-user-slash"></i></button>-->
+                                            <button data-toggle="modal" data-target="#delete-aluno"
+                                                    type="button" class="btn btn-primary"
+                                                    th:data-nome="${aluno.nome}" th:data-id="${aluno.id}">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </main>
+            </div>
+        </div><!-- /Fim da listagem dos alunos -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="delete-aluno" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content border border-danger">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Confirmação de exclusão</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-danger text-center">
+                        <h5>Deseja remover o aluno</h5>
+                        <h2 id="nome"> nome do aluno</h2>
+                        <h5 class="text-warning">Esta ação não tem reparo.</h5>
+                    </div>
+                    <div class="modal-footer">
+                        <form action="/aluno/remover" method="post">
+                            <button type="button" class="btn btn-info" data-dismiss="modal">Fechar</button>
+                            <button type="submit" id="excluir" name="id"
+                                    value="" class="btn btn-danger">
+                                Remover
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <!-- jQuery 3.3.1 -->
+    <script th:replace="~{fragments/javascript :: jquery}"></script>
+    <!-- Popper -->
+    <script th:replace="~{fragments/javascript :: popper}"></script>
+    <!-- bootstrap 4.0.1 -->
+    <script th:replace="~{fragments/javascript :: bootstrap}"></script>
+    <!-- DataTables jquery --> 
+    <script th:replace="~{fragments/javascript :: dataTables-jquery}"></script>
+    <!-- DataTables bootstrap -->
+    <script th:replace="~{fragments/javascript :: dataTables-bootstrap}"></script>
+    <!-- dataTable config -->
+    <script th:replace="~{fragments/javascript :: dataTables-config}"></script>
+    <!-- Modal config -->
+    <script th:replace="~{fragments/javascript :: modal-config}"></script>
+</html>

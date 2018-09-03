@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{fragments/fragments :: head (title='SAIER - Relatorios')}"></head>
+    <body>
+        <!-- Navbar -->
+        <nav th:replace="~{fragments/fragments :: navbar (relatorios='true')}"></nav>
+
+        <!-- Graficos  -->
+        <div class="container">
+            <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+        
+            <canvas id="bar-chart" width="800" height="450"></canvas>
+        
+            <canvas id="line-chart" width="800" height="450"></canvas>
+            
+            <canvas id="pie-chart" width="800" height="450"></canvas>
+        </div>
+        
+        <!-- Footer -->
+        <footer th:replace="~{fragments/fragments :: footer}"></footer>
+        
+    </body>
+    
+    <!-- jQuery 3.3.1 -->
+    <script th:replace="~{fragments/javascript :: jquery}"></script>
+
+    <!-- Popper -->
+    <script th:replace="~{fragments/javascript :: popper}"></script>
+
+    <!-- bootstrap 4.0.1 -->
+    <script th:replace="~{fragments/javascript :: bootstrap}"></script>
+
+    <!-- ChartJS 2.7.1 -->
+    <script th:replace="~{fragments/javascript :: chartjs}"></script>
+    
+    <!-- ChartJS config -->
+    <script th:replace="~{fragments/javascript :: chartjs-config}"></script>
+</html>
+
+

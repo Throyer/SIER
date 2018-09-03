@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+Pagina de Erros.
+-->
+<html>
+    <head>
+
+        <title>Saier pagina de erro</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Fontawesome CSS -->
+        <link th:replace="~{fragments/css :: fontawesome-css}"/>
+
+        <!-- Bootstrap 4.0.1 -->
+        <link th:replace="~{fragments/css :: bootstrap-css}"/>
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="jumbotron">
+                    <img class="featurette-image img-fluid mx-auto" th:src="@{~/img/404.png}" alt="Generic placeholder image">
+                    <h1 class="text-center">ERRO 404</h1>
+                    <p class="text-center"><i class="far fa-frown"></i> Esta pagina não existe</p>
+                    <p class="text-center">
+                        <a class="btn btn-primary btn-lg" href="/home" role="button">Voltar para Home</a>                    
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

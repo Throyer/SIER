@@ -1,0 +1,38 @@
+/*
+Version : 11/07/2018, 03:01:53
+Author  : Renato henique Horacio dos Santos.
+
+Documento de estilo global.
+Esse estilo é usado por todas as paginas do sistema.
+*/
+
+/* Espaço para o navbar */
+body {
+    min-height: 25rem;
+    padding-top: 4.5rem;
+    
+    /* Margin bottom by footer height */
+    margin-bottom: 5rem;
+}
+
+.erro { text-shadow: 50px 50px 50px rgb(255, 255, 255); }
+.erro-titulo { font-size: 220pt; }
+.erro-texto { font-size: 30pt; }
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+.footer {
+    z-index: 10;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 60px; /* Vertically center the text there */
+    background-color: #f5f5f5;
+}

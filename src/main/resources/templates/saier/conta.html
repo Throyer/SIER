@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{fragments/fragments :: head (title='SAIER | Minha conta')}"></head>
+
+    <!-- Estilo Conta/Perfil -->
+    <link th:replace="~{fragments/css :: conta-css}"/>
+
+    <body>
+        <!-- Navbar -->
+        <nav th:replace="~{fragments/fragments :: navbar (gerenciamento='true')}"></nav>
+        <!-- Aqui conteudo da pagina Conta -->
+        <main class="container">
+            <div class="row">
+
+                <div th:if="${info}" class="alert alert-success alert-dismissible fade show" role="alert">
+                    <small><strong><span th:text="${info.nome}"></span></strong>, seu perfil foi atualizado com sucesso!</small>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">
+                            <i class="fas fa-times"></i>
+                        </span>
+                    </button>
+                </div>
+
+                <!-- Lista de configurações -->
+                <div class="col-3">
+                    <div class="list-group" id="list-tab" role="tablist">
+                        <button class="list-group-item list-group-item-action text-center active"
+                                id="list-home-list" data-toggle="list" href="#perfil" role="tab" aria-controls="perfil">
+                            <i class="fas fa-user-edit d-block d-sm-none"></i> <div class="d-none d-sm-block">Perfil</div>
+                        </button>
+                        <button class="list-group-item list-group-item-action text-center"
+                                id="list-profile-list" data-toggle="list" href="#seguranca" role="tab" aria-controls="seguranca">
+                            <i class="fas fa-user-lock d-block d-sm-none"></i> <div class="d-none d-sm-block">Segurança</div>
+                        </button>
+                        <button class="list-group-item list-group-item-action text-center"
+                                id="list-messages-list" data-toggle="list" href="#notificacoes" role="tab" aria-controls="notificacoes">
+                            <i class="fas fa-bell d-block d-sm-none"></i><div class="d-none d-sm-block">Notificações</div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Configurações-->
+                <div class="col-8">
+                    <div class="tab-content" id="nav-tabContent">
+
+                        <!-- informacoes de perfil -->
+                        <div class="tab-pane fade show active" id="perfil" role="tabpanel" aria-labelledby="list-home-list">
+
+                            <!-- Card perfil -->
+                            <div class="card">
+                                <div class="card-header">
+                                    Informações de perfil
+                                </div>
+
+                                <!-- Formulario perfil -->
+                                <form action="/mudar/informacoes" class="needs-validation conta" method="post" th:object="${perfil}" novalidate>
+
+                                    <!-- mensagens de erro -->
+                                    <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+                                        <small>Erros:</small>
+                                        <ul>
+                                            <strong><li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li></strong>   
+                                        </ul>
+                                    </div>
+
+                                    <input hidden name="id" th:value="*{id}">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="inputNome">Nome</label>
+                                            <input th:value="*{nome}" name="nome" type="text"
+                                                   class="form-control" required>
+                                            <div class="invalid-feedback">
+                                                Por favor, informe o nome.
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="inputNomeConhecido">Sobrenome</label>
+                                            <input th:value="*{sobrenome}" name="sobrenome" type="text"
+                                                   class="form-control" required>
+                                            <div class="invalid-feedback">
+                                                Por favor, informe o sobrenome.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr class="mb-4">
+
+                                    <div class="row">
+                                        <div class="col-md-12 mb-3">
+                                            <label for="inputNomeConhecido">Email</label>
+                                            <input th:value="*{email}"name="email"
+                                                   type="email" class="form-control" required>
+                                            <div class="invalid-feedback">
+                                                Por favor, informe um email valido.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr class="mb-4">
+
+                                    <button class="btn btn-primary">Atualizar</button>
+                                </form><!-- /Fim do formulario perfil -->
+                            </div><!-- /Fim do card perfil -->
+                        </div><!-- /Fim das configurações de perfil -->
+
+                        <!-- Configurações de segurança -->
+                        <div class="tab-pane fade" id="seguranca" role="tabpanel" aria-labelledby="list-profile-list">
+
+                            <!-- Card conta -->
+                            <div class="card">
+                                <div class="card-header">
+                                    Configurações de segurança
+                                </div>
+
+                                <!-- Formulario de nova senha -->
+                                <form action="/mudar/informacoes" th:object="${perfil}" class="needs-validation conta" novalidate>
+
+                                    <!-- mensagens de erro -->
+                                    <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+                                        <small>Erros:</small>
+                                        <ul>
+                                            <strong><li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li></strong>   
+                                        </ul>
+                                    </div>
+
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-10 mb-3">
+                                            <label for="inputNomeConhecido">Senha anterior</label>
+                                            <input name="email" type="email" class="form-control" required>
+                                            <div class="invalid-feedback">
+                                                Por favor, informe um email valido.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr class="mb-4">
+
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-10 mb-3">
+                                            <label for="inputNome">Nova senha <small class="text-muted"> entre 8 a 12 caracteres ao menos um: A-Z, a-z, caractere especial e número.</small></label>
+                                            <input name="nome" type="text" class="form-control" required>
+                                            <div class="invalid-feedback">
+                                                Por favor, informe o nome.
+                                            </div>
+                                        </div>                                        
+                                    </div>
+
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-10 mb-3">
+                                            <label for="inputNomeConhecido">Confirme a senha</label>
+                                            <input name="nomeConhecido" type="text" class="form-control" required>
+                                            <div class="invalid-feedback">
+                                                Por favor, informe o sobrenome.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr class="mb-4">
+
+                                    <div class="row justify-content-center">
+                                        <button class="btn btn-primary" type="submit">Mudar senha</button>
+                                    </div>
+                                </form><!-- /Fim do formulario senha -->
+                            </div><!-- /Fim do card conta -->
+                        </div><!-- /Fim das configurações de segurança -->
+
+                        <!-- Configurações de notificação -->
+                        <div class="tab-pane fade" id="notificacoes" role="tabpanel" aria-labelledby="list-messages-list">
+                            <div class="card">
+                                <div class="card-header">
+                                    Configurações de notificação
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Esta funcionalidade ainda esta em desenvolvimento</h5>
+                                </div>
+                            </div><!-- /Fim do card conta -->
+                        </div><!-- /Fim das configurações de notificação -->                        
+                    </div>
+                </div><!-- /Fim das configurações -->
+            </div>
+        </main><!-- /Fim do conteudo -->
+        <!-- Footer -->
+        <footer th:replace="~{fragments/fragments :: footer}"></footer>
+    </body>
+    <!-- jQuery 3.3.1 -->
+    <script th:replace="~{fragments/javascript :: jquery}"></script>
+
+    <!-- Popper -->
+    <script th:replace="~{fragments/javascript :: popper}"></script>
+
+    <!-- bootstrap 4.0.1 -->
+    <script th:replace="~{fragments/javascript :: bootstrap}"></script>
+
+    <!-- Validate -->
+    <script th:replace="~{fragments/javascript :: validate}"></script>
+</html>
