@@ -65,7 +65,7 @@ public class Edificio implements Serializable {
     private Calendar dataColeta;
 
     /* Informações adicionais sobre esse edificio */
-    @Size(max = 100)
+    @Size(max = 350)
     private String informacoes;
 
     /* CEP do edificio */

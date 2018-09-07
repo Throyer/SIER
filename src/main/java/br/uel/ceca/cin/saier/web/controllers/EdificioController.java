@@ -6,19 +6,21 @@ package br.uel.ceca.cin.saier.web.controllers;
 import br.uel.ceca.cin.saier.persistence.models.CEP;
 import br.uel.ceca.cin.saier.persistence.models.Edificio;
 import br.uel.ceca.cin.saier.services.interfaces.CepService;
+import br.uel.ceca.cin.saier.services.interfaces.UsuarioService;
 import br.uel.ceca.cin.saier.services.interfaces.EdificioService;
 import br.uel.ceca.cin.saier.enums.TemplatePath;
+
+import javax.validation.Valid;
+
+import org.springframework.validation.BindingResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import javax.validation.Valid;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import br.uel.ceca.cin.saier.services.interfaces.UsuarioService;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -38,10 +40,10 @@ public class EdificioController {
     }
 
     /**
-     * Listagem dos edificios registrados.
+     * Listagem dos alunos registrados.
      *
      * @param listagem
-     * @return
+     * @return gerenciamento de alunos.
      */
     @RequestMapping(value = {"/edificio", "/edificio/gerenciamento"})
     public String lista(Model listagem) {
@@ -54,9 +56,10 @@ public class EdificioController {
     }
 
     /**
-     * 
+     * Formulario para cadastro de Edificio.
+     *
      * @param formulario
-     * @return 
+     * @return formulario para cadastro de edificio
      */
     @GetMapping("/edificio/formulario")
     public String formulario(Model formulario) {
@@ -72,12 +75,16 @@ public class EdificioController {
     }
 
     /**
-     * 
+     * Salvar edificio.
+     *
+     * Se o id do edificio recibido for nulo, é cadastrado um novo edificio,
+     * caso contrario o edificio com o id recebido é atualizado no banco.
+     *
      * @param edificio
      * @param result
      * @param formulario
      * @param redirect
-     * @return 
+     * @return
      */
     @PostMapping(value = "/edificio/formulario")
     public String salvar(@Valid Edificio edificio, BindingResult result, Model formulario, RedirectAttributes redirect) {
@@ -112,7 +119,7 @@ public class EdificioController {
 
                 /*Salvando edificio*/
                 edificioService.salvarEdificio(edificio);
-                
+
                 /* Passando dados desse novo edificio para o 'redirect' */
                 redirect.addFlashAttribute("cadastro", edificio);
 
@@ -134,10 +141,11 @@ public class EdificioController {
     }
 
     /**
-     * 
+     * Editar edificio a partir do Id.
+     *
      * @param formulario
      * @param id
-     * @return 
+     * @return
      */
     @GetMapping("/edificio/editar/{id}")
     public String editar(Model formulario, @PathVariable Integer id) {
@@ -149,10 +157,11 @@ public class EdificioController {
     }
 
     /**
-     * 
+     * Exibir edificio.
+     *
      * @param visualizar
      * @param id
-     * @return 
+     * @return
      */
     @GetMapping("/edificio/visualizar/{id}")
     public String visualizar(Model visualizar, @PathVariable Integer id) {
@@ -167,9 +176,9 @@ public class EdificioController {
     }
 
     /**
-     * Remove um objeto lúdico no banco de dados.
+     * Remove Edificio.
      *
-     * @param id chave primaria do objeto a ser removido.
+     * @param id chave primaria do Edificio a ser removido.
      * @return redireciona o usuario para a pagina de controle
      */
     @PostMapping(value = "/edificio/remover")
@@ -181,12 +190,11 @@ public class EdificioController {
         return "redirect:/edificio/gerenciamento";
     }
 
+    /* Serviços usados */
     @Autowired
     private UsuarioService usuarioService;
-
     @Autowired
     private EdificioService edificioService;
-
     @Autowired
     private CepService cepService;
 

@@ -7,10 +7,12 @@ import br.uel.ceca.cin.saier.enums.CargoNome;
 import br.uel.ceca.cin.saier.enums.TemplatePath;
 import br.uel.ceca.cin.saier.persistence.models.Usuario;
 import br.uel.ceca.cin.saier.services.interfaces.CargoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import br.uel.ceca.cin.saier.services.interfaces.UsuarioService;
+
 import java.util.Arrays;
 import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,8 +25,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
+ * Classe controladora das requisições para Aluno.
  *
  * @author Renato
+ * @version (07/09/2018)
  */
 @Controller
 public class AlunoController {
@@ -38,28 +42,48 @@ public class AlunoController {
     /**
      * Listagem dos alunos registrados.
      *
-     * @param listar
-     * @return
+     * @param listagem
+     * @return gerenciamento de alunos.
      */
     @RequestMapping(value = {"/aluno", "/aluno/gerenciamento"})
-    public String lista(Model listar) {
+    public String lista(Model listagem) {
 
         /* obtendo todos alunos */
-        listar.addAttribute("alunos", cargoService.ObterCargoPorNome(CargoNome.ALUNO.getCargoNome()).getUsuarios());
+        listagem.addAttribute("alunos", cargoService.ObterCargoPorNome(CargoNome.ALUNO.getCargoNome()).getUsuarios());
 
         return TemplatePath.LISTA_ALUNO.getPath();
 
     }
 
+    /**
+     * Remover aluno a partir do Id.
+     *
+     * @param id
+     * @return redireciona para gerenciamento de alunos.
+     */
     @PostMapping(value = "/aluno/remover")
     public String remover(@RequestParam("id") Integer id) {
 
         /* Obtendo edificio a partir do Id */
         usuarioService.remover(usuarioService.obterPorId(id));
 
-        return "redirect:/edificio/gerenciamento";
+        return "redirect:" + "/edificio/gerenciamento";
     }
 
+    /**
+     * Salvar aluno.
+     *
+     * Se o id do aluno recibido for nulo, é cadastrado um novo aluno, caso
+     * contrario o aluno com o id recebido é atualizado no banco.
+     *
+     * @param aluno
+     * @param result
+     * @param formulario
+     * @param redirect
+     * @param ano
+     * @param confirmarSenha
+     * @return
+     */
     @PostMapping("/aluno/formulario")
     public String salvar(@Valid @ModelAttribute("aluno") Usuario aluno,
             BindingResult result,
@@ -89,7 +113,7 @@ public class AlunoController {
             formulario.addAttribute("aluno", aluno);
 
             return TemplatePath.FORMULARIO_ALUNO.getPath();
-            
+
         } else {
 
             aluno.setCargos(Arrays.asList(cargoService.ObterCargoPorNome(CargoNome.ALUNO.getCargoNome())));
@@ -99,21 +123,22 @@ public class AlunoController {
                 usuarioService.salvarUsuario(aluno);
                 redirect.addFlashAttribute("cadastro", aluno);
 
-                return "redirect:/aluno/formulario";
+                return "redirect:" + "/aluno/formulario";
             } else {
 
                 usuarioService.salvarUsuario(aluno);
                 redirect.addFlashAttribute("atualizado", aluno);
 
-                return "redirect:/aluno";
+                return "redirect:" + "/aluno";
             }
         }
     }
 
     /**
+     * Formulario para cadastro de aluno.
      *
      * @param formulario
-     * @return
+     * @return formulario para cadastro de aluno
      */
     @GetMapping("/aluno/formulario")
     public String formulario(Model formulario) {
@@ -125,6 +150,13 @@ public class AlunoController {
 
     }
 
+    /**
+     * Editar aluno a partir do id.
+     *
+     * @param id
+     * @param formulario
+     * @return
+     */
     @GetMapping("/aluno/editar/{id}")
     public String editar(@PathVariable Integer id, Model formulario) {
 
@@ -135,9 +167,9 @@ public class AlunoController {
 
     }
 
+    /* Serviços usados */
     @Autowired
     private UsuarioService usuarioService;
-
     @Autowired
     private CargoService cargoService;
 

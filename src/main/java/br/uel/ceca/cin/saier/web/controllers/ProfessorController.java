@@ -6,6 +6,7 @@ package br.uel.ceca.cin.saier.web.controllers;
 import br.uel.ceca.cin.saier.enums.TemplatePath;
 import br.uel.ceca.cin.saier.persistence.models.Usuario;
 import br.uel.ceca.cin.saier.services.interfaces.UsuarioService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,6 +56,7 @@ public class ProfessorController {
 
     }
     
+    /* Serviços usados */
     @Autowired
     private UsuarioService usuarioService;
 }

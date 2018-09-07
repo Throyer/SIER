@@ -4,28 +4,30 @@
 package br.uel.ceca.cin.saier.web.controllers.error;
 
 import br.uel.ceca.cin.saier.enums.TemplatePath;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.boot.web.servlet.error.ErrorController;
+import org.springframework.http.HttpStatus;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.RequestDispatcher;
 
-import org.springframework.boot.web.servlet.error.ErrorController;
-import org.springframework.http.HttpStatus;
-
 /**
+ * Controlador de Erros.
  *
  * @author Renato
+ * @version (07/09/2018)
  */
 @Controller
 public class SaierErrorController implements ErrorController {
 
     @RequestMapping("/error")
     public String handleError(HttpServletRequest request, Model erros) {
-        
+
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
-        
+
         if (status != null) {
             Integer statusCode = Integer.valueOf(status.toString());
 

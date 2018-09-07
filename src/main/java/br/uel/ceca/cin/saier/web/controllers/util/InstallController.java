@@ -3,6 +3,7 @@
  */
 package br.uel.ceca.cin.saier.web.controllers.util;
 
+import br.uel.ceca.cin.saier.enums.CargoNome;
 import br.uel.ceca.cin.saier.enums.TemplatePath;
 import br.uel.ceca.cin.saier.persistence.models.Cargo;
 import br.uel.ceca.cin.saier.persistence.models.Usuario;
@@ -49,7 +50,7 @@ public class InstallController {
 
             redirect.addFlashAttribute("config", sistemaService.isConfigured());
 
-            return "redirect:/";
+            return "redirect:" + "/";
 
         } else {
 
@@ -97,19 +98,19 @@ public class InstallController {
             } else {
 
                 /* Criando o cargo de ALUNO */
-                cargoService.salvarCargo(new Cargo(ALUNO));
+                cargoService.salvarCargo(new Cargo(CargoNome.ALUNO.getCargoNome()));
 
                 /* Criando o cargo de PROFESSOR */
-                cargoService.salvarCargo(new Cargo(PROFESSOR));
+                cargoService.salvarCargo(new Cargo(CargoNome.PROFESSOR.getCargoNome()));
 
                 /* Criando o cargo de ADMINISTRADOR */
-                cargoService.salvarCargo(new Cargo(ADMINISTRADOR));
+                cargoService.salvarCargo(new Cargo(CargoNome.ADMINISTRADOR.getCargoNome()));
 
                 /* cargos de adminstrador (administrador tambem pode ser curador) */
                 administrador.setCargos(Arrays.asList(
-                        cargoService.ObterCargoPorNome(ALUNO),
-                        cargoService.ObterCargoPorNome(PROFESSOR),
-                        cargoService.ObterCargoPorNome(ADMINISTRADOR)));
+                        cargoService.ObterCargoPorNome(CargoNome.ALUNO.getCargoNome()),
+                        cargoService.ObterCargoPorNome(CargoNome.PROFESSOR.getCargoNome()),
+                        cargoService.ObterCargoPorNome(CargoNome.ADMINISTRADOR.getCargoNome())));
 
                 /* Salvando adminstrador */
                 usuarioService.salvarUsuario(administrador);
@@ -118,14 +119,14 @@ public class InstallController {
                 redirect.addFlashAttribute("adminstrador", administrador);
 
                 /* Redireciona para a pagina inicial */
-                return "redirect:/";
+                return "redirect:" + "/";
             }
 
         } else {
 
             redirect.addFlashAttribute("config", sistemaService.isConfigured());
 
-            return "redirect:/";
+            return "redirect:" + "/";
         }
 
     }
@@ -137,10 +138,5 @@ public class InstallController {
     private UsuarioService usuarioService;
     @Autowired
     private CargoService cargoService;
-
-    /* Nomes dos cargos do sistema */
-    private final static String ALUNO = "ALUNO";
-    private final static String PROFESSOR = "PROFESSOR";
-    private final static String ADMINISTRADOR = "ADMINISTRADOR";
 
 }

@@ -3,12 +3,13 @@
  */
 package br.uel.ceca.cin.saier.web.controllers;
 
+import br.uel.ceca.cin.saier.services.interfaces.UsuarioService;
 import br.uel.ceca.cin.saier.enums.TemplatePath;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import br.uel.ceca.cin.saier.services.interfaces.UsuarioService;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 /**
@@ -78,6 +79,7 @@ public class SaierController {
         return TemplatePath.CONTA.getPath();
     }
 
+    /* Serviços usados */
     @Autowired
     private UsuarioService usuarioService;
 }

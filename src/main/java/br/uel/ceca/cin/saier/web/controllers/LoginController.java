@@ -3,10 +3,11 @@
  */
 package br.uel.ceca.cin.saier.web.controllers;
 
+import br.uel.ceca.cin.saier.services.interfaces.UsuarioService;
 import br.uel.ceca.cin.saier.enums.TemplatePath;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import br.uel.ceca.cin.saier.services.interfaces.UsuarioService;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
@@ -30,7 +31,7 @@ public class LoginController {
     public String login() {
 
         if (usuarioService.getUsuarioLogado() != null) {
-            return "redirect:/home";
+            return "redirect:" + "/home";
         } else {
             return TemplatePath.LOGIN.getPath();
         }
