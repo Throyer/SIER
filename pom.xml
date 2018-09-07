@@ -5,7 +5,7 @@
 
     <groupId>br.uel.ceca.cin</groupId>
     <artifactId>saier</artifactId>
-    <version>1.0.0-beta</version>
+    <version>2.0.0-beta</version>
     <packaging>jar</packaging>
 
     <name>S.A.I.E.R</name>

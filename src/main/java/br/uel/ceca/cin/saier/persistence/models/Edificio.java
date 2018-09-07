@@ -1,5 +1,5 @@
-/**
- * SAIER 2.0.0.
+/*
+ * S.A.I.E.R 2.0.0 | https://github.com/Throyer/SAIER | 2018.
  */
 package br.uel.ceca.cin.saier.persistence.models;
 
