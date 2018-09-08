@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{fragments/fragments :: head (title='SAIER - Relatorios')}"></head>
+    <head th:replace="~{fragments/head :: head (title='SAIER - Relatorios')}"></head>
     <body>
         <!-- Navbar -->
         <nav th:replace="~{fragments/navbar :: navbar (relatorios='true')}"></nav>
@@ -17,7 +17,7 @@
         </div>
         
         <!-- Footer -->
-        <footer th:replace="~{fragments/fragments :: footer}"></footer>
+        <footer th:replace="~{fragments/footer :: footer}"></footer>
         
     </body>
     

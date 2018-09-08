@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <head th:replace="~{fragments/fragments :: head (title='SAIER | Blog')}"></head>
+    <head th:replace="~{fragments/head :: head (title='SAIER | Blog')}"></head>
     <body>
         <!-- Navbar -->
         <nav th:replace="~{fragments/navbar :: navbar (blog='true')}"></nav>
@@ -89,7 +89,7 @@
 
         </main><!-- /FIM DO CONTEUDO -->
         <!-- Footer -->
-        <footer th:replace="~{fragments/fragments :: footer}"></footer>
+        <footer th:replace="~{fragments/footer :: footer}"></footer>
     </body>
 
     <!-- jQuery 3.3.1 -->

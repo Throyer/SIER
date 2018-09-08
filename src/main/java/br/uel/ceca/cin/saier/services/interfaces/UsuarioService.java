@@ -26,6 +26,12 @@ public interface UsuarioService {
     public void salvarUsuario(Usuario usuario);
     
     /**
+     * Salvar um responsavel.
+     * @param usuario
+     */
+    public void atualizarUsuario(Usuario usuario);
+    
+    /**
      * Retorna uma instancia do usuario logado no sistema.
      *
      * @return UsuarioLogado

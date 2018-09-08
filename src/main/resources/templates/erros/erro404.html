@@ -3,10 +3,10 @@
 Pagina de Erros.
 -->
 <html>
-    <head th:replace="~{fragments/fragments :: head (title='SAIER | ERRO')}"></head>
+    <head th:replace="~{fragments/head :: head (title='SAIER | ERRO')}"></head>
     <body>
         <!-- Navbar -->
-        <nav th:replace="~{fragments/fragments :: navbar (home='true')}"></nav>
+        <nav th:replace="~{fragments/navbar :: navbar (home='true')}"></nav>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="jumbotron">
@@ -20,6 +20,6 @@ Pagina de Erros.
             </div>
         </div>
         <!-- Footer -->
-        <footer th:replace="~{fragments/fragments :: footer}"></footer>
+        <footer th:replace="~{fragments/footer :: footer}"></footer>
     </body>
 </html>

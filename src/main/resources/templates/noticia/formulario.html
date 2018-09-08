@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{fragments/fragments :: head (title='Blog | Formulario')}"></head>
+    <head th:replace="~{fragments/head :: head (title='Noticia | Formulario')}"></head>
     <body>
         <!-- Navbar -->
         <nav th:replace="~{fragments/navbar :: navbar (gerenciamento='true')}"></nav>
@@ -19,11 +19,11 @@
             <div class="row">
 
                 <!-- lado esquerdo do sidebar Edificio -->
-                <nav th:replace="~{fragments/fragments :: sidebar-blog (formulario='true')}"></nav>
+                <nav th:replace="~{fragments/sidebars/noticia :: sidebar-noticia (formulario='true')}"></nav>
 
                 <!-- Lado direito do sidebar -->
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                    <h4 class="mb-3">Formulario de postagem</h4>
+                    <h4 class="mb-3">Formulario de noticia</h4>
 
                     <!-- Cadastro Sucesso
                     <div class="alert alert-success" role="alert">
@@ -72,8 +72,8 @@
                                 <input name="nomeConhecido" type="text" value="14/07/2017 14:00:25" class="form-control" readonly>
                             </div>
                             <div class="col-md-3 mb-3">
-                                <label for="inputNomeConhecido">Por</label>
-                                <input name="nomeConhecido" type="text" value="Fulano de tal" class="form-control" readonly>
+                                <label for="inputNomeProfessor">Por</label>
+                                <input name="nomeProfessor" type="text" value="Fulano de tal" class="form-control" readonly>
                             </div>
                         </div>
 
@@ -82,7 +82,7 @@
                                 <label for="textDescricao">Descição</label>
                                 <textarea id="textDescricao" required maxlength="300"></textarea>
                                 <div class="invalid-feedback">
-                                    Por favor, informe o sobrenome.
+                                    Por favor, informe a descrição.
                                 </div>
                             </div>
                         </div>

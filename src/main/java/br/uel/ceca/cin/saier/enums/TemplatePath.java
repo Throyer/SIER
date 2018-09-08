@@ -25,11 +25,11 @@ public enum TemplatePath {
     LISTA_ALUNO("aluno/index"),
     PROFESSOR("professor/professor"),
     FORMULARIO_PROFESSOR("professor/formulario"),
-    PROFESSOR_LISTA("professpr/index"),
-    NOTICIA("noticia/noticia"),
+    PROFESSOR_LISTA("professor/index"),
     NOTICIA_FORMULARIO("noticia/formulario"),
     NOTICIA_LISTA("noticia/index"),
     INSTALL("install"),
+    SISTEMA("sistema/sistema"),
     ERRO_404("erros/erro404"),
     ERRO_PADRAO("erros/erro");
 

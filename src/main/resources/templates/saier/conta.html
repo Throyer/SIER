@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{fragments/fragments :: head (title='SAIER | Minha conta')}"></head>
+    <head th:replace="~{fragments/head :: head (title='Conta | ' + ${usuario.nome})}"></head>
 
     <!-- Estilo Conta/Perfil -->
     <link th:replace="~{fragments/css :: conta-css}"/>
@@ -10,29 +10,36 @@
         <nav th:replace="~{fragments/navbar :: navbar (gerenciamento='true')}"></nav>
         <!-- Aqui conteudo da pagina Conta -->
         <main class="container">
-            <div class="row">
 
-                <div th:if="${info}" class="alert alert-success alert-dismissible fade show" role="alert">
-                    <small><strong><span th:text="${info.nome}"></span></strong>, seu perfil foi atualizado com sucesso!</small>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">
-                            <i class="fas fa-times"></i>
-                        </span>
-                    </button>
-                </div>
+            <!-- Atualizacao Sucesso -->
+            <div th:if="${atualizadoSenha}" class="alert alert-success alert-dismissible fade show" role="alert">
+                <small>Sua senha foi atualizada com sucesso!</small>
+                <span class="badge badge-pill badge-danger">Por favor, refaça o login com a nova senha </span>
+                <a class="btn btn-outline-danger" href="/logout" role="button">sair</a>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </button>
+            </div>
+
+            <div class="row">
 
                 <!-- Lista de configurações -->
                 <div class="col-3">
                     <div class="list-group" id="list-tab" role="tablist">
-                        <button class="list-group-item list-group-item-action text-center active"
+                        <button th:class="${perfil} ? 'list-group-item list-group-item-action text-center active' :
+                                'list-group-item list-group-item-action text-center'"
                                 id="list-home-list" data-toggle="list" href="#perfil" role="tab" aria-controls="perfil">
                             <i class="fas fa-user-edit d-block d-sm-none"></i> <div class="d-none d-sm-block">Perfil</div>
                         </button>
-                        <button class="list-group-item list-group-item-action text-center"
+                        <button th:class="${seguranca} ? 'list-group-item list-group-item-action text-center active' :
+                                'list-group-item list-group-item-action text-center'"
                                 id="list-profile-list" data-toggle="list" href="#seguranca" role="tab" aria-controls="seguranca">
                             <i class="fas fa-user-lock d-block d-sm-none"></i> <div class="d-none d-sm-block">Segurança</div>
                         </button>
-                        <button class="list-group-item list-group-item-action text-center"
+                        <button th:class="${notificacoes} ? 'list-group-item list-group-item-action text-center active' :
+                                'list-group-item list-group-item-action text-center'"
                                 id="list-messages-list" data-toggle="list" href="#notificacoes" role="tab" aria-controls="notificacoes">
                             <i class="fas fa-bell d-block d-sm-none"></i><div class="d-none d-sm-block">Notificações</div>
                         </button>
@@ -43,28 +50,47 @@
                 <div class="col-8">
                     <div class="tab-content" id="nav-tabContent">
 
-                        <!-- informacoes de perfil -->
-                        <div class="tab-pane fade show active" id="perfil" role="tabpanel" aria-labelledby="list-home-list">
+                        <!-- Configurações de perfil -->
+                        <div th:class="${perfil} ? 'tab-pane fade show active' : 'tab-pane fade show'" id="perfil" role="tabpanel" aria-labelledby="list-home-list">
 
                             <!-- Card perfil -->
                             <div class="card">
                                 <div class="card-header">
-                                    Informações de perfil
+                                    Configurações de perfil
+                                </div>
+
+                                <!-- Atualizacao Sucesso -->
+                                <div th:if="${atualizado}" class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <small>Seus dados foram atualizados com sucesso!</small>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">
+                                            <i class="fas fa-times"></i>
+                                        </span>
+                                    </button>
                                 </div>
 
                                 <!-- Formulario perfil -->
-                                <form action="/mudar/informacoes" class="needs-validation conta" method="post" th:object="${perfil}" novalidate>
+                                <form class="needs-validation conta" th:action="@{/conta/atualizar-dados}" method="post" th:object="${user_dados}" novalidate>
 
                                     <!-- mensagens de erro -->
-                                    <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
-                                        <small>Erros:</small>
-                                        <ul>
-                                            <strong><li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li></strong>   
-                                        </ul>
+                                    <div class="row">
+                                        <div class="col-md-12 mb-3">
+                                            <div class="alert alert-danger alert-dismissible fade show" th:if="${#fields.hasErrors('*')}">
+                                                <ul>
+                                                    <small><li th:each="err : ${#fields.errors('*')}" th:utext="${err}"></li></small>
+                                                </ul>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">
+                                                        <i class="fas fa-times"></i>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
 
-                                    <input hidden name="id" th:value="*{id}">
                                     <div class="row">
+                                        <input hidden th:field="*{id}" name="id">
+
                                         <div class="col-md-6 mb-3">
                                             <label for="inputNome">Nome</label>
                                             <input th:value="*{nome}" name="nome" type="text"
@@ -74,9 +100,9 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-3">
-                                            <label for="inputNomeConhecido">Sobrenome</label>
+                                            <label for="inputSobrenome">Sobrenome</label>
                                             <input th:value="*{sobrenome}" name="sobrenome" type="text"
-                                                   class="form-control" required>
+                                                   class="form-control" id="inputSobrenome" required>
                                             <div class="invalid-feedback">
                                                 Por favor, informe o sobrenome.
                                             </div>
@@ -85,11 +111,37 @@
 
                                     <hr class="mb-4">
 
+                                    <button class="btn btn-primary">Atualizar</button>
+                                </form><!-- /Fim do formulario perfil -->
+
+                                <!-- Formulario email -->
+                                <form class="needs-validation conta" th:action="@{/conta/atualizar-email}" method="post" th:object="${user_email}" novalidate>
+
+                                    <!-- mensagens de erro -->
                                     <div class="row">
                                         <div class="col-md-12 mb-3">
-                                            <label for="inputNomeConhecido">Email</label>
-                                            <input th:value="*{email}"name="email"
-                                                   type="email" class="form-control" required>
+                                            <div class="alert alert-danger alert-dismissible fade show" th:if="${#fields.hasErrors('*')}">
+                                                <small><li th:each="err : ${#fields.errors('*')}" th:utext="${err}"></li></small>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">
+                                                        <i class="fas fa-times"></i>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <input hidden th:field="*{id}" name="id">
+
+                                    <div class="alert alert-warning" role="alert">
+                                        <h6>Ao clicar em atualizar o email, é feito<code> logout </code>automaticamente, e sera preciso entrar novamente na plataforma.</h6>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12 mb-3">
+                                            <label for="inputEmail">Email</label>
+                                            <input th:value="*{email}"name="email" type="email"
+                                                   class="form-control" id="inputEmail" required>
                                             <div class="invalid-feedback">
                                                 Por favor, informe um email valido.
                                             </div>
@@ -104,7 +156,7 @@
                         </div><!-- /Fim das configurações de perfil -->
 
                         <!-- Configurações de segurança -->
-                        <div class="tab-pane fade" id="seguranca" role="tabpanel" aria-labelledby="list-profile-list">
+                        <div th:class="${seguranca} ? 'tab-pane fade show active' : 'tab-pane fade show'" id="seguranca" role="tabpanel" aria-labelledby="list-profile-list">
 
                             <!-- Card conta -->
                             <div class="card">
@@ -113,22 +165,31 @@
                                 </div>
 
                                 <!-- Formulario de nova senha -->
-                                <form action="/mudar/informacoes" th:object="${perfil}" class="needs-validation conta" novalidate>
+                                <form th:action="@{/conta/atualizar-senha}" method="post" class="needs-validation conta" novalidate>
 
                                     <!-- mensagens de erro -->
-                                    <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
-                                        <small>Erros:</small>
-                                        <ul>
-                                            <strong><li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li></strong>   
-                                        </ul>
+                                    <div th:if="${not #lists.isEmpty(erros)}" class="row">
+                                        <div class="col-md-12 mb-3">
+                                            <div class="alert alert-danger alert-dismissible fade show">
+                                                <ul>
+                                                    <small><li th:each="erro : ${erros}" th:utext="${erro}"></li></small>
+                                                </ul>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">
+                                                        <i class="fas fa-times"></i>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="row justify-content-center">
                                         <div class="col-md-10 mb-3">
-                                            <label for="inputNomeConhecido">Senha anterior</label>
-                                            <input name="email" type="email" class="form-control" required>
+                                            <label for="inputrSenhaAnterior">Senha anterior</label>
+                                            <input name="senhaAnterior" type="password" id="inputrSenhaAnterior"
+                                                   class="form-control" required>
                                             <div class="invalid-feedback">
-                                                Por favor, informe um email valido.
+                                                Por favor, informe a senha anterior.
                                             </div>
                                         </div>
                                     </div>
@@ -137,20 +198,22 @@
 
                                     <div class="row justify-content-center">
                                         <div class="col-md-10 mb-3">
-                                            <label for="inputNome">Nova senha <small class="text-muted"> entre 8 a 12 caracteres ao menos um: A-Z, a-z, caractere especial e número.</small></label>
-                                            <input name="nome" type="text" class="form-control" required>
+                                            <label for="inputSenha">Nova senha <small class="text-muted"> entre 8 a 12 caracteres ao menos um: A-Z, a-z, caractere especial e número.</small></label>
+                                            <input name="senha" type="password" id="inputSenha"
+                                                   class="form-control" required>
                                             <div class="invalid-feedback">
-                                                Por favor, informe o nome.
+                                                Por favor, informe a nova senha.
                                             </div>
                                         </div>                                        
                                     </div>
 
                                     <div class="row justify-content-center">
                                         <div class="col-md-10 mb-3">
-                                            <label for="inputNomeConhecido">Confirme a senha</label>
-                                            <input name="nomeConhecido" type="text" class="form-control" required>
+                                            <label for="inputConfirmarSenha">Confirme a senha</label>
+                                            <input name="confirmarSenha" type="password" id="inputConfirmarSenha"
+                                                   class="form-control" required>
                                             <div class="invalid-feedback">
-                                                Por favor, informe o sobrenome.
+                                                Por favor, confirme a nova senha.
                                             </div>
                                         </div>
                                     </div>
@@ -165,7 +228,7 @@
                         </div><!-- /Fim das configurações de segurança -->
 
                         <!-- Configurações de notificação -->
-                        <div class="tab-pane fade" id="notificacoes" role="tabpanel" aria-labelledby="list-messages-list">
+                        <div th:class="${notificacoes} ? 'tab-pane fade show active' : 'tab-pane fade show'" id="notificacoes" role="tabpanel" aria-labelledby="list-messages-list">
                             <div class="card">
                                 <div class="card-header">
                                     Configurações de notificação
@@ -180,7 +243,7 @@
             </div>
         </main><!-- /Fim do conteudo -->
         <!-- Footer -->
-        <footer th:replace="~{fragments/fragments :: footer}"></footer>
+        <footer th:replace="~{fragments/footer :: footer}"></footer>
     </body>
     <!-- jQuery 3.3.1 -->
     <script th:replace="~{fragments/javascript :: jquery}"></script>

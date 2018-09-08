@@ -60,7 +60,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.
                 authorizeRequests()
                 .antMatchers("/", "/login", "/install").permitAll()
-                .antMatchers("/home", "/sobre", "/news").hasAnyAuthority("ALUNO", "PROFESSOR", "ADMINISTRADOR")
+                .antMatchers("/home", "/sobre", "/news", "/testar").hasAnyAuthority("ALUNO", "PROFESSOR", "ADMINISTRADOR")
                 .antMatchers("/edificio/**", "/edificio/editar/**").hasAuthority("ALUNO")
                 .antMatchers("/aluno/**").hasAuthority("PROFESSOR").anyRequest()
                 .authenticated().and().csrf().disable().formLogin()

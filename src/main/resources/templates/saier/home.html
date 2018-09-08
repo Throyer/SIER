@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{fragments/fragments :: head (title='SAIER | Home')}"></head>
+    <head th:replace="~{fragments/head :: head (title='SAIER | Home')}"></head>
     <body>
         <!-- Navbar -->
         <nav th:replace="~{fragments/navbar :: navbar (home='true')}"></nav>
@@ -26,7 +26,7 @@
 
         </div><!-- /FIM DO CONTEUDO -->
         <!-- Footer -->
-        <footer th:replace="~{fragments/fragments :: footer}"></footer>
+        <footer th:replace="~{fragments/footer :: footer}"></footer>
     </body>
     
     <!-- jQuery 3.3.1 -->

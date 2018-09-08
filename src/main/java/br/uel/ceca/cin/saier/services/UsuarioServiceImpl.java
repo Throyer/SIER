@@ -96,4 +96,9 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuarioDAO.delete(usuario);
     }
 
+    @Override
+    public void atualizarUsuario(Usuario usuario) {
+        usuarioDAO.save(usuario);
+    }
+
 }

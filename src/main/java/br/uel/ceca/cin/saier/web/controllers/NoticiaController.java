@@ -1,10 +1,12 @@
 /*
- * S.A.I.E.R 2.0.0 | https://github.com/Throyer/SAIER | 2018.
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package br.uel.ceca.cin.saier.web.controllers;
 
 import br.uel.ceca.cin.saier.enums.TemplatePath;
-import br.uel.ceca.cin.saier.persistence.models.Usuario;
+import br.uel.ceca.cin.saier.persistence.models.Noticia;
 import br.uel.ceca.cin.saier.services.interfaces.UsuarioService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author Renato
  */
 @Controller
-public class ProfessorController {
-    
+public class NoticiaController {
+
     @ModelAttribute
     public void addAttributes(Model model) {
         /* Definindo usuario logado */
@@ -33,32 +35,30 @@ public class ProfessorController {
      * @param listagem
      * @return
      */
-    @RequestMapping(value = {"/professor", "/professor/gerenciamento"})
+    @RequestMapping(value = {"/noticia", "/noticia/gerenciamento"})
     public String lista(Model listagem) {
 
         /* Obtendo lista de alunos */
-        //listagem dos prefessores aqui.
-
-        return TemplatePath.PROFESSOR_LISTA.getPath();
+        //listagem dos blogs aqui.
+        return TemplatePath.NOTICIA_LISTA.getPath();
 
     }
-    
+
     /**
-     * 
+     *
      * @param formulario
-     * @return 
+     * @return
      */
-    @GetMapping("/professor/formulario")
+    @GetMapping("/noticia/formulario")
     public String formulario(Model formulario) {
 
-        /* Novo professor */
-        formulario.addAttribute("professor", new Usuario());
+        /* Nova noticia */
+        formulario.addAttribute("noticia", new Noticia());
 
-        return TemplatePath.FORMULARIO_PROFESSOR.getPath();
+        return TemplatePath.NOTICIA_FORMULARIO.getPath();
 
     }
-    
-    /* Serviços usados */
+
     @Autowired
     private UsuarioService usuarioService;
 }

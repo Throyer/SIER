@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{fragments/fragments :: head (title='Aluno | Formulario')}"></head>
+    <head th:replace="~{fragments/head :: head (title='Aluno | Formulario')}"></head>
     <body>
         <!-- Navbar -->
         <nav th:replace="~{fragments/navbar :: navbar (gerenciamento='true')}"></nav>
@@ -16,7 +16,7 @@
             <div class="row">
 
                 <!-- lado esquerdo do sidebar Edificio -->
-                <nav th:replace="~{fragments/fragments :: sidebar-aluno (formulario='true')}">sidebar Edificio</nav>
+                <nav th:replace="~{fragments/sidebars/aluno :: sidebar-aluno (formulario='true')}">sidebar Edificio</nav>
 
                 <!-- Lado direito do sidebar -->
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">

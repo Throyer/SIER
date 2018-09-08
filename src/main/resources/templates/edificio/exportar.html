@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{fragments/fragments :: head (title='Edificio | Exportar dados')}"></head>
+    <head th:replace="~{fragments/head :: head (title='Edificio | Exportar dados')}"></head>
     <body>
         <!-- Navbar -->
         <nav th:replace="~{fragments/navbar :: navbar (gerenciamento='true')}"></nav>
@@ -15,7 +15,7 @@
             <div class="row">
 
                 <!-- lado esquerdo do sidebar Edificio -->
-                <nav th:replace="~{fragments/fragments :: sidebar-edificio}">sidebar Edificio</nav>
+                <nav th:replace="~{fragments/sidebars/edificio :: sidebar-edificio}">sidebar Edificio</nav>
 
                 <!-- Lado direito do sidebar -->
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">

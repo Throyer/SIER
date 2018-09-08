@@ -26,7 +26,7 @@ public class SaierController {
         /* Definindo usuario logado */
         model.addAttribute("usuario", usuarioService.getUsuarioLogado());
     }
-
+    
     /**
      * Home do sistema.
      *
@@ -68,15 +68,16 @@ public class SaierController {
     public String contato(Model contato) {
         return TemplatePath.CONTATO.getPath();
     }
-
+    
     /**
-     * 
-     * @param perfil
-     * @return 
+     * Sistema.
+     *
+     * @param sistema pagina inicial.
+     * @return view sistema.
      */
-    @RequestMapping(value = "/perfil")
-    public String perfil(Model perfil) {
-        return TemplatePath.CONTA.getPath();
+    @RequestMapping(value = "/sistema")
+    public String sistema(Model sistema) {
+        return TemplatePath.SISTEMA.getPath();
     }
 
     /* Serviços usados */
