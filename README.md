@@ -21,7 +21,7 @@ criação do usuario administrador.
 ## executando o sistema com configurações diferentes
 
 O S.A.I.E.R. suporta parametros via terminal em sua execução.
-> basta colocar o valor do parametro junto com o comando de `java -jar`.
+> basta colocar o valor do parametro junto com o comando de execução: `java -jar --<nome do parametro>=<valor>`.
 
 > O sistema tambem suporta arquivos externos de configuração `em construção` [**confira no guia completo de deploy**]().
 
