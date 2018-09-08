@@ -13,7 +13,9 @@ controlados para o registro terminológico dos edifícios residenciais da cidade
 
 utilizando o comando:
 `java -jar saier-2.x.x.RELEASE.jar`.
-> O sistema sera iniciado utilizando as configurações [**padrão**](#quando-um-parametro-não-é-definido-na-execução-ele-recebe-o-valor-padrão).
+> <small>subistitiua os `x` pela versão do sistema como `2.0.1` por exemplo.</small>
+_________________________
+> O sistema sera iniciado utilizando as configurações padrão [**confira a tabela**](#quando-um-parametro-não-é-definido-na-execução-ele-recebe-o-valor-padrão).
 
 - Depois de Iniciado, ao acessar a url `/install` é exibido um formulario para a
 criação do usuario administrador.
