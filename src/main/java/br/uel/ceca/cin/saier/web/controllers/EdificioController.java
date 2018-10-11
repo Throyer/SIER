@@ -9,11 +9,19 @@ import br.uel.ceca.cin.saier.services.interfaces.CepService;
 import br.uel.ceca.cin.saier.services.interfaces.UsuarioService;
 import br.uel.ceca.cin.saier.services.interfaces.EdificioService;
 import br.uel.ceca.cin.saier.enums.TemplatePath;
+import br.uel.ceca.cin.saier.services.PdfService;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.validation.BindingResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +30,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
@@ -37,6 +46,24 @@ public class EdificioController {
     public void addAttributes(Model model) {
         /* Definindo usuario logado */
         model.addAttribute("usuario", usuarioService.getUsuarioLogado());
+    }
+
+    @RequestMapping(value = "/getPDF", method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<InputStreamResource> getPDF() throws IOException {
+
+        List<Edificio> edificios = edificioService.obterTodos();
+
+        ByteArrayInputStream pdf = pdfService.getPDF(edificios);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=edificios.pdf");
+
+        return ResponseEntity
+                .ok()
+                .headers(headers)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(new InputStreamResource(pdf));
     }
 
     /**
@@ -197,5 +224,7 @@ public class EdificioController {
     private EdificioService edificioService;
     @Autowired
     private CepService cepService;
+    @Autowired
+    private PdfService pdfService;
 
 }

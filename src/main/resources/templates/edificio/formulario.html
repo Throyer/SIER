@@ -4,24 +4,18 @@
     <body>
         <!-- Navbar -->
         <nav th:replace="~{fragments/navbar :: navbar (gerenciamento='true')}"></nav>
-
         <!-- Estilo Gerenciamento -->
         <link rel="stylesheet" type="text/css" th:replace="~{fragments/css :: gerenciamento-css}"/>
-
         <!-- Estilo Formulario -->
         <link rel="stylesheet" type="text/css" th:replace="~{fragments/css :: formulario-css}"/>
-
         <!-- Container principal -->
         <div class="container-fluid">
             <div class="row">
-
                 <!-- lado esquerdo do sidebar Edificio -->
                 <nav th:replace="~{fragments/sidebars/edificio :: sidebar-edificio (formulario='true')}"></nav>
-
                 <!-- Lado direito do sidebar -->
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                     <h4 class="mb-3">Formulario de edificio</h4>
-
                     <!-- Cadastro Sucesso -->
                     <div th:if="${cadastro}" class="alert alert-success alert-dismissible fade show" role="alert">
                         <small>Edificio <strong><span th:text="${cadastro.nome}"></span></strong> cadastrado com sucesso!</small>
@@ -31,7 +25,6 @@
                             </span>
                         </button>
                     </div>
-
                     <!-- Edição Sucesso -->
                     <div th:if="${param.atualizado}" class="alert alert-warning alert-dismissible fade show" role="alert">
                         <small>Edificio <strong>atualiado</strong> com sucesso!</small>
@@ -41,7 +34,6 @@
                             </span>
                         </button>
                     </div>
-
                     <!-- Formulario de Edificios -->
                     <form action="/edificio/formulario" method="post" th:object="${edificio}" class="needs-validation" novalidate>
 
@@ -218,22 +210,10 @@
             </div>    
         </div><!-- /Fim do container principal -->
     </body>
-
-    <!-- jQuery 3.3.1 -->
     <script th:replace="~{fragments/javascript :: jquery}"></script>
-
-    <!-- Popper -->
     <script th:replace="~{fragments/javascript :: popper}"></script>
-
-    <!-- bootstrap 4.0.1 -->
     <script th:replace="~{fragments/javascript :: bootstrap}"></script>
-
-    <!-- Validate -->
     <script th:replace="~{fragments/javascript :: validate}"></script>
-
-    <!-- popover -->
     <script th:replace="~{fragments/javascript :: popover}"></script>
-
-    <!-- cep validator -->
     <script th:replace="~{fragments/javascript :: cep}"></script>
 </html>

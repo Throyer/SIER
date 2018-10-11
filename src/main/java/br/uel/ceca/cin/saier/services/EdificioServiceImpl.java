@@ -55,7 +55,7 @@ public class EdificioServiceImpl implements EdificioService {
      * @return
      */
     @Override
-    public Iterable<Edificio> obterTodos() {
+    public List<Edificio> obterTodos() {
         return edificioRepository.findAll();
     }
 

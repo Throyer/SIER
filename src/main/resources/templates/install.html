@@ -1,14 +1,11 @@
 <!doctype html>
 <html lang="pt-BR">
     <!-- Adicionando header -->
-    <head th:replace="~{fragments/fragments :: head (title='Configuração')}"></head>
+    <head th:replace="~{fragments/head :: head (title='Configuração')}"></head>
     <body>
-
         <div class="container">
-
             <!-- Formulario de configuração da brinquedoteca -->
             <form action="/install" method="post" th:object="${administrador}" class="needs-validation" novalidate>
-
                 <!-- mensagens de erro -->
                 <div class="alert alert-danger alert-dismissible fade show" th:if="${#fields.hasErrors('*')}">
                     <small>Erros:</small>

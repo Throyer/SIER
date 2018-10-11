@@ -40,7 +40,7 @@ public interface EdificioService {
      * 
      * @return 
      */
-    public Iterable<Edificio> obterTodos();
+    public List<Edificio> obterTodos();
     
     /**
      * 

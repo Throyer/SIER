@@ -1,26 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
     <head th:replace="~{fragments/head :: head (title='Edificios')}"></head>
-
     <!-- Estilo Gerenciamento -->
     <link th:replace="~{fragments/css :: gerenciamento-css}"/>
-
     <!-- Estilo dataTables bootstrap 4 -->
     <link th:replace="~{fragments/css :: dataTables-bootstrap-css}"/>
     <body>
         <!-- Navbar -->
         <nav th:replace="~{fragments/navbar :: navbar (gerenciamento='true')}"></nav>
-
         <div class="container-fluid">
             <div class="row">
                 <!-- Lateral sidebar Edificio -->
                 <nav th:replace="~{fragments/sidebars/edificio :: sidebar-edificio (index='true')}">sidebar Edificio</nav>
-
                 <!-- Container edificios -->
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                     <div class="table-responsive">
                         <h4>Base de dados de Edificios Resisdenciais</h4>
-
                         <!-- Edição Sucesso -->
                         <div th:if="${atualizado}" class="alert alert-warning alert-dismissible fade show" role="alert">
                             <small>Edificio <strong><span th:text="${atualizado.nome}"></span></strong> atualizado com sucesso!</small>
@@ -30,7 +25,6 @@
                                 </span>
                             </button>
                         </div>
-
                         <!-- Tabela de Edificios -->
                         <table id="edificios" class="table table-sm">
                             <thead>
@@ -78,7 +72,6 @@
                 </main><!-- /Fim do container principal -->
             </div>
         </div>
-
         <!-- Modal -->
         <div class="modal fade" id="delete-edificio" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -102,24 +95,15 @@
                                 Remover
                             </button>
                         </form>
-
                     </div>
                 </div>
             </div>
         </div>
     </body>
-    <!-- jQuery 3.3.1 -->
     <script th:replace="~{fragments/javascript :: jquery}"></script>
-    <!-- Popper -->
-    <script th:replace="~{fragments/javascript :: popper}"></script>
-    <!-- bootstrap 4.0.1 -->
     <script th:replace="~{fragments/javascript :: bootstrap}"></script>
-    <!-- DataTables jquery --> 
     <script th:replace="~{fragments/javascript :: dataTables-jquery}"></script>
-    <!-- DataTables bootstrap -->
     <script th:replace="~{fragments/javascript :: dataTables-bootstrap}"></script>
-    <!-- dataTable config -->
     <script th:replace="~{fragments/javascript :: dataTables-config}"></script>
-    <!-- Modal config -->
     <script th:replace="~{fragments/javascript :: modal-config}"></script>
 </html>
