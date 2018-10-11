@@ -1,50 +1,79 @@
-<!DOCTYPE html>
+<!-- Neste documento são definidos todos fragments de JavaScript do sistema. -->
 
-<!--
-Renato Henrique Horacio dos santos
-Unifil (29/05/2018)
+<!-- jQuery -->
+<script th:fragment="jquery"
+        language="javascript"
+        th:src="@{~/js/jquery/jquery-3.3.1.min.js}">
+</script>
 
-Neste documento são definidos todos fragments de JavaScript do sistema.
--->
+<!-- Bootstrap -->
+<script th:fragment="bootstrap"
+        language="javascript"
+        th:src="@{~/js/bootstrap/bootstrap.min.js}">
+</script>
 
-<!-- jQuery 3.3.1 Javascript -->
-<script language="javascript" th:fragment="jquery" th:src="@{~/js/jquery/jquery-3.3.1.min.js}"></script>
+<!-- Bootstrap 4 validator -->
+<script th:fragment="validate"
+        language="javascript"
+        th:src="@{~/js/custom/validate.js}">
+</script>
 
-<!-- Popper Javascript -->
-<script language="javascript" th:fragment="popper" th:src="@{~/js/popper/popper.min.js}"></script>
+<!-- Popover -->
+<script th:fragment="popover"
+        language="javascript"
+        th:src="@{~/js/custom/popover.js}">
+</script>
 
-<!-- bootstrap 4.0.1 Javascript -->
-<script language="javascript" th:fragment="bootstrap" th:src="@{~/js/bootstrap/bootstrap.min.js}"></script>
+<!-- Valida C.E.P -->
+<script th:fragment="cep"
+        language="javascript"
+        th:src="@{~/js/custom/cep.js}">
+</script>
 
-<!-- Validator -->
-<script language="javascript" th:fragment="validate" th:src="@{~/js/custom/validate.js}"></script>
+<!-- ChartJS -->
+<script th:fragment="chartjs"
+        language="javascript"
+        th:src="@{~/js/ChartJs/Chart.min.js}">
+</script>
 
-<!-- Validator -->
-<script language="javascript" th:fragment="popover" th:src="@{~/js/custom/popover.js}"></script>
+<!-- ChartJs configuração -->
+<script th:fragment="chartjs-config"
+        language="javascript" 
+        th:src="@{~/js/custom/Chart-config.js}">
+</script>
 
-<!-- valida cep -->
-<script language="javascript" th:fragment="cep" th:src="@{~/js/custom/cep.js}"></script>
+<!-- Simplemde -->
+<script th:fragment="simplemde"
+        language="javascript" 
+        th:src="@{~/js/simplemde/simplemde.min.js}">
+</script>
 
-<!-- ChartJS 2.7.1 -->
-<script language="javascript" th:fragment="chartjs" th:src="@{~/js/ChartJs/Chart.min.js}"></script>
-
-<!-- ChartJs configs -->
-<script language="javascript" th:fragment="chartjs-config" th:src="@{~/js/custom/Chart-config.js}"></script>
-
-<!-- Simplemde 1.11.2 -->
-<script language="javascript" th:fragment="simplemde" th:src="@{~/js/simplemde/simplemde.min.js}"></script>
-
-<!-- Simplemde configs -->
-<script language="javascript" th:fragment="simplemde-config" th:src="@{~/js/custom/simplemde-config.js}"></script>
+<!-- Simplemde configuração -->
+<script  th:fragment="simplemde-config"
+         language="javascript"
+         th:src="@{~/js/custom/simplemde-config.js}">
+</script>
 
 <!-- DataTables jquery -->
-<script language="javascript" th:fragment="dataTables-jquery" th:src="@{~/js/dataTables/jquery.dataTables.min.js}"></script>
+<script th:fragment="dataTables-jquery"
+        language="javascript" 
+        th:src="@{~/js/dataTables/jquery.dataTables.min.js}">
+</script>
 
-<!-- DataTables bootstrap -->
-<script language="javascript" th:fragment="dataTables-bootstrap" th:src="@{~/js/dataTables/dataTables.bootstrap4.min.js}"></script>
+<!-- DataTables bootstrap 4 -->
+<script th:fragment="dataTables-bootstrap"
+        language="javascript"
+        th:src="@{~/js/dataTables/dataTables.bootstrap4.min.js}">
+</script>
 
-<!-- dataTable config -->
-<script language="javascript" th:fragment="dataTables-config" th:src="@{~/js/custom/dataTables-config.js}"></script>
+<!-- DataTables configuração -->
+<script th:fragment="dataTables-config"
+        language="javascript" 
+        th:src="@{~/js/custom/dataTables-config.js}">
+</script>
 
-<!-- Modal config -->
-<script language="javascript" th:fragment="modal-config" th:src="@{~/js/custom/modal-config.js}"></script>
+<!-- Modal bootstrap 4 configuração -->
+<script th:fragment="modal-config"
+        language="javascript"
+        th:src="@{~/js/custom/modal-config.js}">
+</script>
