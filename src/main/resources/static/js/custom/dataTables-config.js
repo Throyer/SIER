@@ -1,9 +1,10 @@
-/**
- * Configurações da tabela de Edificios.
- * @author Renato
- * @version (09/06/2018)
- */
 $(document).ready(function () {
+
+    /**
+     * Configurações da tabela de Edificios.
+     * @author Renato
+     * @version (09/06/2018)
+     */
     $('#edificios').DataTable({
         "language": {
             "sEmptyTable": "Nenhum registro encontrado",
@@ -29,14 +30,12 @@ $(document).ready(function () {
             }
         }
     });
-});
 
-/**
- * Configurações da tabela de Alunos.
- * @author Renato
- * @version (09/06/2018)
- */
-$(document).ready(function () {
+    /**
+     * Configurações da tabela de Alunos.
+     * @author Renato
+     * @version (09/06/2018)
+     */
     $('#alunos').DataTable({
         "language": {
             "sEmptyTable": "Nenhum registro encontrado",
@@ -62,14 +61,12 @@ $(document).ready(function () {
             }
         }
     });
-});
 
-/**
- * Configurações da tabela de Postagens.
- * @author Renato
- * @version (09/06/2018)
- */
-$(document).ready(function () {
+    /**
+     * Configurações da tabela de Postagens.
+     * @author Renato
+     * @version (09/06/2018)
+     */
     $('#postagens').DataTable({
         "language": {
             "sEmptyTable": "Nenhum registro encontrado",
@@ -95,4 +92,5 @@ $(document).ready(function () {
             }
         }
     });
+
 });
