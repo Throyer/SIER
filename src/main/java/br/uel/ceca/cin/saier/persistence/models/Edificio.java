@@ -44,7 +44,7 @@ public class Edificio implements Serializable {
     /* Data de construção */
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
-    private Date dataConstrucao;
+    private Calendar dataConstrucao;
 
     /* Numero de andares */
     @Column(nullable = false)
@@ -80,7 +80,7 @@ public class Edificio implements Serializable {
         //
     }
 
-    public Edificio(String nome, String nomeConhecido, Date dataConstrucao, int numeroAndares, int numero, String fonteColeta, Calendar dataColeta, String informacoes) {
+    public Edificio(String nome, String nomeConhecido, Calendar dataConstrucao, int numeroAndares, int numero, String fonteColeta, Calendar dataColeta, String informacoes) {
         this.nome = nome;
         this.nomeConhecido = nomeConhecido;
         this.dataConstrucao = dataConstrucao;
@@ -115,11 +115,11 @@ public class Edificio implements Serializable {
         this.nomeConhecido = nomeConhecido;
     }
 
-    public Date getDataConstrucao() {
+    public Calendar getDataConstrucao() {
         return dataConstrucao;
     }
 
-    public void setDataConstrucao(Date dataConstrucao) {
+    public void setDataConstrucao(Calendar dataConstrucao) {
         this.dataConstrucao = dataConstrucao;
     }
 
