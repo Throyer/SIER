@@ -6,13 +6,22 @@ Documento de estilo global.
 Esse estilo é usado por todas as paginas do sistema.
 */
 
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
 /* Espaço para o navbar */
 body {
+    font-family: 'Poppins', sans-serif;
+    background: #fafafa;
+
     min-height: 25rem;
     padding-top: 4.5rem;
-    
+
     /* Margin bottom by footer height */
     margin-bottom: 5rem;
+}
+
+.navbar {
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .erro { text-shadow: 50px 50px 50px rgb(255, 255, 255); }
