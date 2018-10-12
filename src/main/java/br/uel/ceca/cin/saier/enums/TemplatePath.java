@@ -20,6 +20,7 @@ public enum TemplatePath {
     EDIFICIO("edificio/edificio"),
     FORMULARIO_EDIFICIO("edificio/formulario"),
     EDIFICIO_LISTA("edificio/index"),
+    EDIFICIO_EXPORTAR("edificio/exportar"),
     ALUNO("aluno/aluno"),
     FORMULARIO_ALUNO("aluno/formulario"),
     LISTA_ALUNO("aluno/index"),

@@ -5,10 +5,7 @@
         <!-- Navbar -->
         <nav th:replace="~{fragments/navbar :: navbar (gerenciamento='true')}"></nav>
 
-        <!-- Estilo Gerenciamento -->
         <link th:replace="~{fragments/css :: gerenciamento-css}"/>
-
-        <!-- Estilo Formulario -->
         <link th:replace="~{fragments/css :: formulario-css}"/>
 
         <div class="container-fluid">
@@ -21,26 +18,16 @@
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                     <h4 class="mb-3">Exportar Base de dados.</h4>
 
-                    <!-- ler csv -->
+                    <!-- exportar -->
                     <h2>Funcionalidade em desenvolvimento.</h2>
+                    
+                    <a role="button" href="/getPDF" class="btn btn-light">Exportar toda a base de dados <i class="fas fa-database"></i></a>
 
                 </main>
             </div>    
         </div>
     </body>
-
-    <!-- jQuery 3.3.1 -->
     <script th:replace="~{fragments/javascript :: jquery}"></script>
-
-    <!-- Popper -->
     <script th:replace="~{fragments/javascript :: popper}"></script>
-
-    <!-- bootstrap 4.0.1 -->
     <script th:replace="~{fragments/javascript :: bootstrap}"></script>
-
-    <!-- Validate -->
-    <script th:replace="~{fragments/javascript :: validate}"></script>
-
-    <!-- popover -->
-    <script th:replace="~{fragments/javascript :: popover}"></script>
 </html>

@@ -23,7 +23,7 @@
             </a>
 
             <a th:class="${relatorios} ? 'nav-item nav-link active' : 'nav-item nav-link' " href="/relatorios">
-                <i class="fas fa-chart-bar"></i>
+                <i class="fas fa-chart-pie"></i>
                 Relatorios <span th:if="${relatorios}" class="sr-only">(current)</span>
             </a>
         </ul>
@@ -53,6 +53,7 @@
                         <i class="fas fa-user-cog"></i>
                         Conta
                     </a>
+                    <div class="dropdown-divider"></div>
                     <a sec:authorize="hasAuthority('ADMINISTRADOR')" class="d-none d-sm-block dropdown-item"
                        href="/sistema">
                         <i class="fas fa-cog"></i>

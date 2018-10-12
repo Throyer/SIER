@@ -4,10 +4,10 @@
     <body>
         <!-- Navbar -->
         <nav th:replace="~{fragments/navbar :: navbar (gerenciamento='true')}"></nav>
-        <!-- Estilo Gerenciamento -->
-        <link rel="stylesheet" type="text/css" th:replace="~{fragments/css :: gerenciamento-css}"/>
-        <!-- Estilo Formulario -->
-        <link rel="stylesheet" type="text/css" th:replace="~{fragments/css :: formulario-css}"/>
+        
+        <link th:replace="~{fragments/css :: gerenciamento-css}"/>
+        <link th:replace="~{fragments/css :: formulario-css}"/>
+        
         <!-- Container principal -->
         <div class="container-fluid">
             <div class="row">

@@ -65,6 +65,11 @@ public class EdificioController {
                 .contentType(MediaType.APPLICATION_PDF)
                 .body(new InputStreamResource(pdf));
     }
+    
+    @RequestMapping("/edificio/exportar")
+    public String exportar() {
+        return TemplatePath.EDIFICIO_EXPORTAR.getPath();
+    }
 
     /**
      * Listagem dos alunos registrados.
