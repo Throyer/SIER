@@ -1,8 +1,8 @@
 <!-- O head recebe o titulo da pagina da pagina como parametro -->
-<head th:fragment="head (title)">
+<head th:fragment="head(title, links)">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title th:text="${title}">Titulo</title>
+    <title th:replace="${title}">SAIER</title>
     <base href="/">
     <!-- Fontawesome CSS -->
     <link th:replace="~{fragments/css :: fontawesome-css}"/>
@@ -10,4 +10,6 @@
     <link th:replace="~{fragments/css :: bootstrap-css}"/>
     <!-- SAIER CSS -->
     <link th:replace="~{fragments/css :: saier-css}"/>
+    <!-- Estilos adicionais -->
+    <th:block th:replace="${links}" />
 </head>

@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{fragments/head :: head (title='Conta | ' + ${usuario.nome})}"></head>
-
-    <!-- Estilo Conta/Perfil -->
-    <link th:replace="~{fragments/css :: conta-css}"/>
-
+<html lang="pt-br">
+    <head th:replace="~{fragments/head :: head(~{::title},~{::link})}">
+        <title th:text="'Conta | ' + ${usuario.nome}">Contato</title>
+        <link th:replace="~{fragments/css :: conta-css}"/>
+    </head>
     <body>
         <!-- Navbar -->
         <nav th:replace="~{fragments/navbar :: navbar (gerenciamento='true')}"></nav>
@@ -244,16 +243,10 @@
         </main><!-- /Fim do conteudo -->
         <!-- Footer -->
         <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+        <script th:replace="~{fragments/javascript :: jquery}"></script>
+        <script th:replace="~{fragments/javascript :: popper}"></script>
+        <script th:replace="~{fragments/javascript :: bootstrap}"></script>
+        <script th:replace="~{fragments/javascript :: validate}"></script>
     </body>
-    <!-- jQuery 3.3.1 -->
-    <script th:replace="~{fragments/javascript :: jquery}"></script>
-
-    <!-- Popper -->
-    <script th:replace="~{fragments/javascript :: popper}"></script>
-
-    <!-- bootstrap 4.0.1 -->
-    <script th:replace="~{fragments/javascript :: bootstrap}"></script>
-
-    <!-- Validate -->
-    <script th:replace="~{fragments/javascript :: validate}"></script>
 </html>

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{fragments/head :: head (title='Importar | CSV')}"></head>
+<html lang="pt-BR">
+    <head th:replace="~{fragments/head :: head(~{::title},~{::link})}">
+        <title>Importar | CSV</title>
+        <link th:replace="~{fragments/css :: gerenciamento-css}"/>
+        <link th:replace="~{fragments/css :: formulario-css}"/>
+    </head>
     <body>
         <nav th:replace="~{fragments/navbar :: navbar (gerenciamento='true')}"></nav>
-        <link th:replace="~{fragments/css :: gerenciamento-css}"/>
-        <link th:replace="~{fragments/css :: formulario-css}"/><div class="container-fluid">
+        <div class="container-fluid">
             <div class="row">
 
                 <!-- lado esquerdo do sidebar Edificio -->
@@ -32,8 +35,9 @@
                     <h2>Funcionalidade em desenvolvimento.</h2>
 
                 </main>
-            </div>    
+            </div>
         </div>
+
         <script th:replace="~{fragments/javascript :: jquery}"></script>
         <script th:replace="~{fragments/javascript :: popper}"></script>
         <script th:replace="~{fragments/javascript :: bootstrap}"></script>

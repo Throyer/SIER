@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{fragments/head :: head (title='SAIER | Home')}"></head>
+<html lang="pt-BR">
+    <head th:replace="~{fragments/head :: head(~{::title},~{::link})}">
+        <title>Gerenciar Professores</title>
+        <link>
+    </head>
     <body>
         <!-- Navbar -->
-        <nav th:replace="~{fragments/navbar :: navbar (home='true')}"></nav>
+        <nav th:replace="~{fragments/navbar :: navbar (gerenciamento='true')}"></nav>
 
         <h1 class="text-center text-muted">
             Professor listagem
@@ -11,14 +14,9 @@
 
         <!-- Footer -->
         <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+        <script th:replace="~{fragments/javascript :: jquery}"></script>
+        <script th:replace="~{fragments/javascript :: popper}"></script>
+        <script th:replace="~{fragments/javascript :: bootstrap}"></script>
     </body>
-    
-    <!-- jQuery 3.3.1 -->
-    <script th:replace="~{fragments/javascript :: jquery}"></script>
-
-    <!-- Popper -->
-    <script th:replace="~{fragments/javascript :: popper}"></script>
-
-    <!-- bootstrap 4.0.1 -->
-    <script th:replace="~{fragments/javascript :: bootstrap}"></script>
 </html>

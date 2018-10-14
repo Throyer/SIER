@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{fragments/head :: head (title='Edificios')}"></head>
-    <!-- Estilo Gerenciamento -->
-    <link th:replace="~{fragments/css :: gerenciamento-css}"/>
-    <!-- Estilo dataTables bootstrap 4 -->
-    <link th:replace="~{fragments/css :: dataTables-bootstrap-css}"/>
+    <head th:replace="~{fragments/head :: head(~{::title},~{::link})}">
+        <title>Gerenciar Edificios</title>
+        <link th:replace="~{fragments/css :: gerenciamento-css}"/>
+        <link th:replace="~{fragments/css :: dataTables-bootstrap-css}"/>
+    </head>
     <body>
         <!-- Navbar -->
         <nav th:replace="~{fragments/navbar :: navbar (gerenciamento='true')}"></nav>
@@ -54,9 +54,9 @@
                                     <td>
                                         <div th:switch="${usuario.cargo.nome}"
                                              class="btn-group" role="group" aria-label="First group">
-                                             <!--<button type="button" class="btn btn-dark"><i class="far fa-eye"></i></button>-->
-                                             <a th:href="@{/edificio/visualizar/{id}(id=${edificio.id})}" title='Editar'
-                                           class="btn btn-primary" role="button">
+                                            <!--<button type="button" class="btn btn-dark"><i class="far fa-eye"></i></button>-->
+                                            <a th:href="@{/edificio/visualizar/{id}(id=${edificio.id})}" title='Editar'
+                                               class="btn btn-primary" role="button">
                                                 <i class="far fa-eye"></i>
                                             </a>
                                             <a th:href="@{/edificio/editar/{id}(id=${edificio.id})}" title='Editar'
@@ -99,11 +99,12 @@
                 </div>
             </div>
         </div>
+
+        <script th:replace="~{fragments/javascript :: jquery}"></script>
+        <script th:replace="~{fragments/javascript :: bootstrap}"></script>
+        <script th:replace="~{fragments/javascript :: dataTables-jquery}"></script>
+        <script th:replace="~{fragments/javascript :: dataTables-bootstrap}"></script>
+        <script th:replace="~{fragments/javascript :: dataTables-config}"></script>
+        <script th:replace="~{fragments/javascript :: modal-config}"></script>
     </body>
-    <script th:replace="~{fragments/javascript :: jquery}"></script>
-    <script th:replace="~{fragments/javascript :: bootstrap}"></script>
-    <script th:replace="~{fragments/javascript :: dataTables-jquery}"></script>
-    <script th:replace="~{fragments/javascript :: dataTables-bootstrap}"></script>
-    <script th:replace="~{fragments/javascript :: dataTables-config}"></script>
-    <script th:replace="~{fragments/javascript :: modal-config}"></script>
 </html>

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{fragments/head :: head (title='Edificio | Formulario')}"></head>
+<html lang="pt-BR">
+    <head th:replace="~{fragments/head :: head(~{::title},~{::link})}">
+        <title>SAIER | Home</title>
+        <link th:replace="~{fragments/css :: gerenciamento-css}"/>
+        <link th:replace="~{fragments/css :: formulario-css}"/>
+    </head>
     <body>
         <!-- Navbar -->
         <nav th:replace="~{fragments/navbar :: navbar (gerenciamento='true')}"></nav>
-        
-        <link th:replace="~{fragments/css :: gerenciamento-css}"/>
-        <link th:replace="~{fragments/css :: formulario-css}"/>
-        
         <!-- Container principal -->
         <div class="container-fluid">
             <div class="row">
@@ -209,11 +209,12 @@
                 </main><!-- /Fim do lado esquerdo do sidebar Edificio -->
             </div>    
         </div><!-- /Fim do container principal -->
+
+        <script th:replace="~{fragments/javascript :: jquery}"></script>
+        <script th:replace="~{fragments/javascript :: popper}"></script>
+        <script th:replace="~{fragments/javascript :: bootstrap}"></script>
+        <script th:replace="~{fragments/javascript :: validate}"></script>
+        <script th:replace="~{fragments/javascript :: popover}"></script>
+        <script th:replace="~{fragments/javascript :: cep}"></script>
     </body>
-    <script th:replace="~{fragments/javascript :: jquery}"></script>
-    <script th:replace="~{fragments/javascript :: popper}"></script>
-    <script th:replace="~{fragments/javascript :: bootstrap}"></script>
-    <script th:replace="~{fragments/javascript :: validate}"></script>
-    <script th:replace="~{fragments/javascript :: popover}"></script>
-    <script th:replace="~{fragments/javascript :: cep}"></script>
 </html>

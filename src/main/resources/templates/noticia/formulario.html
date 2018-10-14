@@ -1,18 +1,14 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{fragments/head :: head (title='Noticia | Formulario')}"></head>
+<html lang="pt-BR">
+    <head th:replace="~{fragments/head :: head(~{::title},~{::link})}">
+        <title>Gerenciar Noticias</title>
+        <link th:replace="~{fragments/css :: gerenciamento-css}" />
+        <link th:replace="~{fragments/css :: formulario-css}" />
+        <link th:replace="~{fragments/css :: simplemde-css}" />
+    </head>
     <body>
         <!-- Navbar -->
         <nav th:replace="~{fragments/navbar :: navbar (gerenciamento='true')}"></nav>
-
-        <!-- Estilo Gerenciamento -->
-        <link th:replace="~{fragments/css :: gerenciamento-css}" />
-
-        <!-- Estilo Formulario -->
-        <link th:replace="~{fragments/css :: formulario-css}" />
-
-        <!-- Estilo Simplemde -->
-        <link th:replace="~{fragments/css :: simplemde-css}" />
 
         <!-- Container principal -->
         <div class="container-fluid">
@@ -93,24 +89,13 @@
                     </form>
                 </main><!-- /Fim do lado esquerdo do sidebar Edificio -->
             </div>    
-        </div><!-- /Fim do container principal -->
+        </div>
+
+        <script th:replace="~{fragments/javascript :: jquery}"></script>
+        <script th:replace="~{fragments/javascript :: popper}"></script>
+        <script th:replace="~{fragments/javascript :: bootstrap}"></script>
+        <script th:replace="~{fragments/javascript :: validate}"></script>
+        <script th:replace="~{fragments/javascript :: simplemde}"></script>
+        <script th:replace="~{fragments/javascript :: simplemde-config}"></script>
     </body>
-
-    <!-- jQuery 3.3.1 -->
-    <script th:replace="~{fragments/javascript :: jquery}"></script>
-
-    <!-- Popper -->
-    <script th:replace="~{fragments/javascript :: popper}"></script>
-
-    <!-- bootstrap 4.0.1 -->
-    <script th:replace="~{fragments/javascript :: bootstrap}"></script>
-
-    <!-- Validate -->
-    <script th:replace="~{fragments/javascript :: validate}"></script>
-
-    <!-- Simplemde 1.11.2 -->
-    <script th:replace="~{fragments/javascript :: simplemde}"></script>
-
-    <!-- Simplemde configs -->
-    <script th:replace="~{fragments/javascript :: simplemde-config}"></script>
 </html>

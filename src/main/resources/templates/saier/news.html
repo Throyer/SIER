@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
-    <head th:replace="~{fragments/head :: head (title='SAIER | Blog')}"></head>
+    <head th:replace="~{fragments/head :: head(~{::title},~{::link})}">
+        <title>Blog</title>
+        <link>
+    </head>
     <body>
         <!-- Navbar -->
         <nav th:replace="~{fragments/navbar :: navbar (blog='true')}"></nav>
@@ -90,14 +93,9 @@
         </main><!-- /FIM DO CONTEUDO -->
         <!-- Footer -->
         <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+        <script th:replace="~{fragments/javascript :: jquery}"></script>
+        <script th:replace="~{fragments/javascript :: popper}"></script>
+        <script th:replace="~{fragments/javascript :: bootstrap}"></script>
     </body>
-
-    <!-- jQuery 3.3.1 -->
-    <script th:replace="~{fragments/javascript :: jquery}"></script>
-
-    <!-- Popper -->
-    <script th:replace="~{fragments/javascript :: popper}"></script>
-
-    <!-- bootstrap 4.0.1 -->
-    <script th:replace="~{fragments/javascript :: bootstrap}"></script>
 </html>

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{fragments/head :: head (title='Edificio | Exportar dados')}"></head>
+<html lang="pt-BR">
+    <head th:replace="~{fragments/head :: head(~{::title},~{::link})}">
+        <title>Edificio | Exportar dados</title>
+        <link th:replace="~{fragments/css :: gerenciamento-css}"/>
+        <link th:replace="~{fragments/css :: formulario-css}"/>
+    </head>
     <body>
         <!-- Navbar -->
         <nav th:replace="~{fragments/navbar :: navbar (gerenciamento='true')}"></nav>
-
-        <link th:replace="~{fragments/css :: gerenciamento-css}"/>
-        <link th:replace="~{fragments/css :: formulario-css}"/>
 
         <div class="container-fluid">
             <div class="row">
@@ -20,14 +21,15 @@
 
                     <!-- exportar -->
                     <h2>Funcionalidade em desenvolvimento.</h2>
-                    
+
                     <a role="button" href="/getPDF" class="btn btn-light">Exportar toda a base de dados <i class="fas fa-database"></i></a>
 
                 </main>
             </div>    
         </div>
+
+        <script th:replace="~{fragments/javascript :: jquery}"></script>
+        <script th:replace="~{fragments/javascript :: popper}"></script>
+        <script th:replace="~{fragments/javascript :: bootstrap}"></script>
     </body>
-    <script th:replace="~{fragments/javascript :: jquery}"></script>
-    <script th:replace="~{fragments/javascript :: popper}"></script>
-    <script th:replace="~{fragments/javascript :: bootstrap}"></script>
 </html>

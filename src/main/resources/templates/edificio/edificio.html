@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{fragments/head :: head (title='SAIER | Contato')}"></head>
+<html lang="pt-BR">
+    <head th:replace="~{fragments/head :: head(~{::title},~{::link})}">
+        <title>Edificio</title>
+        <link>
+    </head>
     <body>
         <!-- Navbar -->
         <nav th:replace="~{fragments/navbar :: navbar (contato='true')}"></nav>
@@ -21,7 +24,7 @@
                             </h3>
                             <div class="mb-1">Data de construção:
                                 <span class="text-muted">
-                                <span th:text="${edificio.dataConstrucao} ? ( ${#dates.format(edificio.dataConstrucao, 'dd/MM/yyyy')} ) : 'Não informado'"></span>
+                                    <span th:text="${edificio.dataConstrucao} ? ( ${#dates.format(edificio.dataConstrucao, 'dd/MM/yyyy')} ) : 'Não informado'"></span>
                                 </span>
                             </div>
                             <h4>Informações adicionais</h4>
@@ -31,7 +34,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="row mb-2">
                 <div class="col-md-12">
                     <div class="card flex-md-row mb-4 box-shadow h-md-250">
@@ -44,19 +47,19 @@
                             <h5 class="mb-1">
                                 <span class="text-dark" th:text="${edificio.cep.cep}" href="#"></span>
                             </h5>
-                            
+
                             <h5 class="mb-1">
                                 <span class="text-dark" th:text="${edificio.cep.rua}" href="#"></span>
                             </h5>
-                            
+
                             <h5 class="mb-1">
                                 <span class="text-dark" th:text="${edificio.cep.bairro}" href="#"></span>
                             </h5>
-                            
+
                             <h5 class="mb-1">
                                 <span class="text-dark" th:text="${edificio.cep.cidade}" href="#"></span>
                             </h5>
-                            
+
                             <h5 class="mb-1">
                                 <span class="text-dark" th:text="${edificio.cep.estado}" href="#"></span>
                             </h5>
@@ -64,7 +67,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="row mb-2">
                 <div class="col-md-12">
                     <div class="card flex-md-row mb-4 box-shadow h-md-250">
@@ -78,7 +81,7 @@
                             </h3>
                             <div class="mb-1">Data de construção:
                                 <span class="text-muted">
-                                <span th:text="${edificio.dataConstrucao} ? ( ${#dates.format(edificio.dataConstrucao, 'dd/MM/yyyy')} ) : 'Não informado'"></span>
+                                    <span th:text="${edificio.dataConstrucao} ? ( ${#dates.format(edificio.dataConstrucao, 'dd/MM/yyyy')} ) : 'Não informado'"></span>
                                 </span>
                             </div>
                             <div class="mb-1 text-muted">Nov 12</div>
@@ -92,11 +95,9 @@
         </div>
         <!-- Footer -->
         <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+        <script th:replace="~{fragments/javascript :: jquery}"></script>
+        <script th:replace="~{fragments/javascript :: popper}"></script>
+        <script th:replace="~{fragments/javascript :: bootstrap}"></script>
     </body>
-    <!-- jQuery 3.3.1 -->
-    <script th:replace="~{fragments/javascript :: jquery}"></script>
-    <!-- Popper -->
-    <script th:replace="~{fragments/javascript :: popper}"></script>
-    <!-- bootstrap 4.0.1 -->
-    <script th:replace="~{fragments/javascript :: bootstrap}"></script>
 </html>

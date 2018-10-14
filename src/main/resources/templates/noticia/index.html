@@ -1,19 +1,17 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{fragments/head :: head (title='Gerenciamento | Noticias')}"></head>
-
-    <!-- Estilo Gerenciamento -->
-    <link th:replace="~{fragments/css :: gerenciamento-css}"/>
-
-    <!-- Estilo dataTables bootstrap 4 -->
-    <link th:replace="~{fragments/css :: dataTables-bootstrap-css}"/>
-
+<html lang="pt-BR">
+    <head th:replace="~{fragments/head :: head(~{::title},~{::link})}">
+        <title>Gerenciar Noticias</title>
+        <link th:replace="~{fragments/css :: gerenciamento-css}"/>
+        <link th:replace="~{fragments/css :: dataTables-bootstrap-css}"/>
+    </head>
     <body>
         <!-- Navbar -->
         <nav th:replace="~{fragments/navbar :: navbar (gerenciamento='true')}"></nav>
 
         <div class="container-fluid">
             <div class="row">
+
                 <!-- Lateral sidebar Edificio -->
                 <nav th:replace="~{fragments/sidebars/noticia :: sidebar-noticia (index='true')}"></nav>
 
@@ -41,27 +39,12 @@
                 </main>
             </div>
         </div>
+
+        <script th:replace="~{fragments/javascript :: jquery}"></script>
+        <script th:replace="~{fragments/javascript :: popper}"></script>
+        <script th:replace="~{fragments/javascript :: bootstrap}"></script>
+        <script th:replace="~{fragments/javascript :: dataTables-jquery}"></script>
+        <script th:replace="~{fragments/javascript :: dataTables-bootstrap}"></script>
+        <script th:replace="~{fragments/javascript :: dataTables-config}"></script>
     </body>
-
-    <!-- jQuery 3.3.1 -->
-    <script th:replace="~{fragments/javascript :: jquery}"></script>
-
-    <!-- Popper -->
-    <script th:replace="~{fragments/javascript :: popper}"></script>
-
-    <!-- bootstrap 4.0.1 -->
-    <script th:replace="~{fragments/javascript :: bootstrap}"></script>
-
-    <!-- DataTables javascript -->
-
-    <!-- DataTables jquery --> 
-    <script th:replace="~{fragments/javascript :: dataTables-jquery}"></script>
-
-    <!-- DataTables bootstrap -->
-    <script th:replace="~{fragments/javascript :: dataTables-bootstrap}"></script>
-
-    <!-- dataTable config -->
-    <script th:replace="~{fragments/javascript :: dataTables-config}"></script>
-
-    <!-- /Fim dataTables javascript -->
 </html>

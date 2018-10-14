@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{fragments/head :: head (title='SAIER - Relatorios')}"></head>
+    <head th:replace="~{fragments/head :: head(~{::title},~{::link})}">
+        <title>Relatorios</title>
+        <link>
+    </head>
     <body>
         <!-- Navbar -->
         <nav th:replace="~{fragments/navbar :: navbar (relatorios='true')}"></nav>
@@ -15,9 +18,10 @@
             <canvas id="pie-chart" width="800" height="450"></canvas>
         </div>
         <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+        <script th:replace="~{fragments/javascript :: jquery}"></script>
+        <script th:replace="~{fragments/javascript :: bootstrap}"></script>
+        <script th:replace="~{fragments/javascript :: chartjs}"></script>
+        <script th:replace="~{fragments/javascript :: chartjs-config}"></script>
     </body>
-    <script th:replace="~{fragments/javascript :: jquery}"></script>
-    <script th:replace="~{fragments/javascript :: bootstrap}"></script>
-    <script th:replace="~{fragments/javascript :: chartjs}"></script>
-    <script th:replace="~{fragments/javascript :: chartjs-config}"></script>
 </html>

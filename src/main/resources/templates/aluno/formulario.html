@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{fragments/head :: head (title='Aluno | Formulario')}"></head>
+    <head th:replace="~{fragments/head :: head(~{::title},~{::link})}">
+        <title>Aluno | Formulario</title>
+        <link rel="stylesheet" type="text/css" th:replace="~{fragments/css :: gerenciamento-css}"/>
+        <link rel="stylesheet" type="text/css" th:replace="~{fragments/css :: formulario-css}"/>
+    </head>
     <body>
         <!-- Navbar -->
         <nav th:replace="~{fragments/navbar :: navbar (gerenciamento='true')}"></nav>
-
-        <!-- Estilo Gerenciamento -->
-        <link rel="stylesheet" type="text/css" th:replace="~{fragments/css :: gerenciamento-css}"/>
-
-        <!-- Estilo Formulario -->
-        <link rel="stylesheet" type="text/css" th:replace="~{fragments/css :: formulario-css}"/>
-
         <!-- Container principal -->
         <div class="container-fluid">
             <div class="row">
@@ -33,7 +30,7 @@
                                 </span>
                             </button>
                         </div>
-                        
+
                         <!-- mensagens de erro -->
                         <div class="alert alert-danger alert-dismissible fade show" th:if="${#fields.hasErrors('*')}">
                             <small>Erros:</small>
@@ -46,7 +43,7 @@
                                 </span>
                             </button>
                         </div>
-                        
+
                         <input th:field="*{id}" name="id" hidden>
 
                         <div class="row">
@@ -115,17 +112,10 @@
                 </main><!-- /Fim do lado esquerdo do sidebar Edificio -->
             </div>    
         </div><!-- /Fim do container principal -->
+        
+        <script th:replace="~{fragments/javascript :: jquery}"></script>
+        <script th:replace="~{fragments/javascript :: popper}"></script>
+        <script th:replace="~{fragments/javascript :: bootstrap}"></script>
+        <script th:replace="~{fragments/javascript :: validate}"></script>
     </body>
-
-    <!-- jQuery 3.3.1 -->
-    <script th:replace="~{fragments/javascript :: jquery}"></script>
-
-    <!-- Popper -->
-    <script th:replace="~{fragments/javascript :: popper}"></script>
-
-    <!-- bootstrap 4.0.1 -->
-    <script th:replace="~{fragments/javascript :: bootstrap}"></script>
-
-    <!-- Validate -->
-    <script th:replace="~{fragments/javascript :: validate}"></script>
 </html>
