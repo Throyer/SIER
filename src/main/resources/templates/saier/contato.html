@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-    <head th:replace="~{fragments/head :: head(~{::title},~{::link})}">
+    <head th:replace="~{fragments/head :: head(~{::title},~{})}">
         <title>Contato</title>
-        <link>
     </head>
     <body>
         <!-- Navbar -->
@@ -33,7 +32,7 @@
                 <div class="col-lg-4">
                     <img class="rounded-circle" th:src="@{img/renato.jpg}" alt="Generic placeholder image" width="140" height="140">
                     <h2>Renato Henrique</h2>
-                    <p>Ciencias da Computação na UniFil.</p>
+                    <p>Cursando Ciencias da Computação na UniFil.</p>
                     <h4>Cargo <i class="fas fa-code"></i></h4>
                     <p>Desenvolvedor.</p>
                     <h4>Email <i class="fas fa-envelope-square"></i></h4>
@@ -43,17 +42,18 @@
 
                 </div><!-- /.col-lg-4 -->
                 <div class="col-lg-4">
-                    <img class="rounded-circle" th:src="@{img/foto-aqui.png}" alt="Generic placeholder image" width="140" height="140">
-                    <h2>Inserir um nome</h2>
-                    <p>Uma descrição.</p>
-                    <h4>Cargo</h4>
-                    <p>Uma descrição.</p>
-                    <h4>Email</h4>
-                    <p>fake@email.com</p>
-                    <h4>Contato</h4>
-                    <p><i class="fab fa-github"></i> <a href="#">GitHub</a> <i class="fab fa-twitter"></i> <a href="#">Twitter</a> <i class="fab fa-linkedin"></i> <a href="#">Linkedin</a></p>
+                    <img class="rounded-circle" src="/img/brigida.png" width="140" height="140" alt="Generic placeholder image">
+                    <h2>Brígida Maria Nogueira Cervantes</h2>
+                    <p>
+                       Professora Adjunto do Departamento de Ciência da
+                       Informação. <i class="fas fa-user-graduate"></i>
+                    </p>
+                    <p>
+                        Universidade Estadual de Londrina
+                    </p>
+                    <h4>Email <i class="fas fa-envelope-square"></i></h4>
+                    <p>brigidacervantes@gmail.com</p>
                 </div><!-- /.col-lg-4 -->
-
             </div><!-- /.row -->
         </div><!-- /FIM do Navbar -->
         <!-- Footer -->

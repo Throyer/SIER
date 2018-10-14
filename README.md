@@ -3,6 +3,10 @@ O S.A.I.E.R. é um sistema utilizado na disciplina **2CIN056** de Ciência da In
 Terminologia na construção de vocabularios
 controlados para o registro terminológico dos edifícios residenciais da cidade de Londrina e região.
 
+<p align="center">
+  <img src="https://i.imgur.com/3qQ4j1V.png">
+</p>
+
 # Requisitos
  - MySQL ou MariaDB
  - Java 8

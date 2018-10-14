@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
-    <head th:replace="~{fragments/head :: head(~{::title},~{::link})}">
+    <head th:replace="~{fragments/head :: head(~{::title},~{})}">
         <title>Blog</title>
-        <link>
     </head>
     <body>
         <!-- Navbar -->
@@ -10,6 +9,11 @@
 
         <!-- CONTEUDO -->
         <main role="main" class="container">
+
+            <div class="alert alert-warning" role="alert">
+                Funcionalidade em desenvolvimento.
+            </div>
+
             <div class="row">
                 <div class="col-md-8 blog-main">
                     <h3 class="pb-3 mb-4 font-italic border-bottom">

@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-    <head th:replace="~{fragments/head :: head(~{::title},~{::link})}">
+    <head th:replace="~{fragments/head :: head(~{::title},~{})}">
         <title>SAIER | Home</title>
-        <link>
     </head>
     <body class="fundo-gradiente-claro">
         <!-- Navbar -->
@@ -26,7 +25,7 @@
                     <a class="btn btn-light btn-lg" target="_blank" href="https://github.com/Throyer/SAIER#-sistema-de-arquitetura-da-informa%C3%A7%C3%A3o-de-edificios-residenciais" role="button"><i class="fab fa-github"></i> Contribuir</a>
                 </div>
                 <div class="col-md-5" style="margin-top: 45pt;">
-                    <img class="img-thumbnail featurette-image rounded img-fluid mx-auto"
+                    <img class="img-thumbnail img-fluid mx-auto"
                          th:src="@{img/londrina-lg.jpg}"
                          alt="Generic placeholder image">
                 </div>

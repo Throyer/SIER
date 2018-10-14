@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
     <head th:replace="~{fragments/head :: head(~{::title},~{::link})}">
-        <title th:text="'Conta | ' + ${usuario.nome}">Contato</title>
+        <title th:text="${usuario.nome}">Contato</title>
         <link th:replace="~{fragments/css :: conta-css}"/>
     </head>
     <body>
