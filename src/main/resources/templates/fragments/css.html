@@ -1,55 +1,18 @@
-<!-- Neste documento são definidos todos fragments de CSS do sistema. -->
+<th:block th:fragment="essentials-css">
+    <link rel="stylesheet" type="text/css" th:href="@{~/css/reset.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{~/webjars/font-awesome/5.3.1/css/all.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{~/webjars/bootstrap/4.1.3/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{~/css/estilo.css}"/>
+</th:block>
 
-<!-- Fontawesome -->
-<link th:fragment="fontawesome-css"
-      rel="stylesheet"
-      type="text/css" 
-      th:href="@{~/webjars/font-awesome/5.3.1/css/all.min.css}"/>
+<th:block th:fragment="gerenciamento-css">
+    <link rel="stylesheet" type="text/css" th:href="@{~/webjars/datatables/1.10.19/css/dataTables.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{~/webjars/datatables-buttons/1.5.3/css/buttons.bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{~/css/gerenciamento.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{~/css/formulario.css}"/>
+</th:block>
 
-<!-- Bootstrap -->
-<link th:fragment="bootstrap-css"
-      rel="stylesheet"
-      type="text/css" 
-      th:href="@{~/webjars/bootstrap/4.1.3/css/bootstrap.min.css}"/>
+<link th:fragment="login-css" rel="stylesheet" type="text/css" th:href="@{~/css/login.css}"/>
+<link th:fragment="simplemde-css" rel="stylesheet" type="text/css" th:href="@{~/webjars/simplemde-markdown-editor/1.11.2/dist/simplemde.min.css}"/>
 
-<!-- Estilo -->
-<link th:fragment="saier-css"
-      rel="stylesheet"
-      type="text/css" 
-      th:href="@{~/css/custom/estilo.css}"/>
 
-<!-- Gerenciamento -->
-<link th:fragment="gerenciamento-css"
-      rel="stylesheet"
-      type="text/css"
-      th:href="@{~/css/custom/gerenciamento.css}"/>
-
-<!-- Formulario -->
-<link th:fragment="formulario-css"
-      rel="stylesheet"
-      type="text/css"
-      th:href="@{~/css/custom/formulario.css}"/>
-
-<!-- Perfil/Conta -->
-<link th:fragment="conta-css"
-      rel="stylesheet"
-      type="text/css"
-      th:href="@{~/css/custom/conta.css}"/>
-
-<!-- Login -->
-<link th:fragment="login-css"
-      rel="stylesheet"
-      type="text/css" 
-      th:href="@{~/css/custom/login.css}"/>
-
-<!-- Simplemde -->
-<link th:fragment="simplemde-css"
-      rel="stylesheet"
-      type="text/css"
-      th:href="@{~/webjars/simplemde-markdown-editor/1.11.2/dist/simplemde.min.css}"/>
-
-<!-- DataTables bootstrap 4-->
-<link th:fragment="dataTables-bootstrap-css"
-      rel="stylesheet"
-      type="text/css"
-      th:href="@{~/css/dataTables/dataTables.bootstrap4.min.css}"/>

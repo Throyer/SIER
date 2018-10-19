@@ -2,8 +2,7 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
     <head th:replace="~{fragments/head :: head(~{::title},~{::link})}">
         <title>Aluno | Formulario</title>
-        <link rel="stylesheet" type="text/css" th:replace="~{fragments/css :: gerenciamento-css}"/>
-        <link rel="stylesheet" type="text/css" th:replace="~{fragments/css :: formulario-css}"/>
+        <link th:replace="~{fragments/css :: gerenciamento-css}"/>
     </head>
     <body>
         <!-- Navbar -->
@@ -112,10 +111,8 @@
                 </main><!-- /Fim do lado esquerdo do sidebar Edificio -->
             </div>    
         </div><!-- /Fim do container principal -->
-        
-        <script th:replace="~{fragments/javascript :: jquery}"></script>
-        <script th:replace="~{fragments/javascript :: popper}"></script>
-        <script th:replace="~{fragments/javascript :: bootstrap}"></script>
-        <script th:replace="~{fragments/javascript :: validate}"></script>
+        <!-- Javascripts -->
+        <script th:replace="~{fragments/javascript :: essentials-javascript}"></script>
+        <script th:replace="~{fragments/javascript :: formularios-javascript}"></script>
     </body>
 </html>

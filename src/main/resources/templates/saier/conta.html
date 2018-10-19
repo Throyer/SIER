@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head th:replace="~{fragments/head :: head(~{::title},~{::link})}">
+    <head th:replace="~{fragments/head :: head(~{::title},~{})}">
         <title th:text="${usuario.nome}">Contato</title>
-        <link th:replace="~{fragments/css :: conta-css}"/>
     </head>
     <body>
         <!-- Navbar -->
@@ -243,10 +242,8 @@
         </main><!-- /Fim do conteudo -->
         <!-- Footer -->
         <footer th:replace="~{fragments/footer :: footer}"></footer>
-
-        <script th:replace="~{fragments/javascript :: jquery}"></script>
-        <script th:replace="~{fragments/javascript :: popper}"></script>
-        <script th:replace="~{fragments/javascript :: bootstrap}"></script>
-        <script th:replace="~{fragments/javascript :: validate}"></script>
+        <!-- Javascripts -->
+        <script th:replace="~{fragments/javascript :: essentials-javascript}"></script>
+        <script th:replace="~{fragments/javascript :: formularios-javascript}"></script>
     </body>
 </html>

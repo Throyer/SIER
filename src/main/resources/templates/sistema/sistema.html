@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-    <head th:replace="~{fragments/head :: head(~{::title},~{::link})}">
+    <head th:replace="~{fragments/head :: head(~{::title},~{})}">
         <title>Gerenciar Sistema</title>
-        <link>
     </head>
     <body>
         <!-- Navbar -->
@@ -11,11 +10,7 @@
         <h1 class="text-center text-muted">
             PAGINA DE CONFIGURACAO DO SISTEMA
         </h1>
-
-        <!-- Footer -->
-        <footer th:replace="~{fragments/footer :: footer}"></footer>
-        <script th:replace="~{fragments/javascript :: jquery}"></script>
-        <script th:replace="~{fragments/javascript :: popper}"></script>
-        <script th:replace="~{fragments/javascript :: bootstrap}"></script>
+        <!-- Javascripts -->
+        <script th:replace="~{fragments/javascript :: essentials-javascript}"></script>
     </body>
 </html>

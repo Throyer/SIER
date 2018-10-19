@@ -12,6 +12,10 @@ Esse estilo é usado por todas as paginas do sistema.
     margin-top: 98pt;
 }
 
+.conta {
+    padding: 15pt;
+}
+
 .titulo-sombra {
     color: #ffffff;
     font-weight: 800;

@@ -1,85 +1,30 @@
-<!-- Neste documento são definidos todos fragments de JavaScript do sistema. -->
+<th:block th:fragment="essentials-javascript">
+    <script language="javascript" th:src="@{~/webjars/jquery/3.3.1-1/jquery.min.js}"></script>
+    <script language="javascript" th:src="@{~/webjars/popper.js/1.14.4/umd/popper.min.js}"></script>
+    <script language="javascript" th:src="@{~/webjars/bootstrap/4.1.3/js/bootstrap.min.js}"></script>
+</th:block>
 
-<!-- jQuery -->
-<script th:fragment="jquery"
-        language="javascript"
-        th:src="@{~/webjars/jquery/3.3.1-1/jquery.min.js}">
-</script>
+<th:block th:fragment="formularios-javascript">
+    <script language="javascript" th:src="@{~/js/validate.js}"></script>
+    <script language="javascript" th:src="@{~/js/popover-config.js}"></script>
+    <script language="javascript" th:src="@{~/js/modal-config.js}"></script>
+    <script language="javascript" th:src="@{~/js/cep.js}"></script>
+</th:block>
 
-<!-- Bootstrap -->
-<script th:fragment="bootstrap"
-        language="javascript"
-        th:src="@{~/webjars/bootstrap/4.1.3/js/bootstrap.min.js}">
-</script>
+<th:block th:fragment="chartjs-javascript">
+    <script language="javascript" th:src="@{~/webjars/chartjs/2.7.2/Chart.min.js}"></script>
+    <script language="javascript" th:src="@{~/js/chartjs-config.js}"></script>
+</th:block>
 
-<!-- Popper -->
-<script th:fragment="popper"
-        language="javascript"
-        th:src="@{~/webjars/popper.js/1.14.4/umd/popper.min.js}">
-</script>
+<th:block th:fragment="simplemde-javascript">
+    <script language="javascript" th:src="@{~/webjars/simplemde-markdown-editor/1.11.2/dist/simplemde.min.js}"></script>
+    <script language="javascript" th:src="@{~/js/simplemde-config.js}"></script>
+</th:block>
 
-<!-- Bootstrap 4 validator -->
-<script th:fragment="validate"
-        language="javascript"
-        th:src="@{~/js/custom/validate.js}">
-</script>
-
-<!-- Popover -->
-<script th:fragment="popover"
-        language="javascript"
-        th:src="@{~/js/custom/popover.js}">
-</script>
-
-<!-- Valida C.E.P -->
-<script th:fragment="cep"
-        language="javascript"
-        th:src="@{~/js/custom/cep.js}">
-</script>
-
-<!-- ChartJS -->
-<script th:fragment="chartjs"
-        language="javascript"
-        th:src="@{~/webjars/chartjs/2.7.2/Chart.min.js}">
-</script>
-
-<!-- ChartJs configuração -->
-<script th:fragment="chartjs-config"
-        language="javascript" 
-        th:src="@{~/js/custom/Chart-config.js}">
-</script>
-
-<!-- Simplemde -->
-<script th:fragment="simplemde"
-        language="javascript" 
-        th:src="@{~/webjars/simplemde-markdown-editor/1.11.2/dist/simplemde.min.js}">
-</script>
-
-<!-- Simplemde configuração -->
-<script  th:fragment="simplemde-config"
-         language="javascript"
-         th:src="@{~/js/custom/simplemde-config.js}">
-</script>
-
-<!-- DataTables jquery -->
-<script th:fragment="dataTables-jquery"
-        language="javascript" 
-        th:src="@{~/js/dataTables/jquery.dataTables.min.js}">
-</script>
-
-<!-- DataTables bootstrap 4 -->
-<script th:fragment="dataTables-bootstrap"
-        language="javascript"
-        th:src="@{~/js/dataTables/dataTables.bootstrap4.min.js}">
-</script>
-
-<!-- DataTables configuração -->
-<script th:fragment="dataTables-config"
-        language="javascript" 
-        th:src="@{~/js/custom/dataTables-config.js}">
-</script>
-
-<!-- Modal bootstrap 4 configuração -->
-<script th:fragment="modal-config"
-        language="javascript"
-        th:src="@{~/js/custom/modal-config.js}">
-</script>
+<th:block th:fragment="listagem-javascript">
+    <script language="javascript" th:src="@{~/webjars/datatables/1.10.19/js/jquery.dataTables.min.js}"></script>
+    <script language="javascript" th:src="@{~/webjars/datatables-buttons/1.5.3/js/dataTables.buttons.min.js}"></script>
+    <script language="javascript" th:src="@{~/webjars/datatables/1.10.19/js/dataTables.bootstrap4.min.js}"></script>
+    <script language="javascript" th:src="@{~/webjars/datatables-buttons/1.5.3/js/buttons.bootstrap4.min.js}"></script>
+    <script language="javascript" th:src="@{~/js/data-tables-config.js}"></script>
+</th:block>

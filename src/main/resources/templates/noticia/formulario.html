@@ -2,8 +2,7 @@
 <html lang="pt-BR">
     <head th:replace="~{fragments/head :: head(~{::title},~{::link})}">
         <title>Gerenciar Noticias</title>
-        <link th:replace="~{fragments/css :: gerenciamento-css}" />
-        <link th:replace="~{fragments/css :: formulario-css}" />
+        <link th:replace="~{fragments/css :: gerenciamento-css}"/>
         <link th:replace="~{fragments/css :: simplemde-css}" />
     </head>
     <body>
@@ -90,12 +89,9 @@
                 </main><!-- /Fim do lado esquerdo do sidebar Edificio -->
             </div>    
         </div>
-
-        <script th:replace="~{fragments/javascript :: jquery}"></script>
-        <script th:replace="~{fragments/javascript :: popper}"></script>
-        <script th:replace="~{fragments/javascript :: bootstrap}"></script>
-        <script th:replace="~{fragments/javascript :: validate}"></script>
-        <script th:replace="~{fragments/javascript :: simplemde}"></script>
-        <script th:replace="~{fragments/javascript :: simplemde-config}"></script>
+        <!-- Javascripts -->
+        <script th:replace="~{fragments/javascript :: essentials-javascript}"></script>
+        <script th:replace="~{fragments/javascript :: formularios-javascript}"></script>
+        <script th:replace="~{fragments/javascript :: simplemde-javascript}"></script>
     </body>
 </html>
