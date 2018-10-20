@@ -53,4 +53,4 @@ java -jar saier-2.x.x.RELEASE.jar --port=9000
 > ### Configuração padrão
 > ao ser executado o sistema os valores padão para o banco são:
 > banco`saier` usuario `saier` e senha `saier`
-> e caso as tablas não existam, ira gerar as tabelas de forma automatica pois o [**Hibernate**](http://hibernate.org/orm/) ddl-auto é `update`.
+> e caso as tabelas não existam, ira gerar as tabelas de forma automatica pois o [**Hibernate**](http://hibernate.org/orm/) ddl-auto é `update`.
