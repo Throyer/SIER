@@ -4,6 +4,7 @@
 package br.uel.ceca.cin.saier.persistence.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
@@ -33,15 +34,15 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Size(min = 1, max = 255, message = "forneça um nome")
+    @Size(min = 1, max = 255, message = "{usuario.nome.size}")
     @Column(nullable = false)
     private String nome;
 
-    @Size(min = 1, max = 255, message = "forneça um sobrenome")
+    @Size(min = 1, max = 255, message = "{usuario.sobrenome.size}")
     @Column(nullable = false)
     private String sobrenome;
 
-    @Size(min = 10, max = 255, message = "forneça um email valido")
+    @Size(min = 10, max = 255, message = "{usuario.email.size}")
     @Column(nullable = false, unique = true)
     private String email;
 
@@ -54,10 +55,10 @@ public class Usuario implements Serializable {
     private String turma;
 
     @OneToMany(mappedBy = "usuario")
-    private List<Edificio> edificios;
+    private List<Edificio> edificios = new ArrayList<>();
 
     @OneToMany(mappedBy = "usuario")
-    private List<Noticia> noticias;
+    private List<Noticia> noticias = new ArrayList<>();
 
     @ManyToMany(cascade = CascadeType.DETACH)
     @JoinTable(name = "usuario_cargo",
@@ -65,7 +66,7 @@ public class Usuario implements Serializable {
                 @JoinColumn(name = "usuario_id")},
             inverseJoinColumns = {
                 @JoinColumn(name = "cargo_id")})
-    private List<Cargo> cargos;
+    private List<Cargo> cargos = new ArrayList<>();
 
     @Transient
     private boolean administrador;

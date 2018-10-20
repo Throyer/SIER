@@ -17,22 +17,16 @@ public enum TemplatePath {
     RELATORIOS("saier/relatorios"),
     CONTATO("saier/contato"),
     CONTA("saier/conta"),
-    EDIFICIO("edificio/edificio"),
-    FORMULARIO_EDIFICIO("edificio/formulario"),
-    EDIFICIO_LISTA("edificio/index"),
-    EDIFICIO_EXPORTAR("edificio/exportar"),
-    ALUNO("aluno/aluno"),
-    FORMULARIO_ALUNO("aluno/formulario"),
-    LISTA_ALUNO("aluno/index"),
-    PROFESSOR("professor/professor"),
-    FORMULARIO_PROFESSOR("professor/formulario"),
-    PROFESSOR_LISTA("professor/index"),
-    NOTICIA_FORMULARIO("noticia/formulario"),
-    NOTICIA_LISTA("noticia/index"),
+    FORMULARIO_EDIFICIO("saier/management/edificios/form-edificio"),
+    EDIFICIO_LISTA("saier/management/edificios/list-edificio"),
+    FORMULARIO_ALUNO("saier/management/alunos/form-aluno"),
+    LISTA_ALUNO("saier/management/alunos/list-aluno"),
+    FORMULARIO_PROFESSOR("saier/management/professores/form-professor"),
+    PROFESSOR_LISTA("saier/management/professores/list-professor"),
+    NOTICIA_FORMULARIO("saier/management/noticias/form-noticia"),
+    NOTICIA_LISTA("saier/management/noticias/list-noticia"),
     INSTALL("install"),
-    SISTEMA("sistema/sistema"),
-    ERRO_404("erros/erro404"),
-    ERRO_PADRAO("erros/erro");
+    SISTEMA("saier/management/sistema");
 
     private final String PATH;
 

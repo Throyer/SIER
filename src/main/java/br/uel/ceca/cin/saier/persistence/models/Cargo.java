@@ -4,6 +4,7 @@
 package br.uel.ceca.cin.saier.persistence.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
 
 /**
  * Classe entidade Cargo. Representa o cargo do usuario no sistema.
@@ -29,11 +31,12 @@ public class Cargo implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotNull(message = "{cargo.nome.notnull}")
     @Column(nullable = false)
     private String nome;
 
     @ManyToMany(cascade = CascadeType.DETACH, mappedBy = "cargos")
-    private List<Usuario> usuarios;
+    private List<Usuario> usuarios = new ArrayList<>();
 
     public Cargo() {
         //

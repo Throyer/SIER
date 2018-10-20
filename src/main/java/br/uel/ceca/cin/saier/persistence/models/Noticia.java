@@ -13,7 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * Classe entidade Noticia.
@@ -35,12 +37,13 @@ public class Noticia implements Serializable {
     private String nome;
 
     /* Descrição */
-    @Size(max = 1000)
     private String descicao;
 
     /* Data da publicação */
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
+    @NotNull(message = "{noticia.data.publicacao.notnull}")
     private Calendar dataPublicacao;
 
     /* Usuario responsavel pela publicação */

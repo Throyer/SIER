@@ -5,17 +5,15 @@ package br.uel.ceca.cin.saier.persistence.models;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -37,16 +35,17 @@ public class Edificio implements Serializable {
     private String nome;
 
     /* Nome no qual esse edificio é conhecido */
-    @Size(min = 1, max = 255, message = "{edificio.nome-fantasia.tamanho}")
+    @Size(min = 1, max = 255, message = "{edificio.nome.fantasia.size}")
     @Column(nullable = false)
     private String nomeConhecido;
 
     /* Data de construção */
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Temporal(TemporalType.DATE)
     private Calendar dataConstrucao;
 
     /* Numero de andares */
+    @Size(min = 1, message = "{edificio.andares.size}")
     @Column(nullable = false)
     private int numeroAndares;
 
@@ -55,12 +54,14 @@ public class Edificio implements Serializable {
     private int numero;
 
     /* A fonte da coleta dos dados desse edificio */
+    @NotNull(message = "{edificio.fonte.coleta.notnull}")
     @Column(nullable = false)
     private String fonteColeta;
 
     /* A data em que os dados desse edificio foram coletados */
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(nullable = false)
+    @NotNull(message = "{edificio.data.coleta.notnull}")
     @Temporal(TemporalType.DATE)
     private Calendar dataColeta;
 

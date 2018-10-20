@@ -4,6 +4,7 @@
 package br.uel.ceca.cin.saier.persistence.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -28,25 +30,29 @@ public class CEP implements Serializable {
     private Integer id;
 
     /* Endereço CEP */
-    @Size(min = 8, max = 8, message = "forneça um CEP")
+    @Size(min = 8, max = 8, message = "{cep.cep.size}")
     @Column(nullable = false, unique = true)
     private String cep;
     
+    @NotNull(message = "{cep.rua.notnull}")
     @Column(nullable = false)
     private String rua;
     
+    @NotNull(message = "{cep.bairro.notnull}")
     @Column(nullable = false)
     private String bairro;
     
+    @NotNull(message = "{cep.cidade.notnull}")
     @Column(nullable = false)
     private String cidade;
     
+    @NotNull(message = "{cep.estado.notnull}")
     @Column(nullable = false)
     private String estado;
 
     /* Edificios nesse CEP */
     @OneToMany(mappedBy = "cep")
-    private List<Edificio> edificios;
+    private List<Edificio> edificios = new ArrayList<>();
 
     public CEP() {
         //

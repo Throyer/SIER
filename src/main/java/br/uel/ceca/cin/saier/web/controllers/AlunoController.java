@@ -5,11 +5,14 @@ package br.uel.ceca.cin.saier.web.controllers;
 
 import br.uel.ceca.cin.saier.enums.CargoNome;
 import br.uel.ceca.cin.saier.enums.TemplatePath;
+import br.uel.ceca.cin.saier.persistence.models.Cargo;
 import br.uel.ceca.cin.saier.persistence.models.Usuario;
 import br.uel.ceca.cin.saier.services.interfaces.CargoService;
 import br.uel.ceca.cin.saier.services.interfaces.UsuarioService;
+import java.util.ArrayList;
 
 import java.util.Arrays;
+import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -115,8 +118,12 @@ public class AlunoController {
             return TemplatePath.FORMULARIO_ALUNO.getPath();
 
         } else {
+            
+            List<Cargo> cargos = new ArrayList<>();
+            
+            cargos.add(cargoService.ObterCargoPorNome(CargoNome.ALUNO.getCargoNome()));
 
-            aluno.setCargos(Arrays.asList(cargoService.ObterCargoPorNome(CargoNome.ALUNO.getCargoNome())));
+            aluno.setCargos(cargos);
 
             if (novo) {
 

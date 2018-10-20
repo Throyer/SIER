@@ -68,7 +68,7 @@ public class EdificioController {
     
     @RequestMapping("/edificio/exportar")
     public String exportar() {
-        return TemplatePath.EDIFICIO_EXPORTAR.getPath();
+        return "redirect:" + "/";
     }
 
     /**
@@ -204,7 +204,7 @@ public class EdificioController {
 
         visualizar.addAttribute("edificio", edificio);
 
-        return TemplatePath.EDIFICIO.getPath();
+        return "redirect:" + "/";
     }
 
     /**
