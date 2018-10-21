@@ -1,11 +1,11 @@
 # Instruções de deploy.
-* 01 [Migrações do banco de dados]()
-* 02 [configurando o proxy com nginx]()
-* 03 [criando um serviço para o ubuntu]()
-* 04 [Externalizando as configurações como _banco, porta http e etc_]()
+* 01 [Migrações do banco de dados](#migrações-do-banco-de-dados)
+* 02 [configurando o proxy com nginx](#configurando-o-proxy-com-nginx)
+* 03 [criando um serviço para o ubuntu](#criando-um-serviço-do-saier-no-ubuntu)
+* 04 [Externalizando as configurações como _banco, porta http e etc_](#externalizando-as-configurações)
 
 # Migrações do banco de dados
-> _consulte o guia de_ [_**migrations**_](./migrations/readme.md#migrações-do-banco-de-dados) 
+> _consulte o guia de_ [_**migrations**_](./migration#ainda-em-desenvolvimento) 
 
 # Configurando o proxy com nginx
 
@@ -73,7 +73,7 @@ server {
 você pode externalizar as configurações usando o parametro `--spring.config.location=`.
 > **por exemplo:**  `java -jar saier.jar --spring.config.location=/diretorio/exemplo/exemplo.properties`
 
-> _O S.A.I.E.R tambem suporta "short line commands" consultar_ [_tabela de parametros no guia rapido de instalação_](#executando-a-brinquedoteca-com-valores-diferentes)
+> _O S.A.I.E.R tambem suporta "short line commands" consultar_ [_tabela de parametros no guia rapido de instalação_](https://github.com/Throyer/SAIER#executando-o-sistema-com-configurações-diferentes)
 
 ## exemplo de configuração
 ```properties
