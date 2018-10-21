@@ -12,7 +12,7 @@ controlados para o registro terminológico dos edifícios residenciais da cidade
  - Java 8
 
 # Guia rapido de instalação
-> `em contrução` [Guia completo de instalação (**deploy guide**)](#)
+> para mais informações sobre o deploy confira o [guia completo de instalação](./deploy#instruções-de-deploy)
 ## para executar a aplicação
 
 utilizando o comando:
@@ -29,7 +29,7 @@ criação do usuario administrador.
 O S.A.I.E.R. suporta parametros via terminal em sua execução.
 > basta colocar o valor do parametro junto com o comando de execução: `java -jar --<nome do parametro>=<valor>`.
 
-> O sistema tambem suporta arquivos externos de configuração `em construção` [**confira no guia completo de deploy**]().
+> O sistema tambem suporta arquivos externos de configuração `em construção` [**confira no guia completo de deploy**](./deploy#externalizando-as-configurações).
 
 
 **Por exemplo mudar a porta para 9000:**
