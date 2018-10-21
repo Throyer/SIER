@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="pt-BR">
-    <!-- Adicionando header -->
-    <head th:replace="~{fragments/head :: head (title='Configuração')}"></head>
+    <head th:replace="~{fragments/head :: head(~{::title},~{})}">
+        <title>SAIER | Login</title>
+    </head>
     <body>
         <div class="container">
             <!-- Formulario de configuração da brinquedoteca -->
