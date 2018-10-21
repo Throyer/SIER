@@ -8,14 +8,14 @@
         <!-- Lista de botões de gerenciamento -->
         <ul class="list-group">
             <li class="list-group-item">
-                <a role="button" href="/edificio/gerenciamento"
+                <a role="button" th:href="@{/edificio/gerenciamento}"
                    th:class="${index} ? 'btn btn-block btn btn-outline-dark active' : 'btn btn-block btn-outline-dark'">
                     <i class="fas fa-database"></i> Base de dados
                 </a>
             </li>
 
             <li class="list-group-item">
-                <a role="button" href="/edificio/formulario"
+                <a role="button" th:href="@{/edificio/formulario}"
                    th:class="${formulario} ? 'btn btn-block btn btn-outline-dark active' : 'btn btn-block btn-outline-dark'">
                     <i class="fas fa-certificate"></i> Cadastrar novo
                 </a>

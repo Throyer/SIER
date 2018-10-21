@@ -8,13 +8,13 @@
         <!-- Lista de botões de gerenciamento -->
         <ul class="list-group">
             <li class="list-group-item">
-                <a role="button" href="/noticia/gerenciamento" 
+                <a role="button" th:href="@{/noticia/gerenciamento}" 
                    th:class="${index} ? 'btn btn-block btn btn-outline-dark active' : 'btn btn-block btn-outline-dark' ">
                     <i class="fas fa-newspaper"></i> Postagens
                 </a>
             </li>
             <li class="list-group-item">
-                <a role="button" href="/noticia/formulario"
+                <a role="button" th:href="@{/noticia/formulario}"
                    th:class="${formulario} ? 'btn btn-block btn btn-outline-dark active' : 'btn btn-block btn-outline-dark' ">
                     <i class="fas fa-certificate"></i> Publicar nova
                 </a>

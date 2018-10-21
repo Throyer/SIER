@@ -13,7 +13,7 @@
             <div th:if="${atualizadoSenha}" class="alert alert-success alert-dismissible fade show" role="alert">
                 <small>Sua senha foi atualizada com sucesso!</small>
                 <span class="badge badge-pill badge-danger">Por favor, refaça o login com a nova senha </span>
-                <a class="btn btn-outline-danger" href="/logout" role="button">sair</a>
+                <a class="btn btn-outline-danger" th:href="@{/logout}" role="button">sair</a>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">
                         <i class="fas fa-times"></i>
