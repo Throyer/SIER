@@ -13,11 +13,12 @@ controlados para o registro terminológico dos edifícios residenciais da cidade
 
 # Guia rapido de instalação
 > para mais informações sobre o deploy confira o [guia completo de instalação](./deploy#instruções-de-deploy)
+
 ## para executar a aplicação
+> SAIER-2.0.0-BETA [DOWNLOAD](./deploy/dist/saier-2.0.0-beta.jar)
 
 utilizando o comando:
-`java -jar saier-2.x.x.RELEASE.jar`.
-> <small>subistitiua os `x` pela versão do sistema como `2.0.1` por exemplo.</small>
+`java -jar saier-2.0.0-beta.jar`.
 _________________________
 > O sistema sera iniciado utilizando as configurações padrão [**confira a tabela**](#quando-um-parametro-não-é-definido-na-execução-ele-recebe-o-valor-padrão).
 
@@ -27,7 +28,7 @@ criação do usuario administrador.
 ## executando o sistema com configurações diferentes
 
 O S.A.I.E.R. suporta parametros via terminal em sua execução.
-> basta colocar o valor do parametro junto com o comando de execução: `java -jar --<nome do parametro>=<valor>`.
+> basta colocar o valor do parametro junto com o comando de execução: `java -jar saier-2.0.0-beta.jar --<nome do parametro>=<valor>`.
 
 > O sistema tambem suporta arquivos externos de configuração `em construção` [**confira no guia completo de deploy**](./deploy#externalizando-as-configurações).
 
@@ -36,7 +37,7 @@ O S.A.I.E.R. suporta parametros via terminal em sua execução.
 
 
 ```shell
-java -jar saier-2.x.x.RELEASE.jar --port=9000
+java -jar saier-2.0.0-beta.jar --port=9000
 ```
 
 ### Quando um parametro não é definido na execução, ele recebe o valor padrão.
@@ -44,11 +45,12 @@ java -jar saier-2.x.x.RELEASE.jar --port=9000
 |      **Descrição**        |  **parametro**  |              **Valor padrão**             |
 |---------------------------|-----------------|-------------------------------------------|
 | Porta                     | `--port`        | 8080                                      |
-| url do banco              | `--db-url`      | localhost:3306/saier                      |
-| nome de usuario (banco)   | `--db-username` | saier                                     |
-| senha do usuario (banco)  | `--db-password` | saier                                     |
-| mostrar sql na saida      | `--show-sql`    | false                                     |
-| criar as tabelas no banco | `--ddl-auto`    | update                                    |
+| Contenxto                 | `--contexto`    | /                                         |
+| Url do banco              | `--db-url`      | localhost:3306/saier                      |
+| Nome de usuario (banco)   | `--db-username` | saier                                     |
+| Senha do usuario (banco)  | `--db-password` | saier                                     |
+| Mostrar sql na saida      | `--show-sql`    | false                                     |
+| Criar as tabelas no banco | `--ddl-auto`    | update                                    |
 
 > ### Configuração padrão
 > ao ser executado o sistema os valores padão para o banco são:

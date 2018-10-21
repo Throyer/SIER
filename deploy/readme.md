@@ -42,7 +42,7 @@ server {
  Type=simple
  
  [Service]
- ExecStart=/usr/bin/java -jar /opt/saier/saier.jar
+ ExecStart=/usr/bin/java -jar /opt/saier/saier-2.0.0-beta.jar
  Restart=always
  StandardOutput=syslog
  StandardError=syslog
@@ -71,7 +71,7 @@ server {
 
 # Externalizando as configurações
 você pode externalizar as configurações usando o parametro `--spring.config.location=`.
-> **por exemplo:**  `java -jar saier.jar --spring.config.location=/diretorio/exemplo/exemplo.properties`
+> **por exemplo:**  `java -jar saier-2.0.0-beta.jar --spring.config.location=/diretorio/exemplo/exemplo.properties`
 
 > _O S.A.I.E.R tambem suporta "short line commands" consultar_ [_tabela de parametros no guia rapido de instalação_](https://github.com/Throyer/SAIER#executando-o-sistema-com-configurações-diferentes)
 
