@@ -40,12 +40,12 @@ public class Edificio implements Serializable {
     private String nomeConhecido;
 
     /* Data de construção */
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     private Calendar dataConstrucao;
 
     /* Numero de andares */
-    @Size(min = 1, message = "{edificio.andares.size}")
+    @NotNull(message = "{edificio.andares.notnull}")
     @Column(nullable = false)
     private int numeroAndares;
 
@@ -59,7 +59,7 @@ public class Edificio implements Serializable {
     private String fonteColeta;
 
     /* A data em que os dados desse edificio foram coletados */
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(nullable = false)
     @NotNull(message = "{edificio.data.coleta.notnull}")
     @Temporal(TemporalType.DATE)
