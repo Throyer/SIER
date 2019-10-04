@@ -22,7 +22,7 @@ package com.github.websier.sier.app.utils;
  */
 public class Templates {
 
-    private static final String basePath = "views/";
+    private static final String MAIN_PATH = "views/";
 
     /**
      * Paginas comuns do sistema.
@@ -37,14 +37,14 @@ public class Templates {
          *
          * @see pagina index do sistema.
          */
-        public static final String INDEX = basePath + "index";
+        public static final String INDEX = MAIN_PATH + "index";
 
         /**
          * Contact.
          *
          * @see pagina de contato.
          */
-        public static final String CONTATO = basePath + "contato";
+        public static final String CONTATO = MAIN_PATH + "contato";
     }
 
     /**
@@ -60,7 +60,7 @@ public class Templates {
          *
          * @see formulario de login.
          */
-        public static final String LOGIN = basePath + "login";
+        public static final String LOGIN = MAIN_PATH + "login";
     }
 
     /**
@@ -71,9 +71,11 @@ public class Templates {
      */
     public static class EDIFCIO {
 
+        private static String BASE_PATH = "edificio/";
+
         /**
          * @see listagem dos edificios.
          */
-        public static final String INDEX = basePath + "contato";
+        public static final String INDEX = MAIN_PATH + BASE_PATH + "index";
     }
 }

@@ -18,6 +18,8 @@ package com.github.websier.sier.app.domain.models;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -127,6 +129,10 @@ public class Edificio implements Serializable {
 
     public LocalDateTime getCadastradoEm() {
         return createdAt;
+    }
+
+    public Date getCadastradoEmAsDate() {
+        return Date.from(getCadastradoEm().atZone(ZoneId.systemDefault()).toInstant());
     }
     
     public LocalDateTime getAtuaizadoEm() {

@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     class="navbar navbar-expand-md navbar-light fixed-top bg-light" 
     th:fragment="navbar">
         <a class="navbar-brand" th:href="@{/}">
-            <i class="fas fa-desktop"></i>
+            <i class="fas fa-building"></i>
             SIER
         </a>
     
@@ -78,6 +78,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                        th:href="@{/user}">
                         <i class="fas fa-user-cog"></i>
                         Conta
+                    </a>
+                    <div class="d-none d-sm-block dropdown-divider"></div>
+                    <a class="dropdown-item" th:href="@{/edificios}">
+                        <i class="fas fa-city"></i>
+                        Gerenciar edifcios
                     </a>
                     <div class="d-none d-sm-block dropdown-divider"></div>
                     <a class="dropdown-item" th:href="@{/logout}">

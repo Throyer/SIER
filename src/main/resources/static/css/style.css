@@ -31,3 +31,11 @@ body {
 .text-outline {
     text-decoration: underline;
 }
+
+.text-purple {
+    color: #7708bd;
+}
+
+.text-purple:hover {
+    color: #7708bd;
+}
