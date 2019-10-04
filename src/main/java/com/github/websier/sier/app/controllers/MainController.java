@@ -16,7 +16,7 @@
  */
 package com.github.websier.sier.app.controllers;
 
-import static com.github.websier.sier.app.utils.Templates.*;
+import com.github.websier.sier.app.utils.Templates.MAIN;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,6 +40,6 @@ public class MainController {
 
     @RequestMapping("/")
     public String Index() {
-        return INDEX;
+        return MAIN.INDEX;
     }
 }

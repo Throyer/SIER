@@ -1,6 +1,6 @@
 package com.github.websier.sier.app.controllers;
 
-import static com.github.websier.sier.app.utils.Templates.*;
+import com.github.websier.sier.app.utils.Templates.MAIN;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +20,7 @@ public class ContatoController {
 
     @RequestMapping("/contato")
     public String Index() {
-        return CONTATO;
+        return MAIN.CONTATO;
     }
 
 }

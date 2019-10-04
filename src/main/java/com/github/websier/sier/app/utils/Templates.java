@@ -25,26 +25,55 @@ public class Templates {
     private static final String basePath = "views/";
 
     /**
-     * Login.
-     *
-     * @see pagina com o formulario de login.
-     * @since 1.0.0.RELEASE
+     * Paginas comuns do sistema.
+     * 
+     * @since 3.0.0.RELEASE.
+     * @author throyer.
      */
-    public static final String LOGIN = basePath + "login";
+    public static class MAIN {
+
+        /**
+         * Home.
+         *
+         * @see pagina index do sistema.
+         */
+        public static final String INDEX = basePath + "index";
+
+        /**
+         * Contact.
+         *
+         * @see pagina de contato.
+         */
+        public static final String CONTATO = basePath + "contato";
+    }
 
     /**
-     * Home.
-     *
-     * @see pagina inicial.
-     * @since 1.0.0.RELEASE.
+     * Paginas relacionadas a sessão do usuario.
+     * 
+     * @since 3.0.0.RELEASE.
+     * @author throyer.
      */
-    public static final String INDEX = basePath + "index";
+    public static class SECTION {
+
+        /**
+         * Login.
+         *
+         * @see formulario de login.
+         */
+        public static final String LOGIN = basePath + "login";
+    }
 
     /**
-     * Contact.
-     *
-     * @see pagina de contato.
-     * @since 1.0.0.RELEASE.
+     * Paginas relacionadas a entidade Edifcio.
+     * 
+     * @since 3.0.0.RELEASE.
+     * @author throyer.
      */
-    public static final String CONTATO = basePath + "contato";
+    public static class EDIFCIO {
+
+        /**
+         * @see listagem dos edificios.
+         */
+        public static final String INDEX = basePath + "contato";
+    }
 }

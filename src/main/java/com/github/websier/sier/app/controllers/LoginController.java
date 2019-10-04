@@ -16,7 +16,7 @@
  */
 package com.github.websier.sier.app.controllers;
 
-import static com.github.websier.sier.app.utils.Templates.*;
+import com.github.websier.sier.app.utils.Templates.SECTION;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,7 +37,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public String login() {
-        return LOGIN;
+        return SECTION.LOGIN;
     }
 
 }
