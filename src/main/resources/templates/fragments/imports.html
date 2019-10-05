@@ -16,16 +16,14 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
-<!-- CSS BASE -->
-<th:block th:fragment="base-css">
+<th:block th:fragment="basic-css">
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/5.10.1/css/all.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
-</th:block><!-- /CSS BASE -->
+</th:block>
 
-<!-- JAVASCRIPT BASE -->
-<th:block th:fragment="base-javascript">
+<th:block th:fragment="basic-javascript">
     <script language="javascript" th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
     <script language="javascript" th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>    
     <script language="javascript" th:src="@{/js/main.js}"></script>
-</th:block><!-- /JAVASCRIPT BASE -->
+</th:block>

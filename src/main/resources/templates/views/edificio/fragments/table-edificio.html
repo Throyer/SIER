@@ -1,0 +1,108 @@
+<table th:fragment="table-edificio" class="table table-hover crud">
+    <thead>
+        <tr>
+            <th scope="col">Fonte da coleta</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Autor</th>
+            <th scope="col">Data da coleta</th>
+            <th scope="col">Ações</th>
+        </tr>
+        <tr>
+            <th>
+                <div class="input-group">
+                    <input
+                        type="text"
+                        class="form-control form-control-sm">
+                    <div class="input-group-append">
+                        <button
+                            class="btn btn-sm btn-outline-secondary"
+                            type="button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </th>
+            <th>
+                <div class="input-group">
+                    <input
+                        type="text"
+                        class="form-control form-control-sm">
+                    <div class="input-group-append">
+                        <button
+                            class="btn btn-sm btn-outline-secondary"
+                            type="button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </th>
+            <th>
+                <div class="input-group">
+                    <input
+                        type="text"
+                        class="form-control form-control-sm">
+                    <div class="input-group-append">
+                        <button
+                            class="btn btn-sm btn-outline-secondary"
+                            type="button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </th>
+            <th>
+                <input type="date" class="form-control form-control-sm">
+            </th>
+            <th>
+                <div class="btn-group btn-block" role="group" aria-label="Basic example">
+                    <button 
+                        type="button"
+                        class="btn btn-sm btn-outline-secondary">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button
+                        class="btn btn-outline-success btn-block btn-sm">
+                        Novo
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="edifcio : ${pagina.content}">
+            <th><span th:text="${edifcio.coleta.fonteColeta}"></span></th>
+            <td><span th:text="${edifcio.nomeConhecido}"></span></td>
+            <td><span th:text="${edifcio.coleta.cadastradoPor.nome}"></span></td>
+            <td><span th:text="${#dates.format(edifcio.getCadastradoEmAsDate(), 'dd/MM/yyyy HH:mm')}"></span></td>
+            <td>
+                <div class="row justify-center">
+                    <div class="col-sm-12 text-center">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button 
+                                type="button"
+                                class="btn btn-sm btn-link text-purple text-decoration-none">
+                                <i class="fas fa-history"></i>
+                            </button>
+                            <button 
+                                type="button"
+                                class="btn btn-sm btn-link text-primary text-decoration-none">
+                                <i class="far fa-eye"></i>
+                            </button>
+                            <button 
+                                type="button"
+                                class="btn btn-sm btn-link text-warning text-decoration-none">
+                                <i class="fas fa-pen"></i>
+                            </button>
+                            <button 
+                                type="button"
+                                class="btn btn-sm btn-link text-danger text-decoration-none">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

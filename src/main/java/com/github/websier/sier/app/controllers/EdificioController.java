@@ -27,11 +27,11 @@ public class EdificioController {
 
     @RequestMapping("/edificios")
     public String Index(
-        @PageableDefault(page = 1, size = 10) Pageable pageable,
+        @PageableDefault(page = 0, size = 10) Pageable pageable,
         Model model
     ) {
-        System.out.println(repository.findAll(pageable));
-        model.addAttribute("edificios", repository.findAll(pageable));
+        model.addAttribute("url", "edificios");
+        model.addAttribute("pagina", repository.findAll(pageable));
         return EDIFCIO.INDEX;
     }
 }

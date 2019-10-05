@@ -15,22 +15,13 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<html>
+<html th:replace="~{fragments/layout :: layout(~{::title}, ~{}, ~{::section}, ~{})}">
     <head>
-        <title>SIER</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <th:block th:replace="~{fragments/imports :: base-css}"></th:block><!-- /links base -->
+        <title>Edificios</title>
     </head>
     <body>
-        <th:block th:replace="~{fragments/navbar :: navbar}"></th:block><!-- /navbar -->
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 class="font-weight-light">Contact page.</h2>
-                </div>
-            </div>
-        </div>
-        <th:block th:replace="~{fragments/imports :: base-javascript}"></th:block><!-- /scripts base -->
+        <section>
+            <h1>CONTATOS</h1>
+        </section>
     </body>
 </html>
