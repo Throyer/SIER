@@ -46,6 +46,6 @@ java -jar saier-3.0.0.RELEASE.jar --port=9000
 |      **Descrição**        |  **parametro**  |              **Valor padrão**             |
 |---------------------------|-----------------|-------------------------------------------|
 | Porta                     | `--port`        | 8080                                      |
-| Url do banco              | `--db-url`      | localhost:3306/saier                      |
+| Url do banco              | `--db-url`      | localhost:3306/sier                      |
 | Nome de usuario (banco)   | `--db-username` | saier                                     |
 | Senha do usuario (banco)  | `--db-password` | saier                                     |
