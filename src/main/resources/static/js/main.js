@@ -15,4 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
+/**
+ * Evento de atualização de tamanho de pagina.
+ */
+$(() => $("#sizeInput").change(() => $("#sizeForm").submit()))

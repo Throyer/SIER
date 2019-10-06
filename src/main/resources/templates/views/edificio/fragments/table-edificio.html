@@ -1,4 +1,4 @@
-<table th:fragment="table-edificio" class="table table-hover crud">
+<table th:fragment="table-edificio" class="table table-hover crud-table">
     <thead>
         <tr>
             <th scope="col">Fonte da coleta</th>
@@ -7,74 +7,45 @@
             <th scope="col">Data da coleta</th>
             <th scope="col">Ações</th>
         </tr>
-        <tr>
-            <th>
-                <div class="input-group">
-                    <input
-                        type="text"
-                        class="form-control form-control-sm">
-                    <div class="input-group-append">
-                        <button
-                            class="btn btn-sm btn-outline-secondary"
-                            type="button">
+        <form>
+            <tr>
+                <th>
+                    <select class="form-control form-control-sm" name="fonteColeta">
+                        <option th:selected="${fonteColeta == null}" value="">Todos</option>
+                        <option th:selected="${fonteColeta != null && fonteColeta.toString() == 'PORTARIA'}" value="PORTARIA">Portaria</option>
+                        <option th:selected="${fonteColeta != null && fonteColeta.toString() == 'INTERNET'}" value="INTERNET">Internet</option>
+                        <option th:selected="${fonteColeta != null && fonteColeta.toString() == 'JORNAL'}" value="JORNAL">Jornal</option>
+                        <option th:selected="${fonteColeta != null && fonteColeta.toString() == 'PREFEITURA'}" value="PREFEITURA">Prefeitura</option>
+                        <option th:selected="${fonteColeta != null && fonteColeta.toString() == 'ACIL'}" value="ACIL">ACIL</option>
+                        <option th:selected="${fonteColeta != null && fonteColeta.toString() == 'SINDUSCON'}" value="SINDUSCON">Sinduscon</option>
+                        <option th:selected="${fonteColeta != null && fonteColeta.toString() == 'LISTA_TELEFONICA'}" value="LISTA_TELEFONICA">Lista telefonica</option>
+                    </select>
+                </th>
+                <th><input type="text" th:value="${nome}" name="nome" class="form-control form-control-sm"></th>
+                <th><input type="text" th:value="${autor}"name="autor" class="form-control form-control-sm"></th>
+                <th><input type="date" th:value="${dataColeta}" name="dataColeta" class="form-control form-control-sm"></th>
+                <th>
+                    <input hidden type="text" name="page" th:value="${param.page}">
+                    <input hidden type="text" name="size" th:value="${param.size}">
+                    <div class="btn-group btn-block" role="group" aria-label="Basic example">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary">
                             <i class="fas fa-search"></i>
                         </button>
+                        <a class="btn btn-outline-success btn-block btn-sm">
+                            Novo
+                            <i class="fas fa-plus"></i>
+                        </a>
                     </div>
-                </div>
-            </th>
-            <th>
-                <div class="input-group">
-                    <input
-                        type="text"
-                        class="form-control form-control-sm">
-                    <div class="input-group-append">
-                        <button
-                            class="btn btn-sm btn-outline-secondary"
-                            type="button">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </th>
-            <th>
-                <div class="input-group">
-                    <input
-                        type="text"
-                        class="form-control form-control-sm">
-                    <div class="input-group-append">
-                        <button
-                            class="btn btn-sm btn-outline-secondary"
-                            type="button">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </th>
-            <th>
-                <input type="date" class="form-control form-control-sm">
-            </th>
-            <th>
-                <div class="btn-group btn-block" role="group" aria-label="Basic example">
-                    <button 
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary">
-                        <i class="fas fa-search"></i>
-                    </button>
-                    <button
-                        class="btn btn-outline-success btn-block btn-sm">
-                        Novo
-                        <i class="fas fa-plus"></i>
-                    </button>
-                </div>
-            </th>
-        </tr>
+                </th>
+            </tr>
+        </form>
     </thead>
     <tbody>
         <tr th:each="edifcio : ${pagina.content}">
-            <th><span th:text="${edifcio.coleta.fonteColeta}"></span></th>
+            <td><span th:text="${edifcio.coleta.fonteColeta}"></span></td>
             <td><span th:text="${edifcio.nomeConhecido}"></span></td>
             <td><span th:text="${edifcio.coleta.cadastradoPor.nome}"></span></td>
-            <td><span th:text="${#dates.format(edifcio.getCadastradoEmAsDate(), 'dd/MM/yyyy HH:mm')}"></span></td>
+            <td class="text-center"><span th:text="${#temporals.format(edifcio.cadastradoEm, 'dd/MM/yyyy')}"></span></td>
             <td>
                 <div class="row justify-center">
                     <div class="col-sm-12 text-center">

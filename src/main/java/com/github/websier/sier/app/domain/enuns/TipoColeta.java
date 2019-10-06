@@ -16,7 +16,7 @@
  */
 package com.github.websier.sier.app.domain.enuns;
 
-public enum FontesDeColeta {
+public enum TipoColeta {
     PORTARIA,
     INTERNET,
     JORNAL,

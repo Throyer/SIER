@@ -25,6 +25,19 @@ public class Templates {
     private static final String MAIN_PATH = "views/";
 
     /**
+     * Paginas de erro sistema.
+     * 
+     * @since 3.0.0.RELEASE.
+     * @author throyer.
+     */
+    public static class ERROR {
+
+        private static final String ERROR_PATH = "errors/";
+
+        public static final String INDEX = ERROR_PATH + "error";
+    }
+
+    /**
      * Paginas comuns do sistema.
      * 
      * @since 3.0.0.RELEASE.

@@ -25,7 +25,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-import com.github.websier.sier.app.domain.enuns.FontesDeColeta;
+import com.github.websier.sier.app.domain.enuns.TipoColeta;
 import com.github.websier.sier.app.domain.models.Usuario;
 
 /**
@@ -37,7 +37,7 @@ public class Coleta {
 
     @NotEmpty(message = "Por favor, informe a fonte da coleta dos dados.")
     @Enumerated(EnumType.STRING)
-    private FontesDeColeta fonteColeta;
+    private TipoColeta fonteColeta;
 
     @Size(max = 350)
     private String informacoes;
@@ -48,11 +48,11 @@ public class Coleta {
     @ManyToOne
     private Usuario atualizadoPor;
 
-    public FontesDeColeta getFonteColeta() {
+    public TipoColeta getFonteColeta() {
         return fonteColeta;
     }
 
-    public void setFonteColeta(FontesDeColeta fonteColeta) {
+    public void setFonteColeta(TipoColeta fonteColeta) {
         this.fonteColeta = fonteColeta;
     }
 

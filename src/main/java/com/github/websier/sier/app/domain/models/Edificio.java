@@ -17,6 +17,7 @@
 package com.github.websier.sier.app.domain.models;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
@@ -35,6 +36,8 @@ import javax.validation.constraints.Size;
 
 import com.github.websier.sier.app.domain.embeddables.Coleta;
 import com.github.websier.sier.app.domain.embeddables.Endereco;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * Classe responsavel por representar um Edificio.
@@ -68,8 +71,41 @@ public class Edificio implements Serializable {
     @Embedded
     private Coleta coleta;
 
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate createdAt;
+    
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate updatedAt;
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null) {
+            return false;
+        }
+        if (getClass() != object.getClass()) {
+            return false;
+        }
+        final Edificio other = (Edificio) object;
+        return Objects.equals(this.id, other.id);
+    }
+
+    @PrePersist
+    private void created() {
+        this.createdAt = LocalDate.now();
+    }
+
+    @PreUpdate
+    private void updated() {
+        this.updatedAt = LocalDate.now();
+    }
+
+    @Override
+    public String toString() {
+        return this.nomeConhecido;
+    }
     
     public Long getId() {
         return id;
@@ -126,46 +162,16 @@ public class Edificio implements Serializable {
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-
-    public LocalDateTime getCadastradoEm() {
-        return createdAt;
-    }
-
-    public Date getCadastradoEmAsDate() {
-        return Date.from(getCadastradoEm().atZone(ZoneId.systemDefault()).toInstant());
+    
+    public LocalDate getCadastradoEm() {
+        return this.createdAt;
     }
     
-    public LocalDateTime getAtuaizadoEm() {
-        return updatedAt;
+    public LocalDate getAtuaizadoEm() {
+        return this.updatedAt;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        if (this == object) {
-            return true;
-        }
-        if (object == null) {
-            return false;
-        }
-        if (getClass() != object.getClass()) {
-            return false;
-        }
-        final Edificio other = (Edificio) object;
-        return Objects.equals(this.id, other.id);
-    }
-
-    @PrePersist
-    private void created() {
-        this.createdAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    private void updated() {
-        this.updatedAt = LocalDateTime.now();
-    }
-
-    @Override
-    public String toString() {
-        return this.nomeConhecido;
+    public Date getDataCadastro() {
+        return Date.from(this.createdAt.atStartOfDay(ZoneId.of("America/Sao_Paulo")).toInstant());
     }
 }

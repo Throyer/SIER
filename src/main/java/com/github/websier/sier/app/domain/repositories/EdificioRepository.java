@@ -19,10 +19,13 @@ package com.github.websier.sier.app.domain.repositories;
 import com.github.websier.sier.app.domain.models.Edificio;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 /**
  * EdificioRepository
  */
 @Repository
-public interface EdificioRepository extends JpaRepository<Edificio, Long> { }
+public interface EdificioRepository extends JpaRepository<Edificio, Long>, JpaSpecificationExecutor<Edificio> {
+    
+}
