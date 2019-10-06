@@ -1,5 +1,7 @@
-# 🏢 Sistema de Arquitetura da Informação de Edificios Residenciais
-O S.A.I.E.R. é um sistema utilizado na disciplina **2CIN056** de Ciência da Informação da [**UEL**](http://www.uel.br/ceca/cin/index.html).
+# 🏢 Sistema de Informação de Edificios Residenciais
+O S.I.E.R. é um sistema utilizado na disciplina **2CIN056** de Ciência da Informação da Universisade Estadual de Londrina [**UEL**](http://www.uel.br/ceca/cin/index.html).
+
+
 Terminologia na construção de vocabularios
 controlados para o registro terminológico dos edifícios residenciais da cidade de Londrina e região.
 
@@ -8,26 +10,25 @@ controlados para o registro terminológico dos edifícios residenciais da cidade
 </p>
 
 # Requisitos
- - MySQL ou MariaDB
- - Java 8
+ - MariaDB: `^10.3.11`
+ - Java: `^11`
 
 # Guia rapido de instalação
 > para mais informações sobre o deploy confira o [guia completo de instalação](./deploy#instruções-de-deploy)
 
 ## para executar a aplicação
-> SAIER-2.0.0-BETA [DOWNLOAD](./deploy/dist/saier-2.0.0-beta.jar)
+> SIER-3.0.0.BETA [DOWNLOAD](./deploy/dist/saier-2.0.0-beta.jar)
 
 utilizando o comando:
-`java -jar saier-2.0.0-beta.jar`.
+`java -jar sier-3.0.0.RELEASE.jar`.
 _________________________
 > O sistema sera iniciado utilizando as configurações padrão [**confira a tabela**](#quando-um-parametro-não-é-definido-na-execução-ele-recebe-o-valor-padrão).
 
-- Depois de Iniciado, ao acessar a url `/install` é exibido um formulario para a
-criação do usuario administrador.
+- Depois de Iniciado, ao acessar a url `/settings` é exibido um formulario para a configuração inicial do usuario administrador.
 
 ## executando o sistema com configurações diferentes
 
-O S.A.I.E.R. suporta parametros via terminal em sua execução.
+O S.I.E.R. suporta parametros via terminal em sua execução.
 > basta colocar o valor do parametro junto com o comando de execução: `java -jar saier-2.0.0-beta.jar --<nome do parametro>=<valor>`.
 
 > O sistema tambem suporta arquivos externos de configuração `em construção` [**confira no guia completo de deploy**](./deploy#externalizando-as-configurações).
@@ -37,7 +38,7 @@ O S.A.I.E.R. suporta parametros via terminal em sua execução.
 
 
 ```shell
-java -jar saier-2.0.0-beta.jar --port=9000
+java -jar saier-3.0.0.RELEASE.jar --port=9000
 ```
 
 ### Quando um parametro não é definido na execução, ele recebe o valor padrão.
@@ -45,14 +46,6 @@ java -jar saier-2.0.0-beta.jar --port=9000
 |      **Descrição**        |  **parametro**  |              **Valor padrão**             |
 |---------------------------|-----------------|-------------------------------------------|
 | Porta                     | `--port`        | 8080                                      |
-| Contenxto                 | `--contexto`    | /                                         |
 | Url do banco              | `--db-url`      | localhost:3306/saier                      |
 | Nome de usuario (banco)   | `--db-username` | saier                                     |
 | Senha do usuario (banco)  | `--db-password` | saier                                     |
-| Mostrar sql na saida      | `--show-sql`    | false                                     |
-| Criar as tabelas no banco | `--ddl-auto`    | update                                    |
-
-> ### Configuração padrão
-> ao ser executado o sistema os valores padão para o banco são:
-> banco`saier` usuario `saier` e senha `saier`
-> e caso as tabelas não existam, ira gerar as tabelas de forma automatica pois o [**Hibernate**](http://hibernate.org/orm/) ddl-auto é `update`.
