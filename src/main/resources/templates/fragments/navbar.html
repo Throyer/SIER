@@ -45,6 +45,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <i class="fas fa-home"></i>
                 Home <span th:if="${home}" class="sr-only">(current)</span>
             </a>        
+            <a
+                class="nav-item nav-link"
+                th:classappend="${edifcios}"
+                th:href="@{/acervo(page=${0}, size=${6})}">
+                <i class="fas fa-database"></i>
+                Acervo <span th:if="${edifcios}" class="sr-only">(current)</span>
+            </a>        
         </ul>
 
         <!-- Lado direito do navbar -->

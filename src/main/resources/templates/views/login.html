@@ -23,9 +23,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <th:block th:replace="~{fragments/imports :: basic-css}"></th:block><!-- /links base -->
         <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}">
     </head>
-    <body>        
+    <body class="bg-grey">        
         <form class="form-signin" th:action="@{/login}" method="POST">
-            <div class="row justify-content-center mb-5">
+            <div class="row justify-content-center mb-5 shadow-font-lg login">
                 <i class="fas fa-city fa-7x"></i>          
             </div>
             <h1 class="h3 mb-3 font-weight-light text-center mt-2">Fazer login</h1>

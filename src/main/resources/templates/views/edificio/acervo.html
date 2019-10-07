@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<!--
+Copyright (C) 2019 Renato Henrique
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<html th:replace="~{fragments/layout :: layout(~{::title}, ~{}, ~{::section}, ~{})}">
+
+<head>
+    <title>Edificios</title>
+</head>
+
+<body>
+    <section>
+        <div class="card shadow-sm mb-5">
+            <div class="card-body">
+                <form class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <select
+                                class="form-control form-control-sm"
+                                name="fonteColeta">
+                                <option
+                                    th:selected="${fonteColeta == null}"
+                                    value="">
+                                    Todos
+                                </option>
+                                <option
+                                    th:selected="${fonteColeta != null && fonteColeta.toString() == 'PORTARIA'}"
+                                    value="PORTARIA">
+                                    Portaria
+                                </option>
+                                <option
+                                    th:selected="${fonteColeta != null && fonteColeta.toString() == 'INTERNET'}"
+                                    value="INTERNET">
+                                    Internet
+                                </option>
+                                <option
+                                    th:selected="${fonteColeta != null && fonteColeta.toString() == 'JORNAL'}"
+                                    value="JORNAL">
+                                    Jornal
+                                </option>
+                                <option
+                                    th:selected="${fonteColeta != null && fonteColeta.toString() == 'PREFEITURA'}"
+                                    value="PREFEITURA">
+                                    Prefeitura
+                                </option>
+                                <option
+                                    th:selected="${fonteColeta != null && fonteColeta.toString() == 'ACIL'}"
+                                    value="ACIL">
+                                    ACIL
+                                </option>
+                                <option
+                                    th:selected="${fonteColeta != null && fonteColeta.toString() == 'SINDUSCON'}"
+                                    value="SINDUSCON">
+                                    Sinduscon
+                                </option>
+                                <option
+                                    th:selected="${fonteColeta != null && fonteColeta.toString() == 'LISTA_TELEFONICA'}"
+                                    value="LISTA_TELEFONICA">
+                                    Lista telefonica
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input
+                                type="text"
+                                th:value="${nome}"
+                                name="nome"
+                                class="form-control form-control-sm">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input
+                                type="text"
+                                th:value="${autor}"
+                                name="autor"
+                                class="form-control form-control-sm">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input
+                                type="date"
+                                th:value="${dataColeta}"
+                                name="dataColeta"
+                                class="form-control form-control-sm">
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <input hidden type="text" name="page" value="0">
+                        <input hidden type="text" name="size" th:value="${param.size}">
+                        <button type="submit" class="btn-block btn btn-sm btn-outline-secondary">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <th:block th:each="edifcio : ${pagina.content}">
+                                <div class="col-md-4 mt-4">
+                                    <div class="card acervo">
+                                        <img src="https://www.cidadeoferta.com.br/blog/wp-content/uploads/2019/01/londrina-paisagem.jpg" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                <span th:text="${edifcio.nomeConhecido}"></span>
+                                            </h5>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text" readonly th:value="${edifcio.nome}" class="form-control-plaintext">
+                                                </div>
+                                            </div>
+                                            <!-- <div class="row">
+                                                <div class="col-md-12">
+                                                    <textarea rows="10" readonly th:text="${edifcio.coleta.informacoes}" class="form-control"></textarea>
+                                                </div>
+                                            </div> -->
+                                            <p class="card-text" th:text="${edifcio.coleta.informacoes}"></p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <img class="rounded-circle mr-3" src="https://raw.githubusercontent.com/Throyer/SAIER/master/src/main/resources/static/img/renato.jpg" width="20" alt="">
+                                            <small class="text-muted">Cadastrado em: </small>
+                                            <small class="text-muted" th:text="${#temporals.format(edifcio.cadastradoEm, 'dd/MM/yyyy')}"></small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </th:block>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4 justify-content-center">
+                    <th:block th:replace="~{views/edificio/fragments/pagination-edificio :: pagination-edificio('acervo', false)}">
+                    </th:block>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

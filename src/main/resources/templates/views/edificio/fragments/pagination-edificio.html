@@ -1,4 +1,4 @@
-<th:block th:fragment="pagination-edificio">
+<th:block th:fragment="pagination-edificio(url, sizes)">
     <nav>
         <ul class="pagination pagination-sm">
 
@@ -6,7 +6,8 @@
             <li 
                 th:classappend="${pagina.first} ? 'disabled'"
                 class="page-item">
-                <a class="page-link" th:href="@{/edificios(
+                <a class="page-link" th:href="@{/{url}(
+                    url=${url},
                     page=0,
                     size=${(param.size)},
                     fonteColeta=${param.fonteColeta},
@@ -27,7 +28,8 @@
                 th:classappend="${pagina.first} ? 'disabled'"
                 class="page-item"
                 th:if="${!pagina.first}">
-                <a class="page-link" th:href="@{/edificios(
+                <a class="page-link" th:href="@{/{url}(
+                    url=${url},
                     page=${pagina.number -1},
                     size=${(param.size)},
                     fonteColeta=${param.fonteColeta},
@@ -50,7 +52,8 @@
                 th:each="page : ${#numbers.sequence(pagina.number - 3, pagina.number + 3)}">
                 <a 
                     th:if="${page > -1 && page < pagina.totalPages}" class="page-link"
-                    th:href="@{/edificios(
+                    th:href="@{/{url}(
+                        url=${url},
                         page=${page},
                         size=${(param.size)},
                         fonteColeta=${param.fonteColeta},
@@ -66,7 +69,8 @@
                 th:classappend="${pagina.last} ? 'disabled'"
                 class="page-item"
                 th:if="${!pagina.last}">
-                <a class="page-link" th:href="@{/edificios(
+                <a class="page-link" th:href="@{/{url}(
+                    url=${url},
                     page=${pagina.number +1},
                     size=${(param.size)},
                     fonteColeta=${param.fonteColeta},
@@ -86,7 +90,8 @@
             <li 
                 th:classappend="${pagina.last} ? 'disabled'"
                 class="page-item">
-                <a class="page-link" th:href="@{/edificios(
+                <a class="page-link" th:href="@{/{url}(
+                    url=${url},
                     page=${pagina.totalPages -1},
                     size=${(param.size)},
                     fonteColeta=${param.fonteColeta},
@@ -103,7 +108,7 @@
             </li><!-- /ultima pagina -->
         </ul>
     </nav>
-    <form id="sizeForm" class="ml-4">
+    <form th:if="${sizes}" id="sizeForm" class="ml-4">
         <input hidden type="text" name="page" value="0">
         <div class="input-group">
             <select id="sizeInput" name="size" class="form-control form-control-sm">

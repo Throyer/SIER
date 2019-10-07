@@ -90,5 +90,10 @@ public class Templates {
          * @see listagem dos edificios.
          */
         public static final String INDEX = MAIN_PATH + BASE_PATH + "index";
+
+        /**
+         * @see listagem do acervo edificios.
+         */
+        public static final String ACERVO = MAIN_PATH + BASE_PATH + "acervo";
     }
 }
