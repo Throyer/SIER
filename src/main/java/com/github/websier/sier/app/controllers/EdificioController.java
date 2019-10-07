@@ -68,7 +68,7 @@ public class EdificioController {
         return INDEX;
     }
 
-        /**
+    /**
      * Listagem dos edificios.
      * 
      * @param pageable paginador.
