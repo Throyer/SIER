@@ -32,7 +32,12 @@ import com.github.websier.sier.app.domain.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * CargoExists
+ * E-mail Exists.
+ * 
+ * Verifica se existe algum usuario que já utiliza
+ * o email recebido no banco de dados.
+ * @author Renato Henrique.
+ * @since 3.0.0.
  */
 @Documented
 @Constraint(validatedBy = EmailValidator.class)

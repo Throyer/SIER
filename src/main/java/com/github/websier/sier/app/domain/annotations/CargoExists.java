@@ -32,7 +32,13 @@ import com.github.websier.sier.app.domain.repositories.CargoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * CargoExists
+ * Cargo Exists.
+ * 
+ * classe validadora de cargo.
+ * Garante que existe um cargo com o nome
+ * recebido no banco de dados.
+ * @author Renato Henrique.
+ * @since 3.0.0.
  */
 @Documented
 @Constraint(validatedBy = CargoValidator.class)

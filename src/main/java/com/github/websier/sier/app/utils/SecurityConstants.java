@@ -17,7 +17,8 @@
 package com.github.websier.sier.app.utils;
 
 /**
- *
+ * Constantes das configurações de segurança.
+ * @since 3.0.0.
  * @author Renato Henrique
  */
 public class SecurityConstants {

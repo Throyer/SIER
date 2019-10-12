@@ -25,8 +25,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 /**
- *
- * @author Renato Henrique
+ * Security Service.
+ * 
+ * Serviço de autenticação de usuarios.
+ * @author Renato Henrique.
+ * @since 3.0.0.
  */
 @Service
 public class SecurityService implements UserDetailsService {
@@ -44,6 +47,5 @@ public class SecurityService implements UserDetailsService {
         }
         
         throw new UsernameNotFoundException("Nome de usuario invalido.");
-    }
-    
+    }    
 }

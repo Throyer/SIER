@@ -29,8 +29,10 @@ import com.github.websier.sier.app.domain.enuns.TipoColeta;
 import com.github.websier.sier.app.domain.models.Usuario;
 
 /**
- * Coleta dos Dados.
- * @since 3.0.0
+ * Classe reponsavel por representar a coleta dos dados.
+ * 
+ * @author Renato Henrique.
+ * @since 3.0.0.
  */
 @Embeddable
 public class Coleta {

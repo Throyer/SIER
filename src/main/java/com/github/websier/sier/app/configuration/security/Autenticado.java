@@ -24,8 +24,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 /**
- *
- * @author Renato Henrique
+ * Classe de usuario Autenticado.
+ * 
+ * Usuario atenticado na sessão do spring boot.
+ * @author Renato Henrique.
+ * @since 3.0.0.
  */
 public class Autenticado extends User {
     

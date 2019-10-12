@@ -17,7 +17,7 @@
 package com.github.websier.sier.app.utils;
 
 /**
- *
+ * @since 3.0.0.
  * @author Renato Henrique
  */
 public class Templates {
@@ -27,8 +27,8 @@ public class Templates {
     /**
      * Paginas de erro sistema.
      * 
-     * @since 3.0.0.RELEASE.
-     * @author throyer.
+     * @since 3.0.0.
+     * @author Renato Henrique.
      */
     public static class ERROR {
 
@@ -40,8 +40,8 @@ public class Templates {
     /**
      * Paginas comuns do sistema.
      * 
-     * @since 3.0.0.RELEASE.
-     * @author throyer.
+     * @since 3.0.0.
+     * @author Renato Henrique.
      */
     public static class MAIN {
 
@@ -63,8 +63,8 @@ public class Templates {
     /**
      * Paginas relacionadas a sessão do usuario.
      * 
-     * @since 3.0.0.RELEASE.
-     * @author throyer.
+     * @since 3.0.0.
+     * @author Renato Henrique.
      */
     public static class SECTION {
 
@@ -79,8 +79,8 @@ public class Templates {
     /**
      * Paginas relacionadas a entidade Edifcio.
      * 
-     * @since 3.0.0.RELEASE.
-     * @author throyer.
+     * @since 3.0.0.
+     * @author Renato Henrique.
      */
     public static class EDIFCIO {
 

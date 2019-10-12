@@ -28,8 +28,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
- *
- * @author Renato Henrique
+ * Security Configuration.
+ * 
+ * Classe de configurações de segurança. 
+ * @author Renato Henrique.
+ * @since 3.0.0.
  */
 @Configuration
 public class SrpingSecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -40,6 +43,9 @@ public class SrpingSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private BCryptPasswordEncoder encoder;
 
+    /**
+     * Serviço de autenticação e Encoder.
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.
@@ -47,46 +53,58 @@ public class SrpingSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(encoder);
     }
 
+    /**
+     * Configuração.
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http.
-                // urls publicas.
+                /* urls publicas. */
                 authorizeRequests()
-                        .antMatchers(LOGIN_URL).permitAll()
+                    .antMatchers(LOGIN_URL)
+                        .permitAll()
                 
-                // o restante precisa de login.
-                .anyRequest().authenticated().and().csrf().disable()
+                /* o restante precisa de login. */
+                .anyRequest()
+                    .authenticated()
+                        .and()
+                            .csrf()
+                                .disable()
                 
-                // fomulario de login.
+                /* fomulario de login. */
                 .formLogin()
                     .loginPage(LOGIN_URL)
                         .failureUrl(LOGIN_ERROR_URL)
-                        .defaultSuccessUrl(HOME_URL)
-                    .usernameParameter(USERNAME_PARAMETER)
-                    .passwordParameter(PASSWORD_PARAMETER)
-                .and()
+                            .defaultSuccessUrl(HOME_URL)
+                                .usernameParameter(USERNAME_PARAMETER)
+                                    .passwordParameter(PASSWORD_PARAMETER)
+                                        .and()
                 
-                // configuração do login permanente.
+                /* configuração do login permanente. */
                 .rememberMe()
                     .key(SECRET)
                         .tokenValiditySeconds(TOKEN_EXPIRATION)
-                .and()
+                            .and()
                 
-                // configuração do logout.
+                /* configuração do logout. */
                 .logout()
                     .deleteCookies(SESSION_COOKIE_NAME)
-                    .logoutRequestMatcher(new AntPathRequestMatcher(LOGOUT_URL))
-                    .logoutSuccessUrl(LOGIN_URL)
-                        .and()
-                            .exceptionHandling()
-                
-                // configuração de acesso negado.
+                        .logoutRequestMatcher(new AntPathRequestMatcher(LOGOUT_URL))
+                            .logoutSuccessUrl(LOGIN_URL)
+                                .and()
+                                    .exceptionHandling()
+                    
+                /* configuração de acesso negado. */
                 .accessDeniedPage(ACESSO_NEGADO_URL);
     }
     
+    /**
+     * Staticos.
+     */
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers(STATICOS_IGNORADOS);
+        web.ignoring()
+            .antMatchers(STATICOS_IGNORADOS);
     }
 }

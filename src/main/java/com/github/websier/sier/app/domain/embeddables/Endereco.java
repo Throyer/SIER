@@ -21,10 +21,11 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 /**
- * Classe reponsavel por representar um Endereço no sistema.
+ * Classe reponsavel por representar os endereços
+ * dos edificios.
  * 
- * @author Renato
- * @since 3.0.0
+ * @author Renato henrique.
+ * @since 3.0.0.
  */
 @Embeddable
 public class Endereco {
