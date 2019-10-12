@@ -73,6 +73,5 @@ public class Autenticado extends User {
 
     public String getApelido() {
         return apelido;
-    }
-    
+    }    
 }
