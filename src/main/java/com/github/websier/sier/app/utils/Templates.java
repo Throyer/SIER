@@ -90,6 +90,11 @@ public class Templates {
          * @see listagem dos edificios.
          */
         public static final String INDEX = MAIN_PATH + BASE_PATH + "index";
+
+        /**
+         * @see formulario de cadastro de edificios.
+         */
+        public static final String FORMULARIO = MAIN_PATH + BASE_PATH + "formulario";
     }
 
     /**
