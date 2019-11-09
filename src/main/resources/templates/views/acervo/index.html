@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <body>
     <section>
-        <div class="card shadow-sm mb-5">
+        <div class="card shadow rounded-0 mb-5">
             <div class="card-body">
                 <form class="row">
                     <div class="col-md-2">
@@ -125,11 +125,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                                     <input type="text" readonly th:value="${edifcio.nome}" class="form-control-plaintext">
                                                 </div>
                                             </div>
-                                            <!-- <div class="row">
-                                                <div class="col-md-12">
-                                                    <textarea rows="10" readonly th:text="${edifcio.coleta.informacoes}" class="form-control"></textarea>
-                                                </div>
-                                            </div> -->
                                             <p class="card-text" th:text="${edifcio.coleta.informacoes}"></p>
                                         </div>
                                         <div class="card-footer">

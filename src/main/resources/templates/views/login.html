@@ -51,10 +51,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             
             <div class="row justify-content-center mb-2">
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" name="remember-me" class="custom-control-input" id="inputRememberMe">
+                    <input 
+                        type="checkbox"
+                        name="remember-me"
+                        class="custom-control-input"
+                        id="inputRememberMe">
+
                     <label class="custom-control-label" for="inputRememberMe">Lembrar de mim</label>
                 </div>
             </div>
+
             <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
             
             <div th:if="${param.error}" class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
@@ -64,8 +70,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 </button>        
             </div>
             
-            <div th:if="${param.negado}" class="alert alert-warning alert-dismissible fade show mt-3 mb-3" role="alert">
             <!-- Acesso negado -->
+            <div th:if="${param.negado}" class="alert alert-warning alert-dismissible fade show mt-3 mb-3" role="alert">
                 <strong>Acesso negado!</strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
