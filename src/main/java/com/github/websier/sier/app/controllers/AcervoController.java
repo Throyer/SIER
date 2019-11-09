@@ -1,7 +1,23 @@
+/*
+ * Copyright (C) 2019 Renato Henrique
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.github.websier.sier.app.controllers;
 
 import static com.github.websier.sier.app.domain.specifications.EdificioSpecification.where;
-import static com.github.websier.sier.app.utils.Templates.EDIFCIO.INDEX;
+import static com.github.websier.sier.app.utils.Templates.ACERVO.INDEX;
 import static com.github.websier.sier.app.utils.PageSettings.of;
 
 import java.time.LocalDate;
@@ -11,7 +27,6 @@ import com.github.websier.sier.app.domain.enuns.TipoColeta;
 import com.github.websier.sier.app.domain.repositories.EdificioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,34 +35,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * Edificios controller.
- * 
+ * Classe controller responsavel por listar
+ * o acervo de edificios.
  * @since 3.0.0
- * @author renato henrique
+ * @author Renato Henrique
  */
 @Controller
-public class EdificioController {
+public class AcervoController {
 
     @Autowired
     private EdificioRepository repository;
 
     @ModelAttribute
     public void addAttributes(Model model) {
-        model.addAttribute("edificios", "active");
+        model.addAttribute("acervo", "active");
     }
 
     /**
-     * Listagem dos edificios.
-     * 
-     * @param pageable paginador.
-     * @param fonteColeta fonte da coleta.
-     * @param nome nome conhecido do edificio.
-     * @param autor usuario responsavel pelo cadastro do edificio.
-     * @param dataColeta data do cadastro do edificio.
-     * @return view da listagem dos edificios.
+     * Listagem do acervo de edificios.
+     * @param page numero da pagina
+     * @param size quantidade de elementos por pagina
+     * @param fonteColeta fonta de coleta desejada
+     * @param nome nome do edificio
+     * @param autor autor da coleta
+     * @param dataColeta data da coleta
+     * @return edificios
      */
-    @RequestMapping("/edificios")
-    public String index(
+    @RequestMapping("/acervo")
+    public String acervo(
         @RequestParam Optional<Integer> page,
         @RequestParam Optional<Integer> size,
         @RequestParam Optional<TipoColeta> fonteColeta,
@@ -61,4 +76,5 @@ public class EdificioController {
         model.addAttribute("pagina", pagina);
         return INDEX;
     }
+    
 }

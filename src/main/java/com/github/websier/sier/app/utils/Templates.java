@@ -90,10 +90,21 @@ public class Templates {
          * @see listagem dos edificios.
          */
         public static final String INDEX = MAIN_PATH + BASE_PATH + "index";
+    }
+
+    /**
+     * Paginas ao acervo de edifcios.
+     * 
+     * @since 3.0.0.
+     * @author Renato Henrique.
+     */
+    public static class ACERVO {
+
+        private static String BASE_PATH = "acervo/";
 
         /**
          * @see listagem do acervo edificios.
          */
-        public static final String ACERVO = MAIN_PATH + BASE_PATH + "acervo";
+        public static final String INDEX = MAIN_PATH + BASE_PATH + "index";
     }
 }
