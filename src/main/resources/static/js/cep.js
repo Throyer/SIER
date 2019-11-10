@@ -6,13 +6,36 @@
  * @version ( 13/07/2018 )
  */
 
-function limpa_formulario_cep() {
+function alterarCampoCep(valor) {
+    document.getElementById('cep').value = valor;
+}
 
-    document.getElementById('cep').value = ("");
-    document.getElementById('rua').innerHTML = ("");
-    document.getElementById('bairro').innerHTML = ("");
-    document.getElementById('cidade').innerHTML = ("");
-    document.getElementById('estado').innerHTML = ("");
+function alterarCampoRua(valor) {
+    document.getElementById('rua').innerHTML = valor;
+    document.getElementById('inputRua').value = valor;
+}
+
+function alterarCampoBairro(valor) {
+    document.getElementById('bairro').innerHTML = valor;
+    document.getElementById('inputBairro').value = valor;
+}
+
+function alterarCampoCidade(valor) {
+    document.getElementById('cidade').innerHTML = valor;
+    document.getElementById('inputCidade').value = valor;
+}
+
+function alterarCampoEstado(valor) {
+    document.getElementById('estado').innerHTML = valor;
+    document.getElementById('inputEstado').value = valor;
+}
+
+function limpa_formulario_cep() {
+    alterarCampoCep("");
+    alterarCampoRua("");
+    alterarCampoBairro("");
+    alterarCampoCidade("");
+    alterarCampoEstado("");
 }
 
 function meu_callback(conteudo) {
@@ -28,11 +51,11 @@ function meu_callback(conteudo) {
         document.getElementById('cep-feedback').innerHTML = "";
 
         /* Atualiza os campos com os valores. */
-        document.getElementById('cep').value = (getCEP());
-        document.getElementById('rua').innerHTML = (conteudo.logradouro);
-        document.getElementById('bairro').innerHTML = (conteudo.bairro);
-        document.getElementById('cidade').innerHTML = (conteudo.localidade);
-        document.getElementById('estado').innerHTML = (conteudo.uf);
+        alterarCampoCep(getCEP());
+        alterarCampoRua(conteudo.logradouro);
+        alterarCampoBairro(conteudo.bairro);
+        alterarCampoCidade(conteudo.localidade);
+        alterarCampoEstado(conteudo.uf);
 
     } else {
 
@@ -72,10 +95,10 @@ function pesquisacep(valor) {
         if (validacep.test(cep)) {
 
             /* Preenche os campos com "..." enquanto consulta webservice. */
-            document.getElementById('rua').innerHTML = "...";
-            document.getElementById('bairro').innerHTML = "...";
-            document.getElementById('cidade').innerHTML = "...";
-            document.getElementById('estado').innerHTML = "...";
+            alterarCampoRua("...");
+            alterarCampoBairro("...");
+            alterarCampoCidade("...");
+            alterarCampoEstado("...");
 
             /* Cria um elemento javascript. */
             let script = document.createElement('script');

@@ -204,6 +204,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                 </div>
                                 <div class="col-md-5">
                                     <div class="row">
+                                        <input hidden id="inputRua" th:field="*{endereco.rua}" type="text">
+                                        <input hidden id="inputBairro" th:field="*{endereco.bairro}" type="text">
+                                        <input hidden id="inputCidade" th:field="*{endereco.cidade}" type="text">
+                                        <input hidden id="inputEstado" th:field="*{endereco.estado}" type="text">
+                                    </div>
+                                    <div class="row">
                                         <div class="col-md-7">
                                             <div class="form-group">
                                                 <label>
