@@ -19,6 +19,7 @@ package com.github.websier.sier.app.controllers;
 import static com.github.websier.sier.app.domain.specifications.EdificioSpecification.where;
 import static com.github.websier.sier.app.utils.Templates.ACERVO.INDEX;
 import static com.github.websier.sier.app.utils.PageSettings.of;
+import static com.github.websier.sier.app.utils.FormUtils.tipos;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -49,6 +50,7 @@ public class AcervoController {
     @ModelAttribute
     public void addAttributes(Model model) {
         model.addAttribute("acervo", "active");
+        model.addAttribute("tipos", tipos());
     }
 
     /**

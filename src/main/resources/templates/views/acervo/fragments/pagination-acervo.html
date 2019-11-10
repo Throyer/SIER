@@ -1,6 +1,6 @@
-<div 
-    th:fragment="pagination-edificio(url)"    
-    class="row justify-content-center">
+<div
+    th:fragment="pagination-acervo(url)"
+    class="row mt-4 justify-content-center">
 
     <nav>
         <ul class="pagination pagination-sm">
@@ -111,7 +111,7 @@
             </li><!-- /ultima pagina -->
         </ul>
     </nav>
-    <form th:if="${sizes}" id="sizeForm" class="ml-4">
+    <form id="sizeForm" class="ml-4">
         <input hidden type="text" name="page" value="0">
         <div class="input-group">
             <select id="sizeInput" name="size" class="custom-select custom-select-sm">

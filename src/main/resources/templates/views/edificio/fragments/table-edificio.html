@@ -14,7 +14,7 @@
         </thead>
         <tbody>
             <tr th:each="edificio : ${pagina.content}">
-                <td><span th:text="${edificio.coleta.fonteColeta}"></span></td>
+                <td class="text-center"><span th:text="${edificio.coleta.fonteColeta}"></span></td>
                 <td><span th:text="${edificio.nomeConhecido}"></span></td>
                 <td class="text-truncate"><span th:text="${edificio.coleta.cadastradoPor.nome}"></span></td>
                 <td class="text-center"><span th:text="${#temporals.format(edificio.cadastradoEm, 'dd/MM/yyyy')}"></span></td>

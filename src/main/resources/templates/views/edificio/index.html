@@ -25,12 +25,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <th:block th:replace="~{ views/edificio/fragments/table-edificio :: table-edificio }"></th:block>
+                            <table 
+                                th:replace="~{views/edificio/fragments/table-edificio :: table-edificio}">
+                            </table>
                         </div>
                     </div>
-                    <div class="row justify-content-center">
-                        <th:block th:replace="~{ views/edificio/fragments/pagination-edificio :: pagination-edificio('edificios', true) }"></th:block>
-                    </div>
+                    <pagination 
+                        th:replace="~{views/edificio/fragments/pagination-edificio :: pagination-edificio('edificios')}">
+                    </pagination>
                 </div>
             </div>
         </section>
