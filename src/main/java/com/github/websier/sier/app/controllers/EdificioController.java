@@ -7,6 +7,7 @@ import static com.github.websier.sier.app.utils.PageSettings.of;
 import static com.github.websier.sier.app.utils.FormUtils.tipos;
 
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -75,12 +76,25 @@ public class EdificioController {
         return INDEX;
     }
 
+    /**
+     * Fomrulaio.
+     * 
+     * Carregar formulario.
+     * @return view de formulario.
+     */
     @GetMapping("/edificios/formulario")
     public String formulario(Model model) {
         model.addAttribute("edificio", new Edificio());
         return FORMULARIO;
     }
 
+    /**
+     * Formulario.
+     * 
+     * Carregar formulario com edificio.
+     * @param id código primaria do edificio desejado.
+     * @return view de formulario.
+     */
     @GetMapping("/edificios/formulario/{id}")
     public String formulario(@PathVariable Long id, Model model) {
         var edificio = repository.findById(id)
@@ -89,6 +103,14 @@ public class EdificioController {
         return FORMULARIO;
     }
 
+    /**
+     * Salvar edificio.
+     * 
+     * @param edificio Edificio.
+     * @param result validação.
+     * @param redirect dados do redirect.
+     * @return view de listagem.
+     */
     @PostMapping("/edificios/formulario")
     public String salvar(
         @Valid Edificio edificio,
@@ -100,7 +122,40 @@ public class EdificioController {
             model.addAttribute("edificio", edificio);
             return FORMULARIO;
         }
-        redirect.addAttribute("edificio", repository.save(edificio));
+        var novo = Objects.isNull(edificio.getId());
+        if (novo) {
+            persistir(edificio, redirect);
+        } else {
+            atualizar(edificio, redirect);
+        }
         return "redirect:" + "/edificios";
+    }
+
+    /**
+     * Persistir.
+     * 
+     * persiste um novo edificio na base.
+     * @param edificio Edificio.
+     * @param redirect dados do redirect.
+     */
+    private void persistir(
+        Edificio edificio,
+        RedirectAttributes redirect
+    ) {
+        redirect.addAttribute("novo", repository.save(edificio));
+    }
+
+    /**
+     * Atualizar.
+     * 
+     * atualiza um edificio na base.
+     * @param edificio Edificio.
+     * @param redirect dados do rediret.
+     */
+    private void atualizar(
+        Edificio edificio,
+        RedirectAttributes redirect
+    ) {
+        redirect.addAttribute("editado", repository.save(edificio));
     }
 }
