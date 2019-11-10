@@ -16,6 +16,7 @@ import com.github.websier.sier.app.domain.models.Edificio;
 import com.github.websier.sier.app.domain.repositories.EdificioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -69,7 +70,7 @@ public class EdificioController {
         Model model
     ) {
         var specification = where(fonteColeta, nome, autor, dataColeta, model);
-        var pagina = repository.findAll(specification, of(page, size));
+        var pagina = repository.findAll(specification, of(page, size, Direction.DESC, "createdAt"));
         model.addAttribute("pagina", pagina);
         return INDEX;
     }

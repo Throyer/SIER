@@ -20,26 +20,59 @@ import java.util.Optional;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 
 /**
- * Page Settings. Classe responsavel por toda a configuração de paginas do
+ * @since 3.0.0
+ * Page Settings. 
+ * Classe responsavel por toda a configuração de paginas do
  * sistema, como tamanho e outras configurações.
  */
 public class PageSettings {
+
+    private static final Integer DEFAULT_PAGE_NUMBER = 0;
+    private static final Integer DEFAULT_PAGE_SIZE = 10;
+    private static final Integer MAX_PAGE_SIZE = 500;
 
     public static Pageable of(
         Optional<Integer> optionalPage,
         Optional<Integer> optionalSize
     ) {
-        Integer page = optionalPage.orElse(0);
-        Integer size = optionalSize.orElse(10);
+        Integer page = optionalPage.orElse(DEFAULT_PAGE_NUMBER);
+        Integer size = optionalSize.orElse(DEFAULT_PAGE_SIZE);
         if (valid(page, size)) {
             return PageRequest.of(page, size);
         }
-        return PageRequest.of(0, 10);
+        return PageRequest.of(DEFAULT_PAGE_NUMBER, DEFAULT_PAGE_SIZE);
     }
 
+    public static Pageable of(
+        Optional<Integer> optionalPage,
+        Optional<Integer> optionalSize,
+        Direction direction,
+        String... properties
+    ) {
+        Integer page = optionalPage.orElse(DEFAULT_PAGE_NUMBER);
+        Integer size = optionalSize.orElse(DEFAULT_PAGE_SIZE);
+        if (valid(page, size)) {
+            return PageRequest.of(page, size, direction, properties);
+        }
+        return PageRequest.of(
+            DEFAULT_PAGE_NUMBER,
+            DEFAULT_PAGE_SIZE,
+            direction,
+            properties
+        );
+    }
+
+    /**
+     * Valida se a pagina não vai
+     * ultrapassar o tamanho maximo permitido.
+     * @param page numero da pagina.
+     * @param size quantidade de elementos por pagina.
+     * @return boolean
+     */
     private static Boolean valid(Integer page, Integer size) {
-        return ((page >= 0) && (size <= 500));
+        return ((page >= DEFAULT_PAGE_NUMBER) && (size <= MAX_PAGE_SIZE));
     }
 }
