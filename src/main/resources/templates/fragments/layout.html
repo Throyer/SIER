@@ -26,8 +26,9 @@ incorpora na view a sidebar e o navbar do sistema.
 -- conteudo: conteudo da pagina, que ira subistuir uma parte do corpo do layout.
 -- scripts: bloco (th:block) de html que vai subitituir os scripts da pagina, tambem
 são aceitos blocos de html com templates de modais.
+-- modal: modal opcional, inserido no pé da pagina.
 -->
-<html th:fragment="layout(title, links, conteudo, scripts)">
+<html th:fragment="layout(title, links, conteudo, scripts, modais)">
 
     <!-- Cabeçalho da pagina -->
     <head>
@@ -47,13 +48,16 @@ são aceitos blocos de html com templates de modais.
     <!-- Corpo da pagina -->
     <body class="bg-purple">
         <!-- container -->
-        <div class="container">
+        <div class="container-fluid mb-4">
 
             <!-- navbar padrão do sistema -->
             <nav th:replace="~{fragments/navbar :: navbar}"></nav>
             <!-- Conteudo da pagina  -->
             <th:block th:replace="${conteudo}"></th:block>
         </div><!-- /container -->
+        
+        <!-- modais -->
+        <th:block th:replace="${modais}"></th:block><!-- /modais -->
 
         <!-- scripts padrão do sistema -->
         <script th:replace="~{fragments/imports :: basic-javascript}"></script><!-- /scripts padrão do sistema -->

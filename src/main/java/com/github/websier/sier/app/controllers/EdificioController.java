@@ -50,6 +50,8 @@ public class EdificioController {
         model.addAttribute("edificios", "active");
     }
 
+    private static final String REDIRECT_LISTAGEM = "redirect:/edificios";
+
     /**
      * Listagem dos edificios.
      * 
@@ -103,6 +105,18 @@ public class EdificioController {
         return FORMULARIO;
     }
 
+    @PostMapping("/edificios/deletar/{id}")
+    public String deletar(
+        @PathVariable Long id,
+        RedirectAttributes redirect
+    ) {
+        var edificio = repository
+            .findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        redirect.addAttribute("deletado", edificio);
+        repository.delete(edificio);
+        return REDIRECT_LISTAGEM;
+    }
+
     /**
      * Salvar edificio.
      * 
@@ -128,7 +142,7 @@ public class EdificioController {
         } else {
             atualizar(edificio, redirect);
         }
-        return "redirect:" + "/edificios";
+        return REDIRECT_LISTAGEM;
     }
 
     /**

@@ -15,7 +15,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<html th:replace="~{fragments/layout :: layout(~{::title}, ~{}, ~{::section}, ~{})}">
+<html th:replace="~{fragments/layout :: layout(~{::title}, ~{}, ~{::section}, ~{}, ~{})}">
 
 <head>
     <title>Edificios</title>
@@ -36,10 +36,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         Este sistema foi desenvolvido pelo estudante de graduação do curso
                         de Ciência da Computação da UniFil Renato Henrique Horácio dos Santos.
                     </p>
-                    <!--<p><a class="btn btn-light" href="#" role="button"><i class="fab fa-github"></i> GitHub</a></p>-->
                 </div>
                 <div class="col-md-5">
-                    <img class="featurette-image img-thumbnail img-fluid mx-auto" th:src="@{img/londrina-lg.jpg}"
+                    <img class="featurette-image rounded-0 img-thumbnail img-fluid mx-auto" src="https://www.cidadeoferta.com.br/blog/wp-content/uploads/2019/01/londrina-paisagem.jpg"
                         alt="Generic placeholder image">
                 </div>
             </div>

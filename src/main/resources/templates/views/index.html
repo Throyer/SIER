@@ -15,7 +15,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<html th:replace="~{fragments/layout :: layout(~{::title}, ~{}, ~{::section}, ~{})}">
+<html th:replace="~{fragments/layout :: layout(~{::title}, ~{}, ~{::section}, ~{}, ~{})}">
     <head>
         <title>Edificios</title>
     </head>
@@ -23,10 +23,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <section>
             <div class="container marketing">
                 <div class="row featurette">
-                    <div class="col-md-7 espaco">
-                        <h2 class="featurette-heading shadow-font-lg">
-                            S.I.E.R.
+                    <div class="col-md-5 espaco">
+                        <h2 class="text-center featurette-heading shadow-font-lg">
+                            SIER
                         </h2>
+                        <hr>
                         <h5 class="shadow-font-sm">
                             Sistema de Informação
                             de Edificios Residensiais.
@@ -37,10 +38,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         </p>
                         <a class="btn btn-light btn-lg" target="_blank" href="https://github.com/Throyer/SAIER#-sistema-de-arquitetura-da-informa%C3%A7%C3%A3o-de-edificios-residenciais" role="button"><i class="fab fa-github"></i> Contribuir</a>
                     </div>
-                    <div class="col-md-5" style="margin-top: 45pt;">
-                        <img class="img-thumbnail img-fluid mx-auto"
-                                th:src="@{img/londrina-lg.jpg}"
-                                alt="Generic placeholder image">
+                    <div class="col-md-7" style="margin-top: 45pt;">
+                        <img 
+                            class="rounded-0 img-thumbnail img-fluid mx-auto"
+                            th:src="@{img/londrina-lg.jpg}"
+                            alt="Generic placeholder image">
                     </div>
                 </div>
             </div><!-- /Fim conteudo de home -->

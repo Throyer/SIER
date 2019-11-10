@@ -15,7 +15,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<html th:replace="~{ fragments/layout :: layout(~{::title}, ~{}, ~{::section}, ~{}) }">
+<html th:replace="~{ fragments/layout :: layout(~{::title}, ~{}, ~{::section}, ~{}, ~{}) }">
 
 <head>
     <title>Edificios</title>
@@ -195,7 +195,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                                 <textarea 
                                                     th:field="*{coleta.informacoes}"
                                                     placeholder="Informações adicionais"
-                                                    rows="2"
+                                                    rows="3"
                                                     maxlength="255"
                                                     class="form-control form-control-sm">
                                                 </textarea>

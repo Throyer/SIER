@@ -15,7 +15,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<html th:replace="~{ fragments/layout :: layout(~{::title}, ~{}, ~{::section}, ~{}) }">
+<html th:replace="~{ fragments/layout :: layout(~{::title}, ~{}, ~{::section}, ~{::script}, ~{::modal}) }">
     <head>
         <title>Edificios</title>
     </head>
@@ -34,5 +34,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 </div>
             </div>
         </section>
+        <modal 
+            th:replace="~{views/edificio/fragments/modal-deletar-edificio :: modal-deletar-edificio}">
+        </modal>
     </body>
+    <script th:replace="~{fragments/imports :: list-javascript}"></script>
 </html>
