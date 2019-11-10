@@ -21,18 +21,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </head>
     <body>
         <section>
-            <div class="card shadow rounded-0 mb-5">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <table 
-                                th:replace="~{views/edificio/fragments/table-edificio :: table-edificio}">
-                            </table>
+            <div class="container">
+                <div class="card shadow rounded-0 mb-5">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table 
+                                    th:replace="~{views/edificio/fragments/table-edificio :: table-edificio}">
+                                </table>
+                            </div>
                         </div>
+                        <pagination 
+                            th:replace="~{views/edificio/fragments/pagination-edificio :: pagination-edificio('edificios')}">
+                        </pagination>
                     </div>
-                    <pagination 
-                        th:replace="~{views/edificio/fragments/pagination-edificio :: pagination-edificio('edificios')}">
-                    </pagination>
                 </div>
             </div>
         </section>

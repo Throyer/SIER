@@ -4,7 +4,7 @@
             <select
                 name="fonteColeta"
                 class="custom-select custom-select-sm">
-                <option value="">Todos</option>
+                <option value="">Todas</option>
                 <option
                     th:each="tipo : ${tipos}"
                     th:selected="${fonteColeta != null && fonteColeta.toString() == tipo.chave}"
