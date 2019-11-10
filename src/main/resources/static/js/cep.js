@@ -9,10 +9,10 @@
 function limpa_formulario_cep() {
 
     document.getElementById('cep').value = ("");
-    document.getElementById('rua').value = ("");
-    document.getElementById('bairro').value = ("");
-    document.getElementById('cidade').value = ("");
-    document.getElementById('estado').value = ("");
+    document.getElementById('rua').innerHTML = ("");
+    document.getElementById('bairro').innerHTML = ("");
+    document.getElementById('cidade').innerHTML = ("");
+    document.getElementById('estado').innerHTML = ("");
 }
 
 function meu_callback(conteudo) {
@@ -29,10 +29,10 @@ function meu_callback(conteudo) {
 
         /* Atualiza os campos com os valores. */
         document.getElementById('cep').value = (getCEP());
-        document.getElementById('rua').value = (conteudo.logradouro);
-        document.getElementById('bairro').value = (conteudo.bairro);
-        document.getElementById('cidade').value = (conteudo.localidade);
-        document.getElementById('estado').value = (conteudo.uf);
+        document.getElementById('rua').innerHTML = (conteudo.logradouro);
+        document.getElementById('bairro').innerHTML = (conteudo.bairro);
+        document.getElementById('cidade').innerHTML = (conteudo.localidade);
+        document.getElementById('estado').innerHTML = (conteudo.uf);
 
     } else {
 
@@ -72,10 +72,10 @@ function pesquisacep(valor) {
         if (validacep.test(cep)) {
 
             /* Preenche os campos com "..." enquanto consulta webservice. */
-            document.getElementById('rua').value = "...";
-            document.getElementById('bairro').value = "...";
-            document.getElementById('cidade').value = "...";
-            document.getElementById('estado').value = "...";
+            document.getElementById('rua').innerHTML = "...";
+            document.getElementById('bairro').innerHTML = "...";
+            document.getElementById('cidade').innerHTML = "...";
+            document.getElementById('estado').innerHTML = "...";
 
             /* Cria um elemento javascript. */
             let script = document.createElement('script');

@@ -18,7 +18,6 @@ package com.github.websier.sier.app.domain.models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.Objects;
@@ -31,8 +30,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import com.github.websier.sier.app.domain.embeddables.Coleta;
 import com.github.websier.sier.app.domain.embeddables.Endereco;
@@ -56,11 +57,14 @@ public class Edificio implements Serializable {
 
     private String nome;
 
-    @Size(min = 1, max = 255, message = "{edificio.nome.fantasia.size}")
+    @NotEmpty(message = "Por favor, informe um nome fantasia valido.")
+    @NotNull(message = "Por favor, informe o nome fantasia.")
     @Column(nullable = false)
     private String nomeConhecido;
 
-    private LocalDateTime dataConstrucao;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
+    private Date dataConstrucao;
 
     @NotNull(message = "{edificio.andares.notnull}")
     private int numeroAndares;
@@ -131,11 +135,11 @@ public class Edificio implements Serializable {
         this.nomeConhecido = nomeConhecido;
     }
 
-    public LocalDateTime getDataConstrucao() {
+    public Date getDataConstrucao() {
         return dataConstrucao;
     }
 
-    public void setDataConstrucao(LocalDateTime dataConstrucao) {
+    public void setDataConstrucao(Date dataConstrucao) {
         this.dataConstrucao = dataConstrucao;
     }
 

@@ -34,9 +34,11 @@ public class Autenticado extends User {
     
     private static final long serialVersionUID = 1L;
     
+    private Long id;
     private String apelido;
     
     public Autenticado(
+        Long id,
         String apelido,
         String username,
         String password,
@@ -55,6 +57,7 @@ public class Autenticado extends User {
             accountNonLocked,
             authorities
         );
+        this.id = id;
         this.apelido = apelido;
     }
 
@@ -68,10 +71,15 @@ public class Autenticado extends User {
             true,
             usuario.getAuthorities()
         );
+        this.id = usuario.getId();
         this.apelido = usuario.getApelido();
     }    
 
     public String getApelido() {
         return apelido;
+    }    
+
+    public Long getId() {
+        return id;
     }    
 }

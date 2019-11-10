@@ -1,15 +1,16 @@
 <form th:fragment="table-specification-edificio">
     <tr>
         <th>
-            <select class="form-control form-control-sm" name="fonteColeta">
-                <option th:selected="${fonteColeta == null}" value="">Todos</option>
-                <option th:selected="${fonteColeta != null && fonteColeta.toString() == 'PORTARIA'}" value="PORTARIA">Portaria</option>
-                <option th:selected="${fonteColeta != null && fonteColeta.toString() == 'INTERNET'}" value="INTERNET">Internet</option>
-                <option th:selected="${fonteColeta != null && fonteColeta.toString() == 'JORNAL'}" value="JORNAL">Jornal</option>
-                <option th:selected="${fonteColeta != null && fonteColeta.toString() == 'PREFEITURA'}" value="PREFEITURA">Prefeitura</option>
-                <option th:selected="${fonteColeta != null && fonteColeta.toString() == 'ACIL'}" value="ACIL">ACIL</option>
-                <option th:selected="${fonteColeta != null && fonteColeta.toString() == 'SINDUSCON'}" value="SINDUSCON">Sinduscon</option>
-                <option th:selected="${fonteColeta != null && fonteColeta.toString() == 'LISTA_TELEFONICA'}" value="LISTA_TELEFONICA">Lista telefonica</option>
+            <select
+                name="fonteColeta"
+                class="custom-select custom-select-sm">
+                <option value="">Todos</option>
+                <option
+                    th:each="tipo : ${tipos}"
+                    th:selected="${fonteColeta != null && fonteColeta.toString() == tipo.chave}"
+                    th:value="${tipo.chave}"
+                    th:text="${tipo.nome}">
+                </option>
             </select>
         </th>
         <th>
@@ -22,7 +23,7 @@
 
                 <div class="input-group-append">
                     <button
-                        onclick="$('input[name=nome').val('')"
+                        onclick="$('input[name=nome]').val('')"
                         class="btn btn-sm btn-outline-danger"
                         type="button">
 
@@ -41,7 +42,7 @@
 
                 <div class="input-group-append">
                     <button
-                        onclick="$('input[name=autor').val('')"
+                        onclick="$('input[name=autor]').val('')"
                         class="btn btn-sm btn-outline-danger"
                         type="button">
                         
@@ -60,7 +61,7 @@
 
                 <div class="input-group-append">
                     <button
-                        onclick="$('input[name=dataColeta').val('')"
+                        onclick="$('input[name=dataColeta]').val('')"
                         class="btn btn-sm btn-outline-danger"
                         type="button">
 
@@ -76,7 +77,7 @@
                 <button type="submit" class="btn btn-sm btn-outline-secondary">
                     <i class="fas fa-search"></i>
                 </button>
-                <a href="/" class="btn btn-outline-success btn-block btn-sm">
+                <a th:href="@{/edificios/formulario}" class="btn btn-outline-success btn-block btn-sm">
                     Novo
                     <i class="fas fa-plus"></i>
                 </a>

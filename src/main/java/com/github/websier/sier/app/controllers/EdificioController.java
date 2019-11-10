@@ -4,6 +4,7 @@ import static com.github.websier.sier.app.domain.specifications.EdificioSpecific
 import static com.github.websier.sier.app.utils.Templates.EDIFCIO.INDEX;
 import static com.github.websier.sier.app.utils.Templates.EDIFCIO.FORMULARIO;
 import static com.github.websier.sier.app.utils.PageSettings.of;
+import static com.github.websier.sier.app.utils.FormUtils.tipos;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -43,6 +44,7 @@ public class EdificioController {
 
     @ModelAttribute
     public void addAttributes(Model model) {
+        model.addAttribute("tipos", tipos());
         model.addAttribute("edificios", "active");
     }
 
@@ -82,7 +84,6 @@ public class EdificioController {
     public String formulario(@PathVariable Long id, Model model) {
         var edificio = repository.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-
         model.addAttribute("edificio", edificio);
         return FORMULARIO;
     }
@@ -94,7 +95,11 @@ public class EdificioController {
         RedirectAttributes redirect,
         Model model
     ) {
-        System.out.println(edificio);
-        return FORMULARIO;
+        if (result.hasErrors()) {
+            model.addAttribute("edificio", edificio);
+            return FORMULARIO;
+        }
+        redirect.addAttribute("edificio", repository.save(edificio));
+        return "redirect:" + "/edificios";
     }
 }

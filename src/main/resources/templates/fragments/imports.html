@@ -17,13 +17,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
 <th:block th:fragment="basic-css">
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/5.10.1/css/all.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/5.10.1/css/all.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 </th:block>
 
 <th:block th:fragment="basic-javascript">
     <script language="javascript" th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
-    <script language="javascript" th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>    
+    <script language="javascript" th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
     <script language="javascript" th:src="@{/js/main.js}"></script>
+</th:block>
+
+<th:block th:fragment="forms-javascript">
+    <script language="javascript" th:src="@{/js/validate.js}"></script>
+    <script language="javascript" th:src="@{/js/cep.js}"></script>
 </th:block>
