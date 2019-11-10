@@ -45,11 +45,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                             autocomplete="off"
                             novalidate>
 
-                            <!-- id -->
+                            <!-- ids -->
                             <div class="row">
                                 <input hidden th:field="*{id}">
-                                <input hidden th:if="${edificio.id == null}" th:value="${#authentication.principal.id}" th:filed="*{coleta.cadastradoPor}">
-                                <input hidden th:if="${edificio.id != null}" th:value="${#authentication.principal.id}" th:filed="*{coleta.atualizadoPor}">
+                                <span th:if="*{id != null}">
+                                    <input 
+                                        hidden
+                                        th:value="${#authentication.principal.id}"
+                                        name="coleta.atualizadoPor.id">                                    
+                                </span>
+                                <span th:if="*{id == null}">
+                                    <input
+                                        hidden
+                                        th:value="${#authentication.principal.id}"
+                                        name="coleta.cadastradoPor.id">                                    
+                                </span>
                             </div>
 
                             <!-- mensagens de erro -->
