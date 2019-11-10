@@ -98,6 +98,27 @@ public class Templates {
     }
 
     /**
+     * Paginas relacionadas a entidade Aluno.
+     * 
+     * @since 3.0.0.
+     * @author Renato Henrique.
+     */
+    public static class ALUNO {
+
+        private static String BASE_PATH = "aluno/";
+
+        /**
+         * @see listagem dos edificios.
+         */
+        public static final String INDEX = MAIN_PATH + BASE_PATH + "index";
+
+        /**
+         * @see formulario de cadastro de edificios.
+         */
+        public static final String FORMULARIO = MAIN_PATH + BASE_PATH + "formulario";
+    }
+
+    /**
      * Paginas ao acervo de edifcios.
      * 
      * @since 3.0.0.

@@ -19,10 +19,11 @@ package com.github.websier.sier.app.domain.repositories;
 import com.github.websier.sier.app.domain.models.Aluno;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 /**
  * AlunoRepository
  */
 @Repository
-public interface AlunoRepository extends JpaRepository<Aluno, Long> { }
+public interface AlunoRepository extends JpaRepository<Aluno, Long>, JpaSpecificationExecutor<Aluno> { }

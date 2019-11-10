@@ -2,8 +2,8 @@
  * Javascript responsavel por validar entradas no campo CEP no formulario dos
  * edificios.
  * 
- * @author ( Renato Henrique Horacio dos Santos & 'https://viacep.com.br/exemplo/javascript/' )
- * @version ( 13/07/2018 )
+ * @author viacep 
+ * @description https://viacep.com.br/exemplo/javascript
  */
 
 function alterarCampoCep(valor) {
