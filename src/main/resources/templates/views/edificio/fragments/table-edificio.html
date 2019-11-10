@@ -10,11 +10,11 @@
         <th:block th:replace="~{ views/edificio/fragments/table-specification-edificio :: table-specification-edificio }"></th:block>
     </thead>
     <tbody>
-        <tr th:each="edifcio : ${pagina.content}">
-            <td><span th:text="${edifcio.coleta.fonteColeta}"></span></td>
-            <td><span th:text="${edifcio.nomeConhecido}"></span></td>
-            <td><span th:text="${edifcio.coleta.cadastradoPor.nome}"></span></td>
-            <td class="text-center"><span th:text="${#temporals.format(edifcio.cadastradoEm, 'dd/MM/yyyy')}"></span></td>
+        <tr th:each="edificio : ${pagina.content}">
+            <td><span th:text="${edificio.coleta.fonteColeta}"></span></td>
+            <td><span th:text="${edificio.nomeConhecido}"></span></td>
+            <td><span th:text="${edificio.coleta.cadastradoPor.nome}"></span></td>
+            <td class="text-center"><span th:text="${#temporals.format(edificio.cadastradoEm, 'dd/MM/yyyy')}"></span></td>
             <td>
                 <div class="row justify-center">
                     <div class="col-sm-12 text-center">
@@ -29,11 +29,12 @@
                                 class="btn btn-sm btn-link text-primary text-decoration-none">
                                 <i class="far fa-eye"></i>
                             </button>
-                            <button 
-                                type="button"
+                            <a 
+                                role="button"
+                                th:href="@{/edificios/formulario/{id}(id=${edificio.id})}"
                                 class="btn btn-sm btn-link text-warning text-decoration-none">
                                 <i class="fas fa-pen"></i>
-                            </button>
+                            </a>
                             <button 
                                 type="button"
                                 class="btn btn-sm btn-link text-danger text-decoration-none">
