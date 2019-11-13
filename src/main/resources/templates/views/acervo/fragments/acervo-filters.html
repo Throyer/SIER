@@ -1,10 +1,10 @@
-<form class="row" th:fragment="acervo-filters">
+<form class="row mb-3" th:fragment="acervo-filters">
     <div class="col-md-2">
         <div class="form-group">
             <select
                 name="fonteColeta"
                 class="custom-select custom-select-sm">
-                <option value="">Todas</option>
+                <option value="">Fontes de coleta</option>
                 <option
                     th:each="tipo : ${tipos}"
                     th:selected="${fonteColeta != null && fonteColeta.toString() == tipo.chave}"
@@ -14,12 +14,13 @@
             </select>
         </div>
     </div>
-    <div class="col-md-3 px-0">
+    <div class="col-md-3">
         <div class="form-group">
             <input
                 type="text"
                 th:value="${nome}"
                 name="nome"
+                placeholder="NOME DO EDIFICIO"
                 class="form-control form-control-sm">
         </div>
     </div>
@@ -29,10 +30,11 @@
                 type="text"
                 th:value="${autor}"
                 name="autor"
+                placeholder="AUTOR DA COLETA"
                 class="form-control form-control-sm">
         </div>
     </div>
-    <div class="col-md-3 px-0">
+    <div class="col-md-3">
         <div class="form-group">
             <input
                 type="date"

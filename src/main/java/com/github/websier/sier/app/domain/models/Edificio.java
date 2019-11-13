@@ -32,6 +32,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -66,7 +67,7 @@ public class Edificio implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dataConstrucao;
 
-    @NotNull(message = "{edificio.andares.notnull}")
+    @Min(value = 1, message = "Por favor, forneça o numero de andares. No minimo 1.")
     private int numeroAndares;
 
     @Embedded
