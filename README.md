@@ -6,7 +6,7 @@ Terminologia na construção de vocabularios
 controlados para o registro terminológico dos edifícios residenciais da cidade de Londrina e região.
 
 <p align="center">
-  <img src="https://i.imgur.com/rE5XP6Z.png">
+  <img src="https://i.imgur.com/mLzFCnJ.png">
 </p>
 
 # Requisitos
