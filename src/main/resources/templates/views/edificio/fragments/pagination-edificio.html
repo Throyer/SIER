@@ -1,0 +1,126 @@
+<div 
+    th:fragment="pagination-edificio(url)"    
+    class="row justify-content-center">
+
+    <nav>
+        <ul class="pagination pagination-sm">
+
+            <!-- primeria pagina -->
+            <li 
+                th:classappend="${pagina.first} ? 'disabled'"
+                class="page-item">
+                <a class="page-link" th:href="@{/{url}(
+                    url=${url},
+                    page=0,
+                    size=${(param.size)},
+                    fonteColeta=${param.fonteColeta},
+                    nome=${param.nome},
+                    autor=${param.autor},
+                    dataColeta=${param.dataColeta})}">
+                    <span class="d-lg-none">
+                        <i class="fas fa-angle-double-left"></i>
+                    </span>
+                    <span class="d-none d-lg-block">
+                        Primeira
+                    </span>                                
+                </a>
+            </li><!-- /primeira pagina -->
+    
+            <!-- pagina anterior -->
+            <li
+                th:classappend="${pagina.first} ? 'disabled'"
+                class="page-item"
+                th:if="${!pagina.first}">
+                <a class="page-link" th:href="@{/{url}(
+                    url=${url},
+                    page=${pagina.number -1},
+                    size=${(param.size)},
+                    fonteColeta=${param.fonteColeta},
+                    nome=${param.nome},
+                    autor=${param.autor},
+                    dataColeta=${param.dataColeta})}">
+                    <span class="d-lg-none">
+                        <i class="fas fa-angle-left"></i>
+                    </span>
+                    <span class="d-none d-lg-block">
+                        Anterior
+                    </span>                                
+                </a>
+            </li><!-- /pagina anterior -->
+    
+            <!-- botões de paginas no intervalo -->
+            <li 
+                th:classappend="${pagina.number == page} ? 'disabled'"
+                class="page-item"
+                th:each="page : ${#numbers.sequence(pagina.number - 3, pagina.number + 3)}">
+                <a 
+                    th:if="${page > -1 && page < pagina.totalPages}" class="page-link"
+                    th:href="@{/{url}(
+                        url=${url},
+                        page=${page},
+                        size=${(param.size)},
+                        fonteColeta=${param.fonteColeta},
+                        nome=${param.nome},
+                        autor=${param.autor},
+                        dataColeta=${param.dataColeta})}"
+                    th:text="${page + 1}">
+                </a>
+            </li><!-- /intervalo -->
+    
+            <!-- proxima pagina -->
+            <li 
+                th:classappend="${pagina.last} ? 'disabled'"
+                class="page-item"
+                th:if="${!pagina.last}">
+                <a class="page-link" th:href="@{/{url}(
+                    url=${url},
+                    page=${pagina.number +1},
+                    size=${(param.size)},
+                    fonteColeta=${param.fonteColeta},
+                    nome=${param.nome},
+                    autor=${param.autor},
+                    dataColeta=${param.dataColeta})}">
+                    <span class="d-none d-lg-block">
+                        Proximo
+                    </span>
+                    <span class="d-lg-none">
+                        <i class="fas fa-angle-right"></i>
+                    </span>
+                </a>
+            </li><!-- /proxima pagina -->
+    
+            <!-- ultima pagina -->
+            <li 
+                th:classappend="${pagina.last} ? 'disabled'"
+                class="page-item">
+                <a class="page-link" th:href="@{/{url}(
+                    url=${url},
+                    page=${pagina.totalPages -1},
+                    size=${(param.size)},
+                    fonteColeta=${param.fonteColeta},
+                    nome=${param.nome},
+                    autor=${param.autor},
+                    dataColeta=${param.dataColeta})}">
+                    <span class="d-none d-lg-block">
+                        Última
+                    </span>
+                    <span class="d-lg-none">
+                        <i class="fas fa-angle-double-right"></i>
+                    </span>
+                </a>
+            </li><!-- /ultima pagina -->
+        </ul>
+    </nav>
+    <form id="sizeForm" class="ml-4">
+        <input hidden type="text" name="page" value="0">
+        <div class="input-group">
+            <select id="sizeInput" name="size" class="custom-select custom-select-sm">
+                <option value="10">Itens por pagina</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+            </select>
+        </div>
+    </form>
+</div>

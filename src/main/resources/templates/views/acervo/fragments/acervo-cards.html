@@ -1,0 +1,23 @@
+<div th:fragment="acervo-cards" class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <th:block th:each="edifcio : ${pagina.content}">
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm rounded-0 acervo">
+                        <img src="" class="rounded-0 card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <span th:text="${edifcio.nomeConhecido}"></span>
+                            </h5>
+                        </div>
+                        <div class="card-footer">
+                            <img class="rounded-circle mr-3" src="" width="20">
+                            <small class="text-muted">Cadastrado em: </small>
+                            <small class="text-muted" th:text="${#temporals.format(edifcio.cadastradoEm, 'dd/MM/yyyy')}"></small>
+                        </div>
+                    </div>
+                </div>
+            </th:block>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<th:block th:fragment="table-aluno">
+    <table class="table table-sm table-hover crud-table">
+        <thead>
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Turma</th>
+                <th scope="col" class="text-center">Ações</th>
+            </tr>
+            <th:block 
+                th:replace="~{views/aluno/fragments/table-specification-aluno :: table-specification-aluno}">
+            </th:block>
+        </thead>
+        <tbody>
+            <tr th:each="aluno : ${pagina.content}">
+                <td><span th:text="${aluno.usuario.nome}"></span></td>
+                <td class="coluna-turma"><span th:text="${aluno.turma}"></span></td>
+                <td>
+                    <div class="row justify-center">
+                        <div class="col-sm-12 text-center">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a 
+                                    role="button"
+                                    th:href="@{/alunos/formulario/{id}(id=${aluno.id})}"
+                                    class="btn btn-sm btn-link text-warning text-decoration-none">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                                <button 
+                                    type="button"
+                                    th:data-id="${aluno.id}"
+                                    th:data-nome="${aluno.usuario.nome}"
+                                    data-toggle="modal"   
+                                    data-target="#modal-deletar-aluno"
+                                    class="btn btn-sm btn-link text-danger text-decoration-none">
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</th:block>

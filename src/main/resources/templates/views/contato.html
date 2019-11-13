@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--
+Copyright (C) 2019 Renato Henrique
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<html th:replace="~{fragments/layout :: layout(~{::title}, ~{}, ~{::section}, ~{}, ~{})}">
+
+<head>
+    <title>Edificios</title>
+</head>
+
+<body>
+    <section>
+        <div class="container marketing text-light">
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading">Sistema de Informação de Edificios Residensiais.</h2>
+                    <p class="lead">
+                        O SAIER é um sistema utilizado na disciplina <strong>2CIN056</strong> Terminologia na construção
+                        de vocabularios
+                        controlados para o registro terminológico dos edifícios residenciais da cidade de Londrina.
+                    </p>
+                    <p class="lead">
+                        Este sistema foi desenvolvido pelo estudante de graduação do curso
+                        de Ciência da Computação da UniFil Renato Henrique Horácio dos Santos.
+                    </p>
+                </div>
+                <div class="col-md-5">
+                    <img class="featurette-image rounded-0 img-thumbnail img-fluid mx-auto" src="https://www.cidadeoferta.com.br/blog/wp-content/uploads/2019/01/londrina-paisagem.jpg"
+                        alt="Generic placeholder image">
+                </div>
+            </div>
+
+            <hr class="featurette-divider">
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <img class="rounded-circle img-thumbnail" th:src="@{img/renato.jpg}" alt="Generic placeholder image" width="140"
+                        height="140">
+                    <h2>Renato Henrique</h2>
+                    <p>Cursando Ciencias da Computação na UniFil.</p>
+                    <h4>Cargo <i class="fas fa-code"></i></h4>
+                    <p>Desenvolvedor.</p>
+                    <h4>Email <i class="fas fa-envelope-square"></i></h4>
+                    <p>renato.henrique_98@hotmail.com</p>
+                    <h4>Contato</h4>
+                    <p>
+                        <i class="fab fa-github"></i>
+                        <a class="text-light" href="#">GitHub</a>
+
+                        <i class="fab fa-twitter"></i>
+                        <a class="text-light" href="#">Twitter</a>
+
+                        <i class="fab fa-linkedin"></i>
+                        <a class="text-light" href="#">Linkedin</a>
+                    </p>
+
+                </div><!-- /.col-lg-4 -->
+                <div class="col-lg-4">
+                    <img class="rounded-circle img-thumbnail" src="/img/brigida.png" width="140" height="140"
+                        alt="Generic placeholder image">
+                    <h2>Brígida Maria Nogueira Cervantes</h2>
+                    <p>
+                        Professora Adjunto do Departamento de Ciência da
+                        Informação. <i class="fas fa-user-graduate"></i>
+                    </p>
+                    <p>
+                        Universidade Estadual de Londrina
+                    </p>
+                    <h4>Email <i class="fas fa-envelope-square"></i></h4>
+                    <p>brigidacervantes@gmail.com</p>
+                </div><!-- /.col-lg-4 -->
+            </div><!-- /.row -->
+        </div>
+    </section>
+</body>
+
+</html>
