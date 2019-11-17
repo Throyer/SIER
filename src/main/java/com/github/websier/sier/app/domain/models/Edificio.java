@@ -18,7 +18,6 @@ package com.github.websier.sier.app.domain.models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Date;
 import java.util.Objects;
 
@@ -174,9 +173,5 @@ public class Edificio implements Serializable {
     
     public LocalDate getAtuaizadoEm() {
         return this.updatedAt;
-    }
-
-    public Date getDataCadastro() {
-        return Date.from(this.createdAt.atStartOfDay(ZoneId.of("America/Sao_Paulo")).toInstant());
     }
 }
