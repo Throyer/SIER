@@ -1,0 +1,98 @@
+<form th:fragment="edificio-filter">
+    <div class="card shadow-sm rounded-0 mb-3">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group mb-0">
+                        <select
+                            name="fonteColeta"
+                            class="custom-select custom-select-sm">
+                            <option value="">Todas</option>
+                            <option
+                                th:each="tipo : ${tipos}"
+                                th:selected="${fonteColeta != null && fonteColeta.toString() == tipo.chave}"
+                                th:value="${tipo.chave}"
+                                th:text="${tipo.nome}">
+                            </option>
+                        </select>
+                        <small>Fonte da coleta</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <input
+                            type="text"
+                            th:value="${nome}"
+                            name="nome"
+                            class="form-control form-control-sm">
+        
+                        <div class="input-group-append">
+                            <button
+                                onclick="$('input[name=nome]').val('')"
+                                class="btn btn-sm btn-outline-secondary"
+                                type="button">
+        
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div> 
+                    <small>Nome fantasia</small>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <input
+                            type="text"
+                            th:value="${autor}"
+                            name="autor"
+                            class="form-control form-control-sm">
+        
+                        <div class="input-group-append">
+                            <button
+                                onclick="$('input[name=autor]').val('')"
+                                class="btn btn-sm btn-outline-secondary"
+                                type="button">
+                                
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <small>Autor do cadastro</small>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <input
+                            type="date"
+                            th:value="${dataColeta}"
+                            name="dataColeta"
+                            class="form-control form-control-sm">
+        
+                        <div class="input-group-append">
+                            <button
+                                onclick="$('input[name=dataColeta]').val('')"
+                                class="btn btn-sm btn-outline-secondary"
+                                type="button">
+        
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <small>Data da coleta dos dados</small>
+                </div>
+                <div class="col-md-1">
+                    <input hidden type="text" name="page" value="0">
+                    <input hidden type="text" name="size" th:value="${param.size}">
+                    <div class="btn-group btn-block" role="group" aria-label="Basic example">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary">
+                            <i class="fas fa-search"></i>
+                            <!-- Filtrar -->
+                        </button>
+                        <!-- <a th:href="@{/edificios/formulario}" class="btn btn-outline-success btn-block btn-sm">
+                            Novo
+                            <i class="fas fa-plus"></i>
+                        </a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

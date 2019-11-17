@@ -2,36 +2,38 @@
     <table class="table table-sm table-hover crud-table">
         <thead>
             <tr>
-                <th>Fonte da coleta</th>
+                <th class="text-center">Fonte da coleta</th>
                 <th>Nome fantasia</th>
                 <th>Autor da coleta</th>
                 <th>Data da coleta</th>
-                <th class="text-center">Ações</th>
+                <th class="text-center">
+                    <a th:href="@{/edificios/formulario}" class="btn btn-outline-success btn-block btn-sm">
+                        Novo
+                        <i class="fas fa-plus"></i>
+                    </a>
+                </th>
             </tr>
-            <th:block 
-                th:replace="~{views/edificio/fragments/table-specification-edificio :: table-specification-edificio}">
-            </th:block>
         </thead>
         <tbody>
             <tr th:each="edificio : ${pagina.content}">
                 <td class="text-center"><span th:text="${edificio.coleta.fonteColeta}"></span></td>
                 <td><span th:text="${edificio.nomeConhecido}"></span></td>
                 <td class="text-truncate"><span th:text="${edificio.coleta.cadastradoPor.nome}"></span></td>
-                <td class="text-center"><span th:text="${#temporals.format(edificio.cadastradoEm, 'dd/MM/yyyy')}"></span></td>
+                <td><span th:text="${#temporals.format(edificio.cadastradoEm, 'dd/MM/yyyy')}"></span></td>
                 <td>
                     <div class="row justify-center">
                         <div class="col-sm-12 text-center">
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                <!-- <button 
+                                <button 
                                     type="button"
                                     class="btn btn-sm btn-link text-purple text-decoration-none">
                                     <i class="fas fa-history"></i>
-                                </button> -->
-                                <!-- <button 
+                                </button>
+                                <button 
                                     type="button"
                                     class="btn btn-sm btn-link text-primary text-decoration-none">
                                     <i class="far fa-eye"></i>
-                                </button> -->
+                                </button>
                                 <a 
                                     role="button"
                                     th:href="@{/edificios/formulario/{id}(id=${edificio.id})}"
