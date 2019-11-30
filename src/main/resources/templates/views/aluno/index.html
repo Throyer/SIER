@@ -23,10 +23,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <body>
         <section>
             <div class="container">
-                <div class="card shadow rounded-0 mb-5">
+                <div class="bg-light card shadow rounded-0 mb-5">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
+                                <filters
+                                    th:replace="~{views/aluno/fragments/aluno-filter :: aluno-filter}">                                    
+                                </filters>
                                 <table 
                                     th:replace="~{views/aluno/fragments/table-aluno :: table-aluno}">
                                 </table>

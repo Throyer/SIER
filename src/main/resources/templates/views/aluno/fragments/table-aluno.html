@@ -3,17 +3,19 @@
         <thead>
             <tr>
                 <th scope="col">Nome</th>
-                <th scope="col">Turma</th>
+                <th scope="col" class="text-center">Turma</th>
                 <th scope="col" class="text-center">Ações</th>
             </tr>
-            <th:block 
-                th:replace="~{views/aluno/fragments/table-specification-aluno :: table-specification-aluno}">
-            </th:block>
         </thead>
         <tbody>
             <tr th:each="aluno : ${pagina.content}">
                 <td><span th:text="${aluno.usuario.nome}"></span></td>
-                <td class="coluna-turma"><span th:text="${aluno.turma}"></span></td>
+                <td class="coluna-turma">
+                    <span
+                        class="badge badge-pill badge-light"
+                        th:text="${#strings.isEmpty(aluno.turma) ? 'Não informado' : aluno.turma}">
+                    </span>
+                </td>
                 <td>
                     <div class="row justify-center">
                         <div class="col-sm-12 text-center">
