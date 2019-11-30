@@ -189,7 +189,7 @@ public class EdificioController {
         destino.setDataConstrucao(fonte.getDataConstrucao());
         destino.setNumeroAndares(fonte.getNumeroAndares());
         destino.setEndereco(fonte.getEndereco());
-        destino.getColeta().setAtualizadoPor(destino.getColeta().getAtualizadoPor());
+        destino.getColeta().setAtualizadoPor(fonte.getColeta().getAtualizadoPor());
         return destino;
     }
 }
