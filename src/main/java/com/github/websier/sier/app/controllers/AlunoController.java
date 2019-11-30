@@ -118,7 +118,7 @@ public class AlunoController {
     ) {
         var aluno = service.obterAlunoPorId(id);
         var alerta = new Alerta(aluno.getNome(), "Aluno", aluno.getId());
-        redirect.addAttribute("deletado", alerta);
+        redirect.addFlashAttribute("deletado", alerta);
         service.deletar(aluno);
         return REDIRECT_LISTAGEM;
     }
