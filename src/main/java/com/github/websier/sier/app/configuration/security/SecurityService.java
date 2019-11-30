@@ -39,13 +39,7 @@ public class SecurityService implements UserDetailsService {
     
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        
-        var optional = repository.findOptionalByEmail(email);
-            
-        if (optional.isPresent()) {
-            return new Autenticado(optional.get());
-        }
-        
-        throw new UsernameNotFoundException("Nome de usuario invalido.");
+        return new Autenticado(repository.findOptionalByEmail(email)
+            .orElseThrow(() -> new UsernameNotFoundException("Nome de usuario invalido.")));
     }    
 }
