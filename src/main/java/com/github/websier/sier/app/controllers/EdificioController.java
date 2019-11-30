@@ -1,10 +1,9 @@
 package com.github.websier.sier.app.controllers;
 
-import static com.github.websier.sier.app.domain.specifications.EdificioSpecification.where;
-import static com.github.websier.sier.app.utils.Templates.EDIFCIO.INDEX;
-import static com.github.websier.sier.app.utils.Templates.EDIFCIO.FORMULARIO;
-import static com.github.websier.sier.app.utils.PageSettings.of;
 import static com.github.websier.sier.app.utils.FormUtils.tiposDeColeta;
+import static com.github.websier.sier.app.utils.PageSettings.of;
+import static com.github.websier.sier.app.utils.Templates.EDIFCIO.FORMULARIO;
+import static com.github.websier.sier.app.utils.Templates.EDIFCIO.INDEX;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -15,12 +14,11 @@ import javax.validation.Valid;
 import com.github.websier.sier.app.domain.dtos.Alerta;
 import com.github.websier.sier.app.domain.enuns.TipoColeta;
 import com.github.websier.sier.app.domain.models.Edificio;
-import com.github.websier.sier.app.domain.repositories.EdificioRepository;
+import com.github.websier.sier.app.services.EdificioService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,7 +28,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
@@ -43,7 +40,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class EdificioController {
 
     @Autowired
-    private EdificioRepository repository;
+    private EdificioService service;
 
     @ModelAttribute
     public void addAttributes(Model model) {
@@ -73,8 +70,8 @@ public class EdificioController {
         @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<LocalDate> dataColeta,
         Model model
     ) {
-        var specification = where(fonteColeta, nome, autor, dataColeta, model);
-        var pagina = repository.findAll(specification, of(page, size, Direction.DESC, "createdAt"));
+        var pageable = of(page, size, Direction.DESC, "createdAt");
+        var pagina = service.obterTodos(fonteColeta, nome, autor, dataColeta, model, pageable);
         model.addAttribute("pagina", pagina);
         return INDEX;
     }
@@ -100,8 +97,7 @@ public class EdificioController {
      */
     @GetMapping("/edificios/formulario/{id}")
     public String formulario(@PathVariable Long id, Model model) {
-        var edificio = repository.findById(id)
-            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        var edificio = service.obterEdificioPorId(id);
         model.addAttribute("edificio", edificio);
         return FORMULARIO;
     }
@@ -111,12 +107,10 @@ public class EdificioController {
         @PathVariable Long id,
         RedirectAttributes redirect
     ) {
-        var edificio = repository
-            .findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        var edificio = service.obterEdificioPorId(id);
         var alerta = new Alerta(edificio.getNomeConhecido(), "Edificio", edificio.getId());
         redirect.addFlashAttribute("deletado", alerta);
-        repository.delete(edificio);
+        service.deletar(edificio);
         return REDIRECT_LISTAGEM;
     }
 
@@ -139,57 +133,23 @@ public class EdificioController {
             model.addAttribute("edificio", edificio);
             return FORMULARIO;
         }
-        var novo = Objects.isNull(edificio.getId());
-        if (novo) {
-            persistir(edificio, redirect);
-        } else {
-            atualizar(edificio, redirect);
+        return salvar(edificio, Objects.isNull(edificio.getId()), redirect);
+    }
+
+    private String salvar(
+        Edificio edificio,
+        Boolean novoRegistro,
+        RedirectAttributes redirect
+    ) {
+        if (novoRegistro) {
+            var novo = service.persistir(edificio);
+            var alerta = new Alerta(novo.getNomeConhecido(), "Edificio", novo.getId());
+            redirect.addFlashAttribute("novo", alerta);
+            return REDIRECT_LISTAGEM;
         }
-        return REDIRECT_LISTAGEM;
-    }
-
-    /**
-     * Persistir.
-     * 
-     * persiste um novo edificio na base.
-     * @param edificio Edificio.
-     * @param redirect dados do redirect.
-     */
-    private void persistir(
-        Edificio edificio,
-        RedirectAttributes redirect
-    ) {
-        var novo = repository.save(edificio);
-        var alerta = new Alerta(novo.getNomeConhecido(), "Edificio", novo.getId());
-        redirect.addFlashAttribute("novo", alerta);
-    }
-
-    /**
-     * Atualizar.
-     * 
-     * atualiza um edificio na base.
-     * @param edificio Edificio.
-     * @param redirect dados do rediret.
-     */
-    private void atualizar(
-        Edificio edificio,
-        RedirectAttributes redirect
-    ) {
-        var entidade = repository.findById(edificio.getId())
-            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-
-        var atualizado = repository.save(atualizarDados(edificio, entidade));
+        var atualizado = service.atualizar(edificio);
         var alerta = new Alerta(atualizado.getNomeConhecido(), "Edificio", atualizado.getId());
         redirect.addFlashAttribute("atualizado", alerta);
-    }
-
-    private Edificio atualizarDados(Edificio fonte, Edificio destino) {
-        destino.setNome(fonte.getNome());
-        destino.setNomeConhecido(fonte.getNomeConhecido());
-        destino.setDataConstrucao(fonte.getDataConstrucao());
-        destino.setNumeroAndares(fonte.getNumeroAndares());
-        destino.setEndereco(fonte.getEndereco());
-        destino.getColeta().setAtualizadoPor(fonte.getColeta().getAtualizadoPor());
-        return destino;
+        return REDIRECT_LISTAGEM;
     }
 }
