@@ -10,6 +10,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import com.github.websier.sier.app.domain.dtos.Alerta;
 import com.github.websier.sier.app.domain.models.Aluno;
 import com.github.websier.sier.app.services.AlunoService;
 
@@ -101,10 +102,12 @@ public class AlunoController {
         RedirectAttributes redirect
     ) {
         if (novoRegistro) {
-            redirect.addAttribute("novo", service.persistir(aluno));
+            var novo = service.persistir(aluno);
+            redirect.addFlashAttribute("novo", new Alerta(novo.getNome(), "Aluno", novo.getId()));
             return REDIRECT_LISTAGEM;
         }
-        redirect.addAttribute("atualizado", service.atualizar(aluno));
+        var atualizado = service.atualizar(aluno);
+        redirect.addFlashAttribute("atualizado", new Alerta(atualizado.getNome(), "Aluno", atualizado.getId()));
         return REDIRECT_LISTAGEM;
     }
 
@@ -114,7 +117,8 @@ public class AlunoController {
         RedirectAttributes redirect
     ) {
         var aluno = service.obterAlunoPorId(id);
-        redirect.addAttribute("deletado", aluno);
+        var alerta = new Alerta(aluno.getNome(), "Aluno", aluno.getId());
+        redirect.addAttribute("deletado", alerta);
         service.deletar(aluno);
         return REDIRECT_LISTAGEM;
     }

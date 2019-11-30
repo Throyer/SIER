@@ -15,7 +15,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="edificio : ${pagina.content}">
+            <tr th:each="edificio : ${pagina.content}" th:class="${atualizado} ? (${edificio.id == atualizado.id} ? 'table-warning' : '')">
                 <td class="text-center"><span th:text="${edificio.coleta.fonteColetaFormatada.nome}"></span></td>
                 <td><span th:text="${edificio.nomeConhecido}"></span></td>
                 <td class="text-truncate"><span th:text="${edificio.coleta.cadastradoPor.nome}"></span></td>

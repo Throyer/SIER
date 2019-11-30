@@ -12,6 +12,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import com.github.websier.sier.app.domain.dtos.Alerta;
 import com.github.websier.sier.app.domain.enuns.TipoColeta;
 import com.github.websier.sier.app.domain.models.Edificio;
 import com.github.websier.sier.app.domain.repositories.EdificioRepository;
@@ -111,8 +112,10 @@ public class EdificioController {
         RedirectAttributes redirect
     ) {
         var edificio = repository
-            .findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        redirect.addAttribute("deletado", edificio);
+            .findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        var alerta = new Alerta(edificio.getNomeConhecido(), "Edificio", edificio.getId());
+        redirect.addFlashAttribute("deletado", alerta);
         repository.delete(edificio);
         return REDIRECT_LISTAGEM;
     }
@@ -156,7 +159,9 @@ public class EdificioController {
         Edificio edificio,
         RedirectAttributes redirect
     ) {
-        redirect.addAttribute("novo", repository.save(edificio));
+        var novo = repository.save(edificio);
+        var alerta = new Alerta(novo.getNomeConhecido(), "Edificio", novo.getId());
+        redirect.addFlashAttribute("novo", alerta);
     }
 
     /**
@@ -170,6 +175,21 @@ public class EdificioController {
         Edificio edificio,
         RedirectAttributes redirect
     ) {
-        redirect.addAttribute("editado", repository.save(edificio));
+        var entidade = repository.findById(edificio.getId())
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        var atualizado = repository.save(atualizarDados(edificio, entidade));
+        var alerta = new Alerta(atualizado.getNomeConhecido(), "Edificio", atualizado.getId());
+        redirect.addFlashAttribute("atualizado", alerta);
+    }
+
+    private Edificio atualizarDados(Edificio fonte, Edificio destino) {
+        destino.setNome(fonte.getNome());
+        destino.setNomeConhecido(fonte.getNomeConhecido());
+        destino.setDataConstrucao(fonte.getDataConstrucao());
+        destino.setNumeroAndares(fonte.getNumeroAndares());
+        destino.setEndereco(fonte.getEndereco());
+        destino.getColeta().setAtualizadoPor(destino.getColeta().getAtualizadoPor());
+        return destino;
     }
 }
