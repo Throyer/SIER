@@ -25,6 +25,8 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.github.websier.sier.app.domain.dtos.TipoColetaDTO;
 import com.github.websier.sier.app.domain.enuns.TipoColeta;
 import com.github.websier.sier.app.domain.models.Usuario;
 
@@ -52,6 +54,11 @@ public class Coleta {
 
     public TipoColeta getFonteColeta() {
         return fonteColeta;
+    }
+
+    @JsonIgnore
+    public TipoColetaDTO getFonteColetaFormatada() {
+        return new TipoColetaDTO(this.fonteColeta);
     }
 
     public void setFonteColeta(TipoColeta fonteColeta) {

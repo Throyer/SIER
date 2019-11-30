@@ -6,8 +6,10 @@ import static com.github.websier.sier.app.utils.GlobalConstants.FORCA_DA_CRIPTOG
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.github.websier.sier.app.domain.dtos.TipoColetaDTO;
+import com.github.websier.sier.app.domain.enuns.TipoColeta;
 import com.github.websier.sier.app.domain.repositories.UsuarioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,16 +32,11 @@ public class FormUtils {
         FormUtils.repository = repository;
     }
 
-    public static List<TipoColetaDTO> tipos() {
-        return List.of(
-            new TipoColetaDTO("Internet", "INTERNET"),
-            new TipoColetaDTO("Portaria", "PORTARIA"),
-            new TipoColetaDTO("Jornal", "JORNAL"),
-            new TipoColetaDTO("Prefeitura", "PREFEITURA"),
-            new TipoColetaDTO("ACIL", "ACIL"),
-            new TipoColetaDTO("Sinduscon", "SINDUSCON"),
-            new TipoColetaDTO("Lista telefonica", "LISTA_TELEFONICA")
-        );
+    public static List<TipoColetaDTO> tiposDeColeta() {
+        return List.of(TipoColeta.values())
+            .stream()
+                .map(TipoColetaDTO::new)
+                    .collect(Collectors.toList());
     }
 
     public static void confirmarSenha(

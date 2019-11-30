@@ -4,7 +4,7 @@ import static com.github.websier.sier.app.domain.specifications.EdificioSpecific
 import static com.github.websier.sier.app.utils.Templates.EDIFCIO.INDEX;
 import static com.github.websier.sier.app.utils.Templates.EDIFCIO.FORMULARIO;
 import static com.github.websier.sier.app.utils.PageSettings.of;
-import static com.github.websier.sier.app.utils.FormUtils.tipos;
+import static com.github.websier.sier.app.utils.FormUtils.tiposDeColeta;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -46,7 +46,7 @@ public class EdificioController {
 
     @ModelAttribute
     public void addAttributes(Model model) {
-        model.addAttribute("tipos", tipos());
+        model.addAttribute("tipos", tiposDeColeta());
         model.addAttribute("edificios", "active");
     }
 
