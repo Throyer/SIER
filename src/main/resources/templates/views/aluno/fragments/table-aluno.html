@@ -8,7 +8,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="aluno : ${pagina.content}">
+            <tr th:each="aluno : ${pagina.content}" th:class="${atualizado} ? (${aluno.id == atualizado.id} ? 'table-warning' : '')">
                 <td><span th:text="${aluno.usuario.nome}"></span></td>
                 <td class="coluna-turma">
                     <span

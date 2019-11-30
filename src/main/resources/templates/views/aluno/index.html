@@ -27,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
+                                <alerts th:replace="~{fragments/utils :: alerts}"></alerts>
                                 <filters
                                     th:replace="~{views/aluno/fragments/aluno-filter :: aluno-filter}">                                    
                                 </filters>
