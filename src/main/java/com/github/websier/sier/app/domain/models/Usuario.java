@@ -35,7 +35,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.github.websier.sier.app.domain.forms.usuario.UsuarioForm;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  *
@@ -63,7 +64,7 @@ public class Usuario implements Serializable {
     @Pattern(regexp = SENHA_FORTE, message = MENSAGEM_SENHA_FORTE)
     private String senha;
 
-    private Boolean ativo;
+    private Boolean ativo = true;
 
     private LocalDateTime createdAt;
 
@@ -75,14 +76,6 @@ public class Usuario implements Serializable {
     private Cargo cargo;
 
     public Usuario() { }
-
-    public Usuario(UsuarioForm usuario) {
-        this.nome = usuario.getNome();
-        this.apelido = usuario.getApelido();
-        this.email = usuario.getEmail();
-        this.senha = usuario.getSenha();
-        this.ativo = true;
-	}
 
     public Long getId() {
         return id;
@@ -121,7 +114,12 @@ public class Usuario implements Serializable {
     }
 
     public void setSenha(String senha) {
-        this.senha = senha;
+        this.setSenha(senha, FORCA_DA_CRIPTOGRAFIA_NA_SENHA);
+    }
+
+    public void setSenha(String senha, int força) {
+        this.senha = new BCryptPasswordEncoder(força)
+            .encode(senha);
     }
 
     public Cargo getCargo() {

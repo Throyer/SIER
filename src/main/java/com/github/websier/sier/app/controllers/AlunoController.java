@@ -1,25 +1,30 @@
 package com.github.websier.sier.app.controllers;
 
-import static com.github.websier.sier.app.domain.specifications.AlunoSpecification.where;
 import static com.github.websier.sier.app.utils.Templates.ALUNO.INDEX;
 import static com.github.websier.sier.app.utils.Templates.ALUNO.FORMULARIO;
 import static com.github.websier.sier.app.utils.PageSettings.of;
+import static com.github.websier.sier.app.utils.FormUtils.*;
 
+import java.util.Objects;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import com.github.websier.sier.app.domain.models.Aluno;
-import com.github.websier.sier.app.domain.repositories.AlunoRepository;
+import com.github.websier.sier.app.services.AlunoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * AlunoController
@@ -28,12 +33,14 @@ import org.springframework.web.server.ResponseStatusException;
 public class AlunoController {
 
     @Autowired
-    private AlunoRepository repository;
+    private AlunoService service;
 
     @ModelAttribute
     public void addAttributes(Model model) {
         model.addAttribute("alunos", "active");
     }
+
+    private static final String REDIRECT_LISTAGEM = "redirect:/alunos";
 
     @RequestMapping("/alunos")
     public String index(
@@ -43,8 +50,8 @@ public class AlunoController {
         @RequestParam Optional<String> turma,
         Model model
     ) {
-        var specification = where(nome, turma, model);
-        var pagina = repository.findAll(specification, of(page, size));
+        var pageable = of(page, size, Direction.DESC, "id");
+        var pagina = service.obterTodos(nome, turma, model, pageable);
         model.addAttribute("pagina", pagina);
         return INDEX;
     }
@@ -57,9 +64,58 @@ public class AlunoController {
 
     @GetMapping("/alunos/formulario/{id}")
     public String formulario(@PathVariable Long id, Model model) {
-        var aluno = repository.findById(id)
-            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        model.addAttribute("aluno", aluno);
+        model.addAttribute("aluno", service.obterAlunoPorId(id));
         return FORMULARIO;
+    }
+
+    @PostMapping("/alunos/formulario")
+    public String salvar(
+        @Valid Aluno aluno,
+        BindingResult result,
+        RedirectAttributes redirect,
+        @RequestParam Optional<String> confirmacaoDaSenha,
+        Model model
+    ) {
+        var novoRegistro = Objects.isNull(aluno.getId());
+
+        var usuarioId = Optional.ofNullable(aluno.getUsuario().getId());
+        var email = Optional.ofNullable(aluno.getUsuario().getEmail());
+
+        validarUnicidadeDoEmail(result, email, usuarioId);
+        
+        if (novoRegistro) {
+            confirmarSenha(result, confirmacaoDaSenha, Optional.ofNullable(aluno.getSenha()));
+        }
+
+        if (result.hasErrors()) {
+            model.addAttribute("aluno", aluno);
+            return FORMULARIO;
+        }
+
+        return salvar(aluno, novoRegistro, redirect);
+    }
+
+    private String salvar(
+        Aluno aluno,
+        Boolean novoRegistro,
+        RedirectAttributes redirect
+    ) {
+        if (novoRegistro) {
+            redirect.addAttribute("novo", service.persistir(aluno));
+            return REDIRECT_LISTAGEM;
+        }
+        redirect.addAttribute("atualizado", service.atualizar(aluno));
+        return REDIRECT_LISTAGEM;
+    }
+
+    @PostMapping("/alunos/deletar/{id}")
+    public String deletar(
+        @PathVariable Long id,
+        RedirectAttributes redirect
+    ) {
+        var aluno = service.obterAlunoPorId(id);
+        redirect.addAttribute("deletado", aluno);
+        service.deletar(aluno);
+        return REDIRECT_LISTAGEM;
     }
 }

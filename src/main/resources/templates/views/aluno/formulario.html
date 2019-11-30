@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <section>
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-9">
+                <div class="col-md-10">
                     <div class="card shadow rounded-0 bg-light">
                         <div class="card-body">
                             <div class="row">
@@ -144,26 +144,47 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>
-                                                        <small>
-                                                            Senha
-                                                            <span class="text-danger">*</span>
-                                                        </small>
-                                                    </label>
-                                                    <input
-                                                        autocomplete="new-password"
-                                                        th:field="*{usuario.senha}"
-                                                        class="form-control form-control-sm"
-                                                        required
-                                                        type="password"
-                                                        pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\S+$).{8,}$">
-
-                                                    <small class="invalid-feedback">
-                                                        No mínimo 8 caracteres, com no mínimo um número, um
-                                                        caractere especial, uma letra maiúscula e
-                                                        uma letra minúscula.
-                                                    </small>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label>
+                                                                <small>
+                                                                    Senha
+                                                                    <span class="text-danger">*</span>
+                                                                </small>
+                                                            </label>
+                                                            <input
+                                                                autocomplete="new-password"
+                                                                th:field="*{usuario.senha}"
+                                                                class="form-control form-control-sm"
+                                                                required
+                                                                type="password"
+                                                                pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\S+$).{8,}$">
+        
+                                                            <small class="invalid-feedback">
+                                                                No mínimo 8 caracteres, com no mínimo um número, um
+                                                                caractere especial, uma letra maiúscula e
+                                                                uma letra minúscula.
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label>
+                                                                <small>
+                                                                    Confirmação da senha
+                                                                    <span class="text-danger">*</span>
+                                                                </small>
+                                                            </label>
+                                                            <input
+                                                                autocomplete="new-password"
+                                                                name="confirmacaoDaSenha"
+                                                                class="form-control form-control-sm"
+                                                                required
+                                                                type="password"
+                                                                pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\S+$).{8,}$">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

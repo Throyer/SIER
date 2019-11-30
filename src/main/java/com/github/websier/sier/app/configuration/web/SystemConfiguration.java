@@ -25,6 +25,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * System Configuration.
  * 
  * Classe de beans e configurações do sistema.
+ * 
  * @author Renato Henrique
  * @since 3.0.0.
  */

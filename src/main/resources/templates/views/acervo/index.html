@@ -24,9 +24,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <div class="container">
                 <div class="card bg-light shadow rounded-0 mb-5">
                     <div class="card-body">
-                        <acervo-filters 
-                            th:replace="~{views/acervo/fragments/acervo-filters :: acervo-filters}">
-                        </acervo-filters>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <acervo-filters 
+                                    th:replace="~{views/acervo/fragments/acervo-filter :: acervo-filter}">
+                                </acervo-filters>
+                            </div>
+                        </div>
                         <acervo-cards
                             th:replace="~{views/acervo/fragments/acervo-cards :: acervo-cards}">
                         </acervo-cards>

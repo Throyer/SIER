@@ -20,6 +20,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -45,7 +46,7 @@ public class Aluno implements Serializable {
 
     @JsonIgnore
     @NotNull
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Usuario usuario;
 
     private String turma;
@@ -66,6 +67,22 @@ public class Aluno implements Serializable {
         return this.usuario.getNome();
     }
 
+    public void setNome(String nome) {
+        this.usuario.setNome(nome);
+    }
+
+    public String getSenha() {
+        return this.usuario.getSenha();
+    }
+
+    public String getApelido() {
+        return this.usuario.getApelido();
+    }
+
+    public void setApelido(String apelido) {
+        this.usuario.setApelido(apelido);
+    }
+
     public Usuario getUsuario() {
         return usuario;
     }
@@ -80,6 +97,10 @@ public class Aluno implements Serializable {
 
     public void setTurma(String turma) {
         this.turma = turma;
+    }
+
+    public void setCargo(Cargo cargo) {
+        this.usuario.setCargo(cargo);
     }
 
     @JsonIgnore
