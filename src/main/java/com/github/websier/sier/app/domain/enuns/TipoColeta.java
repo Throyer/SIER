@@ -17,11 +17,18 @@
 package com.github.websier.sier.app.domain.enuns;
 
 public enum TipoColeta {
-    PORTARIA,
-    INTERNET,
-    JORNAL,
-    PREFEITURA,
-    ACIL,
-    SINDUSCON,
-    LISTA_TELEFONICA
+    
+    PORTARIA("Portaria"),
+    INTERNET("Internet"),
+    JORNAL("Jornal"),
+    PREFEITURA("Prefeitura"),
+    ACIL("ACIL"),
+    SINDUSCON("SINDUSCON"),
+    LISTA_TELEFONICA("Lista telefônica");
+
+    public String tipo;
+    
+    TipoColeta(String tipo) {
+        this.tipo = tipo;
+    }
 }
