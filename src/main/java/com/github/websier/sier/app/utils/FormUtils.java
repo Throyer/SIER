@@ -77,4 +77,27 @@ public class FormUtils {
             }
         }
     }
+
+    private static String snakeUperCaseToCamelcaseWhithSpaces(String chave) {
+        if (chave == null || chave.isEmpty()) {
+            return chave;
+        }
+        
+        StringBuilder resultado = new StringBuilder();
+     
+        boolean converterProximo = true;
+        for (char letra : chave.toCharArray()) {
+            if (Character.isSpaceChar(letra)) {
+                converterProximo = true;
+            } else if (converterProximo) {
+                letra = Character.toTitleCase(letra);
+                converterProximo = false;
+            } else {
+                letra = Character.toLowerCase(letra);
+            }
+            resultado.append(letra);
+        }
+     
+        return resultado.toString().replaceAll("_", " ");
+    }
 }
