@@ -18,38 +18,36 @@
             <tr th:each="edificio : ${pagina.content}" th:class="${atualizado} ? (${edificio.id == atualizado.id} ? 'table-warning' : '')">
                 <td class="text-center"><span th:text="${edificio.coleta.fonteColetaFormatada.nome}"></span></td>
                 <td><span th:text="${edificio.nomeConhecido}"></span></td>
-                <td class="text-truncate"><span th:text="${edificio.coleta.cadastradoPor.nome}"></span></td>
-                <td><span th:text="${#temporals.format(edificio.cadastradoEm, 'dd/MM/yyyy')}"></span></td>
+                <td class="text-truncate"><span th:text="${edificio.coleta.cadastradoPor} ?: 'Não registrado'"></span></td>
+                <td><span th:text="${#temporals.format(edificio.cadastradoEm, 'dd/MM/yyyy')} ?: 'Não registrado'"></span></td>
                 <td>
                     <div class="row justify-center">
                         <div class="col-sm-12 text-center">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <button 
-                                    type="button"
-                                    class="btn btn-sm btn-link text-purple text-decoration-none">
-                                    <i class="fas fa-history"></i>
-                                </button>
-                                <button 
-                                    type="button"
-                                    class="btn btn-sm btn-link text-primary text-decoration-none">
-                                    <i class="far fa-eye"></i>
-                                </button>
-                                <a 
-                                    role="button"
-                                    th:href="@{/edificios/formulario/{id}(id=${edificio.id})}"
-                                    class="btn btn-sm btn-link text-warning text-decoration-none">
-                                    <i class="fas fa-pen"></i>
-                                </a>
-                                <button 
-                                    type="button"
-                                    th:data-id="${edificio.id}"
-                                    th:data-nome="${edificio.nomeConhecido}"
-                                    data-toggle="modal"   
-                                    data-target="#modal-deletar-edificio"
-                                    class="btn btn-sm btn-link text-danger text-decoration-none">
-                                    <i class="far fa-trash-alt"></i>
-                                </button>
-                            </div>
+                            <button 
+                                type="button"
+                                class="btn btn-sm btn-outline-info">
+                                <i class="fas fa-history"></i>
+                            </button>
+                            <button 
+                                type="button"
+                                class="btn btn-sm btn-outline-primary">
+                                <i class="far fa-eye"></i>
+                            </button>
+                            <a 
+                                role="button"
+                                th:href="@{/edificios/formulario/{id}(id=${edificio.id})}"
+                                class="btn btn-sm btn-outline-warning">
+                                <i class="fas fa-pen"></i>
+                            </a>
+                            <button 
+                                type="button"
+                                th:data-id="${edificio.id}"
+                                th:data-nome="${edificio.nomeConhecido}"
+                                data-toggle="modal"   
+                                data-target="#modal-deletar-edificio"
+                                class="btn btn-sm btn-outline-danger">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
                         </div>
                     </div>
                 </td>
