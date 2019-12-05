@@ -14,35 +14,30 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-/* 
-    Created on : 29 de set de 2019, 17:12:11
-    Author     : Renato Henrique
-*/
 @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,400i,700&display=swap');
 
 html,
 body {
     font-family: 'Poppins', sans-serif;
-    margin-top: 30pt;
+    margin-top : 30pt;
 }
 
 .shadow-font-lg {
-    color: #ffffff;
-    font-size: 119pt;
+    color      : #ffffff;
+    font-size  : 119pt;
     font-weight: 800;
-    text-shadow: 0 1px 0 #ccc, 
+    text-shadow: 0 1px 0 #ccc,
         0 2px 0 #c9c9c9,
         0 3px 0 #bbb,
         0 4px 0 #b9b9b9,
         0 5px 0 #aaa,
-        0 6px 1px rgba(0,0,0,.1),
-        0 0 5px rgba(0,0,0,.1),
-        0 1px 3px rgba(0,0,0,.3),
-        0 3px 5px rgba(0,0,0,.2),
-        0 5px 10px rgba(0,0,0,.25),
+        0 6px 1px rgba(0, 0, 0, .1),
+        0 0 5px rgba(0, 0, 0, .1),
+        0 1px 3px rgba(0, 0, 0, .3),
+        0 3px 5px rgba(0, 0, 0, .2),
+        0 5px 10px rgba(0, 0, 0, .25),
         0 10px 10px rgba(37, 11, 11, 0.2),
-        0 20px 20px rgba(0,0,0,.15);
+        0 20px 20px rgba(0, 0, 0, .15);
 }
 
 .shadow-font-lg.login {
@@ -50,11 +45,11 @@ body {
 }
 
 .shadow-font-sm {
-    color: #ffffff;
+    color      : #ffffff;
     font-weight: 800;
-    text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
-        0px 8px 13px rgba(0,0,0,0.1),
-        0px 18px 23px rgba(0,0,0,0.1)
+    text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4),
+        0px 8px 13px rgba(0, 0, 0, 0.1),
+        0px 18px 23px rgba(0, 0, 0, 0.1)
 }
 
 .text-outline {
@@ -70,16 +65,16 @@ body {
 }
 
 .bg-purple {
-    background: linear-gradient(to bottom, rgba(137,137,186,1) 0%,rgba(137,137,186,1) 100%);
+    background: linear-gradient(to bottom, rgba(137, 137, 186, 1) 0%, rgba(137, 137, 186, 1) 100%);
 }
 
 .bg-grey {
-    background: radial-gradient(ellipse at center, rgba(255,255,255,1) 0%,rgba(214,214,214,1) 100%);
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 1) 0%, rgba(214, 214, 214, 1) 100%);
 }
 
 table.crud-table th {
-    border: 0;
-    font-size: 16px;
+    border     : 0;
+    font-size  : 16px;
     font-weight: 300;
 }
 
@@ -89,4 +84,52 @@ table.crud-table td {
 
 .card.acervo {
     height: 100%;
+}
+
+@media (min-width: 992px) {
+    .animate {
+        animation-duration         : 0.3s;
+        -webkit-animation-duration : 0.3s;
+        animation-fill-mode        : both;
+        -webkit-animation-fill-mode: both;
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(1rem);
+        opacity  : 0;
+    }
+
+    100% {
+        transform: translateY(0rem);
+        opacity  : 1;
+    }
+
+    0% {
+        transform: translateY(1rem);
+        opacity  : 0;
+    }
+}
+
+@-webkit-keyframes slideIn {
+    0% {
+        -webkit-transform: transform;
+        -webkit-opacity  : 0;
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        -webkit-opacity  : 1;
+    }
+
+    0% {
+        -webkit-transform: translateY(1rem);
+        -webkit-opacity  : 0;
+    }
+}
+
+.slideIn {
+    -webkit-animation-name: slideIn;
+    animation-name        : slideIn;
 }
