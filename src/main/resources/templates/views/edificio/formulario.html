@@ -24,297 +24,304 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <body>
     <section>
         <div class="container">
-            <div class="card shadow rounded-0 bg-light">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h3 class="font-weight-light">
-                                <i class="far fa-building"></i>
-                                <span th:text="${edificio.id == null ? 'Cadastrar' : 'Editar'}"></span>
-                                edifício
-                            </h3>
-                            <hr>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <form 
-                                th:action="@{/edificios/formulario}"
-                                method="POST"
-                                th:object="${edificio}"
-                                class="needs-validation"
-                                autocomplete="off"
-                                novalidate>
-    
-                                <!-- ids -->
-                                <div class="row">
-                                    <input hidden th:field="*{id}">
-                                    <span th:if="*{id != null}">
-                                        <input 
-                                            hidden
-                                            th:value="${#authentication.principal.id}"
-                                            name="coleta.atualizadoPor.id">                                    
-                                    </span>
-                                    <span th:if="*{id == null}">
-                                        <input
-                                            hidden
-                                            th:value="${#authentication.principal.id}"
-                                            name="coleta.cadastradoPor.id">                                    
-                                    </span>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card shadow rounded-0 bg-light">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3 class="font-weight-light">
+                                            <i class="fas fa-building"></i>
+                                        <span th:text="${edificio.id == null ? 'Cadastrar' : 'Editar'}"></span>
+                                        edifício
+                                    </h3>
+                                    <hr>
                                 </div>
-    
-                                <!-- mensagens de erro -->
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="alert alert-danger alert-dismissible fade show" th:if="${#fields.hasErrors('*')}">
-                                            <small>Erros:</small>
-                                            <ul>
-                                                <li th:each="erro : ${#fields.errors('*')}">
-                                                    <small th:text="${erro}"></small>
-                                                </li>   
-                                            </ul>
-    
-                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div><!-- /mensagens de erro-->
-    
-                                <div class="row">
-                                    <div class="col-md-7 border-right">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form 
+                                        th:action="@{/edificios/formulario}"
+                                        method="POST"
+                                        th:object="${edificio}"
+                                        class="needs-validation"
+                                        autocomplete="off"
+                                        novalidate>
+            
+                                        <!-- ids -->
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>
-                                                        <small>
-                                                            Nome do edificio
-                                                        </small>
-                                                    </label>
-                                                    <input
-                                                        autofocus
-                                                        th:field="*{nome}"
-                                                        type="text"
-                                                        class="form-control form-control-sm">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>
-                                                        <small>
-                                                            Nome fantasia
-                                                            <span class="text-danger">
-                                                                <strong>*</strong>
-                                                            </span>
-                                                        </small>
-                                                    </label>
-                                                    <input
-                                                        th:field="*{nomeConhecido}"
-                                                        type="text"
-                                                        class="form-control form-control-sm"
-                                                        required>
-                    
-                                                    <div class="invalid-feedback">
-                                                        <small>
-                                                            Por favor informe o nome conhecido do edificio.
-                                                        </small>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <input hidden th:field="*{id}">
+                                            <span th:if="*{id != null}">
+                                                <input 
+                                                    hidden
+                                                    th:value="${#authentication.principal.id}"
+                                                    name="coleta.atualizadoPor.id">                                    
+                                            </span>
+                                            <span th:if="*{id == null}">
+                                                <input
+                                                    hidden
+                                                    th:value="${#authentication.principal.id}"
+                                                    name="coleta.cadastradoPor.id">                                    
+                                            </span>
                                         </div>
+            
+                                        <!-- mensagens de erro -->
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="alert alert-danger alert-dismissible fade show" th:if="${#fields.hasErrors('*')}">
+                                                    <small>Erros:</small>
+                                                    <ul>
+                                                        <li th:each="erro : ${#fields.errors('*')}">
+                                                            <small th:text="${erro}"></small>
+                                                        </li>   
+                                                    </ul>
+            
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div><!-- /mensagens de erro-->
+            
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="row">
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label>
-                                                                <small>Data de construção</small>
-                                                            </label>
-                                                            <input 
-                                                                th:field="*{dataConstrucao}"
-                                                                type="date"
-                                                                class="form-control form-control-sm">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>
                                                                 <small>
-                                                                    Andares
-                                                                    <span class="text-danger">
-                                                                        <strong>*</strong>
-                                                                    </span>                            
+                                                                    Nome do edificio
                                                                 </small>
                                                             </label>
-                                                            <input 
-                                                                th:field="*{numeroAndares}"
-                                                                type="number"
+                                                            <input
+                                                                autofocus
+                                                                th:field="*{nome}"
+                                                                type="text"
+                                                                class="form-control form-control-sm">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>
+                                                                <small>
+                                                                    Nome fantasia
+                                                                    <span class="text-danger">
+                                                                        <strong>*</strong>
+                                                                    </span>
+                                                                </small>
+                                                            </label>
+                                                            <input
+                                                                th:field="*{nomeConhecido}"
+                                                                type="text"
                                                                 class="form-control form-control-sm"
-                                                                min="1"
                                                                 required>
-                    
+                            
                                                             <div class="invalid-feedback">
-                                                                <small>Por favor, informe o numero de andares.</small>
+                                                                <small>
+                                                                    Por favor informe o nome conhecido do edificio.
+                                                                </small>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-5">
-                                                        <label>
-                                                            <small>
-                                                                Fonte da coleta
-                                                                <span class="text-danger">
-                                                                    <strong>*</strong>
-                                                                </span>
-                                                            </small>
-                                                        </label>
-                                                        <select
-                                                            th:field="*{coleta.fonteColeta}"
-                                                            class="custom-select custom-select-sm">
-                    
-                                                            <option 
-                                                                th:each="tipo : ${tipos}"
-                                                                th:value="${tipo.chave}"
-                                                                th:text="${tipo.nome}">
-                                                            </option>
-                                                        </select>
-                    
-                                                        <div class="invalid-feedback">
-                                                            <small>Por favor, informe a fonte da coleta.</small>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label>
+                                                                        <small>Data de construção</small>
+                                                                    </label>
+                                                                    <input 
+                                                                        th:field="*{dataConstrucao}"
+                                                                        type="date"
+                                                                        class="form-control form-control-sm">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-group">
+                                                                    <label>
+                                                                        <small>
+                                                                            Andares
+                                                                            <span class="text-danger">
+                                                                                <strong>*</strong>
+                                                                            </span>                            
+                                                                        </small>
+                                                                    </label>
+                                                                    <input 
+                                                                        th:field="*{numeroAndares}"
+                                                                        type="number"
+                                                                        class="form-control form-control-sm"
+                                                                        min="1"
+                                                                        required>
+                            
+                                                                    <div class="invalid-feedback">
+                                                                        <small>Por favor, informe o numero de andares.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <label>
+                                                                    <small>
+                                                                        Fonte da coleta
+                                                                        <span class="text-danger">
+                                                                            <strong>*</strong>
+                                                                        </span>
+                                                                    </small>
+                                                                </label>
+                                                                <select
+                                                                    th:field="*{coleta.fonteColeta}"
+                                                                    class="custom-select custom-select-sm">
+                            
+                                                                    <option 
+                                                                        th:each="tipo : ${tipos}"
+                                                                        th:value="${tipo.chave}"
+                                                                        th:text="${tipo.nome}">
+                                                                    </option>
+                                                                </select>
+                            
+                                                                <div class="invalid-feedback">
+                                                                    <small>Por favor, informe a fonte da coleta.</small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>
+                                                                <small>
+                                                                Informações adicionais sobre este edifiio.
+                                                                </small>
+                                                            </label>
+                                                            <textarea 
+                                                                th:field="*{coleta.informacoes}"
+                                                                placeholder="Informações adicionais"
+                                                                rows="3"
+                                                                maxlength="255"
+                                                                class="form-control form-control-sm">
+                                                            </textarea>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <hr>
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>
-                                                        <small>
-                                                        Informações adicionais sobre este edifiio.
-                                                        </small>
-                                                    </label>
-                                                    <textarea 
-                                                        th:field="*{coleta.informacoes}"
-                                                        placeholder="Informações adicionais"
-                                                        rows="3"
-                                                        maxlength="255"
-                                                        class="form-control form-control-sm">
-                                                    </textarea>
+                                                <div class="row">
+                                                    <input hidden id="inputRua" th:field="*{endereco.rua}" type="text">
+                                                    <input hidden id="inputBairro" th:field="*{endereco.bairro}" type="text">
+                                                    <input hidden id="inputCidade" th:field="*{endereco.cidade}" type="text">
+                                                    <input hidden id="inputEstado" th:field="*{endereco.estado}" type="text">
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <div class="row">
-                                            <input hidden id="inputRua" th:field="*{endereco.rua}" type="text">
-                                            <input hidden id="inputBairro" th:field="*{endereco.bairro}" type="text">
-                                            <input hidden id="inputCidade" th:field="*{endereco.cidade}" type="text">
-                                            <input hidden id="inputEstado" th:field="*{endereco.estado}" type="text">
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-7">
-                                                <div class="form-group">
-                                                    <label>
-                                                        <small>
-                                                            CEP
-                                                            <span class="text-danger">
-                                                                <strong>*</strong>
-                                                            </span>                              
-                                                        </small>
-                                                    </label>
-                                                    <input 
-                                                        th:field="*{endereco.cep}"
-                                                        name="cep"
-                                                        type="text"
-                                                        class="form-control form-control-sm"
-                                                        id="cep"
-                                                        required
-                                                        maxlength="8"
-                                                        onblur="pesquisacep(this.value)">
-                
-                                                    <div class="invalid-feedback">
-                                                        <small>
-                                                            Por favor, informe o CEP.
-                                                        </small>
+                                                <div class="row">
+                                                    <div class="col-md-7">
+                                                        <div class="form-group">
+                                                            <label>
+                                                                <small>
+                                                                    CEP
+                                                                    <span class="text-danger">
+                                                                        <strong>*</strong>
+                                                                    </span>                              
+                                                                </small>
+                                                            </label>
+                                                            <input 
+                                                                th:field="*{endereco.cep}"
+                                                                name="cep"
+                                                                type="text"
+                                                                class="form-control form-control-sm"
+                                                                id="cep"
+                                                                required
+                                                                maxlength="8"
+                                                                onblur="pesquisacep(this.value)">
+                        
+                                                            <div class="invalid-feedback">
+                                                                <small>
+                                                                    Por favor, informe o CEP.
+                                                                </small>
+                                                            </div>
+                                                            <div id="cep-feedback" class="text-danger"></div>
+                                                        </div>
                                                     </div>
-                                                    <div id="cep-feedback" class="text-danger"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <div class="form-group">
-                                                    <label>
-                                                        <small>
-                                                            Numero
-                                                            <span class="text-danger">
-                                                                <strong>*</strong>
-                                                            </span>
-                                                        </small>
-                                                    </label>
-                                                    <input 
-                                                        th:field="${edificio.endereco.numero}"
-                                                        type="number"
-                                                        min="1"
-                                                        class="form-control form-control-sm"
-                                                        required>
-                
-                                                    <div class="invalid-feedback">
-                                                        <small>Por favor, informe o numero.</small>
+                                                    <div class="col-md-5">
+                                                        <div class="form-group">
+                                                            <label>
+                                                                <small>
+                                                                    Numero
+                                                                    <span class="text-danger">
+                                                                        <strong>*</strong>
+                                                                    </span>
+                                                                </small>
+                                                            </label>
+                                                            <input 
+                                                                th:field="${edificio.endereco.numero}"
+                                                                type="number"
+                                                                min="1"
+                                                                class="form-control form-control-sm"
+                                                                required>
+                        
+                                                            <div class="invalid-feedback">
+                                                                <small>Por favor, informe o numero.</small>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="card shadow-sm border-0">
+                                                            <div class="card-body">
+                                                                <table class="mb-0 table table-borderless table-sm">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="font-weight-light">Rua:</td>
+                                                                            <td class="font-weight-light">
+                                                                                <small id="rua" th:text="*{endereco.rua}"> ... </small>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="font-weight-light">Bairro:</td>
+                                                                            <td class="font-weight-light">
+                                                                                <small id="bairro" th:text="*{endereco.bairro}"> ... </small>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="font-weight-light">Cidade:</td>
+                                                                            <td class="font-weight-light">
+                                                                                <small id="cidade" th:text="*{endereco.cidade}"> ... </small>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="font-weight-light">Estado:</td>
+                                                                            <td class="font-weight-light">
+                                                                                <small id="estado" th:text="*{endereco.estado}"> ... </small>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+                                        <hr>
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <div class="card shadow-sm rounded-0">
-                                                    <div class="card-body">
-                                                        <table class="mb-0 table table-borderless table-sm">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td class="font-weight-light">Rua:</td>
-                                                                    <td class="font-weight-light">
-                                                                        <small id="rua" th:text="*{endereco.rua}"> ... </small>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="font-weight-light">Bairro:</td>
-                                                                    <td class="font-weight-light">
-                                                                        <small id="bairro" th:text="*{endereco.bairro}"> ... </small>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="font-weight-light">Cidade:</td>
-                                                                    <td class="font-weight-light">
-                                                                        <small id="cidade" th:text="*{endereco.cidade}"> ... </small>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="font-weight-light">Estado:</td>
-                                                                    <td class="font-weight-light">
-                                                                        <small id="estado" th:text="*{endereco.estado}"> ... </small>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
+                                                <a th:href="@{/edificios(page=${0}, size=${10})}" class="btn btn-outline-primary">
+                                                    <i class="fas fa-arrow-left"></i>
+                                                    Voltar
+                                                </a>
+                                                <button class="btn btn-success float-right" type="submit">
+                                                    <i class="fas fa-save"></i>
+                                                    Salvar
+                                                </button>
                                             </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
-                                <hr>
-                                <div class="row mt-2">
-                                    <div class="col-md-12">
-                                        <a th:href="@{/edificios(page=${0}, size=${10})}" class="btn btn-outline-primary">
-                                            <i class="fas fa-arrow-left"></i>
-                                            Voltar
-                                        </a>
-                                        <button class="btn btn-success float-right" type="submit">
-                                            <i class="fas fa-save"></i>
-                                            Salvar
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
