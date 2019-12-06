@@ -16,28 +16,24 @@
                         th:text="${#strings.isEmpty(aluno.turma) ? 'Não informado' : aluno.turma}">
                     </span>
                 </td>
-                <td>
-                    <div class="row justify-center">
-                        <div class="col-sm-12 text-center">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <a 
-                                    role="button"
-                                    th:href="@{/alunos/formulario/{id}(id=${aluno.id})}"
-                                    class="btn btn-sm btn-link text-warning text-decoration-none">
-                                    <i class="fas fa-pen"></i>
-                                </a>
-                                <button 
-                                    type="button"
-                                    th:data-id="${aluno.id}"
-                                    th:data-nome="${aluno.usuario.nome}"
-                                    data-toggle="modal"   
-                                    data-target="#modal-deletar-aluno"
-                                    class="btn btn-sm btn-link text-danger text-decoration-none">
-                                    <i class="far fa-trash-alt"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                <td class="text-center">
+                    <a 
+                        role="button"
+                        th:href="@{/alunos/formulario/{id}(id=${aluno.id})}"
+                        class="btn btn-link text-warning">
+                        <i class="fas fa-user-edit"></i>
+                    </a>
+                    <button 
+                        type="button"
+                        th:data-id="${aluno.id}"
+                        th:data-nome="${aluno.usuario.nome}"
+                        data-toggle="modal"   
+                        data-target="#modal-deletar-aluno"
+                        class="btn"
+                        th:classappend="${aluno.usuario.ativo} ? 'btn-link text-danger' : 'btn-link text-success'">
+                        <i th:if="${!aluno.usuario.ativo}" class="fas fa-user-check"></i>
+                        <i th:if="${aluno.usuario.ativo}" class="fas fa-user-slash"></i>
+                    </button>
                 </td>
             </tr>
         </tbody>
