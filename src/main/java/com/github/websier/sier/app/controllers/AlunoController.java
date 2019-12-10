@@ -13,6 +13,7 @@ import javax.validation.Valid;
 import com.github.websier.sier.app.domain.dtos.Alerta;
 import com.github.websier.sier.app.domain.models.Aluno;
 import com.github.websier.sier.app.services.AlunoService;
+import com.github.websier.sier.app.services.UsuarioService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort.Direction;
@@ -33,6 +34,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class AlunoController {
 
+    @Autowired
+    private UsuarioService usuarioService;
+    
     @Autowired
     private AlunoService service;
 
@@ -111,15 +115,16 @@ public class AlunoController {
         return REDIRECT_LISTAGEM;
     }
 
-    @PostMapping("/alunos/deletar/{id}")
-    public String deletar(
+    @PostMapping("/alunos/alternarAtivoOuInativo/{id}")
+    public String alternarAtivoOuInativo(
         @PathVariable Long id,
         RedirectAttributes redirect
     ) {
         var aluno = service.obterAlunoPorId(id);
+        var ativo = usuarioService.alternarAtivoOuInativo(aluno.getUsuario());
         var alerta = new Alerta(aluno.getNome(), "Aluno", aluno.getId());
-        redirect.addFlashAttribute("deletado", alerta);
-        service.deletar(aluno);
+        var tipo = ativo ? "bloqueado" : "desbloqueado";
+        redirect.addFlashAttribute(tipo, alerta);
         return REDIRECT_LISTAGEM;
     }
 }

@@ -27,8 +27,9 @@
                         type="button"
                         th:data-id="${aluno.id}"
                         th:data-nome="${aluno.usuario.nome}"
+                        th:data-status="${aluno.usuario.ativo}"
                         data-toggle="modal"   
-                        data-target="#modal-deletar-aluno"
+                        data-target="#modal-alternar-status-aluno"
                         class="btn"
                         th:classappend="${aluno.usuario.ativo} ? 'btn-link text-danger' : 'btn-link text-success'">
                         <i th:if="${!aluno.usuario.ativo}" class="fas fa-user-check"></i>
