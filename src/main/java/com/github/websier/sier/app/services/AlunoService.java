@@ -1,7 +1,7 @@
 package com.github.websier.sier.app.services;
 
 import static com.github.websier.sier.app.domain.specifications.AlunoSpecification.where;
-import static com.github.websier.sier.app.utils.Cargos.*;
+import static com.github.websier.sier.app.utils.Cargos.ALUNO;
 
 import java.util.Optional;
 
@@ -59,10 +59,6 @@ public class AlunoService {
     public Aluno atualizar(Aluno aluno) {
         var entidade = obterAlunoPorId(aluno.getId());
         return repository.save(atualizarCamposDoAluno(aluno, entidade));
-    }
-
-    public void deletar(Aluno aluno) {
-        repository.delete(aluno);
     }
 
     private Aluno atribuirCargoDeAluno(Aluno aluno) {
