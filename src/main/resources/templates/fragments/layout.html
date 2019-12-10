@@ -46,14 +46,18 @@ são aceitos blocos de html com templates de modais.
     </head><!-- /cabeçalho da pagina -->
 
     <!-- Corpo da pagina -->
-    <body>
+    <body class="bg-light ">
+        <!-- navbar padrão do sistema -->
+        <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+        
         <!-- container -->
-        <div class="container-fluid mb-4">
-
-            <!-- navbar padrão do sistema -->
-            <nav th:replace="~{fragments/navbar :: navbar}"></nav>
-            <!-- Conteudo da pagina  -->
-            <th:block th:replace="${conteudo}"></th:block>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <!-- Conteudo da pagina  -->            
+                    <th:block th:replace="${conteudo}"></th:block>
+                </div>
+            </div>
         </div><!-- /container -->
         
         <!-- modais -->
