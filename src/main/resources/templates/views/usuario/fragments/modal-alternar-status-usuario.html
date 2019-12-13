@@ -1,0 +1,35 @@
+<div 
+    th:fragment="modal-alternar-status-usuario"
+    id="modal-alternar-status-usuario"
+    class="modal"
+    tabindex="-1"
+    role="dialog">
+    
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font-weight-light">Confirmar remoção</h5>
+
+                <button 
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close">
+                    
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Deseja <strong id="acao">bloquear ou desbloquear</strong> o acesso do Usuario: <span class="font-weight-bold" id="nome-usuario"></span>.</p>
+            </div>
+            <form 
+                id="form-alternar-status-usuario"
+                method="POST"
+                class="modal-footer"
+                action="">
+                <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-sm confirmacao">Bloquear</button>
+            </form>
+        </div>
+    </div>
+</div>

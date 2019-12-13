@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+Copyright (C) 2019 Renato Henrique
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<html th:replace="~{fragments/layout :: layout(~{::title}, ~{}, ~{::section}, ~{::script}, ~{::modal})}">
+    <head>
+        <title>Usuarios</title>
+    </head>
+    <body>
+        <section>
+            <div class="container">
+                <div class="card shadow-sm rounded-0 border-0">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <alerts th:replace="~{fragments/utils :: alerts}"></alerts>
+                                <filters
+                                    th:replace="~{views/usuario/fragments/usuario-filter :: usuario-filter}">                                    
+                                </filters>
+                                <table 
+                                    th:replace="~{views/usuario/fragments/table-usuario :: table-usuario}">
+                                </table>
+                            </div>
+                        </div>
+                        <pagination 
+                            th:replace="~{views/usuario/fragments/pagination-usuario :: pagination-usuario('usuarios')}">
+                        </pagination>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <modal 
+            th:replace="~{views/usuario/fragments/modal-alternar-status-usuario :: modal-alternar-status-usuario}">
+        </modal>
+    </body>
+    <script language="javascript" th:src="@{/js/modais/modal-usuario.js}"></script>
+</html>

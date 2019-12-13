@@ -2,9 +2,10 @@
     <table class="table table-sm table-hover crud-table">
         <thead>
             <tr>
-                <th scope="col">Nome</th>
-                <th scope="col" class="text-center">Turma</th>
-                <th scope="col" class="text-center">Ações</th>
+                <th>Nome</th>
+                <th class="text-center">Turma</th>
+                <th class="text-center">Situação</th>
+                <th class="text-center">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -12,8 +13,14 @@
                 <td><span th:text="${aluno.usuario.nome}"></span></td>
                 <td class="coluna-turma">
                     <span
-                        class="badge badge-pill badge-light"
                         th:text="${#strings.isEmpty(aluno.turma) ? 'Não informado' : aluno.turma}">
+                    </span>
+                </td>
+                <td class="text-center">
+                    <span
+                        class="badge"
+                        th:classappend="${aluno.usuario.ativo ? 'badge-success': 'badge-danger'}"
+                        th:text="${aluno.usuario.ativo ? 'Habilitado': 'Bloqueado'}">
                     </span>
                 </td>
                 <td class="text-center">
