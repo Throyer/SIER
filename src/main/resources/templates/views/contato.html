@@ -15,14 +15,17 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<html th:replace="~{fragments/layout :: layout(~{::title}, ~{}, ~{::section}, ~{}, ~{})}">
-
-<head>
-    <title>Edificios</title>
-</head>
-
-<body>
-    <section>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Contato</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <base href="/">
+        <th:block th:replace="~{fragments/imports :: basic-css}"></th:block>
+    </head>
+    <body class="bg-purple">
+        <nav th:replace="~{fragments/navbar :: navbar}"></nav>
         <div class="container marketing text-light">
             <div class="row featurette">
                 <div class="col-md-7">
@@ -84,7 +87,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 </div><!-- /.col-lg-4 -->
             </div><!-- /.row -->
         </div>
-    </section>
-</body>
 
+        <script th:replace="~{fragments/imports :: basic-javascript}"></script>
+    </body>
 </html>
