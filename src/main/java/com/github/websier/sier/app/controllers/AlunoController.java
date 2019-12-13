@@ -1,9 +1,10 @@
 package com.github.websier.sier.app.controllers;
 
-import static com.github.websier.sier.app.utils.Templates.ALUNO.INDEX;
-import static com.github.websier.sier.app.utils.Templates.ALUNO.FORMULARIO;
+import static com.github.websier.sier.app.utils.FormUtils.confirmarSenha;
+import static com.github.websier.sier.app.utils.FormUtils.validarUnicidadeDoEmail;
 import static com.github.websier.sier.app.utils.PageSettings.of;
-import static com.github.websier.sier.app.utils.FormUtils.*;
+import static com.github.websier.sier.app.utils.Templates.ALUNO.FORMULARIO;
+import static com.github.websier.sier.app.utils.Templates.ALUNO.INDEX;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -24,7 +25,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -47,7 +47,7 @@ public class AlunoController {
 
     private static final String REDIRECT_LISTAGEM = "redirect:/alunos";
 
-    @RequestMapping("/alunos")
+    @GetMapping("/alunos")
     public String index(
         @RequestParam Optional<Integer> page,
         @RequestParam Optional<Integer> size,

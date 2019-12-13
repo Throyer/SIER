@@ -82,18 +82,28 @@ public class Edificio implements Serializable {
     private LocalDate updatedAt;
 
     @Override
-    public boolean equals(Object object) {
-        if (this == object) {
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
-        if (object == null) {
+        if (obj == null) {
             return false;
         }
-        if (getClass() != object.getClass()) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        final Edificio other = (Edificio) object;
-        return Objects.equals(this.id, other.id);
+        final Edificio other = (Edificio) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
     }
 
     @PrePersist
