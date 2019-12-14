@@ -35,4 +35,28 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
+    <div th:if="${desbloqueado}" class="alert alert-success alert-dismissible fade show" role="alert">
+        <span th:text="${desbloqueado.entidade}">
+            Entidade
+        </span>
+        <strong th:text="${desbloqueado.nome}">
+            nome
+        </strong>
+        foi desbloqueado com sucesso.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div th:if="${bloqueado}" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <span th:text="${bloqueado.entidade}">
+            Entidade
+        </span>
+        <strong th:text="${bloqueado.nome}">
+            nome
+        </strong>
+        foi bloqueado com sucesso.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 </th:block>

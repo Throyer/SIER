@@ -125,7 +125,7 @@ public class AlunoController {
         var aluno = service.obterAlunoPorId(id);
         var ativo = usuarioService.alternarAtivoOuInativo(aluno.getUsuario());
         var alerta = new Alerta(aluno.getNome(), "Aluno", aluno.getId());
-        var tipo = ativo ? "bloqueado" : "desbloqueado";
+        var tipo = ativo ? "desbloqueado" : "bloqueado";
         redirect.addFlashAttribute(tipo, alerta);
         return REDIRECT_LISTAGEM;
     }
