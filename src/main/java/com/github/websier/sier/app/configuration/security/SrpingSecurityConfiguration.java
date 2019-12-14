@@ -16,13 +16,25 @@
  */
 package com.github.websier.sier.app.configuration.security;
 
-import static com.github.websier.sier.app.utils.SecurityConstants.*;
+import static com.github.websier.sier.app.utils.SecurityConstants.ACESSO_NEGADO_URL;
+import static com.github.websier.sier.app.utils.SecurityConstants.HOME_URL;
+import static com.github.websier.sier.app.utils.SecurityConstants.LOGIN_ERROR_URL;
+import static com.github.websier.sier.app.utils.SecurityConstants.LOGIN_URL;
+import static com.github.websier.sier.app.utils.SecurityConstants.LOGOUT_URL;
+import static com.github.websier.sier.app.utils.SecurityConstants.PASSWORD_PARAMETER;
+import static com.github.websier.sier.app.utils.SecurityConstants.SECRET;
+import static com.github.websier.sier.app.utils.SecurityConstants.SESSION_COOKIE_NAME;
+import static com.github.websier.sier.app.utils.SecurityConstants.STATICOS_IGNORADOS;
+import static com.github.websier.sier.app.utils.SecurityConstants.TOKEN_EXPIRATION;
+import static com.github.websier.sier.app.utils.SecurityConstants.USERNAME_PARAMETER;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -34,7 +46,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
  * @author Renato Henrique.
  * @since 3.0.0.
  */
+@EnableWebSecurity
 @Configuration
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SrpingSecurityConfiguration extends WebSecurityConfigurerAdapter {
     
     @Autowired

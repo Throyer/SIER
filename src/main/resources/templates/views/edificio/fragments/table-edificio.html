@@ -34,7 +34,8 @@
                         class="btn btn-sm btn-outline-warning">
                         <i class="fas fa-pen"></i>
                     </a>
-                    <button 
+                    <button
+                        sec:authorize="hasAnyAuthority('ADMINISTRADOR', 'PROFESSOR')"
                         type="button"
                         th:data-id="${edificio.id}"
                         th:data-nome="${edificio.nomeConhecido}"

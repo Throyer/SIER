@@ -69,17 +69,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <span aria-hidden="true">&times;</span>
                 </button>        
             </div>
-            
-            <!-- Acesso negado -->
-            <div th:if="${param.negado}" class="alert alert-warning alert-dismissible fade show mt-3 mb-3" role="alert">
-                <strong>Acesso negado!</strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <hr>
-                Por favor faça o login com outro usuario ou entre em
-                <a th:href="@{/contato}">contato</a> com o administrador do sistema.
-            </div>
 
             <p class="mt-5 mb-3 text-center text-muted">
                 <strong>By</strong> Renato Henrique <small>2019</small>
