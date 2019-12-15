@@ -6,6 +6,7 @@ import static com.github.websier.sier.app.utils.Templates.USUARIO.INDEX;
 import java.util.Optional;
 
 import com.github.websier.sier.app.domain.dtos.Alerta;
+import com.github.websier.sier.app.domain.repositories.CargoRepository;
 import com.github.websier.sier.app.domain.repositories.UsuarioRepository;
 import com.github.websier.sier.app.services.UsuarioService;
 
@@ -31,6 +32,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class UsuarioController {
 
     @Autowired
+    private CargoRepository cargos;
+
+    @Autowired
     private UsuarioRepository repository;
 
     @Autowired
@@ -47,11 +51,17 @@ public class UsuarioController {
     public String index(
         @RequestParam Optional<Integer> page,
         @RequestParam Optional<Integer> size,
+        @RequestParam Optional<String> cargo,
+        @RequestParam Optional<String> nome,
+        @RequestParam Optional<String> apelido,
+        @RequestParam Optional<String> email,
+        @RequestParam Optional<Boolean> situacao,
         Model model
     ) {
         var pageable = of(page, size, Direction.DESC, "id");
-        var pagina =  repository.findAll(pageable);
+        var pagina =  service.obterTodos(cargo, nome, apelido, email, situacao, model, pageable);
         model.addAttribute("pagina", pagina);
+        model.addAttribute("cargos", cargos.findAll());
         return INDEX;
     }
 
