@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.persistence.criteria.Predicate;
+
 import com.github.websier.sier.app.domain.dtos.TipoColetaDTO;
 import com.github.websier.sier.app.domain.enuns.TipoColeta;
 import com.github.websier.sier.app.domain.repositories.UsuarioRepository;
@@ -76,5 +78,13 @@ public class FormUtils {
                 result.addError(ERRO_EMAIL);
             }
         }
+    }
+
+    public static boolean isPresent(Optional<String> field) {
+        return field.isPresent() && !field.get().isEmpty() && !field.get().isBlank();
+    }
+
+    public static Predicate [] toArray(List<Predicate> predicates) {
+        return predicates.toArray(new Predicate[predicates.size()]);
     }
 }
