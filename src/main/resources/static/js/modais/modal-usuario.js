@@ -16,7 +16,7 @@ $('#modal-alternar-status-usuario').on('shown.bs.modal', function (evento) {
     modal.find(".confirmacao")
         .addClass(status ? "btn-danger" : "btn-success")
 
-    modal.find('#nome-aluno')
+    modal.find('#nome-usuario')
         .text(nome);
 
     modal.find('#form-alternar-status-usuario')
