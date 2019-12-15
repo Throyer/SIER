@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -60,7 +59,7 @@ public class EdificioController {
      * @param dataColeta data do cadastro do edificio.
      * @return view da listagem dos edificios.
      */
-    @RequestMapping("/edificios")
+    @GetMapping("/edificios")
     public String index(
         @RequestParam Optional<Integer> page,
         @RequestParam Optional<Integer> size,
@@ -97,7 +96,7 @@ public class EdificioController {
      */
     @GetMapping("/edificios/formulario/{id}")
     public String formulario(@PathVariable Long id, Model model) {
-        var edificio = service.obterEdificioPorId(id);
+        var edificio = service.obterPorId(id);
         model.addAttribute("edificio", edificio);
         return FORMULARIO;
     }
@@ -107,7 +106,7 @@ public class EdificioController {
         @PathVariable Long id,
         RedirectAttributes redirect
     ) {
-        var edificio = service.obterEdificioPorId(id);
+        var edificio = service.obterPorId(id);
         var alerta = new Alerta(edificio.getNomeConhecido(), "Edificio", edificio.getId());
         redirect.addFlashAttribute("deletado", alerta);
         service.deletar(edificio);

@@ -31,7 +31,6 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -66,7 +65,6 @@ public class Edificio implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dataConstrucao;
 
-    @Min(value = 1, message = "Por favor, forneça o numero de andares. No minimo 1.")
     private int numeroAndares;
 
     @Embedded
@@ -82,18 +80,28 @@ public class Edificio implements Serializable {
     private LocalDate updatedAt;
 
     @Override
-    public boolean equals(Object object) {
-        if (this == object) {
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
-        if (object == null) {
+        if (obj == null) {
             return false;
         }
-        if (getClass() != object.getClass()) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        final Edificio other = (Edificio) object;
-        return Objects.equals(this.id, other.id);
+        final Edificio other = (Edificio) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
     }
 
     @PrePersist

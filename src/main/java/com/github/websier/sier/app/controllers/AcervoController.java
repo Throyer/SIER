@@ -17,9 +17,9 @@
 package com.github.websier.sier.app.controllers;
 
 import static com.github.websier.sier.app.domain.specifications.EdificioSpecification.where;
-import static com.github.websier.sier.app.utils.Templates.ACERVO.INDEX;
-import static com.github.websier.sier.app.utils.PageSettings.of;
 import static com.github.websier.sier.app.utils.FormUtils.tiposDeColeta;
+import static com.github.websier.sier.app.utils.PageSettings.of;
+import static com.github.websier.sier.app.utils.Templates.ACERVO.INDEX;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -31,8 +31,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -63,7 +63,7 @@ public class AcervoController {
      * @param dataColeta data da coleta
      * @return edificios
      */
-    @RequestMapping("/acervo")
+    @GetMapping("/acervo")
     public String acervo(
         @RequestParam Optional<Integer> page,
         @RequestParam Optional<Integer> size,

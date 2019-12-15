@@ -35,6 +35,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.github.websier.sier.app.domain.dtos.Alerta;
+import com.github.websier.sier.app.domain.interfaces.Notificavel;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -43,7 +45,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  * @author Renato Henrique
  */
 @Entity
-public class Usuario implements Serializable {
+public class Usuario implements Serializable, Notificavel {
 
     private static final long serialVersionUID = 1L;
 
@@ -64,6 +66,8 @@ public class Usuario implements Serializable {
     @Pattern(regexp = SENHA_FORTE, message = MENSAGEM_SENHA_FORTE)
     private String senha;
 
+    private String turma;
+
     private Boolean ativo = true;
 
     private LocalDateTime createdAt;
@@ -74,6 +78,10 @@ public class Usuario implements Serializable {
 
     @ManyToOne
     private Cargo cargo;
+
+    public Usuario(Cargo cargo) {
+        this.cargo = cargo;
+    }
 
     public Usuario() { }
 
@@ -118,8 +126,7 @@ public class Usuario implements Serializable {
     }
 
     public void setSenha(String senha, int força) {
-        this.senha = new BCryptPasswordEncoder(força)
-            .encode(senha);
+        this.senha = new BCryptPasswordEncoder(força).encode(senha);
     }
 
     public Cargo getCargo() {
@@ -149,6 +156,14 @@ public class Usuario implements Serializable {
     @JsonIgnore
     public List<Cargo> getAuthorities() {
         return Arrays.asList(this.cargo);
+    }
+
+    public String getTurma() {
+        return turma;
+    }
+
+    public void setTurma(String turma) {
+        this.turma = turma;
     }
 
     @Override
@@ -194,6 +209,11 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return this.getNome();
+    }
+
+    @Override
+    public Alerta toAlerta() {
+        return new Alerta(this.getNome(), "usuario", this.getId());
     }
 
 }

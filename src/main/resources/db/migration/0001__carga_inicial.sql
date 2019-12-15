@@ -12,11 +12,11 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 
--- Copiando estrutura do banco de dados para sier_desenv
-CREATE DATABASE IF NOT EXISTS `sier_desenv` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `sier_desenv`;
+-- Copiando estrutura do banco de dados para sier
+CREATE DATABASE IF NOT EXISTS `sier` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `sier`;
 
--- Copiando estrutura para tabela sier_desenv.aluno
+-- Copiando estrutura para tabela sier.aluno
 CREATE TABLE IF NOT EXISTS `aluno` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
@@ -25,54 +25,54 @@ CREATE TABLE IF NOT EXISTS `aluno` (
   `usuario_id` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FKsgpw6tb2kerkceshx1b10rhkg` (`usuario_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela sier_desenv.aluno: 40 rows
+-- Copiando dados para a tabela sier.aluno: 40 rows
 /*!40000 ALTER TABLE `aluno` DISABLE KEYS */;
 INSERT INTO `aluno` (`id`, `created_at`, `turma`, `updated_at`, `usuario_id`) VALUES
-	(1, '2019-06-17 12:53:50', '2018', NULL, 3),
-	(2, '2019-06-17 12:53:51', '2018', NULL, 4),
-	(3, '2019-06-17 12:53:51', '2018', NULL, 5),
-	(4, '2019-06-17 12:53:51', '2018', NULL, 6),
-	(5, '2019-06-17 12:53:51', '2018', NULL, 7),
-	(6, '2019-06-17 12:53:51', '2018', NULL, 8),
-	(7, '2019-06-17 12:53:51', '2018', NULL, 9),
-	(8, '2019-06-17 12:53:51', '2018', NULL, 10),
-	(9, '2019-06-17 12:53:51', '2018', NULL, 11),
-	(10, '2019-06-17 12:53:51', '2018', NULL, 12),
-	(11, '2019-06-17 12:53:51', '2018', NULL, 13),
-	(12, '2019-06-17 12:53:51', '2018', NULL, 14),
-	(13, '2019-06-17 12:53:51', '2018', NULL, 15),
-	(14, '2019-06-17 12:53:51', '2018', NULL, 16),
-	(15, '2019-06-17 12:53:51', '2018', NULL, 17),
-	(16, '2019-06-17 12:53:51', '2018', NULL, 18),
-	(17, '2019-06-17 12:53:51', '2018', NULL, 19),
-	(18, '2019-06-17 12:53:51', '2018', NULL, 20),
-	(19, '2019-06-17 12:53:51', '2018', NULL, 21),
-	(20, '2019-06-17 12:53:51', '2018', NULL, 22),
-	(21, '2019-06-17 12:55:43', '2018', NULL, 3),
-	(22, '2019-06-17 12:55:43', '2018', NULL, 4),
-	(23, '2019-06-17 12:55:43', '2018', NULL, 5),
-	(24, '2019-06-17 12:55:43', '2018', NULL, 6),
-	(25, '2019-06-17 12:55:43', '2018', NULL, 7),
-	(26, '2019-06-17 12:55:43', '2018', NULL, 8),
-	(27, '2019-06-17 12:55:43', '2018', NULL, 9),
-	(28, '2019-06-17 12:55:43', '2018', NULL, 10),
-	(29, '2019-06-17 12:55:43', '2018', NULL, 11),
-	(30, '2019-06-17 12:55:43', '2018', NULL, 12),
-	(31, '2019-06-17 12:55:43', '2018', NULL, 13),
-	(32, '2019-06-17 12:55:43', '2018', NULL, 14),
-	(33, '2019-06-17 12:55:43', '2018', NULL, 15),
-	(34, '2019-06-17 12:55:43', '2018', NULL, 16),
-	(35, '2019-06-17 12:55:43', '2018', NULL, 17),
-	(36, '2019-06-17 12:55:43', '2018', NULL, 18),
-	(37, '2019-06-17 12:55:43', '2018', NULL, 19),
-	(38, '2019-06-17 12:55:43', '2018', NULL, 20),
-	(39, '2019-06-17 12:55:43', '2018', NULL, 21),
-	(40, '2019-06-17 12:55:43', '2018', NULL, 22);
+	(1, NULL, '2018', NULL, 3),
+	(2, NULL, '2018', NULL, 4),
+	(3, NULL, '2018', NULL, 5),
+	(4, NULL, '2018', NULL, 6),
+	(5, NULL, '2018', NULL, 7),
+	(6, NULL, '2018', NULL, 8),
+	(7, NULL, '2018', NULL, 9),
+	(8, NULL, '2018', NULL, 10),
+	(9, NULL, '2018', NULL, 11),
+	(10, NULL, '2018', NULL, 12),
+	(11, NULL, '2018', NULL, 13),
+	(12, NULL, '2018', NULL, 14),
+	(13, NULL, '2018', NULL, 15),
+	(14, NULL, '2018', NULL, 16),
+	(15, NULL, '2018', NULL, 17),
+	(16, NULL, '2018', NULL, 18),
+	(17, NULL, '2018', NULL, 19),
+	(18, NULL, '2018', NULL, 20),
+	(19, NULL, '2018', NULL, 21),
+	(20, NULL, '2018', NULL, 22),
+	(21, NULL, '2018', NULL, 3),
+	(22, NULL, '2018', NULL, 4),
+	(23, NULL, '2018', NULL, 5),
+	(24, NULL, '2018', NULL, 6),
+	(25, NULL, '2018', NULL, 7),
+	(26, NULL, '2018', NULL, 8),
+	(27, NULL, '2018', NULL, 9),
+	(28, NULL, '2018', NULL, 10),
+	(29, NULL, '2018', NULL, 11),
+	(30, NULL, '2018', NULL, 12),
+	(31, NULL, '2018', NULL, 13),
+	(32, NULL, '2018', NULL, 14),
+	(33, NULL, '2018', NULL, 15),
+	(34, NULL, '2018', NULL, 16),
+	(35, NULL, '2018', NULL, 17),
+	(36, NULL, '2018', NULL, 18),
+	(37, NULL, '2018', NULL, 19),
+	(38, NULL, '2018', NULL, 20),
+	(39, NULL, '2018', NULL, 21),
+	(40, NULL, '2018', NULL, 22);
 /*!40000 ALTER TABLE `aluno` ENABLE KEYS */;
 
--- Copiando estrutura para tabela sier_desenv.cargo
+-- Copiando estrutura para tabela sier.cargo
 CREATE TABLE IF NOT EXISTS `cargo` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `cargo` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela sier_desenv.cargo: 3 rows
+-- Copiando dados para a tabela sier.cargo: 3 rows
 /*!40000 ALTER TABLE `cargo` DISABLE KEYS */;
 INSERT INTO `cargo` (`id`, `created_at`, `nome`, `updated_at`) VALUES
 	(1, NULL, 'ADMINISTRADOR', NULL),
@@ -89,96 +89,79 @@ INSERT INTO `cargo` (`id`, `created_at`, `nome`, `updated_at`) VALUES
 	(3, NULL, 'ALUNO', NULL);
 /*!40000 ALTER TABLE `cargo` ENABLE KEYS */;
 
--- Copiando estrutura para tabela sier_desenv.edificio
+-- Copiando estrutura para tabela sier.edificio
 CREATE TABLE IF NOT EXISTS `edificio` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `fonte_coleta` varchar(255) DEFAULT NULL,
-  `informacoes` varchar(255) DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `data_construcao` date DEFAULT NULL,
-  `bairro` varchar(255) DEFAULT NULL,
-  `cep` varchar(255) DEFAULT NULL,
-  `cidade` varchar(255) DEFAULT NULL,
-  `estado` varchar(255) DEFAULT NULL,
-  `numero` varchar(255) DEFAULT NULL,
-  `rua` varchar(255) DEFAULT NULL,
+  `created_by_id` bigint(20) DEFAULT NULL,
+  `updated_by_id` bigint(20) DEFAULT NULL,
   `nome` varchar(255) DEFAULT NULL,
   `nome_conhecido` varchar(255) NOT NULL,
-  `numero_andares` int(11) NOT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  `atualizado_por_id` bigint(20) DEFAULT NULL,
-  `cadastrado_por_id` bigint(20) DEFAULT NULL,
+  `data_construcao` date DEFAULT NULL,
+  `numero_andares` int(11) DEFAULT NULL,
+  `fonte_coleta` varchar(255) DEFAULT NULL,
+  `informacoes` varchar(255) DEFAULT NULL,
+  `cep` varchar(255) DEFAULT NULL,
+  `numero` varchar(255) DEFAULT NULL,
+  `rua` varchar(255) DEFAULT NULL,
+  `bairro` varchar(255) DEFAULT NULL,
+  `cidade` varchar(255) DEFAULT NULL,
+  `estado` varchar(255) DEFAULT NULL,
+  `updated_at` date DEFAULT NULL,
+  `created_at` date DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FKllc10q03y65pvtgvhtgfnyj9i` (`atualizado_por_id`),
-  KEY `FKjaq3ve4bg570b6me1ygx7ca6a` (`cadastrado_por_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
+  KEY `FK1jodw5igc0vd44d3apba4w4dw` (`created_by_id`),
+  KEY `FK9no4jykkvjr8vbu6tjmef14vi` (`updated_by_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=62 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela sier_desenv.edificio: 43 rows
+-- Copiando dados para a tabela sier.edificio: 43 rows
 /*!40000 ALTER TABLE `edificio` DISABLE KEYS */;
-INSERT INTO `edificio` (`id`, `fonte_coleta`, `informacoes`, `created_at`, `data_construcao`, `bairro`, `cep`, `cidade`, `estado`, `numero`, `rua`, `nome`, `nome_conhecido`, `numero_andares`, `updated_at`, `atualizado_por_id`, `cadastrado_por_id`) VALUES
-	(1, 'INTERNET', '', '2019-10-04 01:44:42', NULL, 'Gleba Fazenda Palhano', '86055630', 'Londrina', 'PR', '1260', 'Rua Ernâni Lacerda de Athayde', 'Residencial San Pablo III A ', 'San Pablo', 3, NULL, NULL, 19),
-	(2, 'INTERNET', '', '2019-10-04 01:44:44', NULL, 'Gleba Fazenda Palhano', '86055630', 'Londrina', 'PR', '1200', 'Rua Ernâni Lacerda de Athayde', 'Vivere Palhano', 'Vivere', 18, NULL, NULL, 6),
-	(3, 'INTERNET', '', '2019-10-04 01:44:45', NULL, 'Colina Verde', '86050620', 'Londrina', 'PR', '110', 'Rua Flor-da-manhã', 'Condomínio Água Verde', '', 3, NULL, NULL, 21),
-	(4, 'INTERNET', '4 apartamentos por andar c/ opções de 2 e 3 vagas de garagem Apto. c/ 2 vagas área total: 197 m²área útil 110m²Apto. c/ 3 vagas área total: 211 m²área útil 110m²', '2019-10-04 01:44:46', NULL, 'Gleba Fazenda Palhano', '86050464', 'Londrina', 'PR', '458', 'Rua Eurico Hummig', 'MAISON GIVERNY', 'GIVERNY', 22, NULL, NULL, 9),
-	(5, 'INTERNET', 'Construtora A. Yoshii Engenharia 3 dormitórios (1 suíte) 2 vagas de garagem 80m²de área privativa 142m²de área total', '2019-10-04 01:44:47', NULL, 'Gleba Fazenda Palhano', '86050464', 'Londrina', 'PR', '404', 'Rua Eurico Hummig', 'Condomínio Talent Residence', 'Talent Residence', 19, NULL, NULL, 1),
-	(6, 'INTERNET', '4 apartamentos por andar Aptos c/ 2 vagas de garagem área total: 285,71 m²área útil 183 m²Aptos c/ 3 vagas de garagem área total: 299,60 m²área útil 183 m²', '2019-10-04 01:44:48', NULL, 'Gleba Fazenda Palhano', '86050464', 'Londrina', 'PR', '405', 'Rua Eurico Hummig', 'MAISON LEGACY', 'LEGACY', 25, NULL, NULL, 9),
-	(7, 'INTERNET', '1 (uma) torre Construtora A.YOSHII ENGENHARIA E CONSTRUÇÃO LTDA 4 aptos. por andar Aptos c/ 2 vagas de garagem área total: 264 m²área útil 173 m²Aptos c/ 3 vagas de garagem área total: 278 m²área útil 173 m²', '2019-10-04 01:44:49', NULL, 'Gleba Fazenda Palhano', '86050464', 'Londrina', 'PR', '350', 'Rua Eurico Hummig', 'MAISON LAZULI', 'LAZULI', 26, NULL, NULL, 4),
-	(8, 'INTERNET', '04 aptos. por andar Aptos c/ 3 vagas de garagem área total: 342,56 m²área útil 214,76 m²Aptos c/ 4 vagas de garagem área total: 357,86 m²área útil 214,76 m²', '2019-10-04 01:44:49', NULL, 'Gleba Fazenda Palhano', '86050464', 'Londrina', 'PR', '355', 'Rua Eurico Hummig', 'LANDMARK RESIDENCE', 'LANDMARK', 25, NULL, NULL, 13),
-	(9, 'INTERNET', 'Google', '2019-10-04 01:44:50', NULL, 'Gleba Fazenda Palhano', '86050520', 'Londrina', 'PR', '300', 'Rua Jerusalém', 'Jardins Eco Resort ', 'Eco Resort', 19, NULL, NULL, 18),
-	(10, 'INTERNET', 'Site Plaenge', '2019-10-04 01:44:14', NULL, 'Gleba Fazenda Palhano', '86050464', 'Londrina', 'PR', '255', 'Rua Eurico Hummig', 'Edifício Florais Eco Resort', 'Florais', 19, NULL, NULL, 18),
-	(11, 'INTERNET', 'Site Plaenge', '2019-10-04 01:44:15', NULL, 'Gleba Fazenda Palhano', '86050490', 'Londrina', 'PR', '855', 'Rua João Huss', 'Edifício Alameda Eco Resort', '', 25, NULL, NULL, 18),
-	(12, 'INTERNET', '', '2019-10-04 01:44:16', NULL, 'Gleba Fazenda Palhano', '86050492', 'Londrina', 'PR', '220', 'Alameda PéVermelho', 'Edifício Parc Rocher', 'Parc Rocher', 22, NULL, NULL, 18),
-	(13, 'INTERNET', '', '2019-10-04 01:44:51', NULL, 'Gleba Fazenda Palhano', '86050464', 'Londrina', 'PR', '577', 'Rua Eurico Hummig', 'Authentique Residencial', 'Authentique', 24, NULL, NULL, 19),
-	(14, 'INTERNET', 'O prédio contém 25 andares, onde 22 são dedicados aos apartamentos. São 8 apartamentos por andar.', '2019-10-04 01:44:51', NULL, 'Gleba Fazenda Palhano', '86050480', 'Londrina', 'PR', '1200', 'Rua Ivan Sérgio Athayde Vicente', 'Condomínio Liberty Towers', 'Liberty Torres', 25, NULL, NULL, 17),
-	(15, 'INTERNET', '', '2019-10-04 01:44:52', NULL, 'Gleba Fazenda Palhano', '86050492', 'Londrina', 'PR', '766', 'Alameda PéVermelho', 'L Harmonie Condominio', 'L Harmonie', 24, NULL, NULL, 16),
-	(16, 'INTERNET', 'Edifício tem duas torres. Torre A e Torre B.', '2019-10-04 01:44:52', NULL, 'Gleba Fazenda Palhano', '86055630', 'Londrina', 'PR', '1200', 'Rua Ernâni Lacerda de Athayde', 'Edifício Vivere Palhano', 'Vivere ', 19, NULL, NULL, 17),
-	(17, 'INTERNET', '*Endereço aparece diferente no momento em que o CEP écadastrado. Endereço real: R. Ernâni Lacerda de Athayde, 930 - Gleba Fazenda Palhano, Londrina - PR.', '2019-10-04 01:44:53', NULL, 'Conjunto Habitacional Jamile Dequech', '86044766', 'Londrina', 'PR', '930', 'Rodovia JoséGarcia de Campos', 'Edifício Le Blanc', 'Le Blanc', 24, NULL, NULL, 17),
-	(18, 'INTERNET', '', '2019-10-04 01:44:53', NULL, 'Gleba Fazenda Palhano', '86055630', 'Londrina', 'PR', '45', 'Rua Ernâni Lacerda de Athayde', 'Condomínio Edifício Mogno', 'Mogno', 21, NULL, NULL, 17),
-	(19, 'PORTARIA', 'Construtora: Plaenge', '2019-10-04 01:44:54', NULL, 'Gleba Fazenda Palhano', '86055620', 'Londrina', 'PR', '150', 'Rua Ulrico Zuínglio', 'Edifício Arquiteto Júlio Ribeiro', 'Arquiteto Júlio Ribeiro', 22, NULL, NULL, 5),
-	(20, 'PORTARIA', 'Construtora: Ageplan Engenharia', '2019-10-04 01:44:54', NULL, 'Santa Rosa', '86050070', 'Londrina', 'PR', '1001', 'Rua Caracas', 'Edifício Villa Solare', 'Villa Solare', 17, NULL, NULL, 1),
-	(21, 'PORTARIA', 'Construtora: Plaenge', '2019-10-04 01:44:55', NULL, 'Gleba Fazenda Palhano', '86055620', 'Londrina', 'PR', '100', 'Rua Ulrico Zuínglio', 'Edifício Anita Malfatti', 'Anita Malfatti', 17, NULL, NULL, 1),
-	(22, 'PORTARIA', 'Edifício construído pela Vectra Construtora, localiza-se a uma quadra da Av. Ayrton Senna, próximo ao Aurora Shopping e também àAv. Madre Leônia Milito.', '2019-10-04 01:44:55', NULL, 'Gleba Fazenda Palhano', '86050464', 'Londrina', 'PR', '300', 'Rua Eurico Hummig', 'Premiatto Residence', 'Premiatto', 22, NULL, NULL, 8),
-	(23, 'PORTARIA', 'Construtura: Vectra.', '2019-10-04 01:44:56', NULL, 'Gleba Fazenda Palhano', '86050464', 'Londrina', 'PR', '280', 'Rua Eurico Hummig', 'Max Living', 'Max Living', 21, NULL, NULL, 8),
-	(24, 'PORTARIA', 'Quadra Construtora', '2019-10-04 01:44:56', NULL, 'Gleba Fazenda Palhano', '86050470', 'Londrina', 'PR', '400', 'Rua Maria Lúcia da Paz', 'Residencial Terra Brasil', 'Terra Brasil', 18, NULL, NULL, 10),
-	(25, 'PORTARIA', 'Construtora Great Incorporação e Empreen LTDA', '2019-10-04 01:44:57', NULL, 'Gleba Fazenda Palhano', '86050470', 'Londrina', 'PR', '450', 'Rua Maria Lúcia da Paz', 'Edifício Vision Residence', 'Vision', 18, NULL, NULL, 10),
-	(26, 'INTERNET', '', '2019-10-04 01:44:57', NULL, 'Santa Rosa', '86050070', 'Londrina', 'PR', '1255', 'Rua Caracas', 'NYC Palhano', 'NYC Palhano', 25, NULL, NULL, 3),
-	(27, 'PORTARIA', 'Edifício em construção. Construtora: Galmo Construtora', '2019-10-04 01:44:58', NULL, 'Gleba Fazenda Palhano', '86050470', 'Londrina', 'PR', '350', 'Rua Maria Lúcia da Paz', 'Edifício Torre Ville', 'Torre Ville', 20, NULL, NULL, 20),
-	(28, 'PORTARIA', 'Data de entrega: março 2013. Construtora: Vectra', '2019-10-04 01:44:58', NULL, 'Gleba Fazenda Palhano', '86055620', 'Londrina', 'PR', '320', 'Rua Ulrico Zuínglio', 'Evolution Home Alto da Palhano', 'Evolution', 21, NULL, NULL, 20),
-	(29, 'INTERNET', '', '2019-10-04 01:44:59', NULL, 'Gleba Fazenda Palhano', '86055630', 'Londrina', 'PR', '450', 'Rua Ernâni Lacerda de Athayde', 'Condomínio Torre Valência', 'Torre Valência', 24, NULL, NULL, 3),
-	(30, 'INTERNET', '', '2019-10-04 01:44:59', NULL, 'Gleba Fazenda Palhano', '86055630', 'Londrina', 'PR', '188', 'Rua Ernâni Lacerda de Athayde', 'Condomínio Residencial Costa Esmeralda', 'Costa Esmeralda', 10, NULL, NULL, 3),
-	(31, 'INTERNET', 'O edifício tem três torres', '2019-10-04 01:45:00', NULL, 'Gleba Fazenda Palhano', '86055620', 'Londrina', 'PR', '500', 'Rua Ulrico Zuínglio', 'Edifício Garden Palhano', 'Garden Palhano', 21, NULL, NULL, 11),
-	(32, 'INTERNET', '', '2019-10-04 01:45:00', NULL, 'Gleba Fazenda Palhano', '86055630', 'Londrina', 'PR', '400', 'Rua Ernâni Lacerda de Athayde', 'Edifício Torre Almeria', 'Torre Almeria', 25, NULL, NULL, 11),
-	(33, 'INTERNET', 'O condomínio tem duas torres', '2019-10-04 01:45:01', NULL, 'Gleba Fazenda Palhano', '86055630', 'Londrina', 'PR', '200', 'Rua Ernâni Lacerda de Athayde', 'Condomínio Residencial Enseadas', 'Residencial Enseadas', 11, NULL, NULL, 11),
-	(34, 'INTERNET', '2 Apto. por andar; lote com 3.586,40 m²; área total construída de 19.737,96 m²; as vagas variam de 03 a 04. ', '2019-10-04 01:45:02', NULL, 'Gleba Fazenda Palhano', '86050490', 'Londrina', 'PR', '485', 'Rua João Huss', 'Edificio Torre Val Verde', 'Edificio Torre Val Verde', 30, NULL, NULL, 15),
-	(35, 'INTERNET', 'Construtora PLAENGE EMPREENDIMENTOS LTDA; área total de 23,869,97 m²; 02 vagas de garagem. Obs: A data de entrega encontrada foi no ano de 2002. ', '2019-10-04 01:45:03', NULL, 'Gleba Fazenda Palhano', '86050490', 'Londrina', 'PR', '200', 'Rua João Huss', 'Edifício Lac Royal', 'Edifício Lac Royal', 24, NULL, NULL, 15),
-	(36, 'INTERNET', 'Área Priv. entre 58m²e 81m²; 3 Dormitórios e 1 suíte; estáem construção, portanto ainda não édisponibilizado a quantidade de andares; 1 ou 2 vagas; ', '2019-10-04 01:45:05', NULL, 'Gleba Fazenda Palhano', '86050490', 'Londrina', 'PR', '1000', 'Rua João Huss', 'Cencept Palhano/Vanguard Home', 'Concept Palhano', 1, NULL, NULL, 15),
-	(37, 'INTERNET', '04 aptos por andar; 02 vagas de garagem, opção para 03; área total de 205,00m²', '2019-10-04 01:45:06', NULL, 'Gleba Fazenda Palhano', '86050490', 'Londrina', 'PR', '881', 'Rua João Huss', 'Vert Residence ', 'Vert Residence ', 25, NULL, NULL, 15),
-	(38, 'INTERNET', 'A Torre 1 Jasmim foi entregue em Outubro 2017 e a Torre 2 JatobáAbril 2017; área total 30,351,15m²; com 02 quartos, 01 suíte; possui academia, brinquedoteca; churrasqueira; espaço Gourmet, Hall de entrada, pscina coberta e aquecida, playground e etc.', '2019-10-04 01:45:07', NULL, 'Gleba Fazenda Palhano', '86050490', 'Londrina', 'PR', '855', 'Rua João Huss', 'Edifício Alameda Eco Resort & Residence', ' Alameda Eco Resort & Residence', 24, NULL, NULL, 15),
-	(39, 'INTERNET', 'Construtora YOSHI ENGENHARIA E CONSTRUÇÕES LTDA; área total de 12.537,59m²; 04 aptos por andar com 01 vaga dupla de garagem.', '2019-10-04 01:45:08', NULL, 'Gleba Fazenda Palhano', '86050490', 'Londrina', 'PR', '455', 'Rua João Huss', 'Edifício Maison Murano ', 'Maison Murano', 20, NULL, NULL, 15),
-	(40, 'INTERNET', 'Construtora: PLAENGE EMPREENDIMENTOS LTDA., 04 aptos; vagas de garagens simples e duplas; área total de 231,47m².', '2019-10-04 01:45:09', NULL, 'Gleba Fazenda Palhano', '86050490', 'Londrina', 'PR', '380', 'Rua João Huss', 'Edifício Joan Miró', 'Joan Miró', 24, NULL, NULL, 15),
-	(41, 'INTERNET', 'Construtora: A. Yoshii; 02 vagas de garagem; 2 piscinas; espaço fitness; varanda com churrasqueira; espaço gourmet; 04 aptos por andar. ', '2019-10-04 01:45:10', NULL, 'Gleba Fazenda Palhano', '86050490', 'Londrina', 'PR', '405', 'Rua João Huss', 'Residencial Manaca', 'Edifício Manaca', 21, NULL, NULL, 15),
-	(42, 'INTERNET', '', '2019-10-04 01:45:11', NULL, 'Gleba Fazenda Palhano', '86050490', 'Londrina', 'PR', '115', 'Rua João Huss', '', 'Condomínio Residencial Bosque Wilmar H Berbert', 1, NULL, NULL, 14),
-	(43, 'INTERNET', '', '2019-10-04 01:45:22', NULL, 'Gleba Fazenda Palhano', '86050490', 'Londrina', 'PR', '177', 'Rua João Huss', '', 'Condomínio Residencial Pérola Negra', 1, NULL, NULL, 14);
+INSERT INTO `edificio` (`id`, `created_by_id`, `updated_by_id`, `nome`, `nome_conhecido`, `data_construcao`, `numero_andares`, `fonte_coleta`, `informacoes`, `cep`, `numero`, `rua`, `bairro`, `cidade`, `estado`, `updated_at`, `created_at`) VALUES
+	(1, 19, 1, 'Residencial San Pablo III A ', 'San Pablo', NULL, 3, 'INTERNET', NULL, '86055630', '1260', 'Rua Ernâni Lacerda de Athayde', 'Gleba Fazenda Palhano', 'Londrina', 'PR', '2019-12-04', '2018-10-14'),
+	(2, 6, NULL, 'Vivere Palhano', 'Vivere', NULL, 18, 'INTERNET', NULL, '86055630', '1200', 'Rua Ernâni Lacerda de Athayde', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(3, 21, NULL, 'Condomínio Água Verde', 'Condomínio Água Verde', NULL, 3, 'INTERNET', NULL, '86050620', '110', 'Rua Flor-da-manhã', 'Colina Verde', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(4, 9, NULL, 'MAISON GIVERNY', 'GIVERNY', NULL, 22, 'INTERNET', '4 apartamentos por andar c/ opções de 2 e 3 vagas de garagem Apto. c/ 2 vagas área total: 197 m²área útil 110m²Apto. c/ 3 vagas área total: 211 m²área útil 110m²', '86050464', '458', 'Rua Eurico Hummig', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(5, 1, NULL, 'Condomínio Talent Residence', 'Talent Residence', NULL, 19, 'INTERNET', 'Construtora A. Yoshii Engenharia 3 dormitórios (1 suíte) 2 vagas de garagem 80m²de área privativa 142m²de área total', '86050464', '404', 'Rua Eurico Hummig', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(6, 9, NULL, 'MAISON LEGACY', 'LEGACY', NULL, 25, 'INTERNET', '4 apartamentos por andar Aptos c/ 2 vagas de garagem área total: 285,71 m²área útil 183 m²Aptos c/ 3 vagas de garagem área total: 299,60 m²área útil 183 m²', '86050464', '405', 'Rua Eurico Hummig', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(7, 4, NULL, 'MAISON LAZULI', 'LAZULI', NULL, 26, 'INTERNET', '1 (uma) torre Construtora A.YOSHII ENGENHARIA E CONSTRUÇÃO LTDA 4 aptos. por andar Aptos c/ 2 vagas de garagem área total: 264 m²área útil 173 m²Aptos c/ 3 vagas de garagem área total: 278 m²área útil 173 m²', '86050464', '350', 'Rua Eurico Hummig', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(8, 13, NULL, 'LANDMARK RESIDENCE', 'LANDMARK', NULL, 25, 'INTERNET', '04 aptos. por andar Aptos c/ 3 vagas de garagem área total: 342,56 m²área útil 214,76 m²Aptos c/ 4 vagas de garagem área total: 357,86 m²área útil 214,76 m²', '86050464', '355', 'Rua Eurico Hummig', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(9, 18, NULL, 'Jardins Eco Resort ', 'Eco Resort', NULL, 19, 'INTERNET', 'Google', '86050520', '300', 'Rua Jerusalém', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(10, 18, NULL, 'Edifício Florais Eco Resort', 'Florais', NULL, 19, 'INTERNET', 'Site Plaenge', '86050464', '255', 'Rua Eurico Hummig', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(11, 18, 1, 'Edifício Alameda Eco Resort', 'Edifício Alameda Eco Resort', NULL, 25, 'INTERNET', 'Site Plaenge', '86050490', '855', 'Rua João Huss', 'Gleba Fazenda Palhano', 'Londrina', 'PR', '2019-12-04', '2018-10-14'),
+	(12, 18, NULL, 'Edifício Parc Rocher', 'Parc Rocher', NULL, 22, 'INTERNET', NULL, '86050492', '220', 'Alameda PéVermelho', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(13, 19, NULL, 'Authentique Residencial', 'Authentique', NULL, 24, 'INTERNET', NULL, '86050464', '577', 'Rua Eurico Hummig', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(14, 17, NULL, 'Condomínio Liberty Towers', 'Liberty Torres', NULL, 25, 'INTERNET', 'O prédio contém 25 andares, onde 22 são dedicados aos apartamentos. São 8 apartamentos por andar.', '86050480', '1200', 'Rua Ivan Sérgio Athayde Vicente', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(15, 16, NULL, 'L Harmonie Condominio', 'L Harmonie', NULL, 24, 'INTERNET', NULL, '86050492', '766', 'Alameda PéVermelho', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(16, 17, NULL, 'Edifício Vivere Palhano', 'Vivere ', NULL, 19, 'INTERNET', 'Edifício tem duas torres. Torre A e Torre B.', '86055630', '1200', 'Rua Ernâni Lacerda de Athayde', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(17, 17, NULL, 'Edifício Le Blanc', 'Le Blanc', NULL, 24, 'INTERNET', '*Endereço aparece diferente no momento em que o CEP écadastrado. Endereço real: R. Ernâni Lacerda de Athayde, 930 - Gleba Fazenda Palhano, Londrina - PR.', '86044766', '930', 'Rodovia JoséGarcia de Campos', 'Conjunto Habitacional Jamile Dequech', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(18, 17, NULL, 'Condomínio Edifício Mogno', 'Mogno', NULL, 21, 'INTERNET', NULL, '86055630', '45', 'Rua Ernâni Lacerda de Athayde', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(19, 5, NULL, 'Edifício Arquiteto Júlio Ribeiro', 'Arquiteto Júlio Ribeiro', NULL, 22, 'PORTARIA', 'Construtora: Plaenge', '86055620', '150', 'Rua Ulrico Zuínglio', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(20, NULL, NULL, 'Edifício Villa Solare', 'Villa Solare', NULL, 17, 'PORTARIA', 'Construtora: Ageplan Engenharia', '86050070', '1001', 'Rua Caracas', 'Santa Rosa', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(21, NULL, NULL, 'Edifício Anita Malfatti', 'Anita Malfatti', NULL, 17, 'PORTARIA', 'Construtora: Plaenge', '86055620', '100', 'Rua Ulrico Zuínglio', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(22, 8, NULL, 'Premiatto Residence', 'Premiatto', NULL, 22, 'PORTARIA', 'Edifício construído pela Vectra Construtora, localiza-se a uma quadra da Av. Ayrton Senna, próximo ao Aurora Shopping e também àAv. Madre Leônia Milito.', '86050464', '300', 'Rua Eurico Hummig', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(23, 8, NULL, 'Max Living', 'Max Living', NULL, 21, 'PORTARIA', 'Construtura: Vectra.', '86050464', '280', 'Rua Eurico Hummig', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(24, 10, NULL, 'Residencial Terra Brasil', 'Terra Brasil', NULL, 18, 'PORTARIA', 'Quadra Construtora', '86050470', '400', 'Rua Maria Lúcia da Paz', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(25, 10, NULL, 'Edifício Vision Residence', 'Vision', NULL, 18, 'PORTARIA', 'Construtora Great Incorporação e Empreen LTDA', '86050470', '450', 'Rua Maria Lúcia da Paz', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(26, 3, NULL, 'NYC Palhano', 'NYC Palhano', NULL, 25, 'INTERNET', NULL, '86050070', '1255', 'Rua Caracas', 'Santa Rosa', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(27, 20, NULL, 'Edifício Torre Ville', 'Torre Ville', NULL, 20, 'PORTARIA', 'Edifício em construção. Construtora: Galmo Construtora', '86050470', '350', 'Rua Maria Lúcia da Paz', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(28, 20, NULL, 'Evolution Home Alto da Palhano', 'Evolution', NULL, 21, 'PORTARIA', 'Data de entrega: março 2013. Construtora: Vectra', '86055620', '320', 'Rua Ulrico Zuínglio', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(29, 3, NULL, 'Condomínio Torre Valência', 'Torre Valência', NULL, 24, 'INTERNET', NULL, '86055630', '450', 'Rua Ernâni Lacerda de Athayde', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(30, 3, NULL, 'Condomínio Residencial Costa Esmeralda', 'Costa Esmeralda', NULL, 10, 'INTERNET', NULL, '86055630', '188', 'Rua Ernâni Lacerda de Athayde', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(31, 11, NULL, 'Edifício Garden Palhano', 'Garden Palhano', NULL, 21, 'INTERNET', 'O edifício tem três torres', '86055620', '500', 'Rua Ulrico Zuínglio', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(32, 11, NULL, 'Edifício Torre Almeria', 'Torre Almeria', NULL, 25, 'INTERNET', NULL, '86055630', '400', 'Rua Ernâni Lacerda de Athayde', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(33, 11, NULL, 'Condomínio Residencial Enseadas', 'Residencial Enseadas', NULL, 11, 'INTERNET', 'O condomínio tem duas torres', '86055630', '200', 'Rua Ernâni Lacerda de Athayde', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(34, 15, NULL, 'Edificio Torre Val Verde', 'Edificio Torre Val Verde', NULL, 30, 'INTERNET', '2 Apto. por andar; lote com 3.586,40 m²; área total construída de 19.737,96 m²; as vagas variam de 03 a 04. ', '86050490', '485', 'Rua João Huss', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(35, 15, NULL, 'Edifício Lac Royal', 'Edifício Lac Royal', NULL, 24, 'INTERNET', 'Construtora PLAENGE EMPREENDIMENTOS LTDA; área total de 23,869,97 m²; 02 vagas de garagem. Obs: A data de entrega encontrada foi no ano de 2002. ', '86050490', '200', 'Rua João Huss', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(36, 15, NULL, 'Cencept Palhano/Vanguard Home', 'Concept Palhano', NULL, 1, 'INTERNET', 'Área Priv. entre 58m²e 81m²; 3 Dormitórios e 1 suíte; estáem construção, portanto ainda não édisponibilizado a quantidade de andares; 1 ou 2 vagas; ', '86050490', '1000', 'Rua João Huss', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(37, 15, NULL, 'Vert Residence ', 'Vert Residence ', NULL, 25, 'INTERNET', '04 aptos por andar; 02 vagas de garagem, opção para 03; área total de 205,00m²', '86050490', '881', 'Rua João Huss', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(38, 15, NULL, 'Edifício Alameda Eco Resort & Residence', ' Alameda Eco Resort & Residence', NULL, 24, 'INTERNET', 'A Torre 1 Jasmim foi entregue em Outubro 2017 e a Torre 2 JatobáAbril 2017; área total 30,351,15m²; com 02 quartos, 01 suíte; possui academia, brinquedoteca; churrasqueira; espaço Gourmet, Hall de entrada, pscina coberta e aquecida, playground e etc.', '86050490', '855', 'Rua João Huss', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(39, 15, NULL, 'Edifício Maison Murano ', 'Maison Murano', NULL, 20, 'INTERNET', 'Construtora YOSHI ENGENHARIA E CONSTRUÇÕES LTDA; área total de 12.537,59m²; 04 aptos por andar com 01 vaga dupla de garagem.', '86050490', '455', 'Rua João Huss', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(40, 15, NULL, 'Edifício Joan Miró', 'Joan Miró', NULL, 24, 'INTERNET', 'Construtora: PLAENGE EMPREENDIMENTOS LTDA., 04 aptos; vagas de garagens simples e duplas; área total de 231,47m².', '86050490', '380', 'Rua João Huss', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(41, 15, NULL, 'Residencial Manaca', 'Edifício Manaca', NULL, 21, 'INTERNET', 'Construtora: A. Yoshii; 02 vagas de garagem; 2 piscinas; espaço fitness; varanda com churrasqueira; espaço gourmet; 04 aptos por andar. ', '86050490', '405', 'Rua João Huss', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(42, 14, NULL, NULL, 'Condomínio Residencial Bosque Wilmar H Berbert', NULL, 1, 'INTERNET', NULL, '86050490', '115', 'Rua João Huss', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14'),
+	(43, 14, NULL, NULL, 'Condomínio Residencial Pérola Negra', NULL, 1, 'INTERNET', NULL, '86050490', '177', 'Rua João Huss', 'Gleba Fazenda Palhano', 'Londrina', 'PR', NULL, '2018-10-14');
 /*!40000 ALTER TABLE `edificio` ENABLE KEYS */;
 
--- Copiando estrutura para tabela sier_desenv.noticia
-CREATE TABLE IF NOT EXISTS `noticia` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `created_at` datetime DEFAULT NULL,
-  `data_publicacao` datetime NOT NULL,
-  `descicao` varchar(255) DEFAULT NULL,
-  `nome` varchar(60) NOT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  `usuario_id` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK51s0hrvyltinu4gignfdoen34` (`usuario_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- Copiando dados para a tabela sier_desenv.noticia: 0 rows
-/*!40000 ALTER TABLE `noticia` DISABLE KEYS */;
-/*!40000 ALTER TABLE `noticia` ENABLE KEYS */;
-
--- Copiando estrutura para tabela sier_desenv.usuario
+-- Copiando estrutura para tabela sier.usuario
 CREATE TABLE IF NOT EXISTS `usuario` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `ativo` bit(1) DEFAULT NULL,
@@ -193,9 +176,9 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_5171l57faosmj8myawaucatdw` (`email`),
   KEY `FKnnbsgmv6we6ee7x59r9m693c3` (`cargo_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela sier_desenv.usuario: 27 rows
+-- Copiando dados para a tabela sier.usuario: 22 rows
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 INSERT INTO `usuario` (`id`, `ativo`, `created_at`, `email`, `last_login`, `nome`, `senha`, `updated_at`, `apelido`, `cargo_id`) VALUES
 	(1, b'1', '2018-01-01 00:00:00', 'renato.henrique_98@hotmail.com', '2018-08-21 11:43:07', 'Renato Henrique Horacio dos Santos', '$2a$10$fNntSM.zr5PDvKsoVgvENuJDbMJuBsM3lZpYXPd/RO3E/JKqKu0Ai', '2019-06-17 12:20:09', 'Renato', 1),
@@ -219,12 +202,7 @@ INSERT INTO `usuario` (`id`, `ativo`, `created_at`, `email`, `last_login`, `nome
 	(19, b'1', '2018-01-01 00:00:00', 'sueli.sagatelli@saier.com', '2018-08-01 10:36:11', 'Sueli de Melo Sagatelli ', '$2a$10$TA0Qx8UJtQVnz6rPlDIR2uGrOex7JUG/O/XuYyD6./G/0.tEufsm2', '2019-06-17 12:43:31', 'Sueli de Melo', 3),
 	(20, b'1', '2018-01-01 00:00:00', 'taiza.oliveira@saier.com', '2018-08-02 07:46:32', 'Taiza Maria Lozano de Oliveira', '$2a$10$qwjd/J0J1fistw6R/LoVU.BB2iYybAoiFIlcSKUeUFYf7gqH2.mZW', '2019-06-17 12:43:31', 'Taiza Maria', 3),
 	(21, b'1', '2018-01-01 00:00:00', 'thais.santos@saier.com', '2018-07-31 09:40:54', 'Thais Pricila dos Santos', '$2a$10$1XxlEvprTHqkNcbkt9W6devPxNThjSjWnYL5CSWUN3mwfMIbUr8Za', '2019-06-17 12:43:31', 'Thais Pricila', 3),
-	(22, b'1', '2018-01-01 00:00:00', 'thaysa.andrade@saier.com', '2018-07-31 10:31:44', 'Thaysa A Garbosa Vieira de Andrade', '$2a$10$UYn4Fcs7dd3saaTeZPrev.eMGwRD.9ZvoaecgaV0VmPxQkfEl9hky', '2019-06-17 12:43:31', 'Thaysa Garbosa', 3),
-	(23, b'1', '2019-07-14 00:20:33', 'fulano', '2019-07-14 00:20:40', 'fulano', '$2a$10$fNntSM.zr5PDvKsoVgvENuJDbMJuBsM3lZpYXPd/RO3E/JKqKu0Ai', '2019-07-14 00:20:56', 'fulano', NULL),
-	(24, b'1', '2019-07-15 20:27:05', 'fulano@email.com', NULL, 'Fulano', '$2a$10$w28jrWmy2Q2zWTus9oP8uezHUeGxSCaXuQCsggT7A4Whv3KlyrcpW', NULL, 'Fulaninho', 3),
-	(25, b'1', '2019-07-15 20:37:30', 'fulano2@email.com', NULL, 'Fulano', '$2a$10$lG/EqPof14b7eb2RMYQJN.3yDqWAqpLhnjUll6r/a1IOag0LVTFHC', NULL, 'Fulaninho', 3),
-	(26, b'1', '2019-07-15 20:38:22', 'fulano3@email.com', NULL, 'Fulano', '$2a$10$CE4gjSibeiyeeQqdI3pqHuGNOSRUiFet5N7ueUr5yrREVXS0AzziC', NULL, 'Fulaninho', 3),
-	(27, b'1', '2019-07-15 02:39:21', 'fulano@gmail.com', NULL, 'Jublawderçom', '$2a$10$PPeP9dmH2cGzDq9dsJjrn.U0ZkSR0i7rcv.Z91o7CFLWlWBlGUFYe', '2019-07-21 17:10:17', 'KAKAKA', 3);
+	(22, b'1', '2018-01-01 00:00:00', 'thaysa.andrade@saier.com', '2018-07-31 10:31:44', 'Thaysa A Garbosa Vieira de Andrade', '$2a$10$UYn4Fcs7dd3saaTeZPrev.eMGwRD.9ZvoaecgaV0VmPxQkfEl9hky', '2019-06-17 12:43:31', 'Thaysa Garbosa', 3);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

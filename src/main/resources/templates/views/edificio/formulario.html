@@ -55,13 +55,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                                 <input 
                                                     hidden
                                                     th:value="${#authentication.principal.id}"
-                                                    name="coleta.atualizadoPor.id">                                    
+                                                    name="coleta.updatedBy.id">                                    
                                             </span>
                                             <span th:if="*{id == null}">
                                                 <input
                                                     hidden
                                                     th:value="${#authentication.principal.id}"
-                                                    name="coleta.cadastradoPor.id">                                    
+                                                    name="coleta.createdBy.id">                                    
                                             </span>
                                         </div>
             

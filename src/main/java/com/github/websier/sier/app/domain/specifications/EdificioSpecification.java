@@ -34,17 +34,17 @@ public class EdificioSpecification {
                 model.addAttribute("fonteColeta", tipo.get());
             }
 
-            if (nome.isPresent()) {
+            if (isPresent(nome)) {
                 predicates.add(builder
                     .like(edificio.get("nomeConhecido"), "%" + nome.get() + "%"));
                 model.addAttribute("nome", nome.get());
             }
 
-            if (autor.isPresent()) {
+            if (isPresent(autor)) {
                 predicates.add(builder
                     .like(edificio
                         .get("coleta")
-                            .get("cadastradoPor")
+                            .get("createdBy")
                                 .get("nome"), "%" + autor.get() + "%"));
                 model.addAttribute("autor", autor.get());
             }
@@ -57,6 +57,10 @@ public class EdificioSpecification {
 
             return builder.and(getPredicates(predicates));
         };
+    }
+
+    private static boolean isPresent(Optional<String> field) {
+        return field.isPresent() && !field.get().isEmpty() && !field.get().isBlank();
     }
 
     private static Predicate [] getPredicates(List<Predicate> predicates) {

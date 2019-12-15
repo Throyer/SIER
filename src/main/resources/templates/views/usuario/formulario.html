@@ -18,41 +18,42 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <html th:replace="~{ fragments/layout :: layout(~{::title}, ~{}, ~{::section}, ~{}, ~{}) }">
 
 <head>
-    <title>Alunos</title>
+    <title>Formulario usuario</title>
 </head>
 
 <body>
     <section>
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-10">
+                <div class="col-md-8">
                     <div class="card shadow rounded-0 bg-light">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h4 class="font-weight-light">
-                                        <i class="fas fa-user-graduate"></i>
-                                        <span th:text="${aluno.id == null ? 'Cadastrar' : 'Editar'}"></span>
-                                        Aluno
-                                    </h4>
+                                    <h3 class="font-weight-light">
+                                            <i class="fas fa-user"></i>
+                                        <span th:text="${usuario.id == null ? 'Cadastrar' : 'Editar'}"></span>
+                                        usuario
+                                    </h3>
                                     <hr>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <form 
-                                        th:action="@{/alunos/formulario}"
+                                        th:action="@{/usuarios/formulario}"
                                         method="POST"
-                                        th:object="${aluno}"
+                                        th:object="${usuario}"
                                         class="needs-validation"
                                         autocomplete="off"
                                         novalidate>
             
-                                        <!-- id -->
+                                        <!-- ids -->
                                         <div class="row">
                                             <input hidden th:field="*{id}">
-                                            <input hidden th:field="*{cargo.id}">
+                                            <input hidden th:field="*{turma}">
                                         </div>
+            
                                         <!-- mensagens de erro -->
                                         <div class="row">
                                             <div class="col-md-12">
@@ -117,20 +118,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                                 <div class="form-group">
                                                     <label>
                                                         <small>
-                                                            Turma
+                                                            Cargo
                                                         </small>
                                                     </label>
-                                                    <input type="text" th:field="*{turma}" required class="form-control form-control-sm">
-                                                    <div class="invalid-feedback">
-                                                        <small>Por favor informe o turma.</small>
-                                                    </div>
+                                                    <select th:field="*{cargo}" required class="custom-select custom-select-sm">
+                                                        <option th:each="cargo : ${cargos}"
+                                                            th:selected="cargo == *{cargo}"
+                                                            th:value="${cargo.id}" th:text="${cargo.nome}">
+                                                        </option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
                                         <hr>
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <a th:href="@{/alunos(page=${0}, size=${10})}" class="btn btn-outline-primary">
+                                                <a th:href="@{/usuarios(page=${0}, size=${10})}" class="btn btn-outline-primary">
                                                     <i class="fas fa-arrow-left"></i>
                                                     Voltar
                                                 </a>

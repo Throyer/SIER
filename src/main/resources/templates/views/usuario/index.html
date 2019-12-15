@@ -15,22 +15,22 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<html th:replace="~{ fragments/layout :: layout(~{::title}, ~{}, ~{::section}, ~{::script}, ~{::modal}) }">
+<html th:replace="~{fragments/layout :: layout(~{::title}, ~{}, ~{::section}, ~{::script}, ~{::modal})}">
     <head>
-        <title>Edificios</title>
+        <title>Usuarios</title>
     </head>
     <body>
         <section>
-            <div class="container mb-5">
+            <div class="container">
                 <div class="card shadow-sm rounded-0 border-0">
                     <div class="card-header">
-                        <a th:href="@{/edificios/formulario}" class="btn float-right btn-success btn-sm">
+                        <a th:href="@{/usuarios/formulario}" class="btn float-right btn-success btn-sm">
                             Cadastrar Novo
                             <i class="fas fa-plus"></i>
                         </a>
                         <h3 class="mb-0 font-weight-light">
-                            <i class="fas fa-city"></i>
-                            Gerenciar edifcios
+                            <i class="fas fa-user"></i>
+                            Gerenciar usuarios
                         </h3>
                     </div>
                     <div class="card-body">
@@ -38,24 +38,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                             <div class="col-md-12">
                                 <alerts th:replace="~{fragments/utils :: alerts}"></alerts>
                                 <filters
-                                    th:replace="~{views/edificio/fragments/edificio-filter :: edificio-filter}">                                    
+                                    th:replace="~{views/usuario/fragments/usuario-filter :: usuario-filter}">                                    
                                 </filters>
-                                
                                 <table 
-                                    th:replace="~{views/edificio/fragments/table-edificio :: table-edificio}">
+                                    th:replace="~{views/usuario/fragments/table-usuario :: table-usuario}">
                                 </table>
                             </div>
                         </div>
                         <pagination 
-                            th:replace="~{views/edificio/fragments/pagination-edificio :: pagination-edificio('edificios')}">
+                            th:replace="~{views/usuario/fragments/pagination-usuario :: pagination-usuario('usuarios')}">
                         </pagination>
                     </div>
                 </div>
             </div>
         </section>
         <modal 
-            th:replace="~{views/edificio/fragments/modal-deletar-edificio :: modal-deletar-edificio}">
+            th:replace="~{views/usuario/fragments/modal-alternar-status-usuario :: modal-alternar-status-usuario}">
         </modal>
     </body>
-    <script language="javascript" th:src="@{/js/modais/modal-edificio.js}"></script>
+    <script language="javascript" th:src="@{/js/modais/modal-usuario.js}"></script>
 </html>

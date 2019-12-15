@@ -33,7 +33,7 @@ public class SecurityConstants {
     public static final String HOME_URL = "/";
     public static final String LOGIN_URL = "/login";
     public static final String LOGIN_ERROR_URL = LOGIN_URL + "?error=true";
-    public static final String ACESSO_NEGADO_URL = LOGIN_URL + "?negado=true";
+    public static final String ACESSO_NEGADO_URL = "/?negado=true";
     public static final String LOGOUT_URL = "/logout";
     
     public static final String SESSION_COOKIE_NAME = "JSESSIONID";

@@ -1,5 +1,5 @@
 <div 
-    th:fragment="pagination-aluno(url)"    
+    th:fragment="pagination-usuario(url)"    
     class="row justify-content-center">
 
     <nav>
@@ -13,7 +13,7 @@
                     url=${url},
                     page=0,
                     size=${(param.size)},
-                    turma=${(param.turma)},
+                    cargo=${(param.cargo)},
                     nome=${(param.nome)},
                     apelido=${(param.apelido)},
                     email=${(param.email)},
@@ -36,7 +36,7 @@
                     url=${url},
                     page=${pagina.number -1},
                     size=${(param.size)},
-                    turma=${(param.turma)},
+                    cargo=${(param.cargo)},
                     nome=${(param.nome)},
                     apelido=${(param.apelido)},
                     email=${(param.email)},
@@ -61,7 +61,7 @@
                         url=${url},
                         page=${page},
                         size=${(param.size)},
-                        turma=${(param.turma)},
+                        cargo=${(param.cargo)},
                         nome=${(param.nome)},
                         apelido=${(param.apelido)},
                         email=${(param.email)},
@@ -79,7 +79,7 @@
                     url=${url},
                     page=${pagina.number +1},
                     size=${(param.size)},
-                    turma=${(param.turma)},
+                    cargo=${(param.cargo)},
                     nome=${(param.nome)},
                     apelido=${(param.apelido)},
                     email=${(param.email)},
@@ -101,7 +101,7 @@
                     url=${url},
                     page=${pagina.totalPages -1},
                     size=${(param.size)},
-                    turma=${(param.turma)},
+                    cargo=${(param.cargo)},
                     nome=${(param.nome)},
                     apelido=${(param.apelido)},
                     email=${(param.email)},
