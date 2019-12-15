@@ -60,3 +60,18 @@
         </button>
     </div>
 </th:block>
+
+<th:block th:fragment="sizes">
+    <form id="sizeForm" class="ml-4">
+        <input hidden type="text" name="page" value="0">
+        <div class="input-group">
+            <select id="sizeInput" name="size" class="custom-select custom-select-sm">
+                <option value="10">Itens por pagina</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+            </select>
+        </div>
+    </form>
+</th:block>
