@@ -21,6 +21,7 @@ public class UsuarioSpecification {
 
     public static Specification<Usuario> where(
         Optional<String> cargo,
+        Optional<String> turma,
         Optional<String> nome,
         Optional<String> apelido,
         Optional<String> email,
@@ -30,6 +31,13 @@ public class UsuarioSpecification {
         return (usuario, query, builder) -> {
             
             List<Predicate> predicates = new ArrayList<>();
+
+            if (isPresent(turma)) {
+                predicates.add(builder
+                    .like(usuario
+                        .get("turma"),"%" + turma.get() + "%"));
+                model.addAttribute("turma", turma.get());
+            }
 
             if (isPresent(cargo)) {
                 predicates.add(builder

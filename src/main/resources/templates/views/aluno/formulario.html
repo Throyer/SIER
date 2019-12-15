@@ -51,8 +51,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                         <!-- id -->
                                         <div class="row">
                                             <input hidden th:field="*{id}">
+                                            <input hidden th:field="*{cargo.id}">
                                         </div>
-            
                                         <!-- mensagens de erro -->
                                         <div class="row">
                                             <div class="col-md-12">
@@ -72,124 +72,63 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                         </div><!-- /mensagens de erro-->
             
                                         <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>
-                                                                <small>
-                                                                    Nome completo
-                                                                    <span class="text-danger">*</span>
-                                                                </small>
-                                                            </label>
-                                                            <input
-                                                                autocomplete="name"
-                                                                th:field="*{usuario.nome}"
-                                                                class="form-control form-control-sm"
-                                                                required
-                                                                type="text">
-        
-                                                            <small class="invalid-feedback">Mensagem</small>
-                                                        </div>
+                                            <div class="col-8">
+                                                <div class="form-group">
+                                                    <label>
+                                                        <small>
+                                                            Nome
+                                                        </small>
+                                                    </label>
+                                                    <input type="text" th:field="*{nome}" required class="form-control form-control-sm">
+                                                    <div class="invalid-feedback">
+                                                        <small>Por favor informe o nome.</small>
                                                     </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label>
-                                                                <small>
-                                                                    Nome de usuario
-                                                                    <span class="text-danger">*</span>
-                                                                </small>
-                                                            </label>
-                                                            <input
-                                                                autocomplete="nickname"
-                                                                th:field="*{usuario.apelido}"
-                                                                class="form-control form-control-sm"
-                                                                required
-                                                                type="text">
-        
-                                                            <small class="invalid-feedback">Mensagem</small>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div class="form-group">
-                                                            <label>
-                                                                <small>Turma</small>
-                                                            </label>
-                                                            <input
-                                                                th:field="*{turma}"
-                                                                class="form-control form-control-sm"                                                                
-                                                                type="text">
-                                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label>
+                                                        <small>
+                                                            Apelido
+                                                        </small>
+                                                    </label>
+                                                    <input type="text" th:field="*{apelido}" required class="form-control form-control-sm">
+                                                    <div class="invalid-feedback">
+                                                        <small>Por favor informe o apelido.</small>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div th:if="*{id == null}" class="row">
-                                            <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-8">
                                                 <div class="form-group">
                                                     <label>
                                                         <small>
                                                             E-mail
-                                                            <span class="text-danger">*</span>
                                                         </small>
                                                     </label>
-                                                    <input
-                                                        autocomplete="email"
-                                                        th:field="*{usuario.email}"
-                                                        class="form-control form-control-sm"
-                                                        required
-                                                        type="text">
-
-                                                    <small class="invalid-feedback">Mensagem</small>
+                                                    <input type="email" th:field="*{email}" required class="form-control form-control-sm">
+                                                    <div class="invalid-feedback">
+                                                        <small>Por favor informe o email.</small>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="form-group">
-                                                            <label>
-                                                                <small>
-                                                                    Senha
-                                                                    <span class="text-danger">*</span>
-                                                                </small>
-                                                            </label>
-                                                            <input
-                                                                autocomplete="new-password"
-                                                                th:field="*{usuario.senha}"
-                                                                class="form-control form-control-sm"
-                                                                required
-                                                                type="password"
-                                                                pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\S+$).{8,}$">
-        
-                                                            <small class="invalid-feedback">
-                                                                No mínimo 8 caracteres, com no mínimo um número, um
-                                                                caractere especial, uma letra maiúscula e
-                                                                uma letra minúscula.
-                                                            </small>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="form-group">
-                                                            <label>
-                                                                <small>
-                                                                    Confirmação da senha
-                                                                    <span class="text-danger">*</span>
-                                                                </small>
-                                                            </label>
-                                                            <input
-                                                                autocomplete="new-password"
-                                                                name="confirmacaoDaSenha"
-                                                                class="form-control form-control-sm"
-                                                                required
-                                                                type="password"
-                                                                pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\S+$).{8,}$">
-                                                        </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label>
+                                                        <small>
+                                                            Turma
+                                                        </small>
+                                                    </label>
+                                                    <input type="text" th:field="*{turma}" required class="form-control form-control-sm">
+                                                    <div class="invalid-feedback">
+                                                        <small>Por favor informe o turma.</small>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <hr>
-                                        <div class="row mt-2">
+                                        <div class="row">
                                             <div class="col-md-12">
                                                 <a th:href="@{/alunos(page=${0}, size=${10})}" class="btn btn-outline-primary">
                                                     <i class="fas fa-arrow-left"></i>

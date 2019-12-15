@@ -15,7 +15,7 @@
         <tbody>
             <tr th:each="usuario : ${pagina.content}" th:class="${atualizado} ? (${usuario.id == atualizado.id} ? 'table-warning' : '')">
                 <td class="text-center">
-                    <span class="badge badge-light" th:text="${usuario.cargo.nome}"></span>
+                    <span class="badge badge-light" th:text="${usuario.cargo ?: 'Não informado'}"></span>
                 </td>
                 <td>
                     <span th:text="${usuario.nome}"></span>

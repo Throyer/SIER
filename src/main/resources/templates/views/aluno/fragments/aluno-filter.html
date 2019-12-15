@@ -2,51 +2,39 @@
     <div class="card shadow-sm border-0 mb-4">
         <div class="card-body">
             <div class="row">
+                <div class="col-3">
+                    <div class="form-group mb-0">
+                        <div class="input-group">
+                            <input type="text" th:value="${turma}" name="turma" class="form-control form-control-sm">
+
+                            <div class="input-group-append">
+                                <button onclick="$('input[name=turma]').val('')" class="btn btn-sm btn-outline-secondary"
+                                    type="button">
+
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <small>Turma.</small>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group mb-0">
+                        <div class="input-group">
+                            <input type="text" th:value="${nome}" name="nome" class="form-control form-control-sm">
+
+                            <div class="input-group-append">
+                                <button onclick="$('input[name=nome]').val('')" class="btn btn-sm btn-outline-secondary"
+                                    type="button">
+
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <small>Nome.</small>
+                    </div>
+                </div>
                 <div class="col">
-                    <div class="form-group mb-0">
-                        <div class="input-group">
-                            <input
-                                type="text"
-                                th:value="${nome}"
-                                name="nome"
-                                class="form-control form-control-sm">
-            
-                            <div class="input-group-append">
-                                <button
-                                    onclick="$('input[name=nome]').val('')"
-                                    class="btn btn-sm btn-outline-secondary"
-                                    type="button">
-            
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <small>Nome.</small>                  
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="form-group mb-0">
-                        <div class="input-group">
-                            <input
-                                type="text"
-                                th:value="${turma}"
-                                name="turma"
-                                class="form-control form-control-sm">
-            
-                            <div class="input-group-append">
-                                <button
-                                    onclick="$('input[name=turma]').val('')"
-                                    class="btn btn-sm btn-outline-secondary"
-                                    type="button">
-                                    
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <small>Turma.</small>  
-                    </div>
-                </div>
-                <div class="col-md-2">
                     <input hidden type="text" name="page" value="0">
                     <input hidden type="text" name="size" th:value="${param.size}">
                     <div class="btn-group btn-block" role="group" aria-label="Basic example">
@@ -55,6 +43,30 @@
                         </button>
                     </div>
                 </div>
+                <div class="col-8">
+                    <div class="form-group mb-0">
+                        <div class="input-group">
+                            <input type="text" th:value="${email}" name="email" class="form-control form-control-sm">
+
+                            <div class="input-group-append">
+                                <button onclick="$('input[name=email]').val('')"
+                                    class="btn btn-sm btn-outline-secondary" type="button">
+
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <small>E-mail.</small>
+                    </div>
+                </div>                
+                <div class="col-3 text-center">
+                    <div class="form-group mb-0">
+                        <div class="custom-control custom-checkbox mt-2">
+                            <input type="checkbox" name="situacao" th:checked="${(situacao != null) && !situacao}" value="false" class="custom-control-input" id="checkSituacao">
+                            <label class="custom-control-label" for="checkSituacao">Somente bloqueados</label>
+                        </div>
+                    </div>
+                </div>                
             </div>
         </div>
     </div>

@@ -12,6 +12,7 @@ import javax.persistence.criteria.Predicate;
 
 import com.github.websier.sier.app.domain.dtos.TipoColetaDTO;
 import com.github.websier.sier.app.domain.enuns.TipoColeta;
+import com.github.websier.sier.app.domain.interfaces.Notificavel;
 import com.github.websier.sier.app.domain.repositories.UsuarioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * FormUtils
@@ -64,7 +66,7 @@ public class FormUtils {
     ) {
         if (
             id.isEmpty() &&
-            email.isPresent() &&
+            isPresent(email) &&
             repository.existsByEmail(email.get())
         ) {
             result.addError(ERRO_EMAIL);
@@ -74,7 +76,14 @@ public class FormUtils {
             var usuario = repository.findById(id.get())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-            if (!usuario.getEmail().equals(email.get())) {
+            var novoEmail = email.get();
+            var emailAtual = usuario.getEmail();
+
+            var mudouDeEmail = !emailAtual.equals(novoEmail);
+
+            var jaEhUsadoPorOutraPessoa =  repository.existsByEmail(novoEmail);
+
+            if (mudouDeEmail && jaEhUsadoPorOutraPessoa) {
                 result.addError(ERRO_EMAIL);
             }
         }
@@ -86,5 +95,9 @@ public class FormUtils {
 
     public static Predicate [] toArray(List<Predicate> predicates) {
         return predicates.toArray(new Predicate[predicates.size()]);
+    }
+
+    public static void addNotificacao(RedirectAttributes redirect, TipoAlerta tipo, Notificavel notificavel) {
+        redirect.addFlashAttribute(tipo.nome, notificavel.toAlerta());
     }
 }

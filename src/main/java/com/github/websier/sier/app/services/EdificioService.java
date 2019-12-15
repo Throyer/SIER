@@ -46,7 +46,7 @@ public class EdificioService {
         return repository.findAll(specification, pageable);
     }
 
-    public Edificio obterEdificioPorId(Long id) {
+    public Edificio obterPorId(Long id) {
         return repository.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
@@ -56,7 +56,7 @@ public class EdificioService {
     }
 
     public Edificio atualizar(Edificio edificio) {
-        var entidade = obterEdificioPorId(edificio.getId());
+        var entidade = obterPorId(edificio.getId());
         return repository.save(atualizarCamposDoEdificio(entidade, edificio));
     }
 

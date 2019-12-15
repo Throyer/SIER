@@ -18,13 +18,138 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <html th:replace="~{ fragments/layout :: layout(~{::title}, ~{}, ~{::section}, ~{}, ~{}) }">
 
 <head>
-    <title>Usuarios</title>
+    <title>Formulario usuario</title>
 </head>
 
 <body>
     <section>
         <div class="container">
-            <p>usuario form</p>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card shadow rounded-0 bg-light">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3 class="font-weight-light">
+                                            <i class="fas fa-user"></i>
+                                        <span th:text="${usuario.id == null ? 'Cadastrar' : 'Editar'}"></span>
+                                        usuario
+                                    </h3>
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form 
+                                        th:action="@{/usuarios/formulario}"
+                                        method="POST"
+                                        th:object="${usuario}"
+                                        class="needs-validation"
+                                        autocomplete="off"
+                                        novalidate>
+            
+                                        <!-- ids -->
+                                        <div class="row">
+                                            <input hidden th:field="*{id}">
+                                            <input hidden th:field="*{turma}">
+                                        </div>
+            
+                                        <!-- mensagens de erro -->
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="alert alert-danger alert-dismissible fade show" th:if="${#fields.hasErrors('*')}">
+                                                    <small>Erros:</small>
+                                                    <ul>
+                                                        <li th:each="erro : ${#fields.errors('*')}">
+                                                            <small th:text="${erro}"></small>
+                                                        </li>   
+                                                    </ul>
+            
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div><!-- /mensagens de erro-->
+            
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <div class="form-group">
+                                                    <label>
+                                                        <small>
+                                                            Nome
+                                                        </small>
+                                                    </label>
+                                                    <input type="text" th:field="*{nome}" required class="form-control form-control-sm">
+                                                    <div class="invalid-feedback">
+                                                        <small>Por favor informe o nome.</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label>
+                                                        <small>
+                                                            Apelido
+                                                        </small>
+                                                    </label>
+                                                    <input type="text" th:field="*{apelido}" required class="form-control form-control-sm">
+                                                    <div class="invalid-feedback">
+                                                        <small>Por favor informe o apelido.</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <div class="form-group">
+                                                    <label>
+                                                        <small>
+                                                            E-mail
+                                                        </small>
+                                                    </label>
+                                                    <input type="email" th:field="*{email}" required class="form-control form-control-sm">
+                                                    <div class="invalid-feedback">
+                                                        <small>Por favor informe o email.</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label>
+                                                        <small>
+                                                            Cargo
+                                                        </small>
+                                                    </label>
+                                                    <select th:field="*{cargo}" required class="custom-select custom-select-sm">
+                                                        <option th:each="cargo : ${cargos}"
+                                                            th:selected="cargo == *{cargo}"
+                                                            th:value="${cargo.id}" th:text="${cargo.nome}">
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <a th:href="@{/usuarios(page=${0}, size=${10})}" class="btn btn-outline-primary">
+                                                    <i class="fas fa-arrow-left"></i>
+                                                    Voltar
+                                                </a>
+                                                <button class="btn btn-success float-right" type="submit">
+                                                    <i class="fas fa-save"></i>
+                                                    Salvar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <script th:replace="~{fragments/imports :: forms-javascript}"></script>
     </section>

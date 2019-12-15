@@ -96,7 +96,7 @@ public class EdificioController {
      */
     @GetMapping("/edificios/formulario/{id}")
     public String formulario(@PathVariable Long id, Model model) {
-        var edificio = service.obterEdificioPorId(id);
+        var edificio = service.obterPorId(id);
         model.addAttribute("edificio", edificio);
         return FORMULARIO;
     }
@@ -106,7 +106,7 @@ public class EdificioController {
         @PathVariable Long id,
         RedirectAttributes redirect
     ) {
-        var edificio = service.obterEdificioPorId(id);
+        var edificio = service.obterPorId(id);
         var alerta = new Alerta(edificio.getNomeConhecido(), "Edificio", edificio.getId());
         redirect.addFlashAttribute("deletado", alerta);
         service.deletar(edificio);
