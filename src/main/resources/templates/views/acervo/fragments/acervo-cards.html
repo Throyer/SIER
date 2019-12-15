@@ -3,17 +3,24 @@
         <div class="row">
             <th:block th:each="edifcio : ${pagina.content}">
                 <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm rounded-0 acervo">
-                        <img src="" class="rounded-0 card-img-top">
+                    <div class="card shadow-sm border-0">
+                        <img src="https://image.flaticon.com/icons/svg/270/270072.svg" class="card-img-top img-thumbnail rounded-0 border-0 p-3">
                         <div class="card-body">
-                            <h5 class="card-title">
+                            <h4 class="font-weight-lighter text-center">
                                 <span th:text="${edifcio.nomeConhecido}"></span>
-                            </h5>
-                        </div>
-                        <div class="card-footer">
-                            <img class="rounded-circle mr-3" src="" width="20">
-                            <small class="text-muted">Cadastrado em: </small>
-                            <small class="text-muted" th:text="${#temporals.format(edifcio.cadastradoEm, 'dd/MM/yyyy')}"></small>
+                            </h4>
+                            <hr>
+                            <p>
+                                <small class="text-muted">Cadastrado em: </small>
+                                <small class="text-muted" th:text="${#temporals.format(edifcio.cadastradoEm, 'dd/MM/yyyy')}"></small>
+                            </p>
+                            <a 
+                                href="https://github.com/Throyer/SIER#-sistema-de-informa%C3%A7%C3%A3o-de-edificios-residenciais"
+                                class="btn btn-block btn-outline-dark">
+                                <i class="fas fa-city"></i>
+                    
+                                Detalhes
+                            </a>
                         </div>
                     </div>
                 </div>
