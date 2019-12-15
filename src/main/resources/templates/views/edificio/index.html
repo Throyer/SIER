@@ -21,8 +21,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </head>
     <body>
         <section>
-            <div class="container">
+            <div class="container mb-5">
                 <div class="card shadow-sm rounded-0 border-0">
+                    <div class="card-header">
+                        <a th:href="@{/edificios/formulario}" class="btn float-right btn-success btn-sm">
+                            Cadastrar Novo
+                            <i class="fas fa-plus"></i>
+                        </a>
+                        <h3 class="mb-0 font-weight-light">
+                            <i class="fas fa-city"></i>
+                            Gerenciar edifcios
+                        </h3>
+                    </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
@@ -30,6 +40,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                 <filters
                                     th:replace="~{views/edificio/fragments/edificio-filter :: edificio-filter}">                                    
                                 </filters>
+                                
                                 <table 
                                     th:replace="~{views/edificio/fragments/table-edificio :: table-edificio}">
                                 </table>
