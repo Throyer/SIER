@@ -63,6 +63,10 @@ public class UsuarioService {
         return novaSituacao;
     }
 
+    public void deletar(Usuario usuario) {
+        repository.delete(usuario);
+    }
+
     private Usuario atualizarCamposDoUsuario(Usuario fonte, Usuario destino) {
         destino.setNome(fonte.getNome());
         destino.setApelido(fonte.getApelido());

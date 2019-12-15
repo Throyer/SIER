@@ -43,7 +43,7 @@ public class Coleta {
     @Size(max = 350)
     private String informacoes;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne(cascade = CascadeType.DETACH)
     private Usuario createdBy;
     
     @ManyToOne

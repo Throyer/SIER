@@ -53,6 +53,15 @@
                         <i th:if="${!usuario.ativo}" class="fas fa-user-check"></i>
                         <i th:if="${usuario.ativo}" class="fas fa-user-slash"></i>
                     </button>
+                    <button 
+                        type="button"
+                        data-toggle="modal" data-placement="top" title="Deletar"
+                        th:data-id="${usuario.id}"
+                        th:data-nome="${usuario.nome}"
+                        data-target="#modal-deletar-usuario"
+                        class="btn btn-link text-danger">
+                        <i class="far fa-trash-alt"></i>
+                    </button>
                 </td>
             </tr>
             <tr th:if="${#lists.size(pagina.content) == 0}">

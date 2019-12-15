@@ -136,4 +136,15 @@ public class UsuarioController {
         return REDIRECT_LISTAGEM;
     }
 
+    @PostMapping("/usuarios/deletar/{id}")
+    public String deletar(
+        @PathVariable Long id,
+        RedirectAttributes redirect
+    ) {
+        var usuario = service.obterPorId(id);
+        addNotificacao(redirect, TipoAlerta.DELETADO, usuario);
+        service.deletar(usuario);
+        return REDIRECT_LISTAGEM;
+    }
+
 }

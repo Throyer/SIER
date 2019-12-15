@@ -70,7 +70,10 @@ public class EdificioService {
         destino.setDataConstrucao(fonte.getDataConstrucao());
         destino.setNumeroAndares(fonte.getNumeroAndares());
         destino.setEndereco(fonte.getEndereco());
-        destino.getColeta().setUpdatedBy(fonte.getColeta().getUpdatedBy());
+        var coletaDestino = destino.getColeta();
+        var coletaFonte = fonte.getColeta();
+        coletaDestino.setUpdatedBy(coletaFonte.getUpdatedBy());
+        coletaDestino.setFonteColeta(coletaFonte.getFonteColeta());
         return destino;
     }
 }
