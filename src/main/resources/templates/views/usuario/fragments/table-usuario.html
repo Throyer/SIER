@@ -36,16 +36,17 @@
                 <td class="text-center">
                     <a 
                         role="button"
+                        data-toggle="tooltip" data-placement="top" title="Editar"
                         th:href="@{/usuarios/formulario/{id}(id=${usuario.id})}"
                         class="btn btn-link text-warning">
                         <i class="fas fa-user-edit"></i>
                     </a>
                     <button 
                         type="button"
+                        data-toggle="modal" data-placement="top" th:title="${usuario.ativo ? 'Bloquear': 'Desbloquear'}"
                         th:data-id="${usuario.id}"
                         th:data-nome="${usuario.nome}"
                         th:data-status="${usuario.ativo}"
-                        data-toggle="modal"   
                         data-target="#modal-alternar-status-usuario"
                         class="btn"
                         th:classappend="${usuario.ativo} ? 'btn-link text-danger' : 'btn-link text-success'">
