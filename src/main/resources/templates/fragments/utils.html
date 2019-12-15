@@ -75,3 +75,210 @@
         </div>
     </form>
 </th:block>
+
+<th:block th:fragment="trocar-nome-form">
+    <div class="row mb-4 justify-content-center">
+        <div class="col-7">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <h5 class="font-weight-light">
+                        <i class="fas fa-user"></i>
+                        Nome e apelido
+                    </h5>
+                    <hr>
+                    <form
+                        th:object="${usuario}"
+                        th:action="@{/perfil/nome}"
+                        method="POST"
+                        class="needs-validation"
+                        autocomplete="off"
+                        novalidate>
+                        <div class="row">
+                            <div class="col-7">
+                                <div class="form-group">
+                                    <label for="inputNome">
+                                        <small>Nome</small>
+                                    </label>
+                                    <input
+                                        id="inputNome"
+                                        required
+                                        th:field="*{nome}"
+                                        type="text"
+                                        class="form-control form-control-sm"
+                                        placeholder="Novo nome">
+                                    <div class="invalid-feedback mb-2">
+                                        Por favor, informe o novo nome.
+                                    </div>                                    
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="inputApelido">
+                                        <small>Apelido</small>
+                                    </label>
+                                    <input
+                                        id="inputApelido"
+                                        required
+                                        th:field="*{apelido}"
+                                        type="text"
+                                        class="form-control form-control-sm"
+                                        placeholder="Novo apelido">
+                                    <div class="invalid-feedback mb-2">
+                                        Por favor, informe o novo nome.
+                                    </div>
+                                </div>
+                            </div>                            
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-sm btn-block btn-dark float-right">Salvar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+<th:block th:fragment="trocar-email-form">
+    <div class="row mb-4 justify-content-center">
+        <div class="col-7">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    
+                    <h5 class="font-weight-light">
+                        <i class="fas fa-envelope"></i>
+                        E-Mail
+                    </h5>
+                    <hr>
+
+                    <form
+                    th:object="${usuario}"
+                    th:action="@{/perfil/email}"
+                    method="POST"
+                    class="needs-validation"
+                    autocomplete="off"
+                    novalidate>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="inputEmail">
+                                        <small>E-Mail</small>
+                                    </label>
+                                    <input
+                                        required
+                                        id="inputEmail"
+                                        name="email"
+                                        th:field="*{email}"
+                                        type="text"
+                                        class="form-control form-control-sm"
+                                        placeholder="Novo nome">
+                                    <div class="invalid-feedback mb-2">
+                                        Por favor, informe o novo email.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" class="btn btn-sm btn-block btn-dark">Salvar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+<th:block th:fragment="trocar-senha-form">
+    <div class="row justify-content-center">
+        <div class="col-7">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+    
+                    <h5 class="font-weight-light">
+                        <i class="fas fa-envelope"></i>
+                        Senha
+                    </h5>
+                    <hr>
+    
+                    <form
+                        th:action="@{/perfil/senha}"
+                        th:object="${passwordDTO}"
+                        method="POST"
+                        class="needs-validation"
+                        autocomplete="off"
+                        novalidate>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="inputSenhaAtual">
+                                        <small>Senha atual</small>
+                                    </label>
+                                    <input
+                                        required
+                                        id="inputSenhaAtual"
+                                        th:filed="*{senhaAtual}"
+                                        type="password"
+                                        class="form-control form-control-sm"
+                                        placeholder="Senha anterior">
+
+                                    <div class="invalid-feedback mb-2">
+                                        Por favor, informe a senha atual.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="inputNovaSenha">
+                                        <small>Nova Senha</small>
+                                    </label>
+                                    <input
+                                        required
+                                        id="inputNovaSenha"
+                                        th:filed="*{novaSenha}"
+                                        type="password"
+                                        autocomplete="new-password"
+                                        class="form-control form-control-sm"
+                                        placeholder="Nova senha">
+
+                                    <div class="invalid-feedback mb-2">
+                                        Por favor, informe a nova senha.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="inputConfirmeSenha">
+                                        <small>Confirme a nova Senha</small>
+                                    </label>
+                                    <input
+                                        required
+                                        id="inputConfirmeSenha"
+                                        th:filed="*{confirmaSenha}"
+                                        type="password"
+                                        class="form-control form-control-sm"
+                                        placeholder="Nova senha">
+                                    <div class="invalid-feedback mb-2">
+                                        Por favor, confirme a nova senha.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" class="btn btn-block btn-dark">Salvar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
