@@ -6,12 +6,9 @@
                 <th>Nome</th>
                 <th>Apelido</th>
                 <th>Email</th>
-                <th>Situação</th>
+                <th class="text-center">Situação</th>
                 <th class="text-center">
-                    <a th:href="@{/usuarios/formulario}" class="btn btn-outline-success btn-sm">
-                        Novo
-                        <i class="fas fa-plus"></i>
-                    </a>
+                    Ações
                 </th>
             </tr>
         </thead>
@@ -31,7 +28,7 @@
                 </td>
                 <td class="text-center">
                     <span
-                        class="badge"
+                        class="badge font-weight-light"
                         th:classappend="${usuario.ativo ? 'badge-success': 'badge-danger'}"
                         th:text="${usuario.ativo ? 'Habilitado': 'Bloqueado'}">
                     </span>
@@ -58,7 +55,7 @@
                 </td>
             </tr>
             <tr th:if="${#lists.size(pagina.content) == 0}">
-                <td colspan="5" class="text-center">
+                <td colspan="6" class="text-center">
                     Nenhum usuario encontrado.
                 </td>
             </tr>
