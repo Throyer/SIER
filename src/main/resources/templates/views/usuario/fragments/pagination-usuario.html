@@ -12,7 +12,12 @@
                 <a class="page-link" th:href="@{/{url}(
                     url=${url},
                     page=0,
-                    size=${(param.size)})}">
+                    size=${(param.size)},
+                    cargo=${(param.cargo)},
+                    nome=${(param.nome)},
+                    apelido=${(param.apelido)},
+                    email=${(param.email)},
+                    situacao=${(param.situacao)})}">
                     <span class="d-lg-none">
                         <i class="fas fa-angle-double-left"></i>
                     </span>
@@ -30,7 +35,12 @@
                 <a class="page-link" th:href="@{/{url}(
                     url=${url},
                     page=${pagina.number -1},
-                    size=${(param.size)}}">
+                    size=${(param.size)},
+                    cargo=${(param.cargo)},
+                    nome=${(param.nome)},
+                    apelido=${(param.apelido)},
+                    email=${(param.email)},
+                    situacao=${(param.situacao)}}">
                     <span class="d-lg-none">
                         <i class="fas fa-angle-left"></i>
                     </span>
@@ -50,7 +60,12 @@
                     th:href="@{/{url}(
                         url=${url},
                         page=${page},
-                        size=${(param.size)})}"
+                        size=${(param.size)},
+                        cargo=${(param.cargo)},
+                        nome=${(param.nome)},
+                        apelido=${(param.apelido)},
+                        email=${(param.email)},
+                        situacao=${(param.situacao)})}"
                     th:text="${page + 1}">
                 </a>
             </li><!-- /intervalo -->
@@ -63,7 +78,12 @@
                 <a class="page-link" th:href="@{/{url}(
                     url=${url},
                     page=${pagina.number +1},
-                    size=${(param.size)})}">
+                    size=${(param.size)},
+                    cargo=${(param.cargo)},
+                    nome=${(param.nome)},
+                    apelido=${(param.apelido)},
+                    email=${(param.email)},
+                    situacao=${(param.situacao)})}">
                     <span class="d-none d-lg-block">
                         Proximo
                     </span>
@@ -80,7 +100,12 @@
                 <a class="page-link" th:href="@{/{url}(
                     url=${url},
                     page=${pagina.totalPages -1},
-                    size=${(param.size)})}">
+                    size=${(param.size)},
+                    cargo=${(param.cargo)},
+                    nome=${(param.nome)},
+                    apelido=${(param.apelido)},
+                    email=${(param.email)},
+                    situacao=${(param.situacao)})}">
                     <span class="d-none d-lg-block">
                         Última
                     </span>
@@ -91,16 +116,5 @@
             </li><!-- /ultima pagina -->
         </ul>
     </nav>
-    <form id="sizeForm" class="ml-4">
-        <input hidden type="text" name="page" value="0">
-        <div class="input-group">
-            <select id="sizeInput" name="size" class="custom-select custom-select-sm">
-                <option value="10">Itens por pagina</option>
-                <option value="10">10</option>
-                <option value="20">20</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-            </select>
-        </div>
-    </form>
+    <sizes th:replace="~{fragments/utils :: sizes}"></sizes>
 </div>
