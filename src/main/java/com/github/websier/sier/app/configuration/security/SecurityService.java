@@ -16,9 +16,14 @@
  */
 package com.github.websier.sier.app.configuration.security;
 
+import java.util.Optional;
+
 import com.github.websier.sier.app.domain.repositories.UsuarioRepository;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -28,6 +33,7 @@ import org.springframework.stereotype.Service;
  * Security Service.
  * 
  * Serviço de autenticação de usuarios.
+ * 
  * @author Renato Henrique.
  * @since 3.0.0.
  */
@@ -36,10 +42,28 @@ public class SecurityService implements UserDetailsService {
 
     @Autowired
     UsuarioRepository repository;
-    
+
+    private Logger logger = LoggerFactory.getLogger(SecurityService.class);
+
+    private static final String NOME_USUARIO_IVALIDO = "Nome de usuario invalido.";
+    private static final String NAO_EXISTE_USUARIO_LOGADO = "Não existe um usuario logado.";
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return new Autenticado(repository.findOptionalByEmail(email)
-            .orElseThrow(() -> new UsernameNotFoundException("Nome de usuario invalido.")));
-    }    
+                .orElseThrow(() -> new UsernameNotFoundException(NOME_USUARIO_IVALIDO)));
+    }
+
+    public Optional<Autenticado> getAutenticado() {
+        try {
+            return Optional.of((Autenticado) getPrincipal());
+        } catch (Exception exception) {
+            logger.error(NAO_EXISTE_USUARIO_LOGADO, exception);
+            return Optional.empty();
+        }
+    }
+
+    public Object getPrincipal() {
+        return SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    }
 }

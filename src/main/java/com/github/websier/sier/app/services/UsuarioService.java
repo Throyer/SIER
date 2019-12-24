@@ -4,6 +4,7 @@ import static com.github.websier.sier.app.domain.specifications.UsuarioSpecifica
 
 import java.util.Optional;
 
+import com.github.websier.sier.app.configuration.security.SecurityService;
 import com.github.websier.sier.app.domain.models.Usuario;
 import com.github.websier.sier.app.domain.repositories.UsuarioRepository;
 
@@ -24,7 +25,22 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository repository;
 
+    @Autowired
+    private SecurityService securityService;
+
     private static final String SENHA_PADRAO = "mudar123";
+
+    public Optional<Usuario> getUsuarioLogado() {
+        var optionalAutenticado = securityService.getAutenticado();
+        
+        if (optionalAutenticado.isEmpty()) {
+            return Optional.empty();
+        }
+
+        var autenticado = optionalAutenticado.get();
+
+        return Optional.of(obterPorId(autenticado.getId()));
+    }
 
     public Page<Usuario> obterTodos(
         Optional<String> cargo,

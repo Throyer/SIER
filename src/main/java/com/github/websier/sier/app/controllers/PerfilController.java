@@ -32,16 +32,14 @@ public class PerfilController {
     private static final String REDIRECT = "redirect:/?erro=true";
     
     @GetMapping("/perfil")
-    public String perfil(Model model, Authentication authentication) {
-        try {
-            var usuario = service.obterPorId(getPrincipal(authentication).getId());
-            model.addAttribute("usuario", usuario);
-            model.addAttribute("passwordDTO", new PasswordDTO());
-            return PERFIL;
-        } catch (Exception exception) {
-            exception.printStackTrace();
+    public String perfil(Model model) {
+        var usuarioLogado = service.getUsuarioLogado();
+        if (usuarioLogado.isEmpty()) {
             return REDIRECT;
         }
+        model.addAttribute("usuario", usuarioLogado.get());
+        model.addAttribute("passwordDTO", new PasswordDTO());
+        return PERFIL;
     }
 
     @PostMapping("/perfil/nome")
