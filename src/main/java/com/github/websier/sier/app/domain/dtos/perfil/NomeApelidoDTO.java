@@ -1,6 +1,8 @@
-package com.github.websier.sier.app.domain.dtos;
+package com.github.websier.sier.app.domain.dtos.perfil;
 
 import javax.validation.constraints.NotNull;
+
+import com.github.websier.sier.app.domain.models.Usuario;
 
 /**
  * NomeApelidoDTO
@@ -12,6 +14,13 @@ public class NomeApelidoDTO {
 
     @NotNull
     private String apelido;
+
+    public NomeApelidoDTO() { }
+
+    public NomeApelidoDTO(Usuario usuario) {
+        this.nome = usuario.getNome();
+        this.apelido = usuario.getApelido();
+    }
 
     public String getApelido() {
         return apelido;

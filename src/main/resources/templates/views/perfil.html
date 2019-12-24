@@ -26,6 +26,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <body class="bg-light">
         <nav th:replace="~{fragments/navbar :: navbar}"></nav>
         <div class="container mb-5">
+            <div class="row justify-content-center">
+                <div class="col-7">
+                    <mensagem th:replace="~{fragments/utils :: mensagem}"></mensagem>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-7">
+                    <erros th:replace="~{fragments/utils :: error-list}"></erros>
+                </div>
+            </div>
             <form th:replace="~{fragments/utils :: trocar-nome-form}"></form>
             <form th:replace="~{fragments/utils :: trocar-email-form}"></form>
             <form th:replace="~{fragments/utils :: trocar-senha-form}"></form>

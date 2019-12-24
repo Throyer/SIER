@@ -87,7 +87,7 @@
                     </h5>
                     <hr>
                     <form
-                        th:object="${usuario}"
+                        th:object="${nomeDTO}"
                         th:action="@{/perfil/nome}"
                         method="POST"
                         class="needs-validation"
@@ -154,7 +154,7 @@
                     <hr>
 
                     <form
-                    th:object="${usuario}"
+                    th:object="${emailDTO}"
                     th:action="@{/perfil/email}"
                     method="POST"
                     class="needs-validation"
@@ -280,5 +280,31 @@
                 </div>
             </div>
         </div>
+    </div>
+</th:block>
+
+<th:block th:fragment="error-list">
+    <div class="alert alert-danger alert-dismissible fade show" th:if="${erros}">
+        <small>Erros:</small>
+        <ul>
+            <li th:each="erro : ${erros}">
+                <small th:text="${erro.defaultMessage}"></small>
+            </li>   
+        </ul>
+
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</th:block>
+
+<th:block th:fragment="mensagem">
+    <div th:if="${mensagem}" class="alert alert-success alert-dismissible fade show" role="alert">
+        <span th:utext="${mensagem}">
+            mensagem.
+        </span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
 </th:block>

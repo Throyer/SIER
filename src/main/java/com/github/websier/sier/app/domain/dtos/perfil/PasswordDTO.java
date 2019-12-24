@@ -1,4 +1,4 @@
-package com.github.websier.sier.app.domain.dtos;
+package com.github.websier.sier.app.domain.dtos.perfil;
 
 import javax.validation.constraints.NotNull;
 

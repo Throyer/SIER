@@ -42,6 +42,12 @@ public class UsuarioService {
         return Optional.of(obterPorId(autenticado.getId()));
     }
 
+    public void mudarEmail(Long usuarioId, String novoEmail) {
+        var usuario = obterPorId(usuarioId);
+        usuario.setEmail(novoEmail);
+        repository.save(usuario);
+    }
+
     public Page<Usuario> obterTodos(
         Optional<String> cargo,
         Optional<String> turma,
