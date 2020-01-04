@@ -1,12 +1,11 @@
 package com.github.websier.sier.app.controllers;
 
-import static com.github.websier.sier.app.utils.FormUtils.validarUnicidadeDoEmail;
 import static com.github.websier.sier.app.utils.FormUtils.addNotificacao;
+import static com.github.websier.sier.app.utils.FormUtils.validarUnicidadeDoEmail;
 import static com.github.websier.sier.app.utils.PageSettings.of;
 import static com.github.websier.sier.app.utils.Templates.USUARIO.FORMULARIO;
 import static com.github.websier.sier.app.utils.Templates.USUARIO.INDEX;
 
-import java.util.Objects;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -48,9 +47,9 @@ public class UsuarioController {
     }
 
     private static final String REDIRECT_LISTAGEM = "redirect:/usuarios";
-    private static final String CARGOS = "cargos";
-    private static final String PAGINA = "pagina";
-    private static final String ENTIDADE = "usuario";
+    private static final String VIEW_ATRIBUTE_CARGOS = "cargos";
+    private static final String VIEW_ATRIBUTE_PAGINA = "pagina";
+    private static final String VIEW_ATRIBUTE_ENTIDADE = "usuario";
 
     @GetMapping("/usuarios")
     public String index(
@@ -64,23 +63,32 @@ public class UsuarioController {
         Model model
     ) {
         var pageable = of(page, size, Direction.DESC, "id");
-        var pagina =  service.obterTodos(cargo, Optional.empty(), nome, apelido, email, situacao, model, pageable);
-        model.addAttribute(CARGOS, cargos.findAll());
-        model.addAttribute(PAGINA, pagina);
+
+        var pagina =  service.obterTodos(
+            cargo,
+            Optional.empty(),
+            nome,
+            apelido,
+            email,
+            situacao,
+            model,
+            pageable
+        );
+
+        model.addAttribute(VIEW_ATRIBUTE_CARGOS, cargos.findAll());
+        model.addAttribute(VIEW_ATRIBUTE_PAGINA, pagina);
         return INDEX;
     }
 
     @GetMapping("/usuarios/formulario")
     public String formulario(Model model) {
-        model.addAttribute(CARGOS, cargos.findAll());
-        model.addAttribute(ENTIDADE, new Usuario());
+        model = passarUsuarioECargosParaViewModel(model, new Usuario());
         return FORMULARIO;
     }
 
     @GetMapping("/usuarios/formulario/{id}")
     public String formulario(@PathVariable Long id, Model model) {
-        model.addAttribute(CARGOS, cargos.findAll());
-        model.addAttribute(ENTIDADE, service.obterPorId(id));
+        model = passarUsuarioECargosParaViewModel(model, service.obterPorId(id));
         return FORMULARIO;
     }
 
@@ -91,34 +99,14 @@ public class UsuarioController {
         RedirectAttributes redirect,
         Model model
     ) {
-        var novoRegistro = Objects.isNull(usuario.getId());
-
-        var usuarioId = Optional.ofNullable(usuario.getId());
-        var email = Optional.ofNullable(usuario.getEmail());
-
-        validarUnicidadeDoEmail(result, email, usuarioId);
+        validarUnicidadeDoEmail(result, usuario);
 
         if (result.hasErrors()) {
-            model.addAttribute(CARGOS, cargos.findAll());
-            model.addAttribute(ENTIDADE, usuario);
+            model = passarUsuarioECargosParaViewModel(model, usuario);
             return FORMULARIO;
         }
 
-        return salvar(usuario, novoRegistro, redirect);
-    }
-
-    private String salvar(
-        Usuario usuario,
-        Boolean novoRegistro,
-        RedirectAttributes redirect
-    ) {
-        if (novoRegistro) {
-            var novo = service.persistir(usuario);
-            addNotificacao(redirect, TipoAlerta.NOVO, novo);
-            return REDIRECT_LISTAGEM;
-        }
-        var atualizado = service.atualizar(usuario);
-        addNotificacao(redirect, TipoAlerta.ATUALIZADO, atualizado);
+        service.salvar(usuario, redirect);
         return REDIRECT_LISTAGEM;
     }
 
@@ -145,6 +133,12 @@ public class UsuarioController {
         addNotificacao(redirect, TipoAlerta.DELETADO, usuario);
         service.deletar(usuario);
         return REDIRECT_LISTAGEM;
+    }
+
+    private Model passarUsuarioECargosParaViewModel(Model model, Usuario usuario) {
+        model.addAttribute(VIEW_ATRIBUTE_CARGOS, cargos.findAll());
+        model.addAttribute(VIEW_ATRIBUTE_ENTIDADE, usuario);
+        return model;
     }
 
 }

@@ -4,9 +4,13 @@ import static com.github.websier.sier.app.domain.specifications.UsuarioSpecifica
 
 import java.util.Optional;
 
+import static com.github.websier.sier.app.utils.FormUtils.addNotificacao;
+import static java.util.Objects.isNull;
+
 import com.github.websier.sier.app.configuration.security.SecurityService;
 import com.github.websier.sier.app.domain.models.Usuario;
 import com.github.websier.sier.app.domain.repositories.UsuarioRepository;
+import com.github.websier.sier.app.utils.TipoAlerta;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,6 +19,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * UsuarioService
@@ -65,6 +70,14 @@ public class UsuarioService {
     public Usuario obterPorId(Long id) {
         return repository.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+
+    public void salvar(Usuario usuario, RedirectAttributes redirect) {
+        if (isNull(usuario.getId())) {
+            addNotificacao(redirect, TipoAlerta.NOVO, persistir(usuario));
+        } else {
+            addNotificacao(redirect, TipoAlerta.ATUALIZADO, atualizar(usuario));
+        }
     }
 
     public Usuario persistir(Usuario usuario) {

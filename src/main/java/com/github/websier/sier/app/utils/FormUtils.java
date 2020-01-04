@@ -1,5 +1,7 @@
 package com.github.websier.sier.app.utils;
 
+import static java.util.Optional.ofNullable;
+
 import static com.github.websier.sier.app.utils.GlobalConstants.ERRO_CONFIRMAR_SENHA;
 import static com.github.websier.sier.app.utils.GlobalConstants.ERRO_EMAIL;
 import static com.github.websier.sier.app.utils.GlobalConstants.FORCA_DA_CRIPTOGRAFIA_NA_SENHA;
@@ -11,8 +13,10 @@ import java.util.stream.Collectors;
 import javax.persistence.criteria.Predicate;
 
 import com.github.websier.sier.app.domain.dtos.TipoColetaDTO;
+import com.github.websier.sier.app.domain.dtos.perfil.EmailDTO;
 import com.github.websier.sier.app.domain.enuns.TipoColeta;
 import com.github.websier.sier.app.domain.interfaces.Notificavel;
+import com.github.websier.sier.app.domain.models.Usuario;
 import com.github.websier.sier.app.domain.repositories.UsuarioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +61,29 @@ public class FormUtils {
                 result.addError(ERRO_CONFIRMAR_SENHA);
             }
         }
+    }
+
+    public static void validarUnicidadeDoEmail(
+        BindingResult result,
+        EmailDTO emailDTO,
+        Usuario usuario
+    ) {
+        validarUnicidadeDoEmail(
+            result,
+            ofNullable(emailDTO.getEmail()),
+            ofNullable(usuario.getId())
+        );
+    }
+
+    public static void validarUnicidadeDoEmail(
+        BindingResult result,
+        Usuario usuario)
+    {
+        validarUnicidadeDoEmail(
+            result,
+            ofNullable(usuario.getEmail()),
+            ofNullable(usuario.getId())
+        );
     }
 
     public static void validarUnicidadeDoEmail(
