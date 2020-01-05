@@ -1,20 +1,20 @@
 package com.github.websier.sier.app.controllers;
 
+import static com.github.websier.sier.app.utils.FormUtils.addNotificacao;
 import static com.github.websier.sier.app.utils.FormUtils.tiposDeColeta;
 import static com.github.websier.sier.app.utils.PageSettings.of;
 import static com.github.websier.sier.app.utils.Templates.EDIFCIO.FORMULARIO;
 import static com.github.websier.sier.app.utils.Templates.EDIFCIO.INDEX;
 
 import java.time.LocalDate;
-import java.util.Objects;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
-import com.github.websier.sier.app.domain.dtos.Alerta;
 import com.github.websier.sier.app.domain.enuns.TipoColeta;
 import com.github.websier.sier.app.domain.models.Edificio;
 import com.github.websier.sier.app.services.EdificioService;
+import com.github.websier.sier.app.utils.TipoAlerta;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort.Direction;
@@ -38,16 +38,20 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class EdificioController {
 
+    private static final String REDIRECT_LISTAGEM = "redirect:/edificios";
+
+    private static final String VIEW_ATRIBUTE_PAGINA = "pagina";
+    private static final String VIEW_ATRIBUTE_ENTIDADE = "edificio";
+
     @Autowired
     private EdificioService service;
 
     @ModelAttribute
     public void addAttributes(Model model) {
+
         model.addAttribute("tipos", tiposDeColeta());
         model.addAttribute("edificios", "active");
     }
-
-    private static final String REDIRECT_LISTAGEM = "redirect:/edificios";
 
     /**
      * Listagem dos edificios.
@@ -69,9 +73,10 @@ public class EdificioController {
         @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<LocalDate> dataColeta,
         Model model
     ) {
+
         var pageable = of(page, size, Direction.DESC, "createdAt");
         var pagina = service.obterTodos(fonteColeta, nome, autor, dataColeta, model, pageable);
-        model.addAttribute("pagina", pagina);
+        model.addAttribute(VIEW_ATRIBUTE_PAGINA, pagina);
         return INDEX;
     }
 
@@ -83,7 +88,8 @@ public class EdificioController {
      */
     @GetMapping("/edificios/formulario")
     public String formulario(Model model) {
-        model.addAttribute("edificio", new Edificio());
+
+        model.addAttribute(VIEW_ATRIBUTE_ENTIDADE, new Edificio());
         return FORMULARIO;
     }
 
@@ -96,8 +102,8 @@ public class EdificioController {
      */
     @GetMapping("/edificios/formulario/{id}")
     public String formulario(@PathVariable Long id, Model model) {
-        var edificio = service.obterPorId(id);
-        model.addAttribute("edificio", edificio);
+
+        model.addAttribute(VIEW_ATRIBUTE_ENTIDADE, service.obterPorId(id));
         return FORMULARIO;
     }
 
@@ -106,9 +112,9 @@ public class EdificioController {
         @PathVariable Long id,
         RedirectAttributes redirect
     ) {
+    
         var edificio = service.obterPorId(id);
-        var alerta = new Alerta(edificio.getNomeConhecido(), "Edificio", edificio.getId());
-        redirect.addFlashAttribute("deletado", alerta);
+        addNotificacao(redirect, TipoAlerta.DELETADO, edificio);
         service.deletar(edificio);
         return REDIRECT_LISTAGEM;
     }
@@ -128,27 +134,12 @@ public class EdificioController {
         RedirectAttributes redirect,
         Model model
     ) {
+
         if (result.hasErrors()) {
-            model.addAttribute("edificio", edificio);
+            model.addAttribute(VIEW_ATRIBUTE_ENTIDADE, edificio);
             return FORMULARIO;
         }
-        return salvar(edificio, Objects.isNull(edificio.getId()), redirect);
-    }
-
-    private String salvar(
-        Edificio edificio,
-        Boolean novoRegistro,
-        RedirectAttributes redirect
-    ) {
-        if (novoRegistro) {
-            var novo = service.persistir(edificio);
-            var alerta = new Alerta(novo.getNomeConhecido(), "Edificio", novo.getId());
-            redirect.addFlashAttribute("novo", alerta);
-            return REDIRECT_LISTAGEM;
-        }
-        var atualizado = service.atualizar(edificio);
-        var alerta = new Alerta(atualizado.getNomeConhecido(), "Edificio", atualizado.getId());
-        redirect.addFlashAttribute("atualizado", alerta);
+        service.salvar(edificio, redirect);
         return REDIRECT_LISTAGEM;
     }
 }

@@ -1,11 +1,10 @@
 package com.github.websier.sier.app.services;
 
 import static com.github.websier.sier.app.domain.specifications.UsuarioSpecification.where;
-
-import java.util.Optional;
-
 import static com.github.websier.sier.app.utils.FormUtils.addNotificacao;
 import static java.util.Objects.isNull;
+
+import java.util.Optional;
 
 import com.github.websier.sier.app.configuration.security.SecurityService;
 import com.github.websier.sier.app.domain.models.Usuario;

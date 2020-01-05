@@ -35,6 +35,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @PreAuthorize("hasAnyAuthority('ADMINISTRADOR')")
 public class UsuarioController {
 
+    private static final String REDIRECT_LISTAGEM = "redirect:/usuarios";
+    private static final String VIEW_ATRIBUTE_CARGOS = "cargos";
+    private static final String VIEW_ATRIBUTE_PAGINA = "pagina";
+    private static final String VIEW_ATRIBUTE_ENTIDADE = "usuario";
+
     @Autowired
     private CargoRepository cargos;
 
@@ -45,11 +50,6 @@ public class UsuarioController {
     public void addAttributes(Model model) {
         model.addAttribute("usuarios", "active");
     }
-
-    private static final String REDIRECT_LISTAGEM = "redirect:/usuarios";
-    private static final String VIEW_ATRIBUTE_CARGOS = "cargos";
-    private static final String VIEW_ATRIBUTE_PAGINA = "pagina";
-    private static final String VIEW_ATRIBUTE_ENTIDADE = "usuario";
 
     @GetMapping("/usuarios")
     public String index(
