@@ -25,78 +25,36 @@ public class Templates {
     private static final String MAIN_PATH = "views/";
 
     public static class MAIN {
-
-        /**
-         * Home (index).
-         */
         public static final String INDEX = MAIN_PATH + "index";
-
-        /**
-         * Contato.
-         */
         public static final String CONTATO = MAIN_PATH + "contato";
-    }
-
-    public static class SECTION {
-
-        /**
-         * Formulario de login.
-         */
         public static final String LOGIN = MAIN_PATH + "login";
+        public static final String PERFIL = MAIN_PATH + "perfil";
     }
 
     public static class EDIFCIO {
-
         private static String BASE_PATH = "edificio/";
 
-        /**
-         * Listagem dos edificios.
-         */
         public static final String INDEX = MAIN_PATH + BASE_PATH + "index";
-
-        /**
-         * Formulario de cadastro de edificios.
-         */
         public static final String FORMULARIO = MAIN_PATH + BASE_PATH + "formulario";
     }
 
     public static class ALUNO {
-
         private static String BASE_PATH = "aluno/";
 
-        /**
-         * Listagem dos edificios.
-         */
         public static final String INDEX = MAIN_PATH + BASE_PATH + "index";
-
-        /**
-         * Formulario de cadastro de edificios.
-         */
         public static final String FORMULARIO = MAIN_PATH + BASE_PATH + "formulario";
     }
 
     public static class USUARIO {
-
         private static String BASE_PATH = "usuario/";
 
-        /**
-         * Listagem dos usuarios.
-         */
         public static final String INDEX = MAIN_PATH + BASE_PATH + "index";
-
-        /**
-         * Formulario de cadastro de usuarios.
-         */
         public static final String FORMULARIO = MAIN_PATH + BASE_PATH + "formulario";
     }
 
     public static class ACERVO {
-
         private static String BASE_PATH = "acervo/";
 
-        /**
-         * Listagem do acervo edificios.
-         */
         public static final String INDEX = MAIN_PATH + BASE_PATH + "index";
     }
 }

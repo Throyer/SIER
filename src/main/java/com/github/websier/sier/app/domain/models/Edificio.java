@@ -34,8 +34,10 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.github.websier.sier.app.domain.dtos.Alerta;
 import com.github.websier.sier.app.domain.embeddables.Coleta;
 import com.github.websier.sier.app.domain.embeddables.Endereco;
+import com.github.websier.sier.app.domain.interfaces.Notificavel;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -46,7 +48,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  * @since 3.0.0
  */
 @Entity
-public class Edificio implements Serializable {
+public class Edificio implements Serializable, Notificavel {
 
     private static final long serialVersionUID = 1L;
 
@@ -75,7 +77,7 @@ public class Edificio implements Serializable {
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate createdAt;
-    
+
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate updatedAt;
 
@@ -118,7 +120,7 @@ public class Edificio implements Serializable {
     public String toString() {
         return this.nomeConhecido;
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -174,12 +176,17 @@ public class Edificio implements Serializable {
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-    
+
     public LocalDate getCadastradoEm() {
         return this.createdAt;
     }
-    
+
     public LocalDate getAtuaizadoEm() {
         return this.updatedAt;
+    }
+
+    @Override
+    public Alerta toAlerta() {
+        return new Alerta(this.getNomeConhecido(), "edificio", this.getId());
     }
 }

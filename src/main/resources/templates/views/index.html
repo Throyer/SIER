@@ -29,6 +29,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <div class="row">
                 <div class="col">
                     <!-- Acesso negado -->
+                    <div th:if="${param.erro}" class="alert alert-warning alert-dismissible fade show mt-3 mb-3" role="alert">
+                        <strong>Ocorreu um erro inesperado...</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <hr>
+                        Por favor tente novamente mais tarde ou entre em
+                        <a th:href="@{/contato}">contato</a> com o administrador do sistema.
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <!-- Acesso negado -->
                     <div th:if="${param.negado}" class="alert alert-warning alert-dismissible fade show mt-3 mb-3" role="alert">
                         <strong>Acesso negado!</strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">

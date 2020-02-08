@@ -16,17 +16,13 @@
  */
 package com.github.websier.sier.app.controllers;
 
-import com.github.websier.sier.app.utils.Templates.SECTION;
+import static com.github.websier.sier.app.utils.Templates.MAIN.LOGIN;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-/**
- *
- * @author Renato Henrique
- */
 @Controller
 public class LoginController {
 
@@ -37,7 +33,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public String login() {
-        return SECTION.LOGIN;
+        return LOGIN;
     }
 
 }

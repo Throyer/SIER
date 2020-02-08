@@ -22,6 +22,12 @@ body {
     margin-top : 30pt;
 }
 
+.card-img-top {
+    width: 100%;
+    border-top-left-radius: calc(.25rem - 1px);
+    border-top-right-radius: calc(.25rem - 1px);
+}
+
 .shadow-font-lg {
     color      : #ffffff;
     font-size  : 119pt;
