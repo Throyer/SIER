@@ -12,6 +12,7 @@ import com.github.websier.sier.app.domain.models.Edificio;
 import com.github.websier.sier.app.domain.repositories.EdificioRepository;
 import com.github.websier.sier.app.utils.TipoAlerta;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -71,24 +72,14 @@ public class EdificioService {
     }
 
     public Edificio atualizar(Edificio edificio) {
-        var entidade = obterPorId(edificio.getId());
-        return repository.save(atualizarCamposDoEdificio(entidade, edificio));
+        var persistir = obterPorId(edificio.getId());
+        var createdBy = persistir.getColeta().getCreatedBy();
+        BeanUtils.copyProperties(edificio, persistir, "id");
+        persistir.getColeta().setCreatedBy(createdBy);
+        return repository.save(persistir);
     }
 
     public void deletar(Edificio edificio) {
         repository.delete(edificio);
-    }
-
-    private Edificio atualizarCamposDoEdificio(Edificio destino, Edificio fonte) {
-        destino.setNome(fonte.getNome());
-        destino.setNomeConhecido(fonte.getNomeConhecido());
-        destino.setDataConstrucao(fonte.getDataConstrucao());
-        destino.setNumeroAndares(fonte.getNumeroAndares());
-        destino.setEndereco(fonte.getEndereco());
-        var coletaDestino = destino.getColeta();
-        var coletaFonte = fonte.getColeta();
-        coletaDestino.setUpdatedBy(coletaFonte.getUpdatedBy());
-        coletaDestino.setFonteColeta(coletaFonte.getFonteColeta());
-        return destino;
     }
 }
