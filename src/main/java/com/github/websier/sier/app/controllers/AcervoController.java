@@ -73,7 +73,7 @@ public class AcervoController {
         @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<LocalDate> dataColeta,
         Model model
     ) {
-        var specification = where(fonteColeta, nome, autor, dataColeta, model);
+        var specification = where(fonteColeta, nome, autor, dataColeta, Optional.of(model));
         var pagina = repository.findAll(specification, of(page, size));
         model.addAttribute("pagina", pagina);
         return INDEX;

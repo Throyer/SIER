@@ -36,6 +36,8 @@ import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.websier.sier.app.domain.dtos.Alerta;
+import com.github.websier.sier.app.domain.dtos.perfil.NomeApelidoDTO;
+import com.github.websier.sier.app.domain.dtos.perfil.PasswordDTO;
 import com.github.websier.sier.app.domain.interfaces.Notificavel;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -113,6 +115,11 @@ public class Usuario implements Serializable, Notificavel {
         this.apelido = apelido;
     }
 
+    public void setNomeEApelido(NomeApelidoDTO nomeEApelido) {
+        this.nome = nomeEApelido.getNome(); 
+        this.apelido = nomeEApelido.getApelido(); 
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -127,6 +134,14 @@ public class Usuario implements Serializable, Notificavel {
 
     public void setSenha(String senha, int força) {
         this.senha = new BCryptPasswordEncoder(força).encode(senha);
+    }
+
+    public Boolean confirmarSenha(String senha) {
+        return new BCryptPasswordEncoder().matches(senha, this.senha);
+    }
+
+    public void atualizarSenha(PasswordDTO password) {
+        setSenha(password.getNovaSenha());
     }
 
     public Cargo getCargo() {

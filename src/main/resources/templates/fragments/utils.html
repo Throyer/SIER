@@ -206,7 +206,6 @@
     
                     <form
                         th:action="@{/perfil/senha}"
-                        th:object="${passwordDTO}"
                         method="POST"
                         class="needs-validation"
                         autocomplete="off"
@@ -220,7 +219,7 @@
                                     <input
                                         required
                                         id="inputSenhaAtual"
-                                        th:filed="*{senhaAtual}"
+                                        name="senhaAtual"
                                         type="password"
                                         class="form-control form-control-sm"
                                         placeholder="Senha anterior">
@@ -240,7 +239,7 @@
                                     <input
                                         required
                                         id="inputNovaSenha"
-                                        th:filed="*{novaSenha}"
+                                        name="novaSenha"
                                         type="password"
                                         autocomplete="new-password"
                                         class="form-control form-control-sm"
@@ -261,7 +260,7 @@
                                     <input
                                         required
                                         id="inputConfirmeSenha"
-                                        th:filed="*{confirmaSenha}"
+                                        name="confirmaSenha"
                                         type="password"
                                         class="form-control form-control-sm"
                                         placeholder="Nova senha">

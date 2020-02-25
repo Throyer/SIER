@@ -31,7 +31,7 @@ public class PerfilController {
     private static final String REDIRECT_ERROR = "redirect:/?erro=true";
     private static final String REDIRECT_PERFIL = "redirect:/perfil";
 
-    private static final String MENSAGEM_SUCESSO = "Seu email e-mail foi atualizado com <strong>sucesso</strong>.";
+    private static final String MENSAGEM_SUCESSO_EMAIL = "Seu email e-mail foi atualizado com <strong>sucesso</strong>.";
 
     private static final String VIEW_ATRIBUTE_ERROS = "erros";
     private static final String VIEW_ATRIBUTE_MENSAGEM = "mensagem";
@@ -45,18 +45,12 @@ public class PerfilController {
 
     @GetMapping("/perfil")
     public String perfil(Model model) {
-
-        var optionalUsuarioLogado = service.getUsuarioLogado();
-
-        if (optionalUsuarioLogado.isEmpty()) {
-            return REDIRECT_ERROR;
-        }
-        
-        var usuarioLogado = optionalUsuarioLogado.get();
-
-        model = popularModel(model, usuarioLogado);
-
-        return PERFIL;
+        return service.getUsuarioLogado()
+            .map(usuario -> {
+                popularModel(model, usuario);
+                return PERFIL;
+            })
+            .orElseGet(() -> REDIRECT_ERROR);
     }
 
     @PostMapping("/perfil/nome")
@@ -66,6 +60,14 @@ public class PerfilController {
         RedirectAttributes redirect,
         Model model
     ) {
+        if (result.hasErrors()) {
+            redirect.addFlashAttribute(VIEW_ATRIBUTE_ERROS, result.getAllErrors());
+            return REDIRECT_PERFIL;
+        }
+        var usuarioLogado = getUsuarioLogado();
+        usuarioLogado.setNomeEApelido(nomeApelidoDTO);
+        service.atualizar(usuarioLogado);
+        redirect.addFlashAttribute(VIEW_ATRIBUTE_MENSAGEM, "Nome e Apelido atualizados com <strong>sucesso</strong>.");
         return REDIRECT_PERFIL;
     }
 
@@ -77,8 +79,7 @@ public class PerfilController {
         Model model
     ) {
 
-        var usuarioLogado = service.getUsuarioLogado()
-            .orElseThrow(() -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR));
+        var usuarioLogado = getUsuarioLogado();
 
         validarUnicidadeDoEmail(result, emailDTO, usuarioLogado);
 
@@ -89,24 +90,41 @@ public class PerfilController {
         
         service.mudarEmail(usuarioLogado.getId(), emailDTO.getEmail());
 
-        redirect.addFlashAttribute(VIEW_ATRIBUTE_MENSAGEM, MENSAGEM_SUCESSO);
+        redirect.addFlashAttribute(VIEW_ATRIBUTE_MENSAGEM, MENSAGEM_SUCESSO_EMAIL);
 
         return REDIRECT_PERFIL;
     }
 
     @PostMapping("/perfil/senha")
-    public String nome(
+    public String senha(
         @Valid @ModelAttribute(VIEW_ATRIBUTE_PASSOWORD) PasswordDTO passwordDTO,
         BindingResult result,
-        Model model
+        RedirectAttributes redirect
     ) {
+
+        var usuario = getUsuarioLogado();
+
+        passwordDTO.validate(usuario, result);
+
+        if (result.hasErrors()) {
+            redirect.addFlashAttribute(VIEW_ATRIBUTE_ERROS, result.getAllErrors());
+            return REDIRECT_PERFIL;
+        }
+
+        usuario.atualizarSenha(passwordDTO);
+        service.atualizar(usuario);
+        redirect.addFlashAttribute(VIEW_ATRIBUTE_MENSAGEM, "Senha atualizada com <strong>sucesso</strong>.");
         return REDIRECT_PERFIL;
     }
 
     private Model popularModel(Model model, Usuario usuario) {
         model.addAttribute(VIEW_ATRIBUTE_NOME, new NomeApelidoDTO(usuario));
         model.addAttribute(VIEW_ATRIBUTE_EMAIL, new EmailDTO(usuario));
-        model.addAttribute(VIEW_ATRIBUTE_PASSOWORD, new PasswordDTO());
         return model;
+    }
+
+    private Usuario getUsuarioLogado() {
+        return service.getUsuarioLogado()
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 }

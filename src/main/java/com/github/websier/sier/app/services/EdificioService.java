@@ -5,6 +5,7 @@ import static com.github.websier.sier.app.utils.FormUtils.addNotificacao;
 import static java.util.Objects.isNull;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import com.github.websier.sier.app.domain.enuns.TipoColeta;
@@ -12,6 +13,7 @@ import com.github.websier.sier.app.domain.models.Edificio;
 import com.github.websier.sier.app.domain.repositories.EdificioRepository;
 import com.github.websier.sier.app.utils.TipoAlerta;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -39,8 +41,12 @@ public class EdificioService {
         Model model,
         Pageable pageable
     ) {
-        var specification = where(fonteColeta, nome, autor, dataColeta, model);
+        var specification = where(fonteColeta, nome, autor, dataColeta, Optional.of(model));
         return repository.findAll(specification, pageable);
+    }
+
+    public List<Edificio> obterTodos(Specification<Edificio> specification) {
+        return repository.findAll(specification);
     }
 
     public Page<Edificio> obterTodos(
@@ -71,24 +77,14 @@ public class EdificioService {
     }
 
     public Edificio atualizar(Edificio edificio) {
-        var entidade = obterPorId(edificio.getId());
-        return repository.save(atualizarCamposDoEdificio(entidade, edificio));
+        var persistir = obterPorId(edificio.getId());
+        var createdBy = persistir.getColeta().getCreatedBy();
+        BeanUtils.copyProperties(edificio, persistir, "id");
+        persistir.getColeta().setCreatedBy(createdBy);
+        return repository.save(persistir);
     }
 
     public void deletar(Edificio edificio) {
         repository.delete(edificio);
-    }
-
-    private Edificio atualizarCamposDoEdificio(Edificio destino, Edificio fonte) {
-        destino.setNome(fonte.getNome());
-        destino.setNomeConhecido(fonte.getNomeConhecido());
-        destino.setDataConstrucao(fonte.getDataConstrucao());
-        destino.setNumeroAndares(fonte.getNumeroAndares());
-        destino.setEndereco(fonte.getEndereco());
-        var coletaDestino = destino.getColeta();
-        var coletaFonte = fonte.getColeta();
-        coletaDestino.setUpdatedBy(coletaFonte.getUpdatedBy());
-        coletaDestino.setFonteColeta(coletaFonte.getFonteColeta());
-        return destino;
     }
 }
