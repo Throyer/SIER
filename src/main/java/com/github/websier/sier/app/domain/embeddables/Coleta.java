@@ -16,8 +16,7 @@
  */
 package com.github.websier.sier.app.domain.embeddables;
 
-import java.util.Objects;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -44,11 +43,11 @@ public class Coleta {
     @Size(max = 350)
     private String informacoes;
 
-    @ManyToOne
-    private Usuario cadastradoPor;
+    @ManyToOne(cascade = CascadeType.DETACH)
+    private Usuario createdBy;
     
     @ManyToOne
-    private Usuario atualizadoPor;
+    private Usuario updatedBy;
 
     public TipoColeta getFonteColeta() {
         return fonteColeta;
@@ -66,21 +65,19 @@ public class Coleta {
         this.informacoes = informacoes;
     }
 
-    public Usuario getCadastradoPor() {
-        return cadastradoPor;
+    public Usuario getCreatedBy() {
+        return createdBy;
     }
 
-    public void setCadastradoPor(Usuario cadastradoPor) {
-        if (Objects.isNull(this.cadastradoPor)) {
-            this.cadastradoPor = cadastradoPor;
-        }
+    public void setCreatedBy(Usuario createdBy) {
+        this.createdBy = createdBy;
     }
 
-    public Usuario getAtualizadoPor() {
-        return atualizadoPor;
+    public Usuario getUpdatedBy() {
+        return updatedBy;
     }
 
-    public void setAtualizadoPor(Usuario atualizadoPor) {
-        this.atualizadoPor = atualizadoPor;
+    public void setUpdatedBy(Usuario updatedBy) {
+        this.updatedBy = updatedBy;
     }
 }

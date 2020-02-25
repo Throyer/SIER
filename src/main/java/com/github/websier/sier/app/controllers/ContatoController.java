@@ -4,8 +4,8 @@ import com.github.websier.sier.app.utils.Templates.MAIN;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * ContatoController
@@ -18,8 +18,8 @@ public class ContatoController {
         model.addAttribute("contato", "active");
     }
 
-    @RequestMapping("/contato")
-    public String Index() {
+    @GetMapping("/contato")
+    public String index() {
         return MAIN.CONTATO;
     }
 

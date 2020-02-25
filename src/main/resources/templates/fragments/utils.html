@@ -1,0 +1,309 @@
+<th:block th:fragment="alerts">
+    <div th:if="${novo}" class="alert alert-success alert-dismissible fade show" role="alert">
+        <span th:text="${novo.entidade}">
+            Entidade
+        </span>
+        <strong th:text="${novo.nome}">
+            nome
+        </strong>
+        foi cadastrado com sucesso.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div th:if="${atualizado}" class="alert alert-warning alert-dismissible fade show" role="alert">
+        <span th:text="${atualizado.entidade}">
+            Entidade
+        </span>
+        <strong th:text="${atualizado.nome}">
+            nome
+        </strong>
+        foi atualizado com sucesso.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div th:if="${deletado}" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <span th:text="${deletado.entidade}">
+            Entidade
+        </span>
+        <strong th:text="${deletado.nome}">
+            nome
+        </strong>
+        foi deletado com sucesso.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div th:if="${desbloqueado}" class="alert alert-success alert-dismissible fade show" role="alert">
+        <span th:text="${desbloqueado.entidade}">
+            Entidade
+        </span>
+        <strong th:text="${desbloqueado.nome}">
+            nome
+        </strong>
+        foi desbloqueado com sucesso.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div th:if="${bloqueado}" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <span th:text="${bloqueado.entidade}">
+            Entidade
+        </span>
+        <strong th:text="${bloqueado.nome}">
+            nome
+        </strong>
+        foi bloqueado com sucesso.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</th:block>
+
+<th:block th:fragment="sizes">
+    <form id="sizeForm" class="ml-4">
+        <input hidden type="text" name="page" value="0">
+        <div class="input-group">
+            <select id="sizeInput" name="size" class="custom-select custom-select-sm">
+                <option value="10">Itens por pagina</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+            </select>
+        </div>
+    </form>
+</th:block>
+
+<th:block th:fragment="trocar-nome-form">
+    <div class="row mb-4 justify-content-center">
+        <div class="col-7">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <h5 class="font-weight-light">
+                        <i class="fas fa-user"></i>
+                        Nome e apelido
+                    </h5>
+                    <hr>
+                    <form
+                        th:object="${nomeDTO}"
+                        th:action="@{/perfil/nome}"
+                        method="POST"
+                        class="needs-validation"
+                        autocomplete="off"
+                        novalidate>
+                        <div class="row">
+                            <div class="col-7">
+                                <div class="form-group">
+                                    <label for="inputNome">
+                                        <small>Nome</small>
+                                    </label>
+                                    <input
+                                        id="inputNome"
+                                        required
+                                        th:field="*{nome}"
+                                        type="text"
+                                        class="form-control form-control-sm"
+                                        placeholder="Novo nome">
+                                    <div class="invalid-feedback mb-2">
+                                        Por favor, informe o novo nome.
+                                    </div>                                    
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="inputApelido">
+                                        <small>Apelido</small>
+                                    </label>
+                                    <input
+                                        id="inputApelido"
+                                        required
+                                        th:field="*{apelido}"
+                                        type="text"
+                                        class="form-control form-control-sm"
+                                        placeholder="Novo apelido">
+                                    <div class="invalid-feedback mb-2">
+                                        Por favor, informe o novo nome.
+                                    </div>
+                                </div>
+                            </div>                            
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-sm btn-block btn-dark float-right">Salvar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+<th:block th:fragment="trocar-email-form">
+    <div class="row mb-4 justify-content-center">
+        <div class="col-7">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    
+                    <h5 class="font-weight-light">
+                        <i class="fas fa-envelope"></i>
+                        E-Mail
+                    </h5>
+                    <hr>
+
+                    <form
+                    th:object="${emailDTO}"
+                    th:action="@{/perfil/email}"
+                    method="POST"
+                    class="needs-validation"
+                    autocomplete="off"
+                    novalidate>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="inputEmail">
+                                        <small>E-Mail</small>
+                                    </label>
+                                    <input
+                                        required
+                                        id="inputEmail"
+                                        name="email"
+                                        th:value="*{email}"
+                                        type="text"
+                                        class="form-control form-control-sm"
+                                        placeholder="Novo nome">
+                                    <div class="invalid-feedback mb-2">
+                                        Por favor, informe o novo email.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" class="btn btn-sm btn-block btn-dark">Salvar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+<th:block th:fragment="trocar-senha-form">
+    <div class="row justify-content-center">
+        <div class="col-7">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+    
+                    <h5 class="font-weight-light">
+                        <i class="fas fa-envelope"></i>
+                        Senha
+                    </h5>
+                    <hr>
+    
+                    <form
+                        th:action="@{/perfil/senha}"
+                        method="POST"
+                        class="needs-validation"
+                        autocomplete="off"
+                        novalidate>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="inputSenhaAtual">
+                                        <small>Senha atual</small>
+                                    </label>
+                                    <input
+                                        required
+                                        id="inputSenhaAtual"
+                                        name="senhaAtual"
+                                        type="password"
+                                        class="form-control form-control-sm"
+                                        placeholder="Senha anterior">
+
+                                    <div class="invalid-feedback mb-2">
+                                        Por favor, informe a senha atual.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="inputNovaSenha">
+                                        <small>Nova Senha</small>
+                                    </label>
+                                    <input
+                                        required
+                                        id="inputNovaSenha"
+                                        name="novaSenha"
+                                        type="password"
+                                        autocomplete="new-password"
+                                        class="form-control form-control-sm"
+                                        placeholder="Nova senha">
+
+                                    <div class="invalid-feedback mb-2">
+                                        Por favor, informe a nova senha.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="inputConfirmeSenha">
+                                        <small>Confirme a nova Senha</small>
+                                    </label>
+                                    <input
+                                        required
+                                        id="inputConfirmeSenha"
+                                        name="confirmaSenha"
+                                        type="password"
+                                        class="form-control form-control-sm"
+                                        placeholder="Nova senha">
+                                    <div class="invalid-feedback mb-2">
+                                        Por favor, confirme a nova senha.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" class="btn btn-block btn-dark">Salvar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+<th:block th:fragment="error-list">
+    <div class="alert alert-danger alert-dismissible fade show" th:if="${erros}">
+        <small>Erros:</small>
+        <ul>
+            <li th:each="erro : ${erros}">
+                <small th:text="${erro.defaultMessage}"></small>
+            </li>   
+        </ul>
+
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</th:block>
+
+<th:block th:fragment="mensagem">
+    <div th:if="${mensagem}" class="alert alert-success alert-dismissible fade show" role="alert">
+        <span th:utext="${mensagem}">
+            mensagem.
+        </span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</th:block>

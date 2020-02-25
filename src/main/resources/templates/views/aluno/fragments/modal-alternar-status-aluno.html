@@ -1,6 +1,6 @@
 <div 
-    th:fragment="modal-deletar-aluno"
-    id="modal-deletar-aluno"
+    th:fragment="modal-alternar-status-aluno"
+    id="modal-alternar-status-aluno"
     class="modal"
     tabindex="-1"
     role="dialog">
@@ -20,15 +20,15 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Deseja deletar o aluno: <span class="font-weight-bold" id="nome-aluno"></span>.</p>
+                <p>Deseja <strong id="acao">bloquear ou desbloquear</strong> o acesso do Aluno: <span class="font-weight-bold" id="nome-aluno"></span>.</p>
             </div>
             <form 
-                id="form-deletar-aluno"
+                id="form-alternar-status-aluno"
                 method="POST"
                 class="modal-footer"
                 action="">
                 <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-sm btn-danger">Deletar</button>
+                <button type="submit" class="btn btn-sm confirmacao">Bloquear</button>
             </form>
         </div>
     </div>

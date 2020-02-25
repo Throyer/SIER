@@ -1,5 +1,5 @@
 <form th:fragment="edificio-filter">
-    <div class="card shadow-sm rounded-0 mb-3">
+    <div class="card shadow-sm border-0 mb-4">
         <div class="card-body">
             <div class="row">
                 <div class="col-md-2">
@@ -36,7 +36,7 @@
                             </button>
                         </div>
                     </div> 
-                    <small>Nome fantasia</small>
+                    <small>Nome fantasia.</small>
                 </div>
                 <div class="col-md-3">
                     <div class="input-group">
@@ -56,7 +56,7 @@
                             </button>
                         </div>
                     </div>
-                    <small>Autor do cadastro</small>
+                    <small>Autor da coleta.</small>
                 </div>
                 <div class="col-md-3">
                     <div class="input-group">
@@ -76,20 +76,15 @@
                             </button>
                         </div>
                     </div>
-                    <small>Data da coleta dos dados</small>
+                    <small>Data da coleta dos dados.</small>
                 </div>
                 <div class="col-md-1">
                     <input hidden type="text" name="page" value="0">
                     <input hidden type="text" name="size" th:value="${param.size}">
                     <div class="btn-group btn-block" role="group" aria-label="Basic example">
-                        <button type="submit" class="btn btn-sm btn-outline-secondary">
+                        <button type="submit" class="btn btn-sm btn-primary">
                             <i class="fas fa-search"></i>
-                            <!-- Filtrar -->
                         </button>
-                        <!-- <a th:href="@{/edificios/formulario}" class="btn btn-outline-success btn-block btn-sm">
-                            Novo
-                            <i class="fas fa-plus"></i>
-                        </a> -->
                     </div>
                 </div>
             </div>

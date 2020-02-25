@@ -1,25 +1,31 @@
 package com.github.websier.sier.app.controllers;
 
 import static com.github.websier.sier.app.domain.specifications.EdificioSpecification.where;
-import static com.github.websier.sier.app.utils.Templates.EDIFCIO.INDEX;
-import static com.github.websier.sier.app.utils.Templates.EDIFCIO.FORMULARIO;
+
+import static com.github.websier.sier.app.utils.FormUtils.addNotificacao;
+import static com.github.websier.sier.app.utils.FormUtils.tiposDeColeta;
 import static com.github.websier.sier.app.utils.PageSettings.of;
-import static com.github.websier.sier.app.utils.FormUtils.tipos;
+import static com.github.websier.sier.app.utils.Templates.EDIFCIO.FORMULARIO;
+import static com.github.websier.sier.app.utils.Templates.EDIFCIO.INDEX;
 
 import java.time.LocalDate;
-import java.util.Objects;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
 import com.github.websier.sier.app.domain.enuns.TipoColeta;
 import com.github.websier.sier.app.domain.models.Edificio;
-import com.github.websier.sier.app.domain.repositories.EdificioRepository;
+import com.github.websier.sier.app.services.EdificioService;
+import com.github.websier.sier.app.services.PdfService;
+import com.github.websier.sier.app.utils.TipoAlerta;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,9 +33,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
@@ -41,16 +45,41 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class EdificioController {
 
+    private static final String REDIRECT_LISTAGEM = "redirect:/edificios";
+
+    private static final String VIEW_ATRIBUTE_PAGINA = "pagina";
+    private static final String VIEW_ATRIBUTE_ENTIDADE = "edificio";
+
     @Autowired
-    private EdificioRepository repository;
+    private EdificioService service;
 
     @ModelAttribute
     public void addAttributes(Model model) {
-        model.addAttribute("tipos", tipos());
+
+        model.addAttribute("tipos", tiposDeColeta());
         model.addAttribute("edificios", "active");
     }
 
-    private static final String REDIRECT_LISTAGEM = "redirect:/edificios";
+    @GetMapping(value = "/edificios/relatorio", produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<InputStreamResource> relatorioEdificios(
+        Optional<TipoColeta> fonteColeta,
+        Optional<String> nome,
+        Optional<String> autor
+    ) {
+
+        var edificios = service.obterTodos(where(fonteColeta, nome, autor, Optional.empty(), Optional.empty()));
+
+        var bytes = PdfService.relatorioEdificios(edificios);
+
+        var headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=relatorioEdificios.pdf");
+        
+        return ResponseEntity
+                .ok()
+                .headers(headers)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(new InputStreamResource(bytes));
+    }
 
     /**
      * Listagem dos edificios.
@@ -62,7 +91,7 @@ public class EdificioController {
      * @param dataColeta data do cadastro do edificio.
      * @return view da listagem dos edificios.
      */
-    @RequestMapping("/edificios")
+    @GetMapping("/edificios")
     public String index(
         @RequestParam Optional<Integer> page,
         @RequestParam Optional<Integer> size,
@@ -72,9 +101,10 @@ public class EdificioController {
         @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<LocalDate> dataColeta,
         Model model
     ) {
-        var specification = where(fonteColeta, nome, autor, dataColeta, model);
-        var pagina = repository.findAll(specification, of(page, size, Direction.DESC, "createdAt"));
-        model.addAttribute("pagina", pagina);
+
+        var pageable = of(page, size, Direction.DESC, "createdAt");
+        var pagina = service.obterTodos(fonteColeta, nome, autor, dataColeta, model, pageable);
+        model.addAttribute(VIEW_ATRIBUTE_PAGINA, pagina);
         return INDEX;
     }
 
@@ -86,7 +116,8 @@ public class EdificioController {
      */
     @GetMapping("/edificios/formulario")
     public String formulario(Model model) {
-        model.addAttribute("edificio", new Edificio());
+
+        model.addAttribute(VIEW_ATRIBUTE_ENTIDADE, new Edificio());
         return FORMULARIO;
     }
 
@@ -99,9 +130,8 @@ public class EdificioController {
      */
     @GetMapping("/edificios/formulario/{id}")
     public String formulario(@PathVariable Long id, Model model) {
-        var edificio = repository.findById(id)
-            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        model.addAttribute("edificio", edificio);
+
+        model.addAttribute(VIEW_ATRIBUTE_ENTIDADE, service.obterPorId(id));
         return FORMULARIO;
     }
 
@@ -110,10 +140,10 @@ public class EdificioController {
         @PathVariable Long id,
         RedirectAttributes redirect
     ) {
-        var edificio = repository
-            .findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        redirect.addAttribute("deletado", edificio);
-        repository.delete(edificio);
+    
+        var edificio = service.obterPorId(id);
+        addNotificacao(redirect, TipoAlerta.DELETADO, edificio);
+        service.deletar(edificio);
         return REDIRECT_LISTAGEM;
     }
 
@@ -132,44 +162,12 @@ public class EdificioController {
         RedirectAttributes redirect,
         Model model
     ) {
+
         if (result.hasErrors()) {
-            model.addAttribute("edificio", edificio);
+            model.addAttribute(VIEW_ATRIBUTE_ENTIDADE, edificio);
             return FORMULARIO;
         }
-        var novo = Objects.isNull(edificio.getId());
-        if (novo) {
-            persistir(edificio, redirect);
-        } else {
-            atualizar(edificio, redirect);
-        }
+        service.salvar(edificio, redirect);
         return REDIRECT_LISTAGEM;
-    }
-
-    /**
-     * Persistir.
-     * 
-     * persiste um novo edificio na base.
-     * @param edificio Edificio.
-     * @param redirect dados do redirect.
-     */
-    private void persistir(
-        Edificio edificio,
-        RedirectAttributes redirect
-    ) {
-        redirect.addAttribute("novo", repository.save(edificio));
-    }
-
-    /**
-     * Atualizar.
-     * 
-     * atualiza um edificio na base.
-     * @param edificio Edificio.
-     * @param redirect dados do rediret.
-     */
-    private void atualizar(
-        Edificio edificio,
-        RedirectAttributes redirect
-    ) {
-        redirect.addAttribute("editado", repository.save(edificio));
     }
 }

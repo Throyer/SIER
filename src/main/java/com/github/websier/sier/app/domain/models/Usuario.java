@@ -35,14 +35,19 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.github.websier.sier.app.domain.forms.usuario.UsuarioForm;
+import com.github.websier.sier.app.domain.dtos.Alerta;
+import com.github.websier.sier.app.domain.dtos.perfil.NomeApelidoDTO;
+import com.github.websier.sier.app.domain.dtos.perfil.PasswordDTO;
+import com.github.websier.sier.app.domain.interfaces.Notificavel;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  *
  * @author Renato Henrique
  */
 @Entity
-public class Usuario implements Serializable {
+public class Usuario implements Serializable, Notificavel {
 
     private static final long serialVersionUID = 1L;
 
@@ -63,7 +68,9 @@ public class Usuario implements Serializable {
     @Pattern(regexp = SENHA_FORTE, message = MENSAGEM_SENHA_FORTE)
     private String senha;
 
-    private Boolean ativo;
+    private String turma;
+
+    private Boolean ativo = true;
 
     private LocalDateTime createdAt;
 
@@ -74,15 +81,11 @@ public class Usuario implements Serializable {
     @ManyToOne
     private Cargo cargo;
 
-    public Usuario() { }
+    public Usuario(Cargo cargo) {
+        this.cargo = cargo;
+    }
 
-    public Usuario(UsuarioForm usuario) {
-        this.nome = usuario.getNome();
-        this.apelido = usuario.getApelido();
-        this.email = usuario.getEmail();
-        this.senha = usuario.getSenha();
-        this.ativo = true;
-	}
+    public Usuario() { }
 
     public Long getId() {
         return id;
@@ -112,6 +115,11 @@ public class Usuario implements Serializable {
         this.apelido = apelido;
     }
 
+    public void setNomeEApelido(NomeApelidoDTO nomeEApelido) {
+        this.nome = nomeEApelido.getNome(); 
+        this.apelido = nomeEApelido.getApelido(); 
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -121,7 +129,19 @@ public class Usuario implements Serializable {
     }
 
     public void setSenha(String senha) {
-        this.senha = senha;
+        this.setSenha(senha, FORCA_DA_CRIPTOGRAFIA_NA_SENHA);
+    }
+
+    public void setSenha(String senha, int força) {
+        this.senha = new BCryptPasswordEncoder(força).encode(senha);
+    }
+
+    public Boolean confirmarSenha(String senha) {
+        return new BCryptPasswordEncoder().matches(senha, this.senha);
+    }
+
+    public void atualizarSenha(PasswordDTO password) {
+        setSenha(password.getNovaSenha());
     }
 
     public Cargo getCargo() {
@@ -151,6 +171,14 @@ public class Usuario implements Serializable {
     @JsonIgnore
     public List<Cargo> getAuthorities() {
         return Arrays.asList(this.cargo);
+    }
+
+    public String getTurma() {
+        return turma;
+    }
+
+    public void setTurma(String turma) {
+        this.turma = turma;
     }
 
     @Override
@@ -196,6 +224,11 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return this.getNome();
+    }
+
+    @Override
+    public Alerta toAlerta() {
+        return new Alerta(this.getNome(), "usuario", this.getId());
     }
 
 }

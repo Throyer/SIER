@@ -14,8 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+$(() => $("#sizeInput").change(() => $("#sizeForm").submit()));
 
-/**
- * Evento de atualização de tamanho de pagina.
- */
-$(() => $("#sizeInput").change(() => $("#sizeForm").submit()))
+$(() => $('[data-toggle="tooltip"]').tooltip());
+$(() => $('[data-toggle="modal"]').tooltip());

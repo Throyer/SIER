@@ -20,7 +20,7 @@ public class EdificioSpecification {
         Optional<String> nome,
         Optional<String> autor,
         Optional<LocalDate> dataColeta,
-        Model model
+        Optional<Model> model
     ) {
         return (edificio, query, builder) -> {
             
@@ -31,32 +31,47 @@ public class EdificioSpecification {
                     .equal(edificio
                         .get("coleta")
                             .get("fonteColeta"), tipo.get()));
-                model.addAttribute("fonteColeta", tipo.get());
+                if (model.isPresent()) {
+                    model.get().addAttribute("fonteColeta", tipo.get());
+                }
             }
 
-            if (nome.isPresent()) {
+            if (isPresent(nome)) {
                 predicates.add(builder
                     .like(edificio.get("nomeConhecido"), "%" + nome.get() + "%"));
-                model.addAttribute("nome", nome.get());
+
+                if (model.isPresent()) {
+                    model.get().addAttribute("nome", nome.get());
+                }
             }
 
-            if (autor.isPresent()) {
+            if (isPresent(autor)) {
                 predicates.add(builder
                     .like(edificio
                         .get("coleta")
-                            .get("cadastradoPor")
+                            .get("createdBy")
                                 .get("nome"), "%" + autor.get() + "%"));
-                model.addAttribute("autor", autor.get());
+
+                if (model.isPresent()) {
+                    model.get().addAttribute("autor", autor.get());
+                }
             }
 
             if (dataColeta.isPresent()) {
                 predicates.add(builder
                     .equal(edificio.get("createdAt"), dataColeta.get()));
-                model.addAttribute("dataColeta", dataColeta.get());
+
+                if (model.isPresent()) {
+                    model.get().addAttribute("dataColeta", dataColeta.get());
+                }
             }
 
             return builder.and(getPredicates(predicates));
         };
+    }
+
+    private static boolean isPresent(Optional<String> field) {
+        return field.isPresent() && !field.get().isEmpty() && !field.get().isBlank();
     }
 
     private static Predicate [] getPredicates(List<Predicate> predicates) {

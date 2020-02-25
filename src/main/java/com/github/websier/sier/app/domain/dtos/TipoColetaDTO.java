@@ -1,5 +1,7 @@
 package com.github.websier.sier.app.domain.dtos;
 
+import com.github.websier.sier.app.domain.enuns.TipoColeta;
+
 /**
  * TipoColetaDTO
  */
@@ -8,9 +10,9 @@ public class TipoColetaDTO {
     private String nome;
     private String chave;
 
-    public TipoColetaDTO(String nome, String chave) {
-        this.nome = nome;
-        this.chave = chave;
+    public TipoColetaDTO(TipoColeta tipoColeta) {
+        this.nome = tipoColeta.tipo;
+        this.chave = tipoColeta.name();
     }
 
     public String getNome() {
@@ -27,5 +29,10 @@ public class TipoColetaDTO {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+    
+    @Override
+    public String toString() {
+        return this.getNome();
     }
 }

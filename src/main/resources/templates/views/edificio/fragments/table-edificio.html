@@ -1,5 +1,5 @@
 <th:block th:fragment="table-edificio">
-    <table class="table table-sm table-hover crud-table">
+    <table class="table table-sm crud-table" th:classappend="${#lists.size(pagina.content) >= 1} ? 'table-hover' : ''">
         <thead>
             <tr>
                 <th class="text-center">Fonte da coleta</th>
@@ -7,51 +7,46 @@
                 <th>Autor da coleta</th>
                 <th>Data da coleta</th>
                 <th class="text-center">
-                    <a th:href="@{/edificios/formulario}" class="btn btn-outline-success btn-block btn-sm">
-                        Novo
-                        <i class="fas fa-plus"></i>
-                    </a>
+                    Ações
                 </th>
             </tr>
         </thead>
         <tbody>
-            <tr th:each="edificio : ${pagina.content}">
-                <td class="text-center"><span th:text="${edificio.coleta.fonteColeta}"></span></td>
-                <td><span th:text="${edificio.nomeConhecido}"></span></td>
-                <td class="text-truncate"><span th:text="${edificio.coleta.cadastradoPor.nome}"></span></td>
-                <td><span th:text="${#temporals.format(edificio.cadastradoEm, 'dd/MM/yyyy')}"></span></td>
-                <td>
-                    <div class="row justify-center">
-                        <div class="col-sm-12 text-center">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <button 
-                                    type="button"
-                                    class="btn btn-sm btn-link text-purple text-decoration-none">
-                                    <i class="fas fa-history"></i>
-                                </button>
-                                <button 
-                                    type="button"
-                                    class="btn btn-sm btn-link text-primary text-decoration-none">
-                                    <i class="far fa-eye"></i>
-                                </button>
-                                <a 
-                                    role="button"
-                                    th:href="@{/edificios/formulario/{id}(id=${edificio.id})}"
-                                    class="btn btn-sm btn-link text-warning text-decoration-none">
-                                    <i class="fas fa-pen"></i>
-                                </a>
-                                <button 
-                                    type="button"
-                                    th:data-id="${edificio.id}"
-                                    th:data-nome="${edificio.nomeConhecido}"
-                                    data-toggle="modal"   
-                                    data-target="#modal-deletar-edificio"
-                                    class="btn btn-sm btn-link text-danger text-decoration-none">
-                                    <i class="far fa-trash-alt"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+            <tr th:each="edificio : ${pagina.content}" th:class="${atualizado} ? (${edificio.id == atualizado.id} ? 'table-warning' : '')">
+                <td class="text-center">
+                    <span th:text="${edificio.coleta.fonteColeta.tipo}"></span>
+                </td>
+                <td><span th:text="${edificio}"></span></td>
+                <td class="text-truncate"><span th:text="${edificio.coleta.createdBy} ?: 'Não registrado'"></span></td>
+                <td><span th:text="${#temporals.format(edificio.cadastradoEm, 'dd/MM/yyyy')} ?: 'Não registrado'"></span></td>
+                <td class="text-center">
+                    <!-- <button 
+                        type="button"
+                        class="btn btn-sm btn-link text-primary">
+                        <i class="far fa-eye"></i>
+                    </button> -->
+                    <a 
+                        role="button"
+                        data-toggle="tooltip" data-placement="top" title="Editar"
+                        th:href="@{/edificios/formulario/{id}(id=${edificio.id})}"
+                        class="btn btn-sm btn-link text-warning">
+                        <i class="fas fa-pen"></i>
+                    </a>
+                    <button
+                        sec:authorize="hasAnyAuthority('ADMINISTRADOR', 'PROFESSOR')"
+                        data-toggle="modal" data-placement="top" title="Remover"
+                        type="button"
+                        th:data-id="${edificio.id}"
+                        th:data-nome="${edificio.nomeConhecido}"  
+                        data-target="#modal-deletar-edificio"
+                        class="btn btn-sm btn-link text-danger">
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+                </td>
+            </tr>
+            <tr th:if="${#lists.size(pagina.content) == 0}">
+                <td colspan="5" class="text-center">
+                    Nenhum edificio encontrado.
                 </td>
             </tr>
         </tbody>

@@ -1,0 +1,74 @@
+<th:block th:fragment="table-usuario">
+    <table class="table table-sm crud-table" th:classappend="${#lists.size(pagina.content) >= 1} ? 'table-hover' : ''">
+        <thead>
+            <tr>
+                <th class="text-center">Cargo</th>
+                <th>Nome</th>
+                <th>Apelido</th>
+                <th>Email</th>
+                <th class="text-center">Situação</th>
+                <th class="text-center">
+                    Ações
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="usuario : ${pagina.content}" th:class="${atualizado} ? (${usuario.id == atualizado.id} ? 'table-warning' : '')">
+                <td class="text-center">
+                    <span class="badge badge-light" th:text="${usuario.cargo ?: 'Não informado'}"></span>
+                </td>
+                <td>
+                    <span th:text="${usuario.nome}"></span>
+                </td>
+                <td>
+                    <span th:text="${usuario.apelido}"></span>
+                </td>
+                <td>
+                    <span th:text="${usuario.email}"></span>
+                </td>
+                <td class="text-center">
+                    <span
+                        class="badge font-weight-light"
+                        th:classappend="${usuario.ativo ? 'badge-success': 'badge-danger'}"
+                        th:text="${usuario.ativo ? 'Habilitado': 'Bloqueado'}">
+                    </span>
+                </td>
+                <td class="text-center">
+                    <a 
+                        role="button"
+                        data-toggle="tooltip" data-placement="top" title="Editar"
+                        th:href="@{/usuarios/formulario/{id}(id=${usuario.id})}"
+                        class="btn btn-link text-warning">
+                        <i class="fas fa-user-edit"></i>
+                    </a>
+                    <button 
+                        type="button"
+                        data-toggle="modal" data-placement="top" th:title="${usuario.ativo ? 'Bloquear': 'Desbloquear'}"
+                        th:data-id="${usuario.id}"
+                        th:data-nome="${usuario.nome}"
+                        th:data-status="${usuario.ativo}"
+                        data-target="#modal-alternar-status-usuario"
+                        class="btn"
+                        th:classappend="${usuario.ativo} ? 'btn-link text-danger' : 'btn-link text-success'">
+                        <i th:if="${!usuario.ativo}" class="fas fa-user-check"></i>
+                        <i th:if="${usuario.ativo}" class="fas fa-user-slash"></i>
+                    </button>
+                    <button 
+                        type="button"
+                        data-toggle="modal" data-placement="top" title="Deletar"
+                        th:data-id="${usuario.id}"
+                        th:data-nome="${usuario.nome}"
+                        data-target="#modal-deletar-usuario"
+                        class="btn btn-link text-danger">
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+                </td>
+            </tr>
+            <tr th:if="${#lists.size(pagina.content) == 0}">
+                <td colspan="6" class="text-center">
+                    Nenhum usuario encontrado.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</th:block>

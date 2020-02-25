@@ -80,23 +80,47 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <span th:text="*{apelido}"></span>
                     <span class="caret"></span>
                 </button>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item"
-                       th:href="@{/user}">
+                <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
+                    <a 
+                        class="dropdown-item"
+                       th:href="@{/perfil}">
                         <i class="fas fa-user-cog"></i>
+
                         Conta
                     </a>
-                    <div class="d-none d-sm-block dropdown-divider"></div>
-                    <a class="dropdown-item" th:href="@{/edificios(page=${0}, size=${10})}">
-                        <i class="fas fa-city"></i>
-                        Gerenciar edifcios
-                    </a>
-                    <a class="dropdown-item" th:href="@{/alunos(page=${0}, size=${10})}">
+                    <div class="d-none d-sm-block dropdown-divider"></div>                    
+                    <a 
+                        sec:authorize="hasAnyAuthority('ADMINISTRADOR')"
+                        class="dropdown-item"
+                        th:href="@{/usuarios(page=${0}, size=${10})}">
+
+                        <i class="fas fa-user"></i>
+                        Gerenciar usuarios
+                    </a>                  
+                    <a
+                        sec:authorize="hasAnyAuthority('PROFESSOR', 'ADMINISTRADOR')"
+                        class="dropdown-item"
+                        th:href="@{/alunos(page=${0}, size=${10})}">
+
                         <i class="fas fa-user-graduate"></i>
                         Gerenciar alunos
                     </a>
+                    <div
+                        sec:authorize="hasAnyAuthority('PROFESSOR', 'ADMINISTRADOR')"
+                        class="d-none d-sm-block dropdown-divider">
+                    </div>
+                    <a 
+                        class="dropdown-item"
+                        th:href="@{/edificios(page=${0}, size=${10})}">
+
+                        <i class="fas fa-city"></i>
+                        Gerenciar edifcios
+                    </a>                    
                     <div class="d-none d-sm-block dropdown-divider"></div>
-                    <a class="dropdown-item" th:href="@{/logout}">
+                    <a 
+                        class="dropdown-item"
+                        th:href="@{/logout}">
+
                         <i class="fas fa-sign-out-alt"></i>
                         sair
                     </a>

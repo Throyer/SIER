@@ -17,6 +17,7 @@
 package com.github.websier.sier.app.configuration.security;
 
 import java.util.Collection;
+import java.util.Objects;
 
 import com.github.websier.sier.app.domain.models.Usuario;
 
@@ -81,5 +82,30 @@ public class Autenticado extends User {
 
     public Long getId() {
         return id;
-    }    
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Autenticado other = (Autenticado) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
+    }
 }

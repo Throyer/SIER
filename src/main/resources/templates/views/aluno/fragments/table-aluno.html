@@ -2,40 +2,53 @@
     <table class="table table-sm table-hover crud-table">
         <thead>
             <tr>
-                <th scope="col">Nome</th>
-                <th scope="col">Turma</th>
-                <th scope="col" class="text-center">Ações</th>
+                <th class="text-center">Turma</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th class="text-center">Situação</th>
+                <th class="text-center">Ações</th>
             </tr>
-            <th:block 
-                th:replace="~{views/aluno/fragments/table-specification-aluno :: table-specification-aluno}">
-            </th:block>
         </thead>
         <tbody>
-            <tr th:each="aluno : ${pagina.content}">
-                <td><span th:text="${aluno.usuario.nome}"></span></td>
-                <td class="coluna-turma"><span th:text="${aluno.turma}"></span></td>
+            <tr th:each="aluno : ${pagina.content}" th:class="${atualizado} ? (${aluno.id == atualizado.id} ? 'table-warning' : '')">
+                <td class="coluna-turma">
+                    <span
+                        th:text="${#strings.isEmpty(aluno.turma) ? 'Não informado' : aluno.turma}">
+                    </span>
+                </td>
                 <td>
-                    <div class="row justify-center">
-                        <div class="col-sm-12 text-center">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <a 
-                                    role="button"
-                                    th:href="@{/alunos/formulario/{id}(id=${aluno.id})}"
-                                    class="btn btn-sm btn-link text-warning text-decoration-none">
-                                    <i class="fas fa-pen"></i>
-                                </a>
-                                <button 
-                                    type="button"
-                                    th:data-id="${aluno.id}"
-                                    th:data-nome="${aluno.usuario.nome}"
-                                    data-toggle="modal"   
-                                    data-target="#modal-deletar-aluno"
-                                    class="btn btn-sm btn-link text-danger text-decoration-none">
-                                    <i class="far fa-trash-alt"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    <span th:text="${aluno.nome}"></span>
+                </td>
+                <td>
+                    <span th:text="${aluno.email}"></span>
+                </td>                
+                <td class="text-center">
+                    <span
+                        class="badge font-weight-light"
+                        th:classappend="${aluno.ativo ? 'badge-success': 'badge-danger'}"
+                        th:text="${aluno.ativo ? 'Habilitado': 'Bloqueado'}">
+                    </span>
+                </td>
+                <td class="text-center">
+                    <a 
+                        role="button"
+                        data-toggle="tooltip" data-placement="top" title="Editar"
+                        th:href="@{/alunos/formulario/{id}(id=${aluno.id})}"
+                        class="btn btn-link text-warning">
+                        <i class="fas fa-user-edit"></i>
+                    </a>
+                    <button 
+                        type="button"
+                        data-toggle="modal" data-placement="top" th:title="${aluno.ativo ? 'Bloquear': 'Desbloquear'}"
+                        th:data-id="${aluno.id}"
+                        th:data-nome="${aluno.nome}"
+                        th:data-status="${aluno.ativo}"
+                        data-target="#modal-alternar-status-aluno"
+                        class="btn"
+                        th:classappend="${aluno.ativo} ? 'btn-link text-danger' : 'btn-link text-success'">
+                        <i th:if="${!aluno.ativo}" class="fas fa-user-check"></i>
+                        <i th:if="${aluno.ativo}" class="fas fa-user-slash"></i>
+                    </button>
                 </td>
             </tr>
         </tbody>

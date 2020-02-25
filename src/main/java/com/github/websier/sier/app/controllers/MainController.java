@@ -20,8 +20,8 @@ import com.github.websier.sier.app.utils.Templates.MAIN;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * Home.
@@ -38,8 +38,8 @@ public class MainController {
         model.addAttribute("home", "active");
     }
 
-    @RequestMapping("/")
-    public String Index() {
+    @GetMapping("/")
+    public String index() {
         return MAIN.INDEX;
     }
 }

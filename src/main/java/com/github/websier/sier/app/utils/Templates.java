@@ -24,113 +24,37 @@ public class Templates {
 
     private static final String MAIN_PATH = "views/";
 
-    /**
-     * Paginas de erro sistema.
-     * 
-     * @since 3.0.0.
-     * @author Renato Henrique.
-     */
-    public static class ERROR {
-
-        private static final String ERROR_PATH = "errors/";
-
-        public static final String INDEX = ERROR_PATH + "error";
-    }
-
-    /**
-     * Paginas comuns do sistema.
-     * 
-     * @since 3.0.0.
-     * @author Renato Henrique.
-     */
     public static class MAIN {
-
-        /**
-         * Home.
-         *
-         * @see pagina index do sistema.
-         */
         public static final String INDEX = MAIN_PATH + "index";
-
-        /**
-         * Contact.
-         *
-         * @see pagina de contato.
-         */
         public static final String CONTATO = MAIN_PATH + "contato";
-    }
-
-    /**
-     * Paginas relacionadas a sessão do usuario.
-     * 
-     * @since 3.0.0.
-     * @author Renato Henrique.
-     */
-    public static class SECTION {
-
-        /**
-         * Login.
-         *
-         * @see formulario de login.
-         */
         public static final String LOGIN = MAIN_PATH + "login";
+        public static final String PERFIL = MAIN_PATH + "perfil";
     }
 
-    /**
-     * Paginas relacionadas a entidade Edifcio.
-     * 
-     * @since 3.0.0.
-     * @author Renato Henrique.
-     */
     public static class EDIFCIO {
-
         private static String BASE_PATH = "edificio/";
 
-        /**
-         * @see listagem dos edificios.
-         */
         public static final String INDEX = MAIN_PATH + BASE_PATH + "index";
-
-        /**
-         * @see formulario de cadastro de edificios.
-         */
         public static final String FORMULARIO = MAIN_PATH + BASE_PATH + "formulario";
     }
 
-    /**
-     * Paginas relacionadas a entidade Aluno.
-     * 
-     * @since 3.0.0.
-     * @author Renato Henrique.
-     */
     public static class ALUNO {
-
         private static String BASE_PATH = "aluno/";
 
-        /**
-         * @see listagem dos edificios.
-         */
         public static final String INDEX = MAIN_PATH + BASE_PATH + "index";
-
-        /**
-         * @see formulario de cadastro de edificios.
-         */
         public static final String FORMULARIO = MAIN_PATH + BASE_PATH + "formulario";
     }
 
-    /**
-     * Paginas ao acervo de edifcios.
-     * 
-     * @since 3.0.0.
-     * @author Renato Henrique.
-     */
-    public static class ACERVO {
+    public static class USUARIO {
+        private static String BASE_PATH = "usuario/";
 
+        public static final String INDEX = MAIN_PATH + BASE_PATH + "index";
+        public static final String FORMULARIO = MAIN_PATH + BASE_PATH + "formulario";
+    }
+
+    public static class ACERVO {
         private static String BASE_PATH = "acervo/";
 
-        /**
-         * @see listagem do acervo edificios.
-         */
         public static final String INDEX = MAIN_PATH + BASE_PATH + "index";
     }
 }

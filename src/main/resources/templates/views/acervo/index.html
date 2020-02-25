@@ -21,12 +21,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </head>
     <body>
         <section>
-            <div class="container">
-                <div class="card bg-light shadow rounded-0 mb-5">
+            <div class="container mb-5">
+                <div class="card shadow-sm rounded-0 border-0">
                     <div class="card-body">
-                        <acervo-filters 
-                            th:replace="~{views/acervo/fragments/acervo-filters :: acervo-filters}">
-                        </acervo-filters>
+                        <div class="card shadow-sm border-0 mb-3">
+                            <div class="card-body">
+                                <acervo-filters 
+                                    th:replace="~{views/acervo/fragments/acervo-filter :: acervo-filter}">
+                                </acervo-filters>
+                            </div>
+                        </div>
+                        <pagination 
+                            th:replace="~{views/acervo/fragments/pagination-acervo :: pagination-acervo('acervo')}">
+                        </pagination>
                         <acervo-cards
                             th:replace="~{views/acervo/fragments/acervo-cards :: acervo-cards}">
                         </acervo-cards>

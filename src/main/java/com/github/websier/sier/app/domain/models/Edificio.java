@@ -18,7 +18,6 @@ package com.github.websier.sier.app.domain.models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Date;
 import java.util.Objects;
 
@@ -32,12 +31,13 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.github.websier.sier.app.domain.dtos.Alerta;
 import com.github.websier.sier.app.domain.embeddables.Coleta;
 import com.github.websier.sier.app.domain.embeddables.Endereco;
+import com.github.websier.sier.app.domain.interfaces.Notificavel;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -48,7 +48,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  * @since 3.0.0
  */
 @Entity
-public class Edificio implements Serializable {
+public class Edificio implements Serializable, Notificavel {
 
     private static final long serialVersionUID = 1L;
 
@@ -67,7 +67,6 @@ public class Edificio implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dataConstrucao;
 
-    @Min(value = 1, message = "Por favor, forneça o numero de andares. No minimo 1.")
     private int numeroAndares;
 
     @Embedded
@@ -78,23 +77,33 @@ public class Edificio implements Serializable {
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate createdAt;
-    
+
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate updatedAt;
 
     @Override
-    public boolean equals(Object object) {
-        if (this == object) {
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
-        if (object == null) {
+        if (obj == null) {
             return false;
         }
-        if (getClass() != object.getClass()) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        final Edificio other = (Edificio) object;
-        return Objects.equals(this.id, other.id);
+        final Edificio other = (Edificio) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
     }
 
     @PrePersist
@@ -111,7 +120,7 @@ public class Edificio implements Serializable {
     public String toString() {
         return this.nomeConhecido;
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -167,16 +176,17 @@ public class Edificio implements Serializable {
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-    
+
     public LocalDate getCadastradoEm() {
         return this.createdAt;
     }
-    
+
     public LocalDate getAtuaizadoEm() {
         return this.updatedAt;
     }
 
-    public Date getDataCadastro() {
-        return Date.from(this.createdAt.atStartOfDay(ZoneId.of("America/Sao_Paulo")).toInstant());
+    @Override
+    public Alerta toAlerta() {
+        return new Alerta(this.getNomeConhecido(), "edificio", this.getId());
     }
 }
