@@ -16,7 +16,6 @@
  */
 package com.github.websier.sier.app.domain.models;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -38,7 +37,7 @@ import org.springframework.security.core.GrantedAuthority;
  * @author Renato Henrique
  */
 @Entity
-public class Cargo implements Serializable, GrantedAuthority {
+public class Cargo implements GrantedAuthority {
 
     private static final long serialVersionUID = 1L;
 

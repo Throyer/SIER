@@ -55,15 +55,20 @@ public class SecurityService implements UserDetailsService {
     }
 
     public Optional<Autenticado> getAutenticado() {
-        try {
-            return Optional.of((Autenticado) getPrincipal());
-        } catch (Exception exception) {
-            logger.error(NAO_EXISTE_USUARIO_LOGADO, exception);
-            return Optional.empty();
+        
+        var principal = getPrincipal();
+        
+        if (principal instanceof Autenticado) {
+            return Optional.of((Autenticado) principal);
         }
+
+        logger.error(NAO_EXISTE_USUARIO_LOGADO);
+        return Optional.empty();
     }
 
-    public Object getPrincipal() {
-        return SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    private Object getPrincipal() {
+        return SecurityContextHolder.getContext()
+            .getAuthentication()
+                .getPrincipal();
     }
 }

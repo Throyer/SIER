@@ -24,7 +24,14 @@
 
     
     <dependencies>
-        
+        <!-- #region PDF -->
+        <dependency>
+            <groupId>com.lowagie</groupId>
+            <artifactId>itext</artifactId>
+            <version>4.2.2</version>
+        </dependency>
+        <!-- #endregion -->
+
         <!-- #region Web Jars -->
         <dependency><!-- Locator -->
             <groupId>org.webjars</groupId>

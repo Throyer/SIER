@@ -11,6 +11,7 @@ import com.github.websier.sier.app.domain.models.Usuario;
 import com.github.websier.sier.app.domain.repositories.UsuarioRepository;
 import com.github.websier.sier.app.utils.TipoAlerta;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -35,15 +36,8 @@ public class UsuarioService {
     private static final String SENHA_PADRAO = "mudar123";
 
     public Optional<Usuario> getUsuarioLogado() {
-        var optionalAutenticado = securityService.getAutenticado();
-        
-        if (optionalAutenticado.isEmpty()) {
-            return Optional.empty();
-        }
-
-        var autenticado = optionalAutenticado.get();
-
-        return Optional.of(obterPorId(autenticado.getId()));
+        return securityService.getAutenticado()
+            .map(auth -> obterPorId(auth.getId()));
     }
 
     public void mudarEmail(Long usuarioId, String novoEmail) {
@@ -86,8 +80,21 @@ public class UsuarioService {
     }
 
     public Usuario atualizar(Usuario usuario) {
-        var entidade = obterPorId(usuario.getId());
-        return repository.save(atualizarCamposDoUsuario(usuario, entidade));
+
+        var persistir = obterPorId(usuario.getId());
+
+        BeanUtils.copyProperties(
+            usuario,
+            persistir,
+            "id",
+            "senha",
+            "ativo",
+            "createdAt",
+            "updatedAt",
+            "lastLogin"
+        );
+        
+        return repository.save(persistir);
     }
 
     public Boolean alternarAtivoOuInativo(Usuario usuario) {
@@ -99,14 +106,5 @@ public class UsuarioService {
 
     public void deletar(Usuario usuario) {
         repository.delete(usuario);
-    }
-
-    private Usuario atualizarCamposDoUsuario(Usuario fonte, Usuario destino) {
-        destino.setNome(fonte.getNome());
-        destino.setApelido(fonte.getApelido());
-        destino.setEmail(fonte.getEmail());
-        destino.setCargo(fonte.getCargo());
-        destino.setTurma(fonte.getTurma());
-        return destino;
     }
 }
