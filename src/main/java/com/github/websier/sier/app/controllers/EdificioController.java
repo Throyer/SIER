@@ -1,5 +1,7 @@
 package com.github.websier.sier.app.controllers;
 
+import static com.github.websier.sier.app.domain.specifications.EdificioSpecification.where;
+
 import static com.github.websier.sier.app.utils.FormUtils.addNotificacao;
 import static com.github.websier.sier.app.utils.FormUtils.tiposDeColeta;
 import static com.github.websier.sier.app.utils.PageSettings.of;
@@ -14,11 +16,16 @@ import javax.validation.Valid;
 import com.github.websier.sier.app.domain.enuns.TipoColeta;
 import com.github.websier.sier.app.domain.models.Edificio;
 import com.github.websier.sier.app.services.EdificioService;
+import com.github.websier.sier.app.services.PdfService;
 import com.github.websier.sier.app.utils.TipoAlerta;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -51,6 +58,27 @@ public class EdificioController {
 
         model.addAttribute("tipos", tiposDeColeta());
         model.addAttribute("edificios", "active");
+    }
+
+    @GetMapping(value = "/edificios/relatorio", produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<InputStreamResource> relatorioEdificios(
+        Optional<TipoColeta> fonteColeta,
+        Optional<String> nome,
+        Optional<String> autor
+    ) {
+
+        var edificios = service.obterTodos(where(fonteColeta, nome, autor, Optional.empty(), Optional.empty()));
+
+        var bytes = PdfService.relatorioEdificios(edificios);
+
+        var headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=relatorioEdificios.pdf");
+        
+        return ResponseEntity
+                .ok()
+                .headers(headers)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(new InputStreamResource(bytes));
     }
 
     /**

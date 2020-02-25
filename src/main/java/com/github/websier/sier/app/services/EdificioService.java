@@ -5,6 +5,7 @@ import static com.github.websier.sier.app.utils.FormUtils.addNotificacao;
 import static java.util.Objects.isNull;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import com.github.websier.sier.app.domain.enuns.TipoColeta;
@@ -40,8 +41,12 @@ public class EdificioService {
         Model model,
         Pageable pageable
     ) {
-        var specification = where(fonteColeta, nome, autor, dataColeta, model);
+        var specification = where(fonteColeta, nome, autor, dataColeta, Optional.of(model));
         return repository.findAll(specification, pageable);
+    }
+
+    public List<Edificio> obterTodos(Specification<Edificio> specification) {
+        return repository.findAll(specification);
     }
 
     public Page<Edificio> obterTodos(
