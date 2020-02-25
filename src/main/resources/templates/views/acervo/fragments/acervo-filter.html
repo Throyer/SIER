@@ -1,6 +1,6 @@
-<form class="row" th:fragment="acervo-filter">
-    <div class="col-md-2">
-        <div class="form-group mb-0">
+<form class="row acervo" th:fragment="acervo-filter">
+    <div class="col-sm-2">
+        <div class="form-group">
             <select
                 name="fonteColeta"
                 class="custom-select custom-select-sm">
@@ -11,45 +11,45 @@
                     th:value="${tipo.chave}"
                     th:text="${tipo.nome}">
                 </option>
-            </select>
-            <small>Fontes da coleta.</small>    
+            </select>  
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="form-group mb-0">
+    <div class="col-sm-2">
+        <div class="form-group">
             <input
                 type="text"
                 th:value="${nome}"
+                placeholder="Nome do edifício"
                 name="nome"
                 class="form-control form-control-sm">
-                <small>Nome do edificio.</small>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="form-group mb-0">
+    <div class="col-sm-4">
+        <div class="form-group">
             <input
                 type="text"
                 th:value="${autor}"
+                placeholder="Nome do autor"
                 name="autor"
-                class="form-control form-control-sm">
-            <small>Autor da coleta.</small>        
+                class="form-control form-control-sm">   
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="form-group mb-0">
+    <div class="col-sm-2">
+        <div class="form-group">
             <input
                 type="date"
                 th:value="${dataColeta}"
+                placeholder="Data do cadastro"
                 name="dataColeta"
-                class="form-control form-control-sm">
-            <small>Data da coleta.</small>        
+                class="form-control form-control-sm">      
         </div>
     </div>
-    <div class="col-md-1">
+    <div class="col-sm-2">
         <input hidden type="text" name="page" value="0">
         <input hidden type="text" name="size" th:value="${param.size}">
         <button type="submit" class="btn-block btn btn-sm btn-primary">
             <i class="fas fa-search"></i>
+            Procurar
         </button>
     </div>
 </form>

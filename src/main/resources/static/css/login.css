@@ -53,3 +53,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
+.form-signin.needs-validation {
+    margin-top: 70pt !important;
+}

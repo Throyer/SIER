@@ -30,6 +30,7 @@ import static com.github.websier.sier.app.utils.SecurityConstants.USERNAME_PARAM
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -77,6 +78,8 @@ public class SrpingSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 /* urls publicas. */
                 authorizeRequests()
                     .antMatchers(LOGIN_URL)
+                        .permitAll()
+                    .antMatchers(HttpMethod.GET, "/base/**")
                         .permitAll()
                 
                 /* o restante precisa de login. */

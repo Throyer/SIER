@@ -15,10 +15,10 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<nav 
+<nav
     class="navbar navbar-expand-md shadow-sm navbar-light fixed-top bg-light" 
     th:fragment="navbar">
-        <a class="navbar-brand" th:href="@{/}">
+        <a class="navbar-brand" th:href="@{/base}">
             <i class="fas fa-building"></i>
             SIER
         </a>
@@ -40,6 +40,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <ul class="navbar-nav mr-auto">            
             <a
                 class="nav-item nav-link"
+                sec:authorize="isAuthenticated()"
                 th:classappend="${home}"
                 th:href="@{/}">
                 <i class="fas fa-home"></i>
@@ -48,7 +49,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <a
                 class="nav-item nav-link"
                 th:classappend="${edifcios}"
-                th:href="@{/acervo(page=${0}, size=${6})}">
+                th:href="@{/base(page=${0}, size=${6})}">
                 <i class="fas fa-database"></i>
                 Base <span th:if="${edifcios}" class="sr-only">(current)</span>
             </a>        
@@ -57,8 +58,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <!-- Lado direito do navbar -->
         <ul class="navbar-nav ml-auto">
 
+            <li 
+                sec:authorize="!isAuthenticated()"
+                class="nav-item">
+                <a
+                    class="nav-item nav-link"
+                    th:href="@{/login}">
+                    <i class="fas fa-door-open"></i>
+                    Entrar <span class="sr-only">(current)</span>
+                </a>
+            </li>
+
             <li class="nav-item">
                 <a
+                    sec:authorize="isAuthenticated()"
                     class="nav-item nav-link"
                     th:classappend="${contato}"
                     th:href="@{/contato}">
