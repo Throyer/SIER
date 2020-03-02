@@ -23,32 +23,35 @@
                     <span th:text="${aluno.email}"></span>
                 </td>                
                 <td class="text-center">
-                    <span
-                        class="badge font-weight-light"
-                        th:classappend="${aluno.ativo ? 'badge-success': 'badge-danger'}"
+                    <small
                         th:text="${aluno.ativo ? 'Habilitado': 'Bloqueado'}">
-                    </span>
+                    </small>
+                    <i
+                        class="ml-2"
+                        th:classappend="${aluno.ativo} ? 'fas fa-check text-success' : 'fas fa-ban text-danger'"></i>
                 </td>
                 <td class="text-center">
-                    <a 
-                        role="button"
-                        data-toggle="tooltip" data-placement="top" title="Editar"
-                        th:href="@{/alunos/formulario/{id}(id=${aluno.id})}"
-                        class="btn btn-link text-warning">
-                        <i class="fas fa-user-edit"></i>
-                    </a>
-                    <button 
-                        type="button"
-                        data-toggle="modal" data-placement="top" th:title="${aluno.ativo ? 'Bloquear': 'Desbloquear'}"
-                        th:data-id="${aluno.id}"
-                        th:data-nome="${aluno.nome}"
-                        th:data-status="${aluno.ativo}"
-                        data-target="#modal-alternar-status-aluno"
-                        class="btn"
-                        th:classappend="${aluno.ativo} ? 'btn-link text-danger' : 'btn-link text-success'">
-                        <i th:if="${!aluno.ativo}" class="fas fa-user-check"></i>
-                        <i th:if="${aluno.ativo}" class="fas fa-user-slash"></i>
-                    </button>
+                    <div class="btn-group" role="group" aria-label="Botões de ação">
+                        <a 
+                            role="button"
+                            data-toggle="tooltip" data-placement="top" title="Editar"
+                            th:href="@{/alunos/formulario/{id}(id=${aluno.id})}"
+                            class="btn btn-sm btn-link text-warning">
+                            <i class="fas fa-user-edit"></i>
+                        </a>
+                        <button 
+                            type="button"
+                            data-toggle="modal" data-placement="top" th:title="${aluno.ativo ? 'Bloquear': 'Desbloquear'}"
+                            th:data-id="${aluno.id}"
+                            th:data-nome="${aluno.nome}"
+                            th:data-status="${aluno.ativo}"
+                            data-target="#modal-alternar-status-aluno"
+                            class="btn btn-sm"
+                            th:classappend="${aluno.ativo} ? 'btn-link text-danger' : 'btn-link text-success'">
+                            <i th:if="${!aluno.ativo}" class="fas fa-user-check"></i>
+                            <i th:if="${aluno.ativo}" class="fas fa-user-slash"></i>
+                        </button>
+                    </div>
                 </td>
             </tr>
         </tbody>
