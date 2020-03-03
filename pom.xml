@@ -5,7 +5,7 @@
 
     <groupId>com.github.websier.sier</groupId>
     <artifactId>sier-web</artifactId>
-    <version>3.0.0</version>
+    <version>3.1.0</version>
     <packaging>jar</packaging>
 
     <name>S.I.E.R</name>
