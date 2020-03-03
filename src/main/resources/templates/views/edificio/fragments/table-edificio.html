@@ -20,28 +20,30 @@
                 <td class="text-truncate"><span th:text="${edificio.coleta.createdBy} ?: 'Não registrado'"></span></td>
                 <td><span th:text="${#temporals.format(edificio.cadastradoEm, 'dd/MM/yyyy')} ?: 'Não registrado'"></span></td>
                 <td class="text-center">
-                    <!-- <button 
-                        type="button"
-                        class="btn btn-sm btn-link text-primary">
-                        <i class="far fa-eye"></i>
-                    </button> -->
-                    <a 
-                        role="button"
-                        data-toggle="tooltip" data-placement="top" title="Editar"
-                        th:href="@{/edificios/formulario/{id}(id=${edificio.id})}"
-                        class="btn btn-sm btn-link text-warning">
-                        <i class="fas fa-pen"></i>
-                    </a>
-                    <button
-                        sec:authorize="hasAnyAuthority('ADMINISTRADOR', 'PROFESSOR')"
-                        data-toggle="modal" data-placement="top" title="Remover"
-                        type="button"
-                        th:data-id="${edificio.id}"
-                        th:data-nome="${edificio.nomeConhecido}"  
-                        data-target="#modal-deletar-edificio"
-                        class="btn btn-sm btn-link text-danger">
-                        <i class="far fa-trash-alt"></i>
-                    </button>
+                    <div class="btn-group" role="group" aria-label="Botões de ação">
+                        <!-- <button 
+                            type="button"
+                            class="btn btn-sm btn-link text-primary">
+                            <i class="far fa-eye"></i>
+                        </button> -->
+                        <a 
+                            role="button"
+                            data-toggle="tooltip" data-placement="top" title="Editar"
+                            th:href="@{/edificios/formulario/{id}(id=${edificio.id})}"
+                            class="btn btn-sm btn-link text-warning">
+                            <i class="fas fa-pen"></i>
+                        </a>
+                        <button
+                            sec:authorize="hasAnyAuthority('ADMINISTRADOR', 'PROFESSOR')"
+                            data-toggle="modal" data-placement="top" title="Remover"
+                            type="button"
+                            th:data-id="${edificio.id}"
+                            th:data-nome="${edificio.nomeConhecido}"  
+                            data-target="#modal-deletar-edificio"
+                            class="btn btn-sm btn-link text-danger">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    </div>
                 </td>
             </tr>
             <tr th:if="${#lists.size(pagina.content) == 0}">
