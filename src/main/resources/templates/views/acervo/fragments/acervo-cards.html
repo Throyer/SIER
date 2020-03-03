@@ -14,13 +14,23 @@
                                 <small class="text-muted">Cadastrado em: </small>
                                 <small class="text-muted" th:text="${#temporals.format(edifcio.cadastradoEm, 'dd/MM/yyyy')}"></small>
                             </p>
-                            <a 
-                                href="https://github.com/Throyer/SIER#-sistema-de-informa%C3%A7%C3%A3o-de-edificios-residenciais"
-                                class="btn btn-block btn-outline-dark">
-                                <i class="fas fa-city"></i>
-                    
-                                Detalhes
-                            </a>
+                            <div class="btn-group btn-block">
+                                <a 
+                                    sec:authorize="isAuthenticated()"
+                                    href="https://github.com/Throyer/SIER#-sistema-de-informa%C3%A7%C3%A3o-de-edificios-residenciais"
+                                    class="btn btn-outline-dark">
+                                    <i class="fas fa-pen"></i>
+                        
+                                    Editar
+                                </a>
+                                <a 
+                                    href="https://github.com/Throyer/SIER#-sistema-de-informa%C3%A7%C3%A3o-de-edificios-residenciais"
+                                    class="btn btn-outline-dark">
+                                    <i class="fas fa-city"></i>
+                        
+                                    Detalhes
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

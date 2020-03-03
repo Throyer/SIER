@@ -63,7 +63,7 @@ public class AcervoController {
      * @param dataColeta data da coleta
      * @return edificios
      */
-    @GetMapping("/acervo")
+    @GetMapping("/base")
     public String acervo(
         @RequestParam Optional<Integer> page,
         @RequestParam Optional<Integer> size,
