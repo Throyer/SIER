@@ -79,7 +79,7 @@ public class SrpingSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 authorizeRequests()
                     .antMatchers(LOGIN_URL)
                         .permitAll()
-                    .antMatchers(HttpMethod.GET, "/base/**")
+                    .antMatchers(HttpMethod.GET, "/base/**", "/")
                         .permitAll()
                 
                 /* o restante precisa de login. */

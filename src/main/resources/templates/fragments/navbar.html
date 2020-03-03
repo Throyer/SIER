@@ -40,7 +40,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <ul class="navbar-nav mr-auto">            
             <a
                 class="nav-item nav-link"
-                sec:authorize="isAuthenticated()"
                 th:classappend="${home}"
                 th:href="@{/}">
                 <i class="fas fa-home"></i>
