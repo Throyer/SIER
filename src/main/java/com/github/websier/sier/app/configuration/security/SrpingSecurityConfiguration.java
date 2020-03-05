@@ -22,13 +22,13 @@ import static com.github.websier.sier.app.utils.SecurityConstants.LOGIN_ERROR_UR
 import static com.github.websier.sier.app.utils.SecurityConstants.LOGIN_URL;
 import static com.github.websier.sier.app.utils.SecurityConstants.LOGOUT_URL;
 import static com.github.websier.sier.app.utils.SecurityConstants.PASSWORD_PARAMETER;
-import static com.github.websier.sier.app.utils.SecurityConstants.SECRET;
 import static com.github.websier.sier.app.utils.SecurityConstants.SESSION_COOKIE_NAME;
 import static com.github.websier.sier.app.utils.SecurityConstants.STATICOS_IGNORADOS;
 import static com.github.websier.sier.app.utils.SecurityConstants.TOKEN_EXPIRATION;
 import static com.github.websier.sier.app.utils.SecurityConstants.USERNAME_PARAMETER;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -51,6 +51,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SrpingSecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Value("${remember-me.secret}")
+    private String SECRET;
     
     @Autowired
     SecurityService service;
