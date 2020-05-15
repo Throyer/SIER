@@ -23,8 +23,6 @@ package com.github.websier.sier.app.utils;
  */
 public class SecurityConstants {
 
-    public static final String SECRET = "$2a$10$bEe1HPsWbp8YvmCDiJFGEORUFcXtg75BRQ./5t.UFztNSjOg55iYO";
-
     public static final String USERNAME_PARAMETER = "email";
     public static final String PASSWORD_PARAMETER = "password";
 
