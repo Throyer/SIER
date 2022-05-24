@@ -24,6 +24,3 @@
 /nbdist/
 /.nb-gradle/
 nbactions.xml
-
-### visual studio code ###
-/.vscode/
