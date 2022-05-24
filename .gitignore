@@ -24,3 +24,5 @@
 /nbdist/
 /.nb-gradle/
 nbactions.xml
+docker/.env
+.volumes

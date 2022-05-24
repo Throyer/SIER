@@ -1,0 +1,29 @@
+version: '3'
+services:
+
+  database:
+    image: mariadb:10.6.1
+    restart: unless-stopped
+    container_name: sier-database
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: "sier"
+      MYSQL_ROOT_PASSWORD: "root"
+    volumes:
+      - ./.volumes/database:/var/lib/mysql
+
+  api:
+    image: sier:3.0.0
+    restart: unless-stopped
+    container_name: sier-web
+    links:
+      - database
+    ports:
+      - 8080:80
+    environment:
+      DB_URL: ${DB_URL}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
