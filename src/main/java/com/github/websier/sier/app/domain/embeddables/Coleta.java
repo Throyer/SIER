@@ -16,10 +16,15 @@
  */
 package com.github.websier.sier.app.domain.embeddables;
 
-import javax.persistence.CascadeType;
+import static javax.persistence.CascadeType.DETACH;
+import static javax.persistence.EnumType.STRING;
+
+import java.time.LocalDate;
+
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -37,16 +42,23 @@ import com.github.websier.sier.app.domain.models.Usuario;
 public class Coleta {
 
     @NotEmpty(message = "Por favor, informe a fonte da coleta dos dados.")
-    @Enumerated(EnumType.STRING)
+    @Enumerated(STRING)
+    @Column(name = "data_source")
     private TipoColeta fonteColeta;
 
     @Size(max = 350)
+    @Column(name = "additional_information")
     private String informacoes;
 
-    @ManyToOne(cascade = CascadeType.DETACH)
+    @Column(name = "collected_at")
+    private LocalDate collectedAt;
+
+    @ManyToOne(cascade = DETACH)
+    @JoinColumn(name = "created_by")
     private Usuario createdBy;
     
     @ManyToOne
+    @JoinColumn(name = "updated_by")
     private Usuario updatedBy;
 
     public TipoColeta getFonteColeta() {
@@ -79,5 +91,13 @@ public class Coleta {
 
     public void setUpdatedBy(Usuario updatedBy) {
         this.updatedBy = updatedBy;
+    }
+
+    public LocalDate getCollectedAt() {
+        return collectedAt;
+    }
+
+    public void setCollectedAt(LocalDate collectedAt) {
+        this.collectedAt = collectedAt;
     }
 }

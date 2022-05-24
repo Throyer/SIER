@@ -4,7 +4,7 @@
             <th:block th:each="edifcio : ${pagina.content}">
                 <div class="col-md-4 mb-4">
                     <div class="card shadow-sm border-0">
-                        <img src="https://image.flaticon.com/icons/svg/270/270072.svg" class="card-img-top img-thumbnail rounded-0 border-0 p-3">
+                        <img src="https://picsum.photos/200/300?random=1" class="card-img-top img-thumbnail rounded-0 border-0 p-3">
                         <div class="card-body">
                             <h4 class="font-weight-lighter text-center">
                                 <span th:text="${edifcio.nomeConhecido}"></span>
@@ -12,10 +12,10 @@
                             <hr>
                             <p>
                                 <small class="text-muted">Cadastrado em: </small>
-                                <small class="text-muted" th:text="${#temporals.format(edifcio.cadastradoEm, 'dd/MM/yyyy')}"></small>
+                                <small class="text-muted" th:text="${#temporals.format(edifcio.coleta.collectedAt, 'dd/MM/yyyy')}"></small>
                             </p>
                             <a 
-                                href="https://github.com/Throyer/SIER#-sistema-de-informa%C3%A7%C3%A3o-de-edificios-residenciais"
+                                href=""
                                 class="btn btn-block btn-outline-dark">
                                 <i class="fas fa-city"></i>
                     

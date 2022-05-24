@@ -18,7 +18,7 @@ package com.github.websier.sier.app.domain.models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -29,8 +29,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -47,6 +46,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  * @author Renato
  * @since 3.0.0
  */
+@Table(name = "residential_building")
 @Entity
 public class Edificio implements Serializable, Notificavel {
 
@@ -56,17 +56,19 @@ public class Edificio implements Serializable, Notificavel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "official_name")
     private String nome;
 
     @NotEmpty(message = "Por favor, informe um nome fantasia valido.")
     @NotNull(message = "Por favor, informe o nome fantasia.")
-    @Column(nullable = false)
+    @Column(name = "name")
     private String nomeConhecido;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Temporal(TemporalType.DATE)
-    private Date dataConstrucao;
+    @Column(name = "foundation_date")
+    private LocalDate dataConstrucao;
 
+    @Column(name = "number_of_floors")
     private int numeroAndares;
 
     @Embedded
@@ -75,11 +77,13 @@ public class Edificio implements Serializable, Notificavel {
     @Embedded
     private Coleta coleta;
 
+    @Column(name = "created_at")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
+    @Column(name = "updated_at")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDate updatedAt;
+    private LocalDateTime updatedAt;
 
     @Override
     public int hashCode() {
@@ -108,12 +112,12 @@ public class Edificio implements Serializable, Notificavel {
 
     @PrePersist
     private void created() {
-        this.createdAt = LocalDate.now();
+        this.createdAt = LocalDateTime.now();
     }
 
     @PreUpdate
     private void updated() {
-        this.updatedAt = LocalDate.now();
+        this.updatedAt = LocalDateTime.now();
     }
 
     @Override
@@ -145,11 +149,11 @@ public class Edificio implements Serializable, Notificavel {
         this.nomeConhecido = nomeConhecido;
     }
 
-    public Date getDataConstrucao() {
+    public LocalDate getDataConstrucao() {
         return dataConstrucao;
     }
 
-    public void setDataConstrucao(Date dataConstrucao) {
+    public void setDataConstrucao(LocalDate dataConstrucao) {
         this.dataConstrucao = dataConstrucao;
     }
 
@@ -177,11 +181,11 @@ public class Edificio implements Serializable, Notificavel {
         this.endereco = endereco;
     }
 
-    public LocalDate getCadastradoEm() {
+    public LocalDateTime getCadastradoEm() {
         return this.createdAt;
     }
 
-    public LocalDate getAtuaizadoEm() {
+    public LocalDateTime getAtuaizadoEm() {
         return this.updatedAt;
     }
 

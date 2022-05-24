@@ -16,35 +16,41 @@
  */
 package com.github.websier.sier.app.domain.embeddables;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 /**
- * Classe reponsavel por representar os endereços
- * dos edificios.
+ * Classe repensável por representar os endereços
+ * dos edifícios.
  * 
  * @author Renato henrique.
  * @since 3.0.0.
  */
 @Embeddable
 public class Endereco {
-
-    @NotEmpty(message = "Por favor, forneça o numero do edificio.")
-    private String numero;
-
+    @Column(name = "postal_code")
     @NotNull(message = "Por favor, forneça o CEP.")
     private String cep;
 
+    @Column(name = "address_number")
+    @NotEmpty(message = "Por favor, forneça o numero do edificio.")
+    private String numero;
+
+    @Column(name = "street")
     @NotNull(message = "Por favor, forneça a rua.")
     private String rua;
 
+    @Column(name = "neighborhood")
     @NotNull(message = "Por favor, forneça o bairro.")
     private String bairro;
 
+    @Column(name = "city")
     @NotNull(message = "Por favor, forneça a cidade.")
     private String cidade;
 
+    @Column(name = "state")
     @NotNull(message = "Por favor, forneça o estado.")
     private String estado;
 

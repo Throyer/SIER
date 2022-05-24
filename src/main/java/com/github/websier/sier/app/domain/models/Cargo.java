@@ -16,16 +16,15 @@
  */
 package com.github.websier.sier.app.domain.models;
 
-import java.time.LocalDateTime;
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -36,21 +35,17 @@ import org.springframework.security.core.GrantedAuthority;
  *
  * @author Renato Henrique
  */
+@Table(name = "role")
 @Entity
 public class Cargo implements GrantedAuthority {
 
-    private static final long serialVersionUID = 1L;
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
     @NotEmpty(message = "Por favor, forneça um nome.")
-    @Column(nullable = false)
+    @Column(name = "name")
     private String nome;
-
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
 
     public Cargo() { }
 
@@ -72,26 +67,6 @@ public class Cargo implements GrantedAuthority {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    @JsonIgnore
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    @JsonIgnore
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    @PrePersist
-    private void created() {
-        this.createdAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    private void updated() {
-        this.updatedAt = LocalDateTime.now();
     }
 
     @Override

@@ -18,7 +18,7 @@
                 </td>
                 <td><span th:text="${edificio}"></span></td>
                 <td class="text-truncate"><span th:text="${edificio.coleta.createdBy} ?: 'Não registrado'"></span></td>
-                <td><span th:text="${#temporals.format(edificio.cadastradoEm, 'dd/MM/yyyy')} ?: 'Não registrado'"></span></td>
+                <td><span th:text="${#temporals.format(edificio.coleta.collectedAt, 'dd/MM/yyyy')} ?: 'Não registrado'"></span></td>
                 <td class="text-center">
                     <!-- <button 
                         type="button"

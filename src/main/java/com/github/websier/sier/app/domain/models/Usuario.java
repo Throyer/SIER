@@ -24,13 +24,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -46,6 +49,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  *
  * @author Renato Henrique
  */
+@Table(name = "user")
 @Entity
 public class Usuario implements Serializable, Notificavel {
 
@@ -55,29 +59,36 @@ public class Usuario implements Serializable, Notificavel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name")
     @NotNull(message = "Por favor forneça um nome.")
     private String nome;
 
+    @Column(name = "nick_name")
     @NotNull(message = "Por favor forneça um apelido.")
     private String apelido;
 
+    @Column(name = "email")
     @NotNull(message = "Por favor forneça um email.")
     private String email;
 
     @JsonIgnore
+    @Column(name = "password")
     @Pattern(regexp = SENHA_FORTE, message = MENSAGEM_SENHA_FORTE)
     private String senha;
 
+    @Column(name = "class_year")
     private String turma;
 
+    @Column(name = "active")
     private Boolean ativo = true;
 
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    private LocalDateTime lastLogin;
-
+    @JoinColumn(name = "role_id")
     @ManyToOne
     private Cargo cargo;
 
@@ -158,14 +169,6 @@ public class Usuario implements Serializable, Notificavel {
 
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
-    }
-
-    public LocalDateTime getUltimoLogin() {
-        return lastLogin;
-    }
-
-    public void setUltiumoLogin(LocalDateTime lastLogin) {
-        this.lastLogin = lastLogin;
     }
 
     @JsonIgnore
