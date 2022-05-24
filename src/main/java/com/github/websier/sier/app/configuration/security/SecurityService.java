@@ -35,7 +35,7 @@ import org.springframework.stereotype.Service;
  * Serviço de autenticação de usuarios.
  * 
  * @author Renato Henrique.
- * @since 3.0.0.
+ * @since 3.0.0
  */
 @Service
 public class SecurityService implements UserDetailsService {

@@ -18,7 +18,7 @@ package com.github.websier.sier.app.utils;
 
 /**
  * Constantes das configurações de segurança.
- * @since 3.0.0.
+ * @since 3.0.0
  * @author Renato Henrique
  */
 public class SecurityConstants {
@@ -38,7 +38,8 @@ public class SecurityConstants {
     
     public static final String SESSION_COOKIE_NAME = "JSESSIONID";
     
-    public static final String[] STATICOS_IGNORADOS = {
+    public static final String[] PUBLIC_ROUTES = {
+        LOGIN_URL,
         "/robots.txt",
         "/font/**",
         "/css/**",

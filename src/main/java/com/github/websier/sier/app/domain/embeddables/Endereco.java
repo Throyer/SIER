@@ -26,7 +26,7 @@ import javax.validation.constraints.NotNull;
  * dos edifícios.
  * 
  * @author Renato henrique.
- * @since 3.0.0.
+ * @since 3.0.0
  */
 @Embeddable
 public class Endereco {

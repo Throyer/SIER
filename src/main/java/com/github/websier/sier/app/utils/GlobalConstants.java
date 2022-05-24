@@ -23,7 +23,7 @@ import org.springframework.validation.ObjectError;
  * 
  * Classe global de contantes do sistema.
  * 
- * @since 3.0.0.
+ * @since 3.0.0
  * @author Renato Henrique.
  */
 public class GlobalConstants {

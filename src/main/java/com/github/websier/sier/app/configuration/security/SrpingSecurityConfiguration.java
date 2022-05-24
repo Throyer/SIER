@@ -22,21 +22,20 @@ import static com.github.websier.sier.app.utils.SecurityConstants.LOGIN_ERROR_UR
 import static com.github.websier.sier.app.utils.SecurityConstants.LOGIN_URL;
 import static com.github.websier.sier.app.utils.SecurityConstants.LOGOUT_URL;
 import static com.github.websier.sier.app.utils.SecurityConstants.PASSWORD_PARAMETER;
+import static com.github.websier.sier.app.utils.SecurityConstants.PUBLIC_ROUTES;
 import static com.github.websier.sier.app.utils.SecurityConstants.SECRET;
 import static com.github.websier.sier.app.utils.SecurityConstants.SESSION_COOKIE_NAME;
-import static com.github.websier.sier.app.utils.SecurityConstants.STATICOS_IGNORADOS;
 import static com.github.websier.sier.app.utils.SecurityConstants.TOKEN_EXPIRATION;
 import static com.github.websier.sier.app.utils.SecurityConstants.USERNAME_PARAMETER;
+import static org.springframework.http.HttpMethod.GET;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
@@ -44,39 +43,23 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
  * 
  * Classe de configurações de segurança. 
  * @author Renato Henrique.
- * @since 3.0.0.
+ * @since 3.0.0
  */
-@EnableWebSecurity
 @Configuration
+@EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class SrpingSecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class SrpingSecurityConfiguration  {
     
     @Autowired
     SecurityService service;
 
-    @Autowired
-    private BCryptPasswordEncoder encoder;
-
-    /**
-     * Serviço de autenticação e Encoder.
-     */
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.
-            userDetailsService(service)
-                .passwordEncoder(encoder);
-    }
-
-    /**
-     * Configuração.
-     */
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    @Bean
+    public SecurityFilterChain security(HttpSecurity http) throws Exception {
 
         http.
                 /* urls publicas. */
                 authorizeRequests()
-                    .antMatchers(LOGIN_URL)
+                    .antMatchers(GET, PUBLIC_ROUTES)
                         .permitAll()
                 
                 /* o restante precisa de login. */
@@ -87,6 +70,7 @@ public class SrpingSecurityConfiguration extends WebSecurityConfigurerAdapter {
                                 .disable()
                 
                 /* fomulario de login. */
+                .userDetailsService(service)
                 .formLogin()
                     .loginPage(LOGIN_URL)
                         .failureUrl(LOGIN_ERROR_URL)
@@ -97,6 +81,7 @@ public class SrpingSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 
                 /* configuração do login permanente. */
                 .rememberMe()
+                    .userDetailsService(service)
                     .key(SECRET)
                         .tokenValiditySeconds(TOKEN_EXPIRATION)
                             .and()
@@ -111,14 +96,7 @@ public class SrpingSecurityConfiguration extends WebSecurityConfigurerAdapter {
                     
                 /* configuração de acesso negado. */
                 .accessDeniedPage(ACESSO_NEGADO_URL);
-    }
-    
-    /**
-     * Staticos.
-     */
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring()
-            .antMatchers(STATICOS_IGNORADOS);
+
+        return http.build();
     }
 }

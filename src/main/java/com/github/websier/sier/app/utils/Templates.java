@@ -17,7 +17,7 @@
 package com.github.websier.sier.app.utils;
 
 /**
- * @since 3.0.0.
+ * @since 3.0.0
  * @author Renato Henrique
  */
 public class Templates {

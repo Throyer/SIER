@@ -29,7 +29,7 @@ import org.springframework.security.core.userdetails.User;
  * 
  * Usuario atenticado na sessão do spring boot.
  * @author Renato Henrique.
- * @since 3.0.0.
+ * @since 3.0.0
  */
 public class Autenticado extends User {
     

@@ -36,7 +36,7 @@ import com.github.websier.sier.app.domain.models.Usuario;
  * Classe reponsavel por representar a coleta dos dados.
  * 
  * @author Renato Henrique.
- * @since 3.0.0.
+ * @since 3.0.0
  */
 @Embeddable
 public class Coleta {
