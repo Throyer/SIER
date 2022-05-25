@@ -1,5 +1,5 @@
 # 🏢 Sistema de Informação de Edifícios Residenciais
-O S.I.E.R. é um sistema utilizado na disciplina **2CIN056** de Ciência da Informação da Universidade Estadual de Londrina [**UEL**](http://www.uel.br/ceca/cin/index.html).
+O S.I.E.R. é um sistema utilizado na disciplina **2CIN056** de Ciência da Informação da Universidade Estadual de Londrina [**UEL**](http://www.uel.br/ceca/cin/).
 
 
 Terminologia na construção de vocabulários
